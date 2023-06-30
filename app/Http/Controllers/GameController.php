@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Attribute;
 use Illuminate\Http\Request;
 use App\Services\Crawls;
 use Illuminate\Support\Facades\View;
@@ -10,10 +11,12 @@ use Config;
 class GameController extends Controller
 {
     private $crawls;
+    private $attribute;
 
-    public function __construct(Crawls $crawls)
+    public function __construct(Crawls $crawls, Attribute $attribute)
     {
         $this->crawls = $crawls;
+        $this->attribute = $attribute;
     }
 
     public function viewGame($name)
@@ -28,7 +31,8 @@ class GameController extends Controller
         if ($url == null) {
             return null;
         }
-        $attribute = ".thumb_link";
+
+        $attribute = $this->attribute::LIST_ATTRIBUTE[$url];
         $list = $this->crawls->getListAttribute($url, $attribute);
 
         foreach ($list as $item) {
@@ -48,7 +52,7 @@ class GameController extends Controller
             }
 
             $html = $this->crawls->getDom($link, null);
-            dd($html->dump());
+
             $pathView = Config::get("view.paths");
             $pathCreateFile = $pathView[0] . "\games/" . $gameName . ".blade.php";
             $html->save($pathCreateFile);
