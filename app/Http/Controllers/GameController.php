@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Attribute;
+use App\Enums\LinkGame;
 use Illuminate\Http\Request;
-use App\Services\Crawls;
-use Illuminate\Support\Facades\View;
-use Config;
+use App\Services\GetLinkGames;
 
 class GameController extends Controller
 {
-    private $crawls;
-    private $attribute;
+    private $linkGame;
+    private $getLinkGames;
 
-    public function __construct(Crawls $crawls, Attribute $attribute)
+    public function __construct(LinkGame $linkGame, GetLinkGames $getLinkGames)
     {
-        $this->crawls = $crawls;
-        $this->attribute = $attribute;
+        $this->linkGame = $linkGame;
+        $this->getLinkGames = $getLinkGames;
     }
 
     public function viewGame($name)
@@ -32,30 +30,10 @@ class GameController extends Controller
             return null;
         }
 
-        $attribute = $this->attribute::LIST_ATTRIBUTE[$url];
-        $list = $this->crawls->getListAttribute($url, $attribute);
-
-        foreach ($list as $item) {
-            $link = "";
-            if (!empty($item->attr)) {
-                $link = $item->attr["href"];
-                $listLink[] = $link;
-            }
-        }
-
-        foreach ($listLink as $link) {
-            $path = parse_url($link, PHP_URL_PATH);
-            $gameName = substr($path, 1);
-            $viewGame = "games." . $gameName;
-            if (View::exists($viewGame)) {
-                continue;
-            }
-
-            $html = $this->crawls->getDom($link, null);
-
-            $pathView = Config::get("view.paths");
-            $pathCreateFile = $pathView[0] . "\games/" . $gameName . ".blade.php";
-            $html->save($pathCreateFile);
+        switch ($url) {
+            case $this->linkGame::GAME_ITCHIO:
+                $this->getLinkGames->getLinkGameItchIo();
+                break;
         }
     }
 }

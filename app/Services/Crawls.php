@@ -6,10 +6,6 @@ use Drnxloc\LaravelHtmlDom\HtmlDomParser;
 
 class Crawls
 {
-    public function __construct()
-    {
-    }
-
     public function getListAttribute($url, $attribute = '', $type = null)
     {
         $dom = $this->getDom($url, $type);
