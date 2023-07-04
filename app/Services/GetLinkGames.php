@@ -14,6 +14,7 @@ class GetLinkGames
     private $attribute;
     private $crawls;
     private $ultity;
+    private $turnReadAndWrite;
 
     public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity)
     {
@@ -21,6 +22,7 @@ class GetLinkGames
         $this->attribute = $attribute;
         $this->crawls = $crawls;
         $this->ultity = $ultity;
+        $this->turnReadAndWrite;
     }
 
     public function getLinkGameItchIo()
@@ -112,6 +114,7 @@ class GetLinkGames
 
             $getA = $html->find('a');
             $listTagGames = [];
+            $authorGames = '';
             foreach ($getA as $a) {
                 if (array_key_exists('href', $a->attr)) {
                     if (strpos($a->attr['href'], 'https://itch.io/games/genre') !== false) {
@@ -122,6 +125,12 @@ class GetLinkGames
                     if (strpos($a->attr['href'], 'https://itch.io/games/tag') !== false) {
                         $explode = explode('-', $a->attr['href']);
                         $listTagGames[] = $explode[1];
+                    }
+
+                    if (strpos($a->attr['href'], '.itch.io') !== false) {
+                        $parse_url = parse_url($link['link'], PHP_URL_HOST);
+                        $explode = explode('.', $parse_url);
+                        $authorGames = $explode[0];
                     }
                 }
             }
@@ -142,6 +151,7 @@ class GetLinkGames
                     }
                 }
             }
+            $data['author'] = $authorGames;
 
             $dom = new \DOMDocument();
             $dom->preserveWhiteSpace = false;
@@ -156,21 +166,34 @@ class GetLinkGames
             $strResult = str_replace($html->__toString(), $htmlDecode, $str);
             file_put_contents($pathCreateFile, $strResult);
 
-            $fopen = fopen($pathCreateFile, "r+");
-            if ($fopen) {
-                while (($line = fgets($fopen)) !== false) {
-                    $contentResult = $this->ultity->replaceHTML($line, $this->linkGame::GAME_ITCHIO, $data, $strResult);
-                    $strResult = $contentResult;
-                    file_put_contents($pathCreateFile, $contentResult);
-                }
-
-                fclose($fopen);
+            $this->turnReadAndWrite = 0;
+            $strResult = $this->readAndWriteFile($pathCreateFile, $data, $strResult);
+            if ($this->turnReadAndWrite < 1) {
+                $this->readAndWriteFile($pathCreateFile, $data, $strResult);
             }
 
-            dd(1);
             $itemCount++;
         }
 
         return $itemCount;
+    }
+
+
+    public function readAndWriteFile($pathCreateFile, $data, $strResult)
+    {
+        $fopen = fopen($pathCreateFile, "r+");
+        if ($fopen) {
+            while (($line = fgets($fopen)) !== false) {
+                $strResult = $this->ultity->replaceHTML($line, $this->linkGame::GAME_ITCHIO, $data, $strResult);
+                file_put_contents($pathCreateFile, $strResult);
+                $listRow[] = $line;
+            }
+
+            fclose($fopen);
+        }
+
+        $this->turnReadAndWrite = 1;
+
+        return $strResult;
     }
 }

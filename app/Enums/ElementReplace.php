@@ -45,8 +45,8 @@ class ElementReplace
         '<span class="page_label">',
         'property="og:image"',
         'follow_user_btn action_btn',
-        'https://itch.io/login?',
-        'https://itch.io/profile/',
+        'itch.io/login?',
+        'itch.io/profile/',
         'embed_preload youtube_preload',
         '<link type="image/png" rel="icon"',
         'action_btn view_more',
@@ -63,8 +63,9 @@ class ElementReplace
         'id="download"',
         'download_platforms',
         'class="game_devlog"',
-        'href="https://itch.io/games">Games',
+        'itch.io/games>',
         '>I.setup_layout()',
-        '.itch.io',
+        'class="post_avatar"',
+        'data-register_action="community_reply"',
     ];
 }
