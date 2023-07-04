@@ -54,18 +54,38 @@ final class Ultity
             case $this->linkGame::GAME_ITCHIO:
                 $listReplace = $this->elementReplace::LIST_ITCHIO;
 
-                dd($contentResult);
                 if (strpos($line, '<meta charset="UTF-8">') !== false) {
-                    // $replace = "@include('includes.header-meta')\n";
-                    // $result = str_replace($line, $replace, $contentResult);
+                    $replace = "@include('includes.header-meta', ['theme-color' => " . $data['theme-color'] . " ])\n";
+                    $result = str_replace($line, $replace, $contentResult);
 
                     return $result;
                 }
 
                 if (strpos($line, "</script><style type=") !== false) {
                     $replace = "";
-                    dd($contentResult);
                     $result = str_replace("}</script>", $replace, $contentResult);
+
+                    return $result;
+                }
+
+                if (strpos($line, 'https://static.itch.io/game.css') !== false) {
+                    $replace = "{{ asset('css/game.css') }}";
+                    $result = str_replace("https://static.itch.io/game.css?1688228046", $replace, $contentResult);
+
+                    return $result;
+                }
+
+                if (strpos($line, '<script type="text/javascript">new I.GameUserTools') !== false) {
+                    $replace = "";
+                    $resultPrev = str_replace('<script type="text/javascript"', $replace, $contentResult);
+                    $result = str_replace("new I.GameUserTools('#user_tools')</script>", $replace, $resultPrev);
+
+                    return $result;
+                }
+
+                if (strpos($line, 'I.setup_page()') !== false) {
+                    $replace = "@include('includes.footer')\n";
+                    $result = str_replace($line, $replace, $contentResult);
 
                     return $result;
                 }
@@ -73,13 +93,15 @@ final class Ultity
                 foreach ($listReplace as $str) {
                     if (strpos($line, $str) !== false) {
                         $replace = "";
-                        dd($contentResult);
                         $result = str_replace($line, $replace, $contentResult);
 
                         return $result;
                     }
                 }
 
+                return $contentResult;
+                break;
+            default:
                 break;
         }
     }

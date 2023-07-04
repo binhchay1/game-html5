@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'gamekafe.com'),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -144,7 +144,7 @@ return [
         // 'store'  => 'redis',
     ],
 
-    'site_url' => env('APP_URL', 'games.vn'),
+    'site_url' => env('APP_URL', 'gamekafe.com'),
 
     /*
     |--------------------------------------------------------------------------
