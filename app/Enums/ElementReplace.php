@@ -64,7 +64,6 @@ class ElementReplace
         'download_platforms',
         'class="game_devlog"',
         'itch.io/games>',
-        '>I.setup_layout()',
         'class="post_avatar"',
         'data-register_action="community_reply"',
     ];

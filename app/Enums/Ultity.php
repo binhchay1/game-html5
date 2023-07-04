@@ -56,7 +56,9 @@ final class Ultity
                 $subDomain = $data['author'] . '.itch.io';
 
                 if (strpos($line, '<meta charset="UTF-8">') !== false) {
-                    $replace = "@include('includes.header-meta', ['theme-color' => '" . $data['theme-color'] . "' ])\n";
+                    $strStart = "@include('includes.header-meta', ['theme-color' => '" . $data['theme-color'] . "' ])\n";
+                    $strEnd = "@include('includes.header-script')\n";
+                    $replace = $strStart . $strEnd;
                     $result = str_replace($line, $replace, $contentResult);
 
                     return $result;
@@ -97,8 +99,6 @@ final class Ultity
 
                     return $result;
                 }
-
-                dd($subDomain);
 
                 if (Str::contains($line, $subDomain)) {
                     $replace = "";

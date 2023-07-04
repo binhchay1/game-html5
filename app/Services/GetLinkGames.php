@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
+use App\Enums\ElementReplace;
 use App\Enums\Ultity;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 use Config;
 
 class GetLinkGames
@@ -14,15 +16,15 @@ class GetLinkGames
     private $attribute;
     private $crawls;
     private $ultity;
-    private $turnReadAndWrite;
+    private $elementReplace;
 
-    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity)
+    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity, ElementReplace $elementReplace)
     {
         $this->linkGame = $linkGame;
         $this->attribute = $attribute;
         $this->crawls = $crawls;
         $this->ultity = $ultity;
-        $this->turnReadAndWrite;
+        $this->elementReplace = $elementReplace;
     }
 
     public function getLinkGameItchIo()
@@ -166,11 +168,19 @@ class GetLinkGames
             $strResult = str_replace($html->__toString(), $htmlDecode, $str);
             file_put_contents($pathCreateFile, $strResult);
 
-            $this->turnReadAndWrite = 0;
-            $strResult = $this->readAndWriteFile($pathCreateFile, $data, $strResult);
-            if ($this->turnReadAndWrite < 1) {
-                $this->readAndWriteFile($pathCreateFile, $data, $strResult);
+            $strResult = $this->readAndWriteFilePractice($pathCreateFile, $data, $strResult);
+            $listReplace = $this->elementReplace::LIST_ITCHIO;
+            $explodeStrResult = preg_split('/\n/', $strResult);
+            foreach ($explodeStrResult as $strExplode) {
+                foreach ($listReplace as $replaceStr) {
+                    if (Str::contains($strExplode, $replaceStr)) {
+                        $replace = "";
+                        $strResult = str_replace($strExplode, $replace, $strResult);
+                    }
+                }
             }
+
+            dd($strResult);
 
             $itemCount++;
         }
@@ -179,20 +189,17 @@ class GetLinkGames
     }
 
 
-    public function readAndWriteFile($pathCreateFile, $data, $strResult)
+    public function readAndWriteFilePractice($pathCreateFile, $data, $strResult)
     {
         $fopen = fopen($pathCreateFile, "r+");
         if ($fopen) {
             while (($line = fgets($fopen)) !== false) {
                 $strResult = $this->ultity->replaceHTML($line, $this->linkGame::GAME_ITCHIO, $data, $strResult);
                 file_put_contents($pathCreateFile, $strResult);
-                $listRow[] = $line;
             }
 
             fclose($fopen);
         }
-
-        $this->turnReadAndWrite = 1;
 
         return $strResult;
     }
