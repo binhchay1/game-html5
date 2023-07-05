@@ -19,7 +19,7 @@ class GameController extends Controller
 
     public function viewGame($name)
     {
-        $pathDir = "games." . $name;
+        $pathDir = "games." . $name . '.' . $name;
         return view($pathDir);
     }
 

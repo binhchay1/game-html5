@@ -19,11 +19,18 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('test');
+    $ch = curl_init();
+    $url = "https://v6p9d9t4.ssl.hwcdn.net/html/8119337/FEARASSESSMENTMOBILE2/index.html/";
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    $content = curl_exec($ch);
+    curl_close($ch);
+
+    dd($content);
 });
 
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
-Route::group(['prefix'=>'games'], function(){
+Route::group(['prefix' => 'games'], function () {
     Route::get('/{name}', [GameController::class, 'viewGame']);
 });
-
