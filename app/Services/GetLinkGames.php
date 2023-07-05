@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
+use App\Enums\ElementReplace;
 use App\Enums\Ultity;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 use Config;
 
 class GetLinkGames
@@ -14,13 +16,15 @@ class GetLinkGames
     private $attribute;
     private $crawls;
     private $ultity;
+    private $elementReplace;
 
-    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity)
+    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity, ElementReplace $elementReplace)
     {
         $this->linkGame = $linkGame;
         $this->attribute = $attribute;
         $this->crawls = $crawls;
         $this->ultity = $ultity;
+        $this->elementReplace = $elementReplace;
     }
 
     public function getLinkGameItchIo()
@@ -112,6 +116,7 @@ class GetLinkGames
 
             $getA = $html->find('a');
             $listTagGames = [];
+            $authorGames = '';
             foreach ($getA as $a) {
                 if (array_key_exists('href', $a->attr)) {
                     if (strpos($a->attr['href'], 'https://itch.io/games/genre') !== false) {
@@ -122,6 +127,12 @@ class GetLinkGames
                     if (strpos($a->attr['href'], 'https://itch.io/games/tag') !== false) {
                         $explode = explode('-', $a->attr['href']);
                         $listTagGames[] = $explode[1];
+                    }
+
+                    if (strpos($a->attr['href'], '.itch.io') !== false) {
+                        $parse_url = parse_url($link['link'], PHP_URL_HOST);
+                        $explode = explode('.', $parse_url);
+                        $authorGames = $explode[0];
                     }
                 }
             }
@@ -142,6 +153,7 @@ class GetLinkGames
                     }
                 }
             }
+            $data['author'] = $authorGames;
 
             $dom = new \DOMDocument();
             $dom->preserveWhiteSpace = false;
@@ -156,21 +168,39 @@ class GetLinkGames
             $strResult = str_replace($html->__toString(), $htmlDecode, $str);
             file_put_contents($pathCreateFile, $strResult);
 
-            $fopen = fopen($pathCreateFile, "r+");
-            if ($fopen) {
-                while (($line = fgets($fopen)) !== false) {
-                    $contentResult = $this->ultity->replaceHTML($line, $this->linkGame::GAME_ITCHIO, $data, $strResult);
-                    $strResult = $contentResult;
-                    file_put_contents($pathCreateFile, $contentResult);
+            $strResult = $this->readAndWriteFilePractice($pathCreateFile, $data, $strResult);
+            $listReplace = $this->elementReplace::LIST_ITCHIO;
+            $explodeStrResult = preg_split('/\n/', $strResult);
+            foreach ($explodeStrResult as $strExplode) {
+                foreach ($listReplace as $replaceStr) {
+                    if (Str::contains($strExplode, $replaceStr)) {
+                        $replace = "";
+                        $strResult = str_replace($strExplode, $replace, $strResult);
+                    }
                 }
-
-                fclose($fopen);
             }
 
-            dd(1);
+            dd($strResult);
+
             $itemCount++;
         }
 
         return $itemCount;
+    }
+
+
+    public function readAndWriteFilePractice($pathCreateFile, $data, $strResult)
+    {
+        $fopen = fopen($pathCreateFile, "r+");
+        if ($fopen) {
+            while (($line = fgets($fopen)) !== false) {
+                $strResult = $this->ultity->replaceHTML($line, $this->linkGame::GAME_ITCHIO, $data, $strResult);
+                file_put_contents($pathCreateFile, $strResult);
+            }
+
+            fclose($fopen);
+        }
+
+        return $strResult;
     }
 }

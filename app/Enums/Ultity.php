@@ -53,16 +53,19 @@ final class Ultity
         switch ($url) {
             case $this->linkGame::GAME_ITCHIO:
                 $listReplace = $this->elementReplace::LIST_ITCHIO;
+                $subDomain = $data['author'] . '.itch.io';
 
                 if (strpos($line, '<meta charset="UTF-8">') !== false) {
-                    $replace = "@include('includes.header-meta', ['theme-color' => " . $data['theme-color'] . " ])\n";
+                    $strStart = "@include('includes.header-meta', ['theme-color' => '" . $data['theme-color'] . "' ])\n";
+                    $strEnd = "@include('includes.header-script')\n";
+                    $replace = $strStart . $strEnd;
                     $result = str_replace($line, $replace, $contentResult);
 
                     return $result;
                 }
 
                 if (strpos($line, "</script><style type=") !== false) {
-                    $replace = "";
+                    $replace = " ";
                     $result = str_replace("}</script>", $replace, $contentResult);
 
                     return $result;
@@ -75,6 +78,13 @@ final class Ultity
                     return $result;
                 }
 
+                if (strpos($line, 'if (up_score > 0)') !== false) {
+                    $replace = "";
+                    $result = str_replace($line, $replace, $contentResult);
+
+                    return $result;
+                }
+
                 if (strpos($line, '<script type="text/javascript">new I.GameUserTools') !== false) {
                     $replace = "";
                     $resultPrev = str_replace('<script type="text/javascript"', $replace, $contentResult);
@@ -83,15 +93,22 @@ final class Ultity
                     return $result;
                 }
 
-                if (strpos($line, 'I.setup_page()') !== false) {
+                if (Str::contains($line, 'I.setup_page()')) {
                     $replace = "@include('includes.footer')\n";
                     $result = str_replace($line, $replace, $contentResult);
 
                     return $result;
                 }
 
+                if (Str::contains($line, $subDomain)) {
+                    $replace = "";
+                    $result = str_replace($line, $replace, $contentResult);
+
+                    return $result;
+                }
+
                 foreach ($listReplace as $str) {
-                    if (strpos($line, $str) !== false) {
+                    if (Str::contains($line, $str)) {
                         $replace = "";
                         $result = str_replace($line, $replace, $contentResult);
 
@@ -100,8 +117,6 @@ final class Ultity
                 }
 
                 return $contentResult;
-                break;
-            default:
                 break;
         }
     }

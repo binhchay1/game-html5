@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('page.user.layout.master-page');
+});
+
+Route::get('/test', function () {
+    return view('test');
 });
 
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
 Route::group(['prefix'=>'games'], function(){
     Route::get('/{name}', [GameController::class, 'viewGame']);
 });
+
+Route::get('/admin',[AdminController::class, 'index']);
 
