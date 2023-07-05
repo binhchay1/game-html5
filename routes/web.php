@@ -19,12 +19,8 @@ Route::get('/', function () {
     return view('page.user.layout.master-page');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
-Route::group(['prefix'=>'games'], function(){
+Route::group(['prefix' => 'games'], function () {
     Route::get('/{name}', [GameController::class, 'viewGame']);
 });
 

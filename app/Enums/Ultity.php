@@ -6,18 +6,12 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
-use App\Enums\ElementReplace;
-use Illuminate\Support\Str;
 
 final class Ultity
 {
-    private $linkGame;
-    private $elementReplace;
-
-    public function __construct(LinkGame $linkGame, ElementReplace $elementReplace)
+    public function __construct(LinkGame $linkGame)
     {
         $this->linkGame = $linkGame;
-        $this->elementReplace = $elementReplace;
     }
 
     public function paginate($items, $perPage = 15, $path = null, $pageName = 'page', $page = null, $options = [])
@@ -46,78 +40,5 @@ final class Ultity
         $url = Storage::path($filename);
 
         return response()->download($url);
-    }
-
-    public function replaceHTML($line, $url, $data, $contentResult)
-    {
-        switch ($url) {
-            case $this->linkGame::GAME_ITCHIO:
-                $listReplace = $this->elementReplace::LIST_ITCHIO;
-                $subDomain = $data['author'] . '.itch.io';
-
-                if (strpos($line, '<meta charset="UTF-8">') !== false) {
-                    $strStart = "@include('includes.header-meta', ['theme-color' => '" . $data['theme-color'] . "' ])\n";
-                    $strEnd = "@include('includes.header-script')\n";
-                    $replace = $strStart . $strEnd;
-                    $result = str_replace($line, $replace, $contentResult);
-
-                    return $result;
-                }
-
-                if (strpos($line, "</script><style type=") !== false) {
-                    $replace = " ";
-                    $result = str_replace("}</script>", $replace, $contentResult);
-
-                    return $result;
-                }
-
-                if (strpos($line, 'https://static.itch.io/game.css') !== false) {
-                    $replace = "{{ asset('css/game.css') }}";
-                    $result = str_replace("https://static.itch.io/game.css?1688228046", $replace, $contentResult);
-
-                    return $result;
-                }
-
-                if (strpos($line, 'if (up_score > 0)') !== false) {
-                    $replace = "";
-                    $result = str_replace($line, $replace, $contentResult);
-
-                    return $result;
-                }
-
-                if (strpos($line, '<script type="text/javascript">new I.GameUserTools') !== false) {
-                    $replace = "";
-                    $resultPrev = str_replace('<script type="text/javascript"', $replace, $contentResult);
-                    $result = str_replace("new I.GameUserTools('#user_tools')</script>", $replace, $resultPrev);
-
-                    return $result;
-                }
-
-                if (Str::contains($line, 'I.setup_page()')) {
-                    $replace = "@include('includes.footer')\n";
-                    $result = str_replace($line, $replace, $contentResult);
-
-                    return $result;
-                }
-
-                if (Str::contains($line, $subDomain)) {
-                    $replace = "";
-                    $result = str_replace($line, $replace, $contentResult);
-
-                    return $result;
-                }
-
-                foreach ($listReplace as $str) {
-                    if (Str::contains($line, $str)) {
-                        $replace = "";
-                        $result = str_replace($line, $replace, $contentResult);
-
-                        return $result;
-                    }
-                }
-
-                return $contentResult;
-                break;
-        }
     }
 }
