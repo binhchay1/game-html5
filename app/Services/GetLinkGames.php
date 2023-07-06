@@ -4,11 +4,8 @@ namespace App\Services;
 
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
-use App\Enums\ElementReplace;
 use App\Enums\Ultity;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Str;
-use Config;
 
 class GetLinkGames
 {
@@ -16,15 +13,13 @@ class GetLinkGames
     private $attribute;
     private $crawls;
     private $ultity;
-    private $elementReplace;
 
-    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity, ElementReplace $elementReplace)
+    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity)
     {
         $this->linkGame = $linkGame;
         $this->attribute = $attribute;
         $this->crawls = $crawls;
         $this->ultity = $ultity;
-        $this->elementReplace = $elementReplace;
     }
 
     public function getLinkGameItchIo()
@@ -145,41 +140,6 @@ class GetLinkGames
             //     continue;
             // }
 
-            $getMeta = $html->find('meta');
-            foreach ($getMeta as $meta) {
-                if (array_key_exists('name', $meta->attr)) {
-                    if ($meta->attr['name'] == 'theme-color') {
-                        $data['theme-color'] = $meta->attr['content'];
-                    }
-                }
-            }
-            $data['author'] = $authorGames;
-
-            $dom = new \DOMDocument();
-            $dom->preserveWhiteSpace = false;
-            @$dom->loadHTML($html->__toString());
-            $dom->formatOutput = true;
-            $htmlDecode = $dom->saveHTML();
-
-            $pathView = Config::get("view.paths");
-            $pathCreateFile = $pathView[0] . "\games/" . $gameName . ".blade.php";
-            $html->save($pathCreateFile);
-            $str = file_get_contents($pathCreateFile);
-            $strResult = str_replace($html->__toString(), $htmlDecode, $str);
-            file_put_contents($pathCreateFile, $strResult);
-
-            $strResult = $this->readAndWriteFilePractice($pathCreateFile, $data, $strResult);
-            $listReplace = $this->elementReplace::LIST_ITCHIO;
-            $explodeStrResult = preg_split('/\n/', $strResult);
-            foreach ($explodeStrResult as $strExplode) {
-                foreach ($listReplace as $replaceStr) {
-                    if (Str::contains($strExplode, $replaceStr)) {
-                        $replace = "";
-                        $strResult = str_replace($strExplode, $replace, $strResult);
-                    }
-                }
-            }
-
             dd($strResult);
 
             $itemCount++;
@@ -189,7 +149,7 @@ class GetLinkGames
     }
 
 
-    public function readAndWriteFilePractice($pathCreateFile, $data, $strResult)
+    public function readAndWriteFile($pathCreateFile, $data, $strResult)
     {
         $fopen = fopen($pathCreateFile, "r+");
         if ($fopen) {

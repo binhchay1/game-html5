@@ -19,14 +19,20 @@ Route::get('/', function () {
     return view('page.user.layout.master-page');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
-Route::group(['prefix'=>'games'], function(){
+Route::group(['prefix' => 'games'], function () {
     Route::get('/{name}', [GameController::class, 'viewGame']);
 });
 
 Route::get('/admin',[AdminController::class, 'index']);
 
+
+Auth::routes();
+
+Route::middleware('check.auth')->group(
+    function () {
+        Route::get('/admin',[AdminController::class, 'index']);
+    }
+);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
