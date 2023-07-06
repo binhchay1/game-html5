@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,7 @@ Auth::routes();
 Route::middleware('check.auth')->group(
     function () {
         Route::get('/admin',[AdminController::class, 'index']);
+        Route::get('/list-user',[UserController::class, 'index']);
     }
 );
 

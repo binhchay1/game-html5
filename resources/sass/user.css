@@ -1,0 +1,16 @@
+#customers td, #customers th {
+    border: 1px solid #747877;
+    padding: 8px;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #3f4645;
+    color: white;
+}
+
+#btn-add {
+    width: 10%;
+}
