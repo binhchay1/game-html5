@@ -56,4 +56,8 @@ class UserRepository extends BaseRepository
     public function reportMoneyIncoming()
     {
     }
+
+    public function listUser() {
+        return $this->model->orderBy('created_at', 'desc')->get();
+    }
 }
