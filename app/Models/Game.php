@@ -22,4 +22,12 @@ class Game extends Model
     ];
 
     public $timestamps = true;
+
+    public function categories()
+    {
+        return $this-> belongsTo(
+            'App\Models\Category',
+            'category',
+            'id');
+    }
 }
