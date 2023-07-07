@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
 use App\Enums\Ultity;
+use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,13 +16,14 @@ class GetLinkGames
     private $crawls;
     private $gameRepository;
 
-    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity, GameRepository $gameRepository)
+    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity, GameRepository $gameRepository, CategoryRepository $categoryRepository)
     {
         $this->linkGame = $linkGame;
         $this->attribute = $attribute;
         $this->crawls = $crawls;
         $this->ultity = $ultity;
         $this->gameRepository = $gameRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function getLinkGameItchIo()
@@ -184,6 +186,17 @@ class GetLinkGames
             }
             $data['tag'] = json_encode($listTagGames);
             $this->gameRepository->create($data);
+
+            if (array_key_exists('general', $data)) {
+                $queryCate = $this->categoryRepository->getByColumn($data['general'], 'name');
+                if (empty($queryCate)) {
+                    $dataCate = [
+                        'name' => $data['general']
+                    ];
+                    $this->categoryRepository->create($dataCate);
+                }
+            }
+
             $listGameDone[] = $key;
 
             $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);

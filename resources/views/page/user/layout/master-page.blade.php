@@ -29,23 +29,8 @@
     <meta property="og:image" content="https://images.crazygames.com/crazygames/share.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=1200&amp;h=630&amp;fit=crop">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.crazygames.com/">
-    <meta property="twitter:title" content="CrazyGames - Free Online Games on CrazyGames.com">
-    <meta property="twitter:description" content="Play free online games at CrazyGames, the best place to play high-quality browser games. We add new games every day. Have fun!">
-    <meta property="twitter:image" content="https://images.crazygames.com/crazygames/share.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=1200&amp;h=630&amp;fit=crop">
     <meta name="next-head-count" content="60">
     <meta name="wot-verification" content="93f0d04493fb0826d761">
-
-    <link rel="apple-touch-icon" href="https://images.crazygames.com/favicons/manifest-icon-3.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=120&amp;h=120&amp;fit=crop&amp;crop=entropy">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://images.crazygames.com/favicons/manifest-icon-3.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=152&amp;h=152&amp;fit=crop&amp;crop=entropy">
-    <link rel="apple-touch-icon" sizes="167x167" href="https://images.crazygames.com/favicons/manifest-icon-3.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=167&amp;h=167&amp;fit=crop&amp;crop=entropy">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://images.crazygames.com/favicons/manifest-icon-3.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=180&amp;h=180&amp;fit=crop&amp;crop=entropy">
-    <link rel="mask-icon" href="https://images.crazygames.com/favicons/safari-pinned-tab.svg?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR" color="#6842ff">
-    <link rel="icon" type="image/x-icon" href="https://images.crazygames.com/favicons/favicon.ico?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=16&amp;h=16&amp;fit=crop&amp;crop=entropy" sizes="16x16">
-    <link rel="icon" type="image/x-icon" href="https://images.crazygames.com/favicons/favicon.ico?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=32&amp;h=32&amp;fit=crop&amp;crop=entropy" sizes="32x32">
-    <link rel="icon" type="image/x-icon" href="https://images.crazygames.com/favicons/favicon.ico?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=48&amp;h=48&amp;fit=crop&amp;crop=entropy" sizes="48x48">
-    <link rel="icon" type="image/x-icon" href="https://images.crazygames.com/favicons/favicon.ico?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=196&amp;h=196&amp;fit=crop&amp;crop=entropy" sizes="196x196">
 
     <link rel="preconnect" href="https://videos.crazygames.com/" crossorigin="anonymous">
     <link rel="preconnect" href="https://workers.crazygames.com/" crossorigin="anonymous">
