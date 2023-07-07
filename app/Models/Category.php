@@ -13,11 +13,12 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'link',
-        'category',
-        'thumbs',
-        'status'
     ];
 
     public $timestamps = true;
+
+    public function games()
+    {
+        return $this->hasMany('App\Models\Game');
+    }
 }

@@ -14,15 +14,15 @@
                      with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="" class="nav-link ">
+                    <a href="{{route('user.index')}}" class="nav-link ">
                         <i class="nav-icon fas fa-solid fa-user"></i>
                         <p>
-                            Profile
+                            User
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link  ">
+                    <a href="{{route('category.index')}}" class="nav-link  ">
                         <i class="nav-icon fas fa-solid fa-list"></i>
                         <p>
                             Category
@@ -30,18 +30,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link  ">
+                    <a href="{{route('game.index')}}" class="nav-link  ">
                         <i class="nav-icon fas fa-solid fa-calendar"></i>
                         <p>
-                           Brand
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link  ">
-                        <i class="nav-icon fab fa-product-hunt"></i>
-                        <p>
-                            Product
+                           Game
                         </p>
                     </a>
                 </li>
