@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
+use App\Enums\IgnoreLink;
 use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
@@ -15,22 +16,30 @@ class GetLinkGames
     private $attribute;
     private $crawls;
     private $gameRepository;
+    private $ignoreLink;
 
-    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity, GameRepository $gameRepository, CategoryRepository $categoryRepository)
-    {
+    public function __construct(
+        LinkGame $linkGame,
+        Attribute $attribute,
+        Crawls $crawls,
+        Ultity $ultity,
+        GameRepository $gameRepository,
+        CategoryRepository $categoryRepository,
+        IgnoreLink $ignoreLink
+    ) {
         $this->linkGame = $linkGame;
         $this->attribute = $attribute;
         $this->crawls = $crawls;
         $this->ultity = $ultity;
         $this->gameRepository = $gameRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->ignoreLink = $ignoreLink;
     }
 
     public function getLinkGameItchIo()
     {
-        $url = $this->linkGame::GAME_ITCHIO;
         $break = false;
-        $attrA = $this->attribute::LIST_ATTRIBUTE[$url];
+        $attrA = $this->attribute::LIST_ATTRIBUTE[$this->linkGame::GAME_ITCHIO];
         $attrImg = '.lazy_loaded';
         $page = 1;
         $count = 0;
@@ -40,6 +49,7 @@ class GetLinkGames
         $listResultGameDone = [];
 
         while (!$break) {
+            $url = $this->linkGame::GAME_ITCHIO;
             if (isset($breakCount)) {
                 if ($count == $breakCount and $breakCount > 0) {
                     $break = true;
@@ -60,7 +70,7 @@ class GetLinkGames
             $content = $decode->content;
 
             if ($content == null || empty($content)) {
-                $break = true;
+                $page++;
                 continue;
             }
 
@@ -77,6 +87,10 @@ class GetLinkGames
             }
 
             foreach ($listLink as $key => $link) {
+                if (!array_key_exists('link', $link)) {
+                    unset($listLink[$key]);
+                    continue;
+                }
                 $path = parse_url($link['link'], PHP_URL_PATH);
                 $gameName = substr($path, 1);
                 $listLink[$gameName] = $listLink[$key];
@@ -134,7 +148,7 @@ class GetLinkGames
             'listGameDone' => $listResultGameDone,
         ];
 
-        return $response;
+        return \response()->json($response);
     }
 
     public function processGameWithListLinks($listLink)
@@ -144,6 +158,14 @@ class GetLinkGames
         }
 
         foreach ($listLink as $key => $link) {
+            if (!array_key_exists('link', $link)) {
+                continue;
+            }
+
+            if(in_array($link, $this->ignoreLink::LIST_IGNORE)) {
+                continue;
+            }
+
             $path = parse_url($link['link'], PHP_URL_PATH);
             $gameName = substr($path, 1);
             $html = $this->crawls->getDom($link['link'], null);
@@ -155,7 +177,7 @@ class GetLinkGames
             $data = [
                 'name' => $gameName,
                 'link' => $link['link'],
-                'thumbs' => $link['thumb']
+                'thumbs' => array_key_exists('thumb', $link) ? $link['thumb']  : 'non-thumb',
             ];
 
             $getA = $html->find('a');

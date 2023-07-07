@@ -1,3 +1,5 @@
+# pip install selenium
+
 import time
 import json
 from selenium import webdriver
@@ -12,10 +14,11 @@ i = 0
 file = open("process.txt")
 
 for line in file.readlines():
-    listItems.append([])
     driver.get(line)
-    time.sleep(5)
+    time.sleep(10)
     data = driver.execute_script("return window.performance.getEntriesByType('resource');")
+
+    listItems.append([])
     data.append([line])
     listItems[i].append(data)
     i+=1
