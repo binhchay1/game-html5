@@ -25,3 +25,12 @@ Route::group(['prefix' => 'games'], function () {
 });
 
 Route::get('/admin', [AdminController::class, 'index']);
+Auth::routes();
+
+Route::middleware('check.auth')->group(
+    function () {
+        Route::get('/admin',[AdminController::class, 'index']);
+    }
+);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
