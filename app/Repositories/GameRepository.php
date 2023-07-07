@@ -17,4 +17,9 @@ class GameRepository extends BaseRepository
     {
         return Game::class;
     }
+
+    public function listGame()
+    {
+        return $this->model->with('categories')->orderBy('created_at', 'desc')->get();
+    }
 }
