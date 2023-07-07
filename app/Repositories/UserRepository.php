@@ -17,4 +17,8 @@ class UserRepository extends BaseRepository
     {
         return User::class;
     }
+
+    public function listUser() {
+        return $this->model->orderBy('created_at', 'desc')->get();
+    }
 }
