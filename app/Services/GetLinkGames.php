@@ -32,8 +32,8 @@ class GetLinkGames
         $attrImg = '.lazy_loaded';
         $page = 1;
         $count = 0;
-        $breakCount = -1;
-        $breakPage = -1;
+        $breakCount = -1; //change this for break by count game ( default -1 = non break )
+        $breakPage = -1; //change this for break by count page ( default -1 = non break )
         $listResultSrcFrame = [];
 
         while (!$break) {
