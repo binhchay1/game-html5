@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use App\Enums\LinkGame;
 use Illuminate\Http\Request;
 use App\Services\GetLinkGames;
+use App\Services\ProcessPython;
 
 class GameController extends Controller
 {
     private $linkGame;
     private $getLinkGames;
+    private $processPython;
 
-    public function __construct(LinkGame $linkGame, GetLinkGames $getLinkGames)
+    public function __construct(LinkGame $linkGame, GetLinkGames $getLinkGames, ProcessPython $processPython)
     {
         $this->linkGame = $linkGame;
         $this->getLinkGames = $getLinkGames;
+        $this->processPython = $processPython;
     }
 
     public function viewGame($name)
@@ -35,5 +38,12 @@ class GameController extends Controller
                 $this->getLinkGames->getLinkGameItchIo();
                 break;
         }
+    }
+
+    public function test(Request $request) {
+        $path = public_path() . '/process/process.py';
+        $data = $this->processPython->process($path);
+
+        dd($data);
     }
 }

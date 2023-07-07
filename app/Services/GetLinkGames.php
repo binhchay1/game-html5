@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
 use App\Enums\Ultity;
-use Illuminate\Support\Facades\View;
+use App\Repositories\GameRepository;
 
 class GetLinkGames
 {
@@ -13,13 +13,15 @@ class GetLinkGames
     private $attribute;
     private $crawls;
     private $ultity;
+    private $gameRepository;
 
-    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity)
+    public function __construct(LinkGame $linkGame, Attribute $attribute, Crawls $crawls, Ultity $ultity, GameRepository $gameRepository)
     {
         $this->linkGame = $linkGame;
         $this->attribute = $attribute;
         $this->crawls = $crawls;
         $this->ultity = $ultity;
+        $this->gameRepository = $gameRepository;
     }
 
     public function getLinkGameItchIo()
@@ -29,10 +31,26 @@ class GetLinkGames
         $attrA = $this->attribute::LIST_ATTRIBUTE[$url];
         $attrImg = '.lazy_loaded';
         $page = 1;
-        $itemCount = 0;
-        // $breakCount = 100;
+        $count = 0;
+        $breakCount = -1;
+        $breakPage = -1;
+        $listResultSrcFrame = [];
 
         while (!$break) {
+            if (isset($breakCount)) {
+                if ($count == $breakCount and $breakCount > 0) {
+                    $break = true;
+                    continue;
+                }
+            }
+
+            if (isset($breakPage)) {
+                if ($page == $breakPage and $breakPage > 0) {
+                    $break = true;
+                    continue;
+                }
+            }
+
             $url = $url . "?page=" . $page . "&format=json";
             $html = $this->crawls->getDom($url, 'text');
             $decode = json_decode($html);
@@ -42,13 +60,6 @@ class GetLinkGames
             if ($content == null || empty($content)) {
                 $break = true;
                 continue;
-            }
-
-            if (isset($breakCount)) {
-                if ($itemCount == $breakCount) {
-                    $break = true;
-                    continue;
-                }
             }
 
             $listA = $this->crawls->getListAttribute($content, $attrA, 'file');
@@ -69,20 +80,27 @@ class GetLinkGames
                     $file_name = basename($link);
                     $path = asset('images/games') . '/' . $file_name;
                     $listLink[$countListImg]['thumb'] = $path;
-                    // $this->ultity->downloadFile($link, $file_name, $path);
+                    $listLink[$countListImg]['file_name'] = $file_name;
                 }
 
                 $countListImg++;
             }
 
-            $itemCount += $this->processGameWithListLinks($listLink);
-
+            $listResultSrcFrame = array_merge($listResultSrcFrame, $this->processGameWithListLinks($listLink));
             $page++;
+            $count++;
+        }
+
+        foreach ($listResultSrcFrame as $linkSrcFrame) {
+            $pathProcess = public_path() . '/process/process.txt';
+            $fp = fopen($pathProcess, 'a');
+            fwrite($fp, $linkSrcFrame . PHP_EOL);
+            fclose($fp);
         }
 
         $response = [
             'page' => $page,
-            'itemCount' => $itemCount,
+            'count' => $count,
             'error' => $listError
         ];
 
@@ -91,17 +109,15 @@ class GetLinkGames
 
     public function processGameWithListLinks($listLink)
     {
-        $itemCount = 0;
-
         foreach ($listLink as $link) {
             $path = parse_url($link['link'], PHP_URL_PATH);
             $gameName = substr($path, 1);
-            $viewGame = "games." . $gameName;
-            if (View::exists($viewGame)) {
-                continue;
-            }
 
             $html = $this->crawls->getDom($link['link'], null);
+
+            if ($html == null or empty($html)) {
+                continue;
+            }
 
             $data = [
                 'name' => $gameName,
@@ -110,8 +126,18 @@ class GetLinkGames
             ];
 
             $getA = $html->find('a');
+            $getFrame = $html->find('div[class=iframe_placeholder]');
+
+            if (empty($getFrame)) {
+                continue;
+            }
+
+            $query = $this->gameRepository->getByColumn($data['name'], 'name');
+            if (!empty($query)) {
+                continue;
+            }
+
             $listTagGames = [];
-            $authorGames = '';
             foreach ($getA as $a) {
                 if (array_key_exists('href', $a->attr)) {
                     if (strpos($a->attr['href'], 'https://itch.io/games/genre') !== false) {
@@ -123,44 +149,27 @@ class GetLinkGames
                         $explode = explode('-', $a->attr['href']);
                         $listTagGames[] = $explode[1];
                     }
-
-                    if (strpos($a->attr['href'], '.itch.io') !== false) {
-                        $parse_url = parse_url($link['link'], PHP_URL_HOST);
-                        $explode = explode('.', $parse_url);
-                        $authorGames = $explode[0];
-                    }
                 }
             }
             $data['tag'] = json_encode($listTagGames);
+            $createGame = $this->gameRepository->create($data);
 
-            // $createGame = $this->gameRepository->create($data);
-
-            // if (!$createGame instanceof Game) {
-            //     $listError[] = $data;
-            //     continue;
-            // }
-
-            dd($strResult);
-
-            $itemCount++;
-        }
-
-        return $itemCount;
-    }
-
-
-    public function readAndWriteFile($pathCreateFile, $data, $strResult)
-    {
-        $fopen = fopen($pathCreateFile, "r+");
-        if ($fopen) {
-            while (($line = fgets($fopen)) !== false) {
-                $strResult = $this->ultity->replaceHTML($line, $this->linkGame::GAME_ITCHIO, $data, $strResult);
-                file_put_contents($pathCreateFile, $strResult);
+            if (!$createGame instanceof Game) {
+                $listError[] = $data;
+                continue;
             }
 
-            fclose($fopen);
+            if (!file_exists($link['thumb'])) {
+                $this->ultity->downloadFile($link, $link['file_name'], $link['thumb']);
+            }
+
+            $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);
+            $parseFrame = $this->crawls->getDom($srcFrame, 'file');
+            $getChild = $parseFrame->childNodes();
+            $src = $getChild[0]->attr['src'];
+            $listSrcFrame[] = $src;
         }
 
-        return $strResult;
+        return $listSrcFrame;
     }
 }

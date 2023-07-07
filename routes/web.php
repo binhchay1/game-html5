@@ -24,5 +24,4 @@ Route::group(['prefix' => 'games'], function () {
     Route::get('/{name}', [GameController::class, 'viewGame']);
 });
 
-Route::get('/admin',[AdminController::class, 'index']);
-
+Route::get('/admin', [AdminController::class, 'index']);
