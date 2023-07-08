@@ -5,35 +5,51 @@ const EXTENSION_FILE_LIST = [
     'png', 'jpg', 'jpeg', 'ogg', 'gtz'
 ];
 
-$listResult = json_decode(exec('python process.py'), true);
+$handle = fopen("list.txt", "r");
+$numberCount = 1;
+if ($handle) {
+    while (($line = fgets($handle)) !== false) {
+        $processFile = fopen("process.txt", "w");
+        fwrite($processFile, $line);
+        fclose($processFile);
 
-foreach ($listResult[0] as $item) {
-    $urlIndexHtml = end($item);
-    $html = file_get_contents_curl($urlIndexHtml[0]);
-    $doc = new DOMDocument();
-    @$doc->loadHTML($html);
-    $nodes = $doc->getElementsByTagName('title');
-    $gameName = str_replace(' ', '-', strtolower($nodes->item(0)->nodeValue));
-    mkdirWithPath($gameName);
+        $listResult = json_decode(exec('python process.py'), true);
 
-    foreach ($item as $attr) {
-        if (array_key_exists("name", $attr)) {
-            $url = $attr["name"];
-            $parse = parse_url($url);
-            $explode = explode('/', $parse['path']);
-            $path = generatePath($explode, $gameName);
-            $extensionFile = getExtensionFile(end($explode));
+        foreach ($listResult[0] as $item) {
+            echo "-----------bat dau game so " . $numberCount . "---------------- \n";
+            $urlIndexHtml = end($item);
+            $html = file_get_contents_curl(trim($urlIndexHtml[0]));
+            $doc = new DOMDocument();
+            @$doc->loadHTML($html);
+            $nodes = $doc->getElementsByTagName('title');
+            $gameName = str_replace(' ', '-', strtolower($nodes->item(0)->nodeValue));
+            echo "-----------lay ten game - " . $gameName . "---------------- \n";
+            mkdirWithPath($gameName);
 
-            if (in_array($extensionFile, EXTENSION_FILE_LIST)) {
-                curl($url, $path, 'file');
-            } else {
-                curl($url, $path);
+            foreach ($item as $attr) {
+                if (array_key_exists("name", $attr)) {
+                    $url = $attr["name"];
+                    $parse = parse_url($url);
+                    $explode = explode('/', $parse['path']);
+                    $path = generatePath($explode, $gameName);
+                    $extensionFile = getExtensionFile(end($explode));
+
+                    if (in_array($extensionFile, EXTENSION_FILE_LIST)) {
+                        curl($url, $path, 'file');
+                    } else {
+                        curl($url, $path);
+                    }
+                }
             }
-        }
+
+            getIndexHtml($urlIndexHtml[0], $gameName);
+            echo "-----------done game " . $gameName . " - game so " . $numberCount . "---------------- \n";
+        };
+        $numberCount++;
     }
 
-    getIndexHtml($urlIndexHtml[0], $gameName);
-};
+    fclose($handle);
+}
 
 function curl($url, $path, $type = null)
 {
@@ -50,6 +66,8 @@ function curl($url, $path, $type = null)
         curl_exec($ch);
         curl_close($ch);
 
+        echo "-----------tao file - " . $path . "---------------- \n";
+
         return;
     }
 
@@ -58,6 +76,9 @@ function curl($url, $path, $type = null)
     fwrite($fp, $content);
     fclose($fp);
     curl_close($ch);
+    echo "-----------tao file - " . $path . "---------------- \n";
+
+    return;
 }
 
 function generatePath($explode, $gameName)
@@ -108,8 +129,8 @@ function file_get_contents_curl($url)
 
 function mkdirWithPath($path)
 {
-    if (!is_dir($path)) {
-        mkdir($path, 0775, true);
+    if (!file_exists($path)) {
+        mkdir($path, 0744, true);
     }
 }
 
