@@ -68,9 +68,12 @@
                 </div>
                 <div style="flex-direction:row;display:flex;padding-right:16px;align-items:center;justify-content:flex-end">
                     <div style="margin-right:8px">
-                        <div style="position:relative"><button style="visibility:hidden;min-width:143px" class="MuiButton-root css-1jw8n0i" type="button"><svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
+                        <div style="position:relative">
+                            <button style="visibility:hidden;min-width:143px" class="MuiButton-root css-1jw8n0i" type="button">
+                                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.47368 6.78578C3.94666 7.79745 3.9392 9.02672 4.07146 9.70273C4.46989 11.7393 5.98381 14.0997 7.75719 15.9902C8.63197 16.9227 9.53387 17.7018 10.3315 18.2394C11.1783 18.8102 11.749 19 12 19C12.251 19 12.8217 18.8102 13.6685 18.2394C14.4661 17.7018 15.368 16.9227 16.2428 15.9902C18.0162 14.0997 19.5301 11.7393 19.9286 9.70273C20.0608 9.02672 20.0534 7.79745 19.5263 6.78578C19.2725 6.29849 18.9017 5.86627 18.3619 5.55002C17.82 5.23252 17.0529 5 15.96 5C14.7111 5 13.7204 5.56856 13.2125 6.32446C12.8891 6.80569 12.3638 6.94309 12 6.94309C11.6362 6.94309 11.1109 6.80569 10.7876 6.32446C10.2796 5.56856 9.28887 5 8.04003 5C6.94711 5 6.18001 5.23252 5.63809 5.55002C5.09831 5.86627 4.72752 6.29849 4.47368 6.78578ZM4.62707 3.82438C5.52816 3.29645 6.65797 3 8.04003 3C9.61785 3 11.0464 3.61724 12 4.64452C12.9536 3.61724 14.3822 3 15.96 3C17.342 3 18.4719 3.29645 19.3729 3.82438C20.2762 4.35357 20.8945 5.08322 21.3001 5.86176C22.0919 7.38172 22.0844 9.09982 21.8913 10.0867C21.3888 12.6555 19.5878 15.3476 17.7015 17.3585C16.7464 18.3766 15.7323 19.2603 14.7863 19.8979C13.8895 20.5023 12.8891 21 12 21C11.1109 21 10.1105 20.5023 9.21371 19.8979C8.26775 19.2603 7.25361 18.3766 6.29853 17.3585C4.41221 15.3476 2.61121 12.6555 2.10867 10.0867C1.91558 9.09982 1.90812 7.38172 2.69993 5.86176C3.1055 5.08322 3.72383 4.35357 4.62707 3.82438Z"></path>
-                                </svg>My games</button>
+                                </svg>My games
+                            </button>
                             <div class="css-1sbqpkv"><span></span><span></span><span></span></div>
                         </div>
                     </div>
@@ -79,10 +82,14 @@
                             <div class="css-1sbqpkv"><span></span><span></span><span></span></div>
                         </div>
                     </div>
-                    <div style="height:100%;position:relative"><button data-bs-toggle="offcanvas" href="#offcanvasExample" aria-label="Account" class="MuiButton-root css-1fnw4t5" type="button"><svg viewBox="0 0 24 24"  focusable="false" aria-hidden="true" class="css-6qu7l6">
+                    <div style="height:100%;position:relative">
+                        <button aria-label="Account" class="MuiButton-root css-1fnw4t5" type="button">
+                            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
                                 <path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M6.08194 19.9771H17.9181C17.4451 17.1282 14.981 15 12 15C9.01897 15 6.55491 17.1282 6.08194 19.9771ZM4 20.9771C4 16.5223 7.58876 13 12 13C16.4112 13 20 16.5223 20 20.9771C20 21.5294 19.5523 21.9771 19 21.9771H5C4.44772 21.9771 4 21.5294 4 20.9771Z"></path>
                                 <path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M12 4C10.3431 4 9 5.34315 9 7C9 8.65685 10.3431 10 12 10C13.6569 10 15 8.65685 15 7C15 5.34315 13.6569 4 12 4ZM7 7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7C17 9.76142 14.7614 12 12 12C9.23858 12 7 9.76142 7 7Z"></path>
-                            </svg></button></div>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
             </header>
@@ -95,23 +102,21 @@
                         <div class="LabelContainer">Home</div>
                     </div>
 
-                    <a aria-label="Recently played" href="https://www.crazygames.com/recent">
+                    <a aria-label="Recently played" href="{{ route('category', ['category' => 'recent']) }}">
                         <div class="css-1s73xoa">
-                            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 7C12.5523 7 13 7.44772 13 8V11.5858L15.7071 14.2929C16.0976 14.6834 16.0976 15.3166 15.7071 15.7071C15.3166 16.0976 14.6834 16.0976 14.2929 15.7071L11.2929 12.7071C11.1054 12.5196 11 12.2652 11 12V8C11 7.44772 11.4477 7 12 7Z"></path>
-                            </svg>
+                            <img src="{{ asset('svg/category/recent.svg') }}" width="20px">
                             <div class="LabelContainer">Recently played</div>
                         </div>
                     </a>
 
-                    <a aria-label="" href="">
+                    @foreach($listCategory as $category)
+                    <a aria-label="{{ ucfirst($category->name) }}" href="{{ route('category', ['category' => $category->name]) }}">
                         <div class="css-1s73xoa">
-                            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 7C12.5523 7 13 7.44772 13 8V11.5858L15.7071 14.2929C16.0976 14.6834 16.0976 15.3166 15.7071 15.7071C15.3166 16.0976 14.6834 16.0976 14.2929 15.7071L11.2929 12.7071C11.1054 12.5196 11 12.2652 11 12V8C11 7.44772 11.4477 7 12 7Z"></path>
-                            </svg>
-                            <div class="LabelContainer"></div>
+                            <img src="{{ asset('svg/category/' . $category->name . '.svg') }}" width="20px">
+                            <div class="LabelContainer">{{ ucfirst($category->name) }}</div>
                         </div>
                     </a>
+                    @endforeach
 
                     <div class="SidebarLinks css-1fc3chw"><a href="https://about.crazygames.com"><span class="css-17bz4pn">About</span></a><a href="https://developer.crazygames.com"><span class="css-17bz4pn">Developers</span></a><a href="https://www.crazygames.com/terms-and-conditions"><span class="css-17bz4pn">Terms &amp; conditions</span></a><a href="https://www.crazygames.com/privacy-policy"><span class="css-17bz4pn">Privacy</span></a><a href="https://www.crazygames.com/sitemap/games"><span class="css-17bz4pn">All games</span></a>
                         <div class="css-1z0ccmv">© <!-- -->2023<!-- --> GameFake</div>

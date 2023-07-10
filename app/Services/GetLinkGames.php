@@ -78,6 +78,7 @@ class GetLinkGames
             $listA = $this->crawls->getListAttribute($content, $attrA, 'file');
             $listImg = $this->crawls->getListAttribute($content, $attrImg, 'file');
             $listNameGame = [];
+            $listLink = [];
 
             foreach ($listA as $item) {
                 if (!empty($item->attr)) {
@@ -103,12 +104,6 @@ class GetLinkGames
                 unset($listImg[$key]);
             }
 
-            foreach ($listLink as $link) {
-                dump([
-                    $link,
-                ]);
-            }
-
             foreach ($listImg as $key => $img) {
                 if (!empty($img->attr)) {
                     $link = $img->attr['data-lazy_src'];
@@ -120,43 +115,38 @@ class GetLinkGames
                 }
             }
 
+            $resultGetSrcFrame = $this->processGameWithListLinks($listLink);
 
-
-            // $resultGetSrcFrame = $this->processGameWithListLinks($listLink);
-
-            // if (!empty($resultGetSrcFrame)) {
-            //     $listResultSrcFrame = array_merge($listResultSrcFrame, $resultGetSrcFrame['listSrcFrame']);
-            //     $listResultGameDone = array_merge($listResultGameDone, $resultGetSrcFrame['listGameDone']);
-            //     foreach ($listImg as $key => $value) {
-            //         if (in_array($key, $resultGetSrcFrame['listGameDone'])) {
-            //             if (!empty($value->attr)) {
-            //                 $link = $value->attr['data-lazy_src'];
-            //                 $file_name = basename($link);
-            //                 $this->saveImageThumb($link, $file_name);
-            //             }
-            //         }
-            //     }
-            // }
+            if (!empty($resultGetSrcFrame)) {
+                $listResultSrcFrame = array_merge($listResultSrcFrame, $resultGetSrcFrame['listSrcFrame']);
+                $listResultGameDone = array_merge($listResultGameDone, $resultGetSrcFrame['listGameDone']);
+                foreach ($listImg as $key => $value) {
+                    if (in_array($key, $resultGetSrcFrame['listGameDone'])) {
+                        if (!empty($value->attr)) {
+                            $link = $value->attr['data-lazy_src'];
+                            $file_name = basename($link);
+                            $this->saveImageThumb($link, $file_name);
+                        }
+                    }
+                }
+            }
 
             $page++;
-            // $count = $count + count($listResultGameDone);
+            $count = $count + count($resultGetSrcFrame['listGameDone']);
         }
 
-        // foreach ($listResultSrcFrame as $linkSrcFrame) {
-        //     $pathProcess = public_path() . '/process/list.txt';
-        //     $fp = fopen($pathProcess, 'a');
-        //     fwrite($fp, $linkSrcFrame . PHP_EOL);
-        //     fclose($fp);
-        // }
+        foreach ($listResultSrcFrame as $linkSrcFrame) {
+            $pathProcess = public_path() . '/process/list.txt';
+            $fp = fopen($pathProcess, 'a');
+            fwrite($fp, $linkSrcFrame . PHP_EOL);
+            fclose($fp);
+        }
 
-        // $response = [
-        //     'totalPage' => $page,
-        //     'totalGame' => count($listResultGameDone),
-        //     'listGameDone' => $listResultGameDone,
-        // ];
+        $response = [
+            'totalPage' => $page,
+            'totalGame' => $count
+        ];
 
-        die;
-        $response = 1;
         return $response;
     }
 
@@ -202,7 +192,7 @@ class GetLinkGames
                 if (array_key_exists('href', $a->attr)) {
                     if (strpos($a->attr['href'], 'https://itch.io/games/genre') !== false) {
                         $explode = explode('-', $a->attr['href']);
-                        $data['general'] = $explode[1];
+                        $data['category'] = $explode[1];
                     }
 
                     if (strpos($a->attr['href'], 'https://itch.io/games/tag') !== false) {
@@ -214,11 +204,11 @@ class GetLinkGames
             $data['tag'] = json_encode($listTagGames);
             $this->gameRepository->create($data);
 
-            if (array_key_exists('general', $data)) {
-                $queryCate = $this->categoryRepository->getByColumn($data['general'], 'name');
+            if (array_key_exists('category', $data)) {
+                $queryCate = $this->categoryRepository->getByColumn($data['category'], 'name');
                 if (empty($queryCate)) {
                     $dataCate = [
-                        'name' => $data['general']
+                        'name' => $data['category']
                     ];
                     $this->categoryRepository->create($dataCate);
                 }

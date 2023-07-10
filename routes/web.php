@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
+Route::get('/{category}', [HomeController::class, 'viewCategory'])->name('category');;
 
 Route::group(['prefix' => 'games'], function () {
     Route::get('/{name}', [GameController::class, 'viewGame']);
@@ -30,9 +31,9 @@ Auth::routes();
 
 Route::middleware(['check.auth', 'admin'])->group(
     function () {
-        Route::get('/admin',[AdminController::class, 'index'])->name('admin');
-        Route::get('/list-user',[UserController::class, 'index'])->name('user.index');
-        Route::get('/list-game',[GameController::class, 'index'])->name('game.index');
-        Route::get('/list-category',[CategoryController::class, 'index'])->name('category.index');
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+        Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
+        Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
+        Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
     }
 );

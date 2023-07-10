@@ -1,4 +1,5 @@
 @extends('layouts.page')
+
 @section('content')
 <div style="padding-bottom:20px;position:relative">
     <div class="css-1iuj5ih">
@@ -18,23 +19,17 @@
         </div>
         <div class="css-zyoi9w">
             <div class="titleContainer css-18689kv">
-                <h2 class="carouselTitle">Featured games</h2>
+                <h2 class="carouselTitle"></h2>
             </div>
             <div class="prime-carousel css-1nehx92">
                 <ul class="prime-carousel-container css-lpurl3">
+                    @foreach($featureGames as $feature)
                     <li class="primeCarouselLi">
                         <a class="css-h13zhk" href="https://www.crazygames.com/game/stickman-vs-villager-save-the-girl">
                             <div class="gameThumbTitleContainer">Stickman vs Villager: Save the Girl</div><img class="GameThumbImage" loading="eager" src="">
                         </a>
                     </li>
-                    <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
-                    <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
-                    <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
-                    <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
-                    <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
-                    <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
-                    <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
-                    <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
+                    @endforeach
                 </ul><button class="arrow css-1pzb6vf" aria-label="Right arrow"></button>
             </div>
         </div>
