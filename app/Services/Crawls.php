@@ -18,6 +18,10 @@ class Crawls
         if ($type == 'file') {
             $dom = HtmlDomParser::str_get_html($link);
 
+            if ($dom == false) {
+                $dom = $this->getDom($link, $type);
+            }
+
             return $dom;
         }
 

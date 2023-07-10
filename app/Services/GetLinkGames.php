@@ -9,6 +9,7 @@ use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Event\Code\Throwable;
 
 class GetLinkGames
 {
@@ -102,6 +103,12 @@ class GetLinkGames
                 unset($listImg[$key]);
             }
 
+            foreach ($listLink as $link) {
+                dump([
+                    $link,
+                ]);
+            }
+
             foreach ($listImg as $key => $img) {
                 if (!empty($img->attr)) {
                     $link = $img->attr['data-lazy_src'];
@@ -113,39 +120,43 @@ class GetLinkGames
                 }
             }
 
-            $resultGetSrcFrame = $this->processGameWithListLinks($listLink);
 
-            if (!empty($resultGetSrcFrame)) {
-                $listResultSrcFrame = array_merge($listResultSrcFrame, $resultGetSrcFrame['listSrcFrame']);
-                $listResultGameDone = array_merge($listResultGameDone, $resultGetSrcFrame['listGameDone']);
-                foreach ($listImg as $key => $value) {
-                    if (in_array($key, $resultGetSrcFrame['listGameDone'])) {
-                        if (!empty($value->attr)) {
-                            $link = $value->attr['data-lazy_src'];
-                            $file_name = basename($link);
-                            $this->saveImageThumb($link, $file_name);
-                        }
-                    }
-                }
-            }
+
+            // $resultGetSrcFrame = $this->processGameWithListLinks($listLink);
+
+            // if (!empty($resultGetSrcFrame)) {
+            //     $listResultSrcFrame = array_merge($listResultSrcFrame, $resultGetSrcFrame['listSrcFrame']);
+            //     $listResultGameDone = array_merge($listResultGameDone, $resultGetSrcFrame['listGameDone']);
+            //     foreach ($listImg as $key => $value) {
+            //         if (in_array($key, $resultGetSrcFrame['listGameDone'])) {
+            //             if (!empty($value->attr)) {
+            //                 $link = $value->attr['data-lazy_src'];
+            //                 $file_name = basename($link);
+            //                 $this->saveImageThumb($link, $file_name);
+            //             }
+            //         }
+            //     }
+            // }
 
             $page++;
-            $count++;
+            // $count = $count + count($listResultGameDone);
         }
 
-        foreach ($listResultSrcFrame as $linkSrcFrame) {
-            $pathProcess = public_path() . '/process/list.txt';
-            $fp = fopen($pathProcess, 'a');
-            fwrite($fp, $linkSrcFrame . PHP_EOL);
-            fclose($fp);
-        }
+        // foreach ($listResultSrcFrame as $linkSrcFrame) {
+        //     $pathProcess = public_path() . '/process/list.txt';
+        //     $fp = fopen($pathProcess, 'a');
+        //     fwrite($fp, $linkSrcFrame . PHP_EOL);
+        //     fclose($fp);
+        // }
 
-        $response = [
-            'page' => $page,
-            'count' => $count,
-            'listGameDone' => $listResultGameDone,
-        ];
+        // $response = [
+        //     'totalPage' => $page,
+        //     'totalGame' => count($listResultGameDone),
+        //     'listGameDone' => $listResultGameDone,
+        // ];
 
+        die;
+        $response = 1;
         return $response;
     }
 
