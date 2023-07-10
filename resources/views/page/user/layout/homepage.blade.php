@@ -1,3 +1,5 @@
+@extends('page.user.layout.master-page')
+@section('content')
 <div style="padding-bottom:20px;position:relative">
     <div class="css-1iuj5ih">
         <div class="css-cydm8w">
@@ -71,3 +73,4 @@
         </div>
     </div>
 </div>
+@endsection
