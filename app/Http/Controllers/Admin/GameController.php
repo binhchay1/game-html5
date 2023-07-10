@@ -1,75 +1,49 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\GameRepository;
+use App\Enums\LinkGame;
 use Illuminate\Http\Request;
+use App\Services\GetLinkGames;
 
 class GameController extends Controller
 {
+    private $linkGame;
+    private $getLinkGames;
     protected $gameRepository;
-    public function __construct
-    (
-       GameRepository $gameRepository
-    )
+
+    public function __construct(LinkGame $linkGame, GetLinkGames $getLinkGames, GameRepository $gameRepository)
     {
+        $this->linkGame = $linkGame;
+        $this->getLinkGames = $getLinkGames;
         $this->gameRepository = $gameRepository;
     }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $dataGame = $this->gameRepository->listGame();
-        return view('page.admin.game.list-game', ['dataGame'=> $dataGame]);
+        return view('page.admin.game.list-game', ['dataGame' => $dataGame]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function viewGame($name)
     {
-        //
+        $pathDir = "games." . $name . '.' . $name;
+        return view($pathDir);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function getLinksGame(Request $request)
     {
-        //
-    }
+        $url = $request->get("url");
+        if ($url == null) {
+            return null;
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        switch ($url) {
+            case $this->linkGame::GAME_ITCHIO:
+                $response = $this->getLinkGames->getLinkGameItchIo();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+                return \response()->json($response);
+                break;
+        }
     }
 }

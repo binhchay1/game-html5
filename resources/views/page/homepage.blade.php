@@ -1,4 +1,4 @@
-@extends('page.user.layout.master-page')
+@extends('layouts.page')
 @section('content')
 <div style="padding-bottom:20px;position:relative">
     <div class="css-1iuj5ih">

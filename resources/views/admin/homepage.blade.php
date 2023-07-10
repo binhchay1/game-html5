@@ -1,4 +1,4 @@
-@extends('page.admin.layout.master-page')
+@extends('layouts.admin')
 @section('main_content')
 
 <!-- Content Header (Page header) -->
