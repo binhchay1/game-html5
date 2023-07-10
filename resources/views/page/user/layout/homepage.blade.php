@@ -6,21 +6,11 @@
             </div>
             <div class="prime-carousel css-1nehx92">
                 <ul class="prime-carousel-container css-lpurl3">
-                    <li class="primeCarouselLi"><a class="css-h13zhk" href="https://www.crazygames.com/game/bloxdhop-io">
-                            <div class="gameThumbTitleContainer">Bloxd.io</div><img class="GameThumbImage" loading="eager" src="https://images.crazygames.com/games/bloxdhop-io/cover-1671463581901.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;fit=crop" decoding="auto" alt="Bloxd.io" srcset="https://images.crazygames.com/games/bloxdhop-io/cover-1671463581901.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=428&amp;h=237&amp;fit=crop 429w,
-https://images.crazygames.com/games/bloxdhop-io/cover-1671463581901.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=436&amp;h=241&amp;fit=crop 437w,
-https://images.crazygames.com/games/bloxdhop-io/cover-1671463581901.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=448&amp;h=248&amp;fit=crop 449w,
-https://images.crazygames.com/games/bloxdhop-io/cover-1671463581901.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=471&amp;h=229&amp;fit=crop 472w,
-https://images.crazygames.com/games/bloxdhop-io/cover-1671463581901.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=519&amp;h=289&amp;fit=crop 520w,
-https://images.crazygames.com/games/bloxdhop-io/cover-1671463581901.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=675&amp;h=378&amp;fit=crop 676w,
-https://images.crazygames.com/games/bloxdhop-io/cover-1671463581901.png?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=710&amp;h=398&amp;fit=crop 711w" sizes="(min-width:3000px) 710px,
-(min-width:2100px) 675px,
-(min-width:1200px) 519px,
-(min-width:1000px) 428px,
-(min-width:800px) 436px,
-(min-width:600px) 448px,
-471px" fetchpriority="high">
-                        </a></li>
+                    <li class="primeCarouselLi">
+                        <a class="css-h13zhk" href="https://www.crazygames.com/game/bloxdhop-io">
+                            <div class="gameThumbTitleContainer">Bloxd.io</div><img class="GameThumbImage" loading="eager" src="{{ asset('images/games/') }}" fetchpriority="high">
+                        </a>
+                    </li>
                 </ul><button class="arrow css-1pzb6vf" aria-label="Right arrow"></button>
             </div>
         </div>
@@ -30,21 +20,11 @@ https://images.crazygames.com/games/bloxdhop-io/cover-1671463581901.png?auto=for
             </div>
             <div class="prime-carousel css-1nehx92">
                 <ul class="prime-carousel-container css-lpurl3">
-                    <li class="primeCarouselLi"><a class="css-h13zhk" href="https://www.crazygames.com/game/stickman-vs-villager-save-the-girl">
-                            <div class="gameThumbTitleContainer">Stickman vs Villager: Save the Girl</div><img class="GameThumbImage" loading="eager" src="https://images.crazygames.com/stickman-vs-villager-save-the-girl/20230620083148/stickman-vs-villager-save-the-girl-cover?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;fit=crop" decoding="auto" alt="Stickman vs Villager: Save the Girl" srcset="https://images.crazygames.com/stickman-vs-villager-save-the-girl/20230620083148/stickman-vs-villager-save-the-girl-cover?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=206&amp;h=116&amp;fit=crop 207w,
-https://images.crazygames.com/stickman-vs-villager-save-the-girl/20230620083148/stickman-vs-villager-save-the-girl-cover?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=209&amp;h=118&amp;fit=crop 210w,
-https://images.crazygames.com/stickman-vs-villager-save-the-girl/20230620083148/stickman-vs-villager-save-the-girl-cover?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=215&amp;h=121&amp;fit=crop 216w,
-https://images.crazygames.com/stickman-vs-villager-save-the-girl/20230620083148/stickman-vs-villager-save-the-girl-cover?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=224&amp;h=126&amp;fit=crop 225w,
-https://images.crazygames.com/stickman-vs-villager-save-the-girl/20230620083148/stickman-vs-villager-save-the-girl-cover?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=252&amp;h=142&amp;fit=crop 253w,
-https://images.crazygames.com/stickman-vs-villager-save-the-girl/20230620083148/stickman-vs-villager-save-the-girl-cover?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=329&amp;h=185&amp;fit=crop 330w,
-https://images.crazygames.com/stickman-vs-villager-save-the-girl/20230620083148/stickman-vs-villager-save-the-girl-cover?auto=format%2Ccompress&amp;q=45&amp;cs=strip&amp;ch=DPR&amp;w=336&amp;h=189&amp;fit=crop 337w" sizes="(min-width:3000px) 336px,
-(min-width:2100px) 329px,
-(min-width:1200px) 252px,
-(min-width:1000px) 206px,
-(min-width:800px) 209px,
-(min-width:600px) 215px,
-224px">
-                        </a></li>
+                    <li class="primeCarouselLi">
+                        <a class="css-h13zhk" href="https://www.crazygames.com/game/stickman-vs-villager-save-the-girl">
+                            <div class="gameThumbTitleContainer">Stickman vs Villager: Save the Girl</div><img class="GameThumbImage" loading="eager" src="">
+                        </a>
+                    </li>
                     <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
                     <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>
                     <li class="primeCarouselLi"><span class="MuiSkeleton-root MuiSkeleton-rectangular skeleton css-d7g3uh" style="width:calc(100% - 2px);height:calc(100% - 2px)"></span></li>

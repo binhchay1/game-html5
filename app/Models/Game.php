@@ -16,8 +16,18 @@ class Game extends Model
         'link',
         'category',
         'thumbs',
-        'status'
+        'status',
+        'tag',
+        'general',
     ];
 
     public $timestamps = true;
+
+    public function categories()
+    {
+        return $this-> belongsTo(
+            'App\Models\Category',
+            'category',
+            'id');
+    }
 }

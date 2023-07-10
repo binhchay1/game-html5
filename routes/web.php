@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +31,11 @@ Auth::routes();
 
 Route::middleware(['check.auth', 'admin'])->group(
     function () {
-        Route::get('/admin',[AdminController::class, 'index']);
-        Route::get('/list-user',[UserController::class, 'index']);
+        Route::get('/admin',[AdminController::class, 'index'])->name('admin');
+        Route::get('/list-user',[UserController::class, 'index'])->name('user.index');
+        Route::get('/list-game',[\App\Http\Controllers\Admin\GameController::class, 'index'])->name('game.index');
+        Route::get('/list-category',[\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.index');
     }
 );
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
