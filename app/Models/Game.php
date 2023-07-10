@@ -18,7 +18,6 @@ class Game extends Model
         'thumbs',
         'status',
         'tag',
-        'general',
     ];
 
     public $timestamps = true;

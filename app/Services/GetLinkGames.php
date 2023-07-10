@@ -132,7 +132,7 @@ class GetLinkGames
             }
 
             $page++;
-            $count = $count + count($listResultGameDone);
+            $count = $count + count($resultGetSrcFrame['listGameDone']);
         }
 
         foreach ($listResultSrcFrame as $linkSrcFrame) {
@@ -144,8 +144,7 @@ class GetLinkGames
 
         $response = [
             'totalPage' => $page,
-            'totalGame' => $count,
-            'listGameDone' => $listResultGameDone,
+            'totalGame' => $count
         ];
 
         return $response;
@@ -193,7 +192,7 @@ class GetLinkGames
                 if (array_key_exists('href', $a->attr)) {
                     if (strpos($a->attr['href'], 'https://itch.io/games/genre') !== false) {
                         $explode = explode('-', $a->attr['href']);
-                        $data['general'] = $explode[1];
+                        $data['category'] = $explode[1];
                     }
 
                     if (strpos($a->attr['href'], 'https://itch.io/games/tag') !== false) {
@@ -205,11 +204,11 @@ class GetLinkGames
             $data['tag'] = json_encode($listTagGames);
             $this->gameRepository->create($data);
 
-            if (array_key_exists('general', $data)) {
-                $queryCate = $this->categoryRepository->getByColumn($data['general'], 'name');
+            if (array_key_exists('category', $data)) {
+                $queryCate = $this->categoryRepository->getByColumn($data['category'], 'name');
                 if (empty($queryCate)) {
                     $dataCate = [
-                        'name' => $data['general']
+                        'name' => $data['category']
                     ];
                     $this->categoryRepository->create($dataCate);
                 }
