@@ -41,7 +41,7 @@ class GetLinkGames
         $break = false;
         $attrA = $this->attribute::LIST_ATTRIBUTE[$this->linkGame::GAME_ITCHIO];
         $attrImg = '.lazy_loaded';
-        $page = 1;
+        $page = env('PAGE_GET_GAME', 1);
         $count = 0;
         $breakCount = env('BREAK_COUNT', -1); //change this for break by count game ( default -1 = non break )
         $breakPage = env('BREAK_PAGE', -1); //change this for break by count page ( default -1 = non break )
@@ -136,7 +136,7 @@ class GetLinkGames
         }
 
         foreach ($listResultSrcFrame as $linkSrcFrame) {
-            $pathProcess = public_path() . '/process/process.txt';
+            $pathProcess = public_path() . '/process/list.txt';
             $fp = fopen($pathProcess, 'a');
             fwrite($fp, $linkSrcFrame . PHP_EOL);
             fclose($fp);
