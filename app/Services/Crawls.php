@@ -14,6 +14,7 @@ class Crawls
 
     public function getDom($link, $type)
     {
+        set_time_limit(200);
         if ($type == 'file') {
             $dom = HtmlDomParser::str_get_html($link);
 
@@ -31,6 +32,7 @@ class Crawls
 
         $ch = curl_init($link);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT_MS, 2000);
         $content = curl_exec($ch);
         curl_close($ch);
 

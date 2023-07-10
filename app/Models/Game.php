@@ -16,7 +16,9 @@ class Game extends Model
         'link',
         'category',
         'thumbs',
-        'status'
+        'status',
+        'tag',
+        'general',
     ];
 
     public $timestamps = true;
