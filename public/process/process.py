@@ -1,14 +1,15 @@
-# pip install selenium
-
 import time
 import json
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import UnexpectedAlertPresentException
+from selenium.webdriver.chrome.options import Options
 
 service = Service(executable_path='C:\Program Files\Chrome Driver\chromedriver.exe')
-driver = webdriver.Chrome(service=service)
+options = Options()
+options.headless = True
+driver = webdriver.Chrome(service=service, options=options)
 listItems = []
 i = 0
 
