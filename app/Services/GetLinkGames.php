@@ -49,7 +49,6 @@ class GetLinkGames
         $listResultGameDone = [];
 
         while (!$break) {
-            $url = $this->linkGame::GAME_ITCHIO;
             if (isset($breakCount)) {
                 if ($count == $breakCount and $breakCount > 0) {
                     $break = true;
@@ -64,6 +63,7 @@ class GetLinkGames
                 }
             }
 
+            $url = $this->linkGame::GAME_ITCHIO;
             $url = $url . "?page=" . $page . "&format=json";
             $html = $this->crawls->getDom($url, 'text');
             $decode = json_decode($html);
@@ -79,7 +79,6 @@ class GetLinkGames
             $listNameGame = [];
 
             foreach ($listA as $item) {
-                $link = "";
                 if (!empty($item->attr)) {
                     $link = $item->attr["href"];
                     $listLink[]['link'] = $link;
@@ -104,7 +103,6 @@ class GetLinkGames
             }
 
             foreach ($listImg as $key => $img) {
-                $link = "";
                 if (!empty($img->attr)) {
                     $link = $img->attr['data-lazy_src'];
                     $file_name = basename($link);
@@ -166,79 +164,70 @@ class GetLinkGames
                 continue;
             }
 
-
-
             $path = parse_url($link['link'], PHP_URL_PATH);
             $gameName = substr($path, 1);
             $html = $this->crawls->getDom($link['link'], null);
-            $listTest[$link['link']] = $html;
 
-            // if ($html == null or empty($html)) {
-            //     continue;
-            // }
+            $data = [
+                'name' => $gameName,
+                'link' => $link['link'],
+                'thumbs' => $link['thumb'],
+            ];
 
-            // $data = [
-            //     'name' => $gameName,
-            //     'link' => $link['link'],
-            //     'thumbs' => array_key_exists('thumb', $link) ? $link['thumb']  : 'non-thumb',
-            // ];
+            $getA = $html->find('a');
+            $getFrame = $html->find('div[class=iframe_placeholder]');
 
-            // $getA = $html->find('a');
-            // $getFrame = $html->find('div[class=iframe_placeholder]');
+            if (empty($getFrame)) {
+                continue;
+            }
 
-            // if (empty($getFrame)) {
-            //     continue;
-            // }
+            $query = $this->gameRepository->getByColumn($data['name'], 'name');
+            if (!empty($query)) {
+                continue;
+            }
 
-            // $query = $this->gameRepository->getByColumn($data['name'], 'name');
-            // if (!empty($query)) {
-            //     continue;
-            // }
+            $listTagGames = [];
+            foreach ($getA as $a) {
+                if (array_key_exists('href', $a->attr)) {
+                    if (strpos($a->attr['href'], 'https://itch.io/games/genre') !== false) {
+                        $explode = explode('-', $a->attr['href']);
+                        $data['general'] = $explode[1];
+                    }
 
-            // $listTagGames = [];
-            // foreach ($getA as $a) {
-            //     if (array_key_exists('href', $a->attr)) {
-            //         if (strpos($a->attr['href'], 'https://itch.io/games/genre') !== false) {
-            //             $explode = explode('-', $a->attr['href']);
-            //             $data['general'] = $explode[1];
-            //         }
+                    if (strpos($a->attr['href'], 'https://itch.io/games/tag') !== false) {
+                        $explode = explode('-', $a->attr['href']);
+                        $listTagGames[] = $explode[1];
+                    }
+                }
+            }
+            $data['tag'] = json_encode($listTagGames);
+            $this->gameRepository->create($data);
 
-            //         if (strpos($a->attr['href'], 'https://itch.io/games/tag') !== false) {
-            //             $explode = explode('-', $a->attr['href']);
-            //             $listTagGames[] = $explode[1];
-            //         }
-            //     }
-            // }
-            // $data['tag'] = json_encode($listTagGames);
-            // $this->gameRepository->create($data);
+            if (array_key_exists('general', $data)) {
+                $queryCate = $this->categoryRepository->getByColumn($data['general'], 'name');
+                if (empty($queryCate)) {
+                    $dataCate = [
+                        'name' => $data['general']
+                    ];
+                    $this->categoryRepository->create($dataCate);
+                }
+            }
 
-            // if (array_key_exists('general', $data)) {
-            //     $queryCate = $this->categoryRepository->getByColumn($data['general'], 'name');
-            //     if (empty($queryCate)) {
-            //         $dataCate = [
-            //             'name' => $data['general']
-            //         ];
-            //         $this->categoryRepository->create($dataCate);
-            //     }
-            // }
+            $listGameDone[] = $key;
 
-            // $listGameDone[] = $key;
+            $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);
+            $parseFrame = $this->crawls->getDom($srcFrame, 'file');
+            $getChild = $parseFrame->childNodes();
+            $src = $getChild[0]->attr['src'];
+            $listSrcFrame[] = $src;
 
-            // $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);
-            // $parseFrame = $this->crawls->getDom($srcFrame, 'file');
-            // $getChild = $parseFrame->childNodes();
-            // $src = $getChild[0]->attr['src'];
-            // $listSrcFrame[] = $src;
-
-            // $returnList = [
-            //     'listGameDone' => $listGameDone,
-            //     'listSrcFrame' => $listSrcFrame
-            // ];
+            $returnList = [
+                'listGameDone' => $listGameDone,
+                'listSrcFrame' => $listSrcFrame
+            ];
         }
 
-        dd($listTest);
-
-        if (empty($returnList['listSrcFrame'])) {
+        if (empty($returnList['listSrcFrame']) and empty($returnList['listGameDone'])) {
             return [];
         }
 
