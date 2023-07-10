@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Enums\LinkGame;
 use Illuminate\Http\Request;
 use App\Services\GetLinkGames;
+use App\Http\Controllers\Controller;
+use App\Repositories\GameRepository;
 
 class GameController extends Controller
 {
@@ -22,7 +24,7 @@ class GameController extends Controller
     public function index()
     {
         $dataGame = $this->gameRepository->listGame();
-        return view('page.admin.game.list-game', ['dataGame' => $dataGame]);
+        return view('admin.game.list-game', ['dataGame' => $dataGame]);
     }
 
     public function viewGame($name)
