@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use App\Enums\Role;
 
 class IsAdmin
 {
@@ -16,12 +17,10 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() &&  Auth::user()->is_admin) {
-dd(Auth::user()->is_admin == 1);
+        if (Auth::user() &&  Auth::user()->role == Role::ADMIN) {
             return $next($request);
         }
-        dd('thuytest');
-        return redirect()->route('login');
 
+        return redirect()->route('errors', ['errors' => 401]);
     }
 }

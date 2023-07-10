@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\GameController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('page.user.layout.master-page');
-});
+})->name('home');
 
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
 Route::group(['prefix' => 'games'], function () {
@@ -27,6 +26,7 @@ Route::group(['prefix' => 'games'], function () {
 });
 
 Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/errors/{errors}', [AdminController::class, 'errors'])->name('errors');
 Auth::routes();
 
 Route::middleware(['check.auth', 'admin'])->group(
@@ -37,5 +37,3 @@ Route::middleware(['check.auth', 'admin'])->group(
         Route::get('/list-category',[\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.index');
     }
 );
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -37,6 +37,10 @@ class Crawls
 
         $dom = HtmlDomParser::str_get_html($content);
 
+        if ($dom == false) {
+            $dom = $this->getDom($link, $type);
+        }
+
         return $dom;
     }
 }
