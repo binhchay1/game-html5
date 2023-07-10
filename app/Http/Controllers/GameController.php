@@ -32,7 +32,9 @@ class GameController extends Controller
 
         switch ($url) {
             case $this->linkGame::GAME_ITCHIO:
-                $this->getLinkGames->getLinkGameItchIo();
+                $response = $this->getLinkGames->getLinkGameItchIo();
+
+                return \response()->json($response);
                 break;
         }
     }

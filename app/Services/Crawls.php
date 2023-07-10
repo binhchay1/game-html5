@@ -14,7 +14,6 @@ class Crawls
 
     public function getDom($link, $type)
     {
-        set_time_limit(200);
         if ($type == 'file') {
             $dom = HtmlDomParser::str_get_html($link);
 

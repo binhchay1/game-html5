@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
-use App\Enums\IgnoreLink;
+use App\Enums\ListLink;
 use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
@@ -16,7 +16,7 @@ class GetLinkGames
     private $attribute;
     private $crawls;
     private $gameRepository;
-    private $ignoreLink;
+    private $ListLink;
 
     public function __construct(
         LinkGame $linkGame,
@@ -25,7 +25,7 @@ class GetLinkGames
         Ultity $ultity,
         GameRepository $gameRepository,
         CategoryRepository $categoryRepository,
-        IgnoreLink $ignoreLink
+        ListLink $ListLink
     ) {
         $this->linkGame = $linkGame;
         $this->attribute = $attribute;
@@ -33,7 +33,7 @@ class GetLinkGames
         $this->ultity = $ultity;
         $this->gameRepository = $gameRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->ignoreLink = $ignoreLink;
+        $this->ListLink = $ListLink;
     }
 
     public function getLinkGameItchIo()
@@ -148,7 +148,7 @@ class GetLinkGames
             'listGameDone' => $listResultGameDone,
         ];
 
-        return \response()->json($response);
+        return $response;
     }
 
     public function processGameWithListLinks($listLink)
@@ -162,74 +162,81 @@ class GetLinkGames
                 continue;
             }
 
-            if(in_array($link, $this->ignoreLink::LIST_IGNORE)) {
+            if (in_array($link['link'], $this->ListLink::LIST_IGNORE)) {
                 continue;
             }
+
+
 
             $path = parse_url($link['link'], PHP_URL_PATH);
             $gameName = substr($path, 1);
             $html = $this->crawls->getDom($link['link'], null);
+            $listTest[$link['link']] = $html;
 
-            if ($html == null or empty($html)) {
-                continue;
-            }
+            // if ($html == null or empty($html)) {
+            //     continue;
+            // }
 
-            $data = [
-                'name' => $gameName,
-                'link' => $link['link'],
-                'thumbs' => array_key_exists('thumb', $link) ? $link['thumb']  : 'non-thumb',
-            ];
+            // $data = [
+            //     'name' => $gameName,
+            //     'link' => $link['link'],
+            //     'thumbs' => array_key_exists('thumb', $link) ? $link['thumb']  : 'non-thumb',
+            // ];
 
-            $getA = $html->find('a');
-            $getFrame = $html->find('div[class=iframe_placeholder]');
+            // $getA = $html->find('a');
+            // $getFrame = $html->find('div[class=iframe_placeholder]');
 
-            if (empty($getFrame)) {
-                continue;
-            }
+            // if (empty($getFrame)) {
+            //     continue;
+            // }
 
-            $query = $this->gameRepository->getByColumn($data['name'], 'name');
-            if (!empty($query)) {
-                continue;
-            }
+            // $query = $this->gameRepository->getByColumn($data['name'], 'name');
+            // if (!empty($query)) {
+            //     continue;
+            // }
 
-            $listTagGames = [];
-            foreach ($getA as $a) {
-                if (array_key_exists('href', $a->attr)) {
-                    if (strpos($a->attr['href'], 'https://itch.io/games/genre') !== false) {
-                        $explode = explode('-', $a->attr['href']);
-                        $data['general'] = $explode[1];
-                    }
+            // $listTagGames = [];
+            // foreach ($getA as $a) {
+            //     if (array_key_exists('href', $a->attr)) {
+            //         if (strpos($a->attr['href'], 'https://itch.io/games/genre') !== false) {
+            //             $explode = explode('-', $a->attr['href']);
+            //             $data['general'] = $explode[1];
+            //         }
 
-                    if (strpos($a->attr['href'], 'https://itch.io/games/tag') !== false) {
-                        $explode = explode('-', $a->attr['href']);
-                        $listTagGames[] = $explode[1];
-                    }
-                }
-            }
-            $data['tag'] = json_encode($listTagGames);
-            $this->gameRepository->create($data);
+            //         if (strpos($a->attr['href'], 'https://itch.io/games/tag') !== false) {
+            //             $explode = explode('-', $a->attr['href']);
+            //             $listTagGames[] = $explode[1];
+            //         }
+            //     }
+            // }
+            // $data['tag'] = json_encode($listTagGames);
+            // $this->gameRepository->create($data);
 
-            if (array_key_exists('general', $data)) {
-                $queryCate = $this->categoryRepository->getByColumn($data['general'], 'name');
-                if (empty($queryCate)) {
-                    $dataCate = [
-                        'name' => $data['general']
-                    ];
-                    $this->categoryRepository->create($dataCate);
-                }
-            }
+            // if (array_key_exists('general', $data)) {
+            //     $queryCate = $this->categoryRepository->getByColumn($data['general'], 'name');
+            //     if (empty($queryCate)) {
+            //         $dataCate = [
+            //             'name' => $data['general']
+            //         ];
+            //         $this->categoryRepository->create($dataCate);
+            //     }
+            // }
 
-            $listGameDone[] = $key;
+            // $listGameDone[] = $key;
 
-            $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);
-            $parseFrame = $this->crawls->getDom($srcFrame, 'file');
-            $getChild = $parseFrame->childNodes();
-            $src = $getChild[0]->attr['src'];
-            $listSrcFrame[] = $src;
+            // $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);
+            // $parseFrame = $this->crawls->getDom($srcFrame, 'file');
+            // $getChild = $parseFrame->childNodes();
+            // $src = $getChild[0]->attr['src'];
+            // $listSrcFrame[] = $src;
 
-            $returnList['listGameDone'] = $listGameDone;
-            $returnList['listSrcFrame'] = $listSrcFrame;
+            // $returnList = [
+            //     'listGameDone' => $listGameDone,
+            //     'listSrcFrame' => $listSrcFrame
+            // ];
         }
+
+        dd($listTest);
 
         if (empty($returnList['listSrcFrame'])) {
             return [];
