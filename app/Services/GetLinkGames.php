@@ -4,11 +4,12 @@ namespace App\Services;
 
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
-use App\Enums\IgnoreLink;
+use App\Enums\ListLink;
 use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Event\Code\Throwable;
 
 class GetLinkGames
 {
@@ -16,7 +17,7 @@ class GetLinkGames
     private $attribute;
     private $crawls;
     private $gameRepository;
-    private $ignoreLink;
+    private $ListLink;
 
     public function __construct(
         LinkGame $linkGame,
@@ -25,7 +26,7 @@ class GetLinkGames
         Ultity $ultity,
         GameRepository $gameRepository,
         CategoryRepository $categoryRepository,
-        IgnoreLink $ignoreLink
+        ListLink $ListLink
     ) {
         $this->linkGame = $linkGame;
         $this->attribute = $attribute;
@@ -33,7 +34,7 @@ class GetLinkGames
         $this->ultity = $ultity;
         $this->gameRepository = $gameRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->ignoreLink = $ignoreLink;
+        $this->ListLink = $ListLink;
     }
 
     public function getLinkGameItchIo()
@@ -49,7 +50,6 @@ class GetLinkGames
         $listResultGameDone = [];
 
         while (!$break) {
-            $url = $this->linkGame::GAME_ITCHIO;
             if (isset($breakCount)) {
                 if ($count == $breakCount and $breakCount > 0) {
                     $break = true;
@@ -64,6 +64,7 @@ class GetLinkGames
                 }
             }
 
+            $url = $this->linkGame::GAME_ITCHIO;
             $url = $url . "?page=" . $page . "&format=json";
             $html = $this->crawls->getDom($url, 'text');
             $decode = json_decode($html);
@@ -79,7 +80,6 @@ class GetLinkGames
             $listNameGame = [];
 
             foreach ($listA as $item) {
-                $link = "";
                 if (!empty($item->attr)) {
                     $link = $item->attr["href"];
                     $listLink[]['link'] = $link;
@@ -103,8 +103,13 @@ class GetLinkGames
                 unset($listImg[$key]);
             }
 
+            foreach ($listLink as $link) {
+                dump([
+                    $link,
+                ]);
+            }
+
             foreach ($listImg as $key => $img) {
-                $link = "";
                 if (!empty($img->attr)) {
                     $link = $img->attr['data-lazy_src'];
                     $file_name = basename($link);
@@ -115,40 +120,44 @@ class GetLinkGames
                 }
             }
 
-            $resultGetSrcFrame = $this->processGameWithListLinks($listLink);
 
-            if (!empty($resultGetSrcFrame)) {
-                $listResultSrcFrame = array_merge($listResultSrcFrame, $resultGetSrcFrame['listSrcFrame']);
-                $listResultGameDone = array_merge($listResultGameDone, $resultGetSrcFrame['listGameDone']);
-                foreach ($listImg as $key => $value) {
-                    if (in_array($key, $resultGetSrcFrame['listGameDone'])) {
-                        if (!empty($value->attr)) {
-                            $link = $value->attr['data-lazy_src'];
-                            $file_name = basename($link);
-                            $this->saveImageThumb($link, $file_name);
-                        }
-                    }
-                }
-            }
+
+            // $resultGetSrcFrame = $this->processGameWithListLinks($listLink);
+
+            // if (!empty($resultGetSrcFrame)) {
+            //     $listResultSrcFrame = array_merge($listResultSrcFrame, $resultGetSrcFrame['listSrcFrame']);
+            //     $listResultGameDone = array_merge($listResultGameDone, $resultGetSrcFrame['listGameDone']);
+            //     foreach ($listImg as $key => $value) {
+            //         if (in_array($key, $resultGetSrcFrame['listGameDone'])) {
+            //             if (!empty($value->attr)) {
+            //                 $link = $value->attr['data-lazy_src'];
+            //                 $file_name = basename($link);
+            //                 $this->saveImageThumb($link, $file_name);
+            //             }
+            //         }
+            //     }
+            // }
 
             $page++;
-            $count++;
+            // $count = $count + count($listResultGameDone);
         }
 
-        foreach ($listResultSrcFrame as $linkSrcFrame) {
-            $pathProcess = public_path() . '/process/list.txt';
-            $fp = fopen($pathProcess, 'a');
-            fwrite($fp, $linkSrcFrame . PHP_EOL);
-            fclose($fp);
-        }
+        // foreach ($listResultSrcFrame as $linkSrcFrame) {
+        //     $pathProcess = public_path() . '/process/list.txt';
+        //     $fp = fopen($pathProcess, 'a');
+        //     fwrite($fp, $linkSrcFrame . PHP_EOL);
+        //     fclose($fp);
+        // }
 
-        $response = [
-            'page' => $page,
-            'count' => $count,
-            'listGameDone' => $listResultGameDone,
-        ];
+        // $response = [
+        //     'totalPage' => $page,
+        //     'totalGame' => count($listResultGameDone),
+        //     'listGameDone' => $listResultGameDone,
+        // ];
 
-        return \response()->json($response);
+        die;
+        $response = 1;
+        return $response;
     }
 
     public function processGameWithListLinks($listLink)
@@ -162,7 +171,7 @@ class GetLinkGames
                 continue;
             }
 
-            if(in_array($link, $this->ignoreLink::LIST_IGNORE)) {
+            if (in_array($link['link'], $this->ListLink::LIST_IGNORE)) {
                 continue;
             }
 
@@ -170,14 +179,10 @@ class GetLinkGames
             $gameName = substr($path, 1);
             $html = $this->crawls->getDom($link['link'], null);
 
-            if ($html == null or empty($html)) {
-                continue;
-            }
-
             $data = [
                 'name' => $gameName,
                 'link' => $link['link'],
-                'thumbs' => array_key_exists('thumb', $link) ? $link['thumb']  : 'non-thumb',
+                'thumbs' => $link['thumb'],
             ];
 
             $getA = $html->find('a');
@@ -227,11 +232,13 @@ class GetLinkGames
             $src = $getChild[0]->attr['src'];
             $listSrcFrame[] = $src;
 
-            $returnList['listGameDone'] = $listGameDone;
-            $returnList['listSrcFrame'] = $listSrcFrame;
+            $returnList = [
+                'listGameDone' => $listGameDone,
+                'listSrcFrame' => $listSrcFrame
+            ];
         }
 
-        if (empty($returnList['listSrcFrame'])) {
+        if (empty($returnList['listSrcFrame']) and empty($returnList['listGameDone'])) {
             return [];
         }
 

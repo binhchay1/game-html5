@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-class IgnoreLink
+class ListLink
 {
     const LIST_IGNORE = [
         'https://v6p9d9t4.ssl.hwcdn.net/html/2267583/index.html?v=1591301667',

@@ -14,9 +14,13 @@ class Crawls
 
     public function getDom($link, $type)
     {
-        set_time_limit(200);
+        set_time_limit(0);
         if ($type == 'file') {
             $dom = HtmlDomParser::str_get_html($link);
+
+            if ($dom == false) {
+                $dom = $this->getDom($link, $type);
+            }
 
             return $dom;
         }
@@ -37,6 +41,10 @@ class Crawls
         curl_close($ch);
 
         $dom = HtmlDomParser::str_get_html($content);
+
+        if ($dom == false) {
+            $dom = $this->getDom($link, $type);
+        }
 
         return $dom;
     }

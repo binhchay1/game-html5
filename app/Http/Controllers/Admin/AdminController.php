@@ -61,4 +61,9 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function errors($errors) {
+        $view = 'errors.' . $errors;
+        return view($view);
+    }
 }
