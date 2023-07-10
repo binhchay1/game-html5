@@ -22,4 +22,8 @@ class CategoryRepository extends BaseRepository
     {
         return $this->model->orderBy('created_at', 'desc')->get();
     }
+
+    public function getAllGameByCategory() {
+        return $this->model->with('games')->get();
+    }
 }

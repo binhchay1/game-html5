@@ -1160,18 +1160,6 @@ a {
     margin-top: calc(60px + 8px);
 }
 
-@media (max-width: 1909.95px) {
-    .css-oi51ei {
-        padding-left: 60px;
-    }
-}
-
-@media (min-width: 1910px) {
-    .css-oi51ei {
-        padding-left: 200px;
-    }
-}
-
 .css-linpkp {
     position: fixed;
     left: 0;

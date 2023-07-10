@@ -238,6 +238,7 @@ class GetLinkGames
     public function saveImageThumb($url, $fileName)
     {
         $content = file_get_contents($url);
+        $fileName = str_replace("%2", "G", $fileName);
         if (!Storage::disk('public-images-game')->has($fileName)) {
             Storage::disk('public-images-game')->put($fileName, $content);
         }

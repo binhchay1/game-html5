@@ -5,22 +5,27 @@
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, width=device-width, height=device-height">
     <meta name="theme-color" content="#ffffff">
 
+    @yield('title')
     <link rel="preconnect" href="https://videos.crazygames.com/" crossorigin="anonymous">
     <link rel="preconnect" href="https://workers.crazygames.com/" crossorigin="anonymous">
     <link rel="preconnect" href="https://images.crazygames.com/" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
     <link rel="preconnect" href="https://builds.crazygames.com" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    @yield('css')
 </head>
 
 <body dir="ltr">
     <div id="__next">
-        <div style="pointer-events:auto" class="css-1f20jmh">
+        <div class="css-1f20jmh">
             <header id="czyHeader" class="css-14otk5e">
-                <div style="display:flex;flex-direction:row;padding-left:8px;align-items:center"><button aria-label="Open/Close sidebar" class="MuiButton-root css-1qvhka5" type="button"><svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
+                <div style="display:flex;flex-direction:row;padding-left:8px;align-items:center">
+                    <button aria-label="Open/Close sidebar" class="MuiButton-root css-1qvhka5" type="button">
+                        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
                             <path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M19 4C19.5523 4 20 3.55229 20 3C20 2.44772 19.5523 2 19 2L3 2C2.44772 2 2 2.44772 2 3C2 3.55228 2.44772 4 3 4L19 4ZM20.47 7.95628L15.3568 11.152C14.7301 11.5437 14.7301 12.4564 15.3568 12.848L20.47 16.0438C21.136 16.4601 22 15.9812 22 15.1958V8.80427C22 8.01884 21.136 7.54 20.47 7.95628ZM11 13C11.5523 13 12 12.5523 12 12C12 11.4477 11.5523 11 11 11L3 11C2.44771 11 2 11.4477 2 12C2 12.5523 2.44771 13 3 13L11 13ZM20 21C20 21.5523 19.5523 22 19 22L3 22C2.44771 22 2 21.5523 2 21C2 20.4477 2.44771 20 3 20L19 20C19.5523 20 20 20.4477 20 21Z"></path>
-                        </svg></button><a href="https://www.crazygames.com/">
+                        </svg>
+                    </button>
+                    <a href="{{ route('home') }}">
                         <div class="css-2ug2n9">
                             <div class="css-1vhz41m"><svg viewBox="0 0 62 70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <title>Logo CrazyGames.com</title>
@@ -49,22 +54,10 @@
                                             <path fill="#FFF" d="M.4884 8.6597c-.2239-.141-.3352-.3645-.3352-.6706 0-.3058.223-.7705.6703-1.3941.1292-.2.3383-.3.6266-.3.2883 0 .6794.1442 1.1735.4325.4942.2883.941.4322 1.3413.4322.7177 0 1.0766-.1411 1.0766-.4235 0-.2234-.3946-.3883-1.1825-.4942-.7412-.106-1.4767-.3822-2.206-.8294-.3414-.212-.6237-.544-.8472-.9971-.2234-.4528-.3353-.9911-.3353-1.6148C.4705.942 1.7469.0123 4.3002.0123c.8354 0 1.6944.2002 2.5766.5998.4117.1887.6178.4239.6178.7062 0 .2824-.1297.6296-.3883 1.0413-.2591.4118-.5238.6175-.7943.6175-.1412 0-.4031-.0883-.7851-.2649-.3826-.1762-.7975-.2645-1.2443-.2645-.6945 0-1.0413.1296-1.0413.3883 0 .3528.4.5824 1.2.6882.7764.0825 1.5295.3061 2.259.6706.3411.165.6265.45.8559.856.2295.4056.344.915.344 1.5267 0 .6117-.1145 1.1322-.344 1.5616-.2294.4298-.5499.75-.9618.962-.7532.3646-1.6971.547-2.8323.547-1.1357 0-2.2269-.3294-3.2737-.9884"></path>
                                         </g>
                                     </g>
-                                </svg></div>
-                        </div>
-                    </a></div>
-                <div class="css-xgeqm6">
-                    <form autocomplete="off">
-                        <div class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-1u0d3ky">
-                            <div class="MuiInput-root MuiInput-adornedEnd MuiAutocomplete-inputRoot css-1pz5at6"><input autocomplete="off" id="desktopQuickSearch" placeholder="Search" type="text" class="MuiInput-input MuiAutocomplete-input MuiAutocomplete-inputFocused" aria-autocomplete="list" aria-expanded="false" autocapitalize="none" spellcheck="false" role="combobox" value="">
-                                <div class="MuiAutocomplete-endAdornment css-2iz2x6"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-clearIndicator css-zvo6a0" tabindex="-1" type="button" aria-label="Clear" title="Clear"><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-1rq9o8u" tabindex="-1" type="button" aria-label="Open" title="Open">
-                                        <div class="css-9i1arl"><svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 4C6.91015 4 4 6.91015 4 10.5C4 14.0899 6.91015 17 10.5 17C14.0899 17 17 14.0899 17 10.5C17 6.91015 14.0899 4 10.5 4ZM2 10.5C2 5.80558 5.80558 2 10.5 2C15.1944 2 19 5.80558 19 10.5C19 15.1944 15.1944 19 10.5 19C5.80558 19 2 15.1944 2 10.5Z"></path>
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.2929 15.2929C15.6834 14.9024 16.3166 14.9024 16.7071 15.2929L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0976 20.6834 22.0976 20.2929 21.7071L15.2929 16.7071C14.9024 16.3166 14.9024 15.6834 15.2929 15.2929Z"></path>
-                                            </svg></div><span class="MuiTouchRipple-root css-w0pj6f"></span>
-                                    </button></div>
+                                </svg>
                             </div>
                         </div>
-                    </form>
+                    </a>
                 </div>
                 <div style="flex-direction:row;display:flex;padding-right:16px;align-items:center;justify-content:flex-end">
                     <div style="margin-right:8px">
@@ -93,7 +86,6 @@
                 </div>
 
             </header>
-            <div class="css-v2g78o"></div>
             <nav id="mainNav" class="css-eolj6i">
                 <div id="sidebarContainer" class="css-1y0lbxl">
                     <div class="css-16dbssm"><svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
@@ -133,15 +125,11 @@
                 </div>
 
             </nav>
-            <div class="css-wwwalv"></div>
-            <div id="one_tap_container" style="position: fixed; top: 60px; right: 20px; z-index: 9999;"></div>
             <main id="layoutMain" class="css-oi51ei">
                 <div class="css-linpkp">
                     <div class="css-19dlbhf"></div>
                 </div>
-                <div style="padding-bottom:20px;position:relative">
-                    @yield('content')
-                </div>
+                @yield('content')
             </main>
         </div>
     </div>
