@@ -10,11 +10,9 @@ class CategoryController extends Controller
 {
 
     protected $categoryRepository;
-    public function __construct
-    (
+    public function __construct(
         CategoryRepository $categoryRepository
-    )
-    {
+    ) {
         $this->categoryRepository = $categoryRepository;
     }
     /**
@@ -24,7 +22,7 @@ class CategoryController extends Controller
     {
         $dataCategory = $this->categoryRepository->listCategory();
 
-        return view('page.admin.category.list-category', ['dataCategory'=> $dataCategory]);
+        return view('admin.category.list-category', ['dataCategory' => $dataCategory]);
     }
 
     /**

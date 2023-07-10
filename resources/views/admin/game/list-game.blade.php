@@ -1,4 +1,4 @@
-@extends('page.admin.layout.master-page')
+@extends('layouts.admin')
 @section('main_content')
     @vite(['resources/sass/user.css'])
     <div class="row justify-content-start m-1 mb-2 mt-2">
@@ -9,18 +9,25 @@
     <table class="table table-bordered" id="customers">
         <thead>
         <tr class="design-text">
-            <th scope="col">ID</th>
+            <th style="width: 5%" scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">Email</th>
+            <th scope="col">Link</th>
+            <th scope="col">Category</th>
+            <th scope="col">Thumbs</th>
+            <th style="width: 10%" scope="col">Status</th>
             <th style="width: 10%" scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($dataUser as $dataUser)
+        @foreach($dataGame as $dataGame)
+
             <tr class="design-text">
-                <td>{{ $dataUser->id }}</td>
-                <td>{{ $dataUser->name }}</th>
-                <td>{{ $dataUser->email }}</td>
+                <td>{{ $dataGame->id }}</td>
+                <td>{{ $dataGame->name }}</th>
+                <td>{{ $dataGame->link }}</th>
+                <td>{{ $dataGame->categories->name }}</th>
+                <td><img class="image" src="{{$dataGame->thumbs}}" alt="avatar"></td>
+                <td>{{ $dataGame->status }}</th>
                 <td class="text_flow text-center">
                     <a href="" class="btn btn-info">
                         <i class="fas fa-info-circle"></i>

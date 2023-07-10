@@ -21,6 +21,6 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect()->route('errors', ['errors' => 401]);
+        return abort(401);
     }
 }

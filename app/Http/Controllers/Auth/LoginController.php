@@ -56,7 +56,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($data )) {
             $request->session()->put('email', $data['email']);
-            return view('page.admin.layout.homepage');
+            return view('admin.homepage');
         } else {
             return back()->withErrors([
                 'custom' => 'Email or Password is wrong!'

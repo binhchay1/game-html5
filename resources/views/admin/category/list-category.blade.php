@@ -1,4 +1,4 @@
-@extends('page.admin.layout.master-page')
+@extends('layouts.admin')
 @section('main_content')
     @vite(['resources/sass/user.css'])
     <div class="row justify-content-start m-1 mb-2 mt-2">
