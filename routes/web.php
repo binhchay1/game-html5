@@ -29,7 +29,7 @@ Route::group(['prefix' => 'games'], function () {
 Route::get('/admin', [AdminController::class, 'index']);
 Auth::routes();
 
-Route::middleware('check.auth')->group(
+Route::middleware(['check.auth', 'admin'])->group(
     function () {
         Route::get('/admin',[AdminController::class, 'index'])->name('admin');
         Route::get('/list-user',[UserController::class, 'index'])->name('user.index');
