@@ -1,5 +1,4 @@
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, width=device-width, height=device-height">
@@ -12,6 +11,7 @@
     <link rel="preconnect" href="https://builds.crazygames.com" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body dir="ltr">
@@ -79,7 +79,7 @@
                             <div class="css-1sbqpkv"><span></span><span></span><span></span></div>
                         </div>
                     </div>
-                    <div style="height:100%;position:relative"><button aria-label="Account" class="MuiButton-root css-1fnw4t5" type="button"><svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="css-6qu7l6">
+                    <div style="height:100%;position:relative"><button data-bs-toggle="offcanvas" href="#offcanvasExample" aria-label="Account" class="MuiButton-root css-1fnw4t5" type="button"><svg viewBox="0 0 24 24"  focusable="false" aria-hidden="true" class="css-6qu7l6">
                                 <path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M6.08194 19.9771H17.9181C17.4451 17.1282 14.981 15 12 15C9.01897 15 6.55491 17.1282 6.08194 19.9771ZM4 20.9771C4 16.5223 7.58876 13 12 13C16.4112 13 20 16.5223 20 20.9771C20 21.5294 19.5523 21.9771 19 21.9771H5C4.44772 21.9771 4 21.5294 4 20.9771Z"></path>
                                 <path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M12 4C10.3431 4 9 5.34315 9 7C9 8.65685 10.3431 10 12 10C13.6569 10 15 8.65685 15 7C15 5.34315 13.6569 4 12 4ZM7 7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7C17 9.76142 14.7614 12 12 12C9.23858 12 7 9.76142 7 7Z"></path>
                             </svg></button></div>
@@ -140,6 +140,23 @@
             </main>
         </div>
     </div>
+
+    <!-- off canvas-->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header" style="background-color: #6842FF">
+            <h2 style="color: rgb(255, 255, 255); font-weight: 800; font-size: 20px; line-height: 135%;"> Create your CrazyGames account for free!</h2>
+            <button style=" margin-bottom: 7.5rem;" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" style="background-color: #212529;">
+            <div class="dropdown mt-3">
+                <button type="button" style="border-radius: 40px;" class="btn btn-primary btn-lg">Sign up</button>
+                <button type="button" style="border-radius: 40px;" class="btn btn-secondary btn-lg">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- off canvas-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
