@@ -125,12 +125,12 @@
                 </div>
 
             </nav>
-            <main id="layoutMain" class="css-oi51ei">
+            <div id="layoutMain" class="css-oi51ei">
                 <div class="css-linpkp">
                     <div class="css-19dlbhf"></div>
                 </div>
                 @yield('content')
-            </main>
+            </div>
         </div>
     </div>
 </body>
