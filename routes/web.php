@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('page.user.layout.master-page');
-})->name('home');
+    return view('page.user.layout.homepage');
+});
 
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
 Route::group(['prefix' => 'games'], function () {
