@@ -112,7 +112,7 @@
                     @endforeach
 
                     <div class="SidebarLinks css-1fc3chw"><a href="https://about.crazygames.com"><span class="css-17bz4pn">About</span></a><a href="https://developer.crazygames.com"><span class="css-17bz4pn">Developers</span></a><a href="https://www.crazygames.com/terms-and-conditions"><span class="css-17bz4pn">Terms &amp; conditions</span></a><a href="https://www.crazygames.com/privacy-policy"><span class="css-17bz4pn">Privacy</span></a><a href="https://www.crazygames.com/sitemap/games"><span class="css-17bz4pn">All games</span></a>
-                        <div class="css-1z0ccmv">© <!-- -->2023<!-- --> GameFake</div>
+                        <div class="css-1z0ccmv">© 2023 GameFake</div>
                     </div>
                     <div style="height:30px"></div>
                 </div>
@@ -126,6 +126,7 @@
                 </div>
 
             </nav>
+
             <div id="layoutMain" class="css-oi51ei">
                 <div class="css-linpkp">
                     <div class="css-19dlbhf"></div>
@@ -135,7 +136,6 @@
         </div>
     </div>
 
-    <!-- off canvas-->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header" style="background-color: #6842FF">
             <h2 style="color: rgb(255, 255, 255); font-weight: 800; font-size: 20px; line-height: 135%;"> Create your CrazyGames account for free!</h2>
@@ -149,7 +149,6 @@
         </div>
     </div>
 
-    <!-- off canvas-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 

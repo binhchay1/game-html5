@@ -20,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
-Route::get('/{category}', [HomeController::class, 'viewCategory'])->name('category');;
+Route::get('/test', function () {
+    return view('test');
+});
+
+Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');;
 
 Route::group(['prefix' => 'games'], function () {
     Route::get('/{name}', [GameController::class, 'viewGame']);
