@@ -29,7 +29,6 @@
     <link rel="alternate" href="https://www.y8.com/" hreflang="x-default" />
     <link rel="alternate" href="https://www.y8.com/" hreflang="en" />
 
-    <link rel="next" href="https://vi.y8.com/?page=2" />
     <script type="application/ld+json">
         {
             "@context": "http://schema.org",
