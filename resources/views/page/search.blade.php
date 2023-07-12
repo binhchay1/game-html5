@@ -124,23 +124,18 @@
                             <img class="thumb playable" alt="Horror Maze - Y8.COM" data-src="https://img.y8.com/cloud/y8-thumbs/40983/small.gif" data-srcset="https://img.y8.com/cloud/y8-thumbs/40983/small.gif 1x" src="https://img.y8.com/cloud/y8-thumbs/40983/small.gif">
                         </div>
                     </div>
-
                     <div class="item__infos">
                         <h4 class="item__title ltr">Horror Maze</h4>
-
-
                         <div class="item__technology">
                             <p class="flash">
                                 Flash
                             </p>
                         </div>
-
                         <p class="item__rating">
                             <span class="item__number">
                                 67%
                             </span>
                         </p>
-
                         <p class="item__plays-count">
                             645,299 chơi
                         </p>

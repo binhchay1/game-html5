@@ -31,14 +31,14 @@
                 <ul>
                     @foreach($listCategory as $category)
                     <li class="inactive {{ $category['name'] }} li-category">
-                        <a class="{{ $category['name'] }}" title="Game trực tuyến miễn phí hàng đầu gắn thẻ cho phái yếu Con gái 👧 - Gamekafe : 30000+ trò chơi trực tuyến miễn phí cho con gái trên Gamekafe. Chơi các trò chơi phối đồ của Dora và Disney cũng như các trò chơi trang điểm, trang phục, nấu ăn và hôn nhau cùng với các trò chơi búp bê barbie, tô màu và trang trí." href="/categories/girls">
+                        <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
                             <span class="name">{{ ucfirst($category['name']) }}</span>
                             <span class="number">{{ $category['games_count'] }} game</span>
                         </a>
                     </li>
                     @endforeach
                     <li class="all-categories-btn" data-menu="browse">
-                        <span>Tất cả các thể loại
+                        <span><a style="padding: 0;" href="{{ route('listCategory') }}">Tất cả các thể loại</a>
                         </span>
                     </li>
                 </ul>
@@ -49,7 +49,7 @@
                 <ul>
                     @foreach($listTag as $tag)
                     <li style="margin-top: 5px;">
-                        <a class="tag" title="Game Trực Tuyến Miễn Phí Hàng đầu được Gắn Thẻ {{ ucfirst($tag) }} - Gamekafe : Chơi trò chơi {{ ucfirst($tag) }} trên Gamekafe. Bạn có ai chơi cùng không? Trải nghiệm những trò chơi hai người chơi này, những trò chơi cho phép hai người chơi tham gia vào cùng một trò chơi! Các trò chơi luôn luôn được tạo ra để kết nối người chơi, vì vậy các trò chơi hai người chơi là một trong những trò chơi vui vẻ nhất khi chơi các video game." href="/tags/2_players">
+                        <a class="tag" href="{{ route('tags', ['tag' => $tag]) }}">
                             <h4>
                                 {{ $tag }}
                             </h4>
@@ -57,7 +57,7 @@
                     </li>
                     @endforeach
                     <li class="more-tags">
-                        <a class="tag all-tags top" href="https://vi.Gamekafe/tags">Tất cả các thẻ
+                        <a class="tag all-tags top" href="{{ route('listTags') }}">Tất cả các thẻ
                         </a>
                     </li>
                 </ul>
@@ -79,39 +79,11 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="spinner-container">
-                    <img class="spinner" src="https://img.Gamekafe/assets/spinner-5f5b271a335601ed1f03c9ea4af9e708517e8fa4977229307ca47e02b5ab84a3.gif" />
-                </div>
             </div>
         </div>
     </div>
 </div>
 <div class="country-chooser-modal sub-menu">
-    <div class="row controls-1">
-        <div class="selected-country col-md-12">
-            <ul>
-                <li class="selected" style="display: none;">
-                    <div class="wrapper">
-                        <div class="cell">
-                            <span class="c y8"></span>
-                        </div>
-                        <div class="cell">
-                            <div class="country-name">Tất cả các tìm kiếm</div>
-                            <div class="country-description">Lựa chọn hiện tại</div>
-                        </div>
-                        <div class="cell">
-                            <div class="tick"></div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="navbar-form">
-                <i class="y-icon y-icon--search"></i>
-                <input type="text" placeholder="Bạn đang tìm kiếm nước nào?" class="form-control search fake-button" autocomplete="off" />
-                <i class="y-icon y-icon--remove" style="display: none;"></i>
-            </div>
-        </div>
-    </div>
     <div class="row controls-2">
         <div class="search-input-col col-md-12"></div>
     </div>
@@ -133,7 +105,7 @@
                 </h3>
             </div>
         </div>
-        <div class="items-container" id="items_container" data-base-url="/" data-max-page="300">
+        <div class="items-container" id="items_container">
             @foreach($games as $game)
             <div id="item_159195" class="item thumb videobox grid-column" data-item-id="159195" data-label-ids="1 Player,Adventure,Fighting,Turn Based,Role Playing,GameDistribution.com,Touchscreen,Android game,iPad,iPhone,Mobile">
                 <a title="Trò chơi Dynamons World - Chơi trực tuyến tại Gamekafe" href="https://vi.Gamekafe/games/dynamons_world">
@@ -153,7 +125,7 @@
                             <span class="item__number">90%
                             </span>
                         </p>
-                        <p class="item__plays-count">3,027,577 chơi
+                        <p class="item__plays-count">{{ $game['count_play'] }} chơi
                         </p>
                     </div>
                 </a>

@@ -11,16 +11,16 @@
 
     <meta property="og:title" content="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vi.Gamekafe/">
-    <meta property="og:image" content="https://img.Gamekafe/assets/y8/logo-social-8740c6b841d8807a50e324495de20bc47850124ac05cecf792e7412f3f9863e0.png">
+    <meta property="og:url" content="{{ env('APP_URL', 'gamekafe.com') }}">
+    <meta property="og:image" content="{{ asset('images/black-logo-no-background.png') }}">
     <meta property="og:image:width" content="500">
     <meta property="og:image:height" content="500">
     <meta property="og:site_name" content="Gamekafe">
     <meta property="og:description" content="Chơi game miễn phí trên Gamekafe. Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.">
 
-    <link rel="shortcut icon" type="image/x-icon" href="https://img.Gamekafe/assets/y8/favicon-32ba556e0026f47b8a6774c589575902155c4469a8116a68880669d1a5bedd0d.ico" />
-    <link rel="icon" sizes="192x192" href="https://img.Gamekafe/mobile_launch_icons/y8-192.png">
-    <link rel="apple-touch-icon" href="https://img.Gamekafe/mobile_launch_icons/y8-192.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/black-logo-no-background.png') }}" />
+    <link rel="icon" sizes="192x192" href="{{ asset('images/black-logo-no-background.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/black-logo-no-background.png') }}">
     <link rel="stylesheet" media="screen" href="{{ asset('css/page/application.css') }}" />
     <link rel="stylesheet" media="screen" href="{{ asset('css/page/latin.css') }}" />
     @yield('css')
@@ -38,7 +38,7 @@
                 </div>
                 <div class="logo">
                     <a class="no-event" aria-label="logo" href="{{ route('home') }}">
-                        <img width="100" height="48" alt="Gamekafe" src="{{ asset('assets/y8/header-logo-b39e5071cb111465fc5a5aef6496121adfcb414692d067f967434d9d80418afc.svg') }}" />
+                        <img width="50" height="50" alt="Gamekafe" src="{{ asset('images/black-logo-no-background.png') }}" />
                     </a>
                 </div>
                 <div class="mobile-search-user-container">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <form id="items-search-form" class="navbar-form" action="/search" accept-charset="UTF-8" method="get">
+            <form id="items-search-form" class="navbar-form" action="{{ route('search') }}" accept-charset="UTF-8" method="get">
                 <input type="hidden" name="kind" id="kind" value="game" />
                 <input type="text" name="q" id="q" placeholder="Tìm kiếm trò chơi" class="form-control query fake-button" required="required" minlength="2" maxlength="50" pattern=".{2,50}" />
                 <button type="submit" aria-label="Search">
@@ -63,73 +63,17 @@
                 <div class="fake-button js-top-menu two-lines btn-header-actions new-games" data-menu="newgames">
                     Game Mới
                     <span class="sub-title">
-                        Tiếp theo &nbsp;<span class="release-countdown" data-animation-release-cron="8 */12 * * *" data-game-release-cron="7 */2 * * *">00:00</span>
+                        trong tháng
                     </span>
                 </div>
 
-                <div class="newgames-menu sub-menu">
-                    <div class="newgames-container">
-                        <ul>
-                            <li>
-                                <a class="new_games" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/new/games">
-                                    <div class="name">Game mới nhất
-                                    </div>
-                                    <div id="new-items-count-next-in" class="number">
-                                        Bổ sung mới trong
-                                        <span class="release-countdown" data-animation-release-cron="8 */12 * * *" data-game-release-cron="7 */2 * * *">00:00</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="hr"></li>
-                            <li>
-                                <a class="best_new_games" rel="nofollow" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/best">
-                                    <div class="name">Game mới Tốt nhất
-                                    </div>
-                                    <div id="new-items-count-best-games" class="number">Những trò chơi hay nhất trong hai tháng gần đây
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="fake-button js-top-menu two-lines btn-header-actions browse" data-menu="browse">
-                    Thể loại
-                    <span class="sub-title">nhiều hơn
+                    Game Phổ Biến
+                    <span class="sub-title">được quan tâm
                     </span>
                     <div class="with-notification"></div>
                 </div>
-                <div class="browse-menu sub-menu">
-                    <div class="browse-container">
-                        <div class="label-uppercase">THƯ VIỆN
-                        </div>
-                        <ul>
-                            <li>
-                                <a class="new_games" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/new/games">
-                                    <div class="name">Game Mới
-                                    </div>
-                                    <div id="new-items-count-next-in-browse" class="number">
-                                        Tiếp theo
-                                        <span class="release-countdown" data-animation-release-cron="8 */12 * * *" data-game-release-cron="7 */2 * * *">00:00</span>
-                                    </div>
-                                </a>
-                            </li>
 
-                        </ul>
-                        <hr>
-                        <div class="label-uppercase">THỂ LOẠI
-                        </div>
-                        <ul>
-
-                            <li class="inactive driving_racing li-category">
-                                <a class="driving_racing" title="Video trực tuyến miễn phí hàng đầu gắn thẻ Lái xe và Đua xe 🏎 - Gamekafe : Lái xe đua trực tuyến của bạn trên Gamekafe. Chơi 5000+ trò chơi hàng đầu về ô tô, đỗ xe, trượt ván, xe mini, xe tải, và xe kéo miễn phí trong bộ sưu tập lớn nhất trên mạng về lái xe và đua xe." href="/categories/driving_racing">
-                                    <span class="name">Lái Xe &amp;Đua Xe</span>
-                                    <span class="number">534 game</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
                 <div class="waiting-idnet">
                     <div id="user_not_logged_in">
                         <button type="button" class="fake-button fake-button-red idnet-fast-register-link">Đăng ký
@@ -142,17 +86,6 @@
                 <div class="fake-button parental-control">
                     <div class="js-top-menu parental-control-link" data-menu="parental"></div>
                     <a class="parental-control-link-hidden" rel="nofollow" data-remote="true" href="/parental_filters/new"></a>
-                </div>
-                <div id="parental-filter-form" class="parental-filter-form sub-menu"></div>
-                <div id="locale-selector-dropdown" class='locale-selector-dropdown fake-button'>
-                    <ul>
-                        <li>
-                            <a class="vi locale-chooser js-top-menu" aria-label="Lựa chọn Ngôn ngữ" data-menu="locale" href="#">
-                                <div class="flag vi">&nbsp;</div>
-                                <div class="locale-name">Việt</div>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
                 <div class="mobile-header-block">
                     <div class="popular-newest-games-links">
@@ -223,7 +156,7 @@
         <div class="container">
             <div class="text-container">
                 <div class="column question-icon">
-                    <div class="title red">Y8 là gì?
+                    <div class="title red">Gamekafe là gì?
                     </div>
                     <h2 class="text">
                         <p>
@@ -265,30 +198,21 @@
             </div>
             <div class="bottom-section">
                 <div class="logo-container">
-                    <a class="no-event" aria-label="logo" href="https://vi.Gamekafe/">
-                        <img width="67" height="30" alt="Gamekafe" src="https://img.Gamekafe/assets/y8/header-logo-b39e5071cb111465fc5a5aef6496121adfcb414692d067f967434d9d80418afc.svg" />
+                    <a class="no-event" aria-label="logo" href="{{ route('home') }}">
+                        <img width="67" height="30" alt="Gamekafe" src="{{ asset('images/black-logo-no-background.png') }}" />
                     </a>
-                    <span>© 2006 - 2023 Gamekafe.</span>
+                    <span>© 2023 Gamekafe</span>
                     <span>Đã đăng ký bản quyền.</span>
                 </div>
                 <div class="menu-games">
-                    <div class="title">Game Y8
+                    <div class="title">Gamekafe
                     </div>
                     <ul>
                         <li>
-                            <a title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/new/games">Game mới</a>
+                            <a title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="{{ route('new-games') }}">Game mới</a>
                         </li>
                         <li>
-                            <a rel="nofollow" title="Tải nội dung của bạn lên Y8" href="/upload">Tải lên</a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/games/best">Mới tốt nhất</a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="https://vi.Gamekafe/popular/games">Phổ biến nhất</a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" title="Tải trình duyệt Y8" href="/download-app">Tải ứng dụng</a>
+                            <a rel="nofollow" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="{{ route('best-games') }}">Phổ biến nhất</a>
                         </li>
                     </ul>
                 </div>
@@ -323,28 +247,28 @@
                     <ul>
                         <li>
                             <a href="https://twitter.com/y8_com" target="_blank" rel="noreferrer nofollow" aria-label="twitter" title="Twitter">
-                                <img src="https://img.Gamekafe/assets/svg/twitter-40437c6680e014b927c22e09bae7da5f3317948f71fae4e5daee25eb20c63176.svg" width="18" height="14" alt="twitter" />
+                                <img src="{{ asset('assets/svg/twitter-40437c6680e014b927c22e09bae7da5f3317948f71fae4e5daee25eb20c63176.svg') }}" width="18" height="14" alt="twitter" />
                             </a>
                         </li>
                         <li>
                             <a href="https://www.facebook.com/Y8-Games-225100494185683/" target="_blank" rel="noreferrer nofollow" aria-label="facebook" title="Facebook">
-                                <img src="https://img.Gamekafe/assets/svg/facebook-807ac7b9c731fd2695350e3c8bf65954582dfeacf87bd8a73ab38e0153543daf.svg" width="18" height="18" alt="facebook" />
+                                <img src="{{ asset('assets/svg/facebook-807ac7b9c731fd2695350e3c8bf65954582dfeacf87bd8a73ab38e0153543daf.svg') }}" width="18" height="18" alt="facebook" />
                             </a>
                         </li>
                         <li>
                             <a href="https://www.instagram.com/y8.games/" target="_blank" rel="noreferrer nofollow" aria-label="instagram" title="Instagram">
-                                <img src="https://img.Gamekafe/assets/svg/instagram-270989005465900b957b5c234169591ea33e43d5f12a3fd7131f486cf6577cfc.svg" width="18" height="18" alt="instagram" />
+                                <img src="{{ asset('assets/svg/instagram-270989005465900b957b5c234169591ea33e43d5f12a3fd7131f486cf6577cfc.svg') }}" width="18" height="18" alt="instagram" />
                             </a>
                         </li>
                         <li>
                             <a href="https://discord.gg/ba9yXhj" target="_blank" rel="noreferrer nofollow" aria-label="discord" title="Discord">
-                                <img src="https://img.Gamekafe/assets/svg/discord-5fbfb24610991c5e17e89bc628ce593d2f4cfa61b1aa2d12ba7e318728caf974.svg" width="18" height="14" alt="discord" />
+                                <img src="{{ asset('assets/svg/discord-5fbfb24610991c5e17e89bc628ce593d2f4cfa61b1aa2d12ba7e318728caf974.svg') }}" width="18" height="14" alt="discord" />
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="footer-image">
-                    <img data-src="https://img.Gamekafe/assets/y8/footer_image1-422cedcbdbcd68bb2fbf253eafac355ee154ba97da9ad3c587d2e2052b8d7821.webp" data-srcset="https://img.Gamekafe/assets/y8/footer_image0-3fe943a45465748e2f015e7cd8c7bf18eb8478d8694f4c9c9434605eaf1d1dcb.webp 1x" alt="footer image" class="lazy" />
+                    <img src="{{ asset('assets/footer_image1-422cedcbdbcd68bb2fbf253eafac355ee154ba97da9ad3c587d2e2052b8d7821.webp') }}" alt="footer image" class="lazy" />
                 </div>
             </div>
         </div>
@@ -352,11 +276,11 @@
     <div class="dark-overlay"></div>
     <div class="policy-validation" id="policy-validation" style="display:none;">
         <div class="logo">
-            <img width="59" height="27" alt="Gamekafe" src="https://img.Gamekafe/assets/y8/header-logo-b39e5071cb111465fc5a5aef6496121adfcb414692d067f967434d9d80418afc.svg" />
+            <img width="59" height="27" alt="Gamekafe" src="{{ asset('images/color-logo-no-background.png') }}" />
         </div>
         <div class="content">
             Chúng tôi sử dụng cookie để đề xuất nội dung và phân tích lưu lượng truy cập và quảng cáo. Khi sử dụng trang web này, bạn đồng ý với <a target="_blank" rel="nofollow" href="https://vi.Gamekafe/privacy">Chính sách bảo mật</a>
-            và <a target="_blank" rel="nofollow" href="https://vi.Gamekafe/cookie-policy">Chính sách Cookie</a>
+            và <a target="_blank" rel="nofollow" href="{{ route('cookie-policy') }}">Chính sách Cookie</a>
         </div>
         <div class="actions">
             <span class="validate-policy">Đã hiểu</span>

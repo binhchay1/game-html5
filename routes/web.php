@@ -20,10 +20,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
-Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('policy');
+Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie-policy');
 Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
-
-Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');;
+Route::get('/tags/{tag}', [HomeController::class, 'viewTags'])->name('tags');
+Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');
+Route::get('/tags', [HomeController::class, 'viewListTags'])->name('listTags');
+Route::get('/category', [HomeController::class, 'viewListCategory'])->name('listCategory');
+Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-games');
+Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
 
 Route::group(['prefix' => 'games'], function () {
     Route::get('/{name}', [GameController::class, 'viewGame']);

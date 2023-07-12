@@ -29,8 +29,16 @@ class GameController extends Controller
 
     public function viewGame($name)
     {
-        $pathDir = "games." . $name . '.' . $name;
-        return view($pathDir);
+        $getGame = $this->gameRepository->getByColumn($name, 'name');
+        $count = $getGame['count_play']++;
+        $data = [
+            'count_play' => $count,
+        ];
+
+        $this->gameRepository->update($data);
+        $url = $getGame['link'];
+
+        return redirect($url);
     }
 
     public function getLinksGame(Request $request)

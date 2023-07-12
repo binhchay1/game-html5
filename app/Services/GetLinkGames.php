@@ -130,10 +130,11 @@ class GetLinkGames
                         }
                     }
                 }
+
+                $count = $count + count($resultGetSrcFrame['listGameDone']);
             }
 
             $page++;
-            $count = $count + count($resultGetSrcFrame['listGameDone']);
         }
 
         foreach ($listResultSrcFrame as $linkSrcFrame) {

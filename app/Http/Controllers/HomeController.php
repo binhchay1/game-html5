@@ -55,8 +55,7 @@ class HomeController extends Controller
         $listCategory = $this->categoryRepository->listCategory();
         $games = $this->gameRepository->listGameByCategory($category);
         $query = $this->gameRepository->getGameByCategory($category);
-        $path = '/' . $category;
-        $gameByCategory = $this->ultity->paginate($query, 10, $path);
+        $gameByCategory = $this->ultity->paginate($query, 10);
 
         return view('page.category', compact('listCategory', 'games', 'category', 'gameByCategory'));
     }
@@ -71,5 +70,31 @@ class HomeController extends Controller
         $listCategory = $this->categoryRepository->get();
 
         return view('page.search', compact('listCategory'));
+    }
+
+    public function viewTags($tag)
+    {
+        $listCategory = $this->categoryRepository->listCategory();
+        $games = $this->gameRepository->listGameByTag($tag);
+        $query = $this->gameRepository->getGameByCategory($category);
+        $gameByCategory = $this->ultity->paginate($query, 10);
+
+        return view('page.category', compact('listCategory', 'games', 'category', 'gameByCategory'));
+    }
+
+    public function viewListTags() {
+
+    }
+
+    public function viewListCategory() {
+
+    }
+
+    public function viewNewGames() {
+
+    }
+
+    public function viewBestGame() {
+
     }
 }
