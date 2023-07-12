@@ -42,5 +42,7 @@ Route::middleware(['check.auth', 'admin'])->group(
         Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
         Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
-    }
+
+        //user
+     }
 );

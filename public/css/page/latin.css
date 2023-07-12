@@ -2286,7 +2286,7 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
 .top-categories ul li a.puzzle::after,
 .top-categories-mobile ul li a.puzzle::after {
     color: #fff;
-    content: "";
+    content: "";
     font-family: "fontello";
     font-size: 16px;
     font-weight: normal;
