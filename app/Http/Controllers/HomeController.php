@@ -29,7 +29,7 @@ class HomeController extends Controller
         $listCategory = $this->categoryRepository->listCategoryWithCount();
         $query = $this->gameRepository->get();
         $games = $this->ultity->paginate($query, 30);
-        $countGame = count($games);
+        $countGame = count($query);
         $search = $this->searchRepository->listOrderByCount();
         $listTag = [];
 

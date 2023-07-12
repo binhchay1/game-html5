@@ -109,6 +109,7 @@ class GetLinkGames
                     $link = $img->attr['data-lazy_src'];
                     $file_name = basename($link);
                     $pathSave = asset('images/games');
+                    $file_name = str_replace("%2", "G", $file_name);
                     $path = $pathSave . '/' . $file_name;
                     $listLink[$key]['thumb'] = $path;
                     $listLink[$key]['file_name'] = $file_name;
@@ -209,6 +210,14 @@ class GetLinkGames
                 if (empty($queryCate)) {
                     $dataCate = [
                         'name' => $data['category']
+                    ];
+                    $this->categoryRepository->create($dataCate);
+                }
+            } else {
+                $queryCate = $this->categoryRepository->getByColumn('other', 'name');
+                if (empty($queryCate)) {
+                    $dataCate = [
+                        'name' => 'other'
                     ];
                     $this->categoryRepository->create($dataCate);
                 }

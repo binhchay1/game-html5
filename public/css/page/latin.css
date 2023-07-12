@@ -1719,13 +1719,13 @@ html[dir="rtl"] .footer .bottom-section .follow-us {
 html[dir="rtl"] .footer .bottom-section .footer-image {
     margin-right: auto;
 }
-.top-categories li.girls,
-.top-categories-mobile li.girls {
+.top-categories li.visual,
+.top-categories-mobile li.visual {
     background-color: #ff5b88;
     box-shadow: 0 8px 18px -8px rgba(255, 91, 136, 0.7);
 }
-.top-categories li.girls:hover,
-.top-categories-mobile li.girls:hover {
+.top-categories li.visual:hover,
+.top-categories-mobile li.visual:hover {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
     -ms-transform: translate(0, -2px);
@@ -1733,17 +1733,17 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     transform: translate(0, -2px);
     box-shadow: 0 12px 18px -8px rgba(255, 91, 136, 0.7);
 }
-.top-tags ul li a.cat-girls h4,
-.top-tags-mobile ul li a.cat-girls {
+.top-tags ul li a.cat-visual h4,
+.top-tags-mobile ul li a.cat-visual {
     color: #d95485;
 }
-.top-categories li.driving_racing,
-.top-categories-mobile li.driving_racing {
+.top-categories li.platformer,
+.top-categories-mobile li.platformer {
     background-color: #00c1d5;
     box-shadow: 0 8px 18px -8px rgba(0, 193, 213, 0.7);
 }
-.top-categories li.driving_racing:hover,
-.top-categories-mobile li.driving_racing:hover {
+.top-categories li.platformer:hover,
+.top-categories-mobile li.platformer:hover {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
     -ms-transform: translate(0, -2px);
@@ -1751,8 +1751,8 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     transform: translate(0, -2px);
     box-shadow: 0 12px 18px -8px rgba(0, 193, 213, 0.7);
 }
-.top-tags ul li a.cat-driving_racing h4,
-.top-tags-mobile ul li a.cat-driving_racing {
+.top-tags ul li a.cat-platformer h4,
+.top-tags-mobile ul li a.cat-platformer {
     color: #29a7b4;
 }
 .top-categories li.strategy,
@@ -1773,13 +1773,13 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
 .top-tags-mobile ul li a.cat-strategy {
     color: #3faf1c;
 }
-.top-categories li.management,
-.top-categories-mobile li.management {
+.top-categories li.simulation,
+.top-categories-mobile li.simulation {
     background-color: #8181ff;
     box-shadow: 0 8px 18px -8px rgba(129, 129, 255, 0.7);
 }
-.top-categories li.management:hover,
-.top-categories-mobile li.management:hover {
+.top-categories li.simulation:hover,
+.top-categories-mobile li.simulation:hover {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
     -ms-transform: translate(0, -2px);
@@ -1787,8 +1787,8 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     transform: translate(0, -2px);
     box-shadow: 0 12px 18px -8px rgba(129, 129, 255, 0.7);
 }
-.top-tags ul li a.cat-management h4,
-.top-tags-mobile ul li a.cat-management {
+.top-tags ul li a.cat-simulation h4,
+.top-tags-mobile ul li a.cat-simulation {
     color: #6e6ebb;
 }
 .top-categories li.thinking,
@@ -1827,13 +1827,13 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
 .top-tags-mobile ul li a.cat-action_adventure {
     color: #d74552;
 }
-.top-categories li.shooting,
-.top-categories-mobile li.shooting {
+.top-categories li.shooter,
+.top-categories-mobile li.shooter {
     background-color: #d28558;
     box-shadow: 0 8px 18px -8px rgba(210, 133, 88, 0.7);
 }
-.top-categories li.shooting:hover,
-.top-categories-mobile li.shooting:hover {
+.top-categories li.shooter:hover,
+.top-categories-mobile li.shooter:hover {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
     -ms-transform: translate(0, -2px);
@@ -1841,17 +1841,17 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     transform: translate(0, -2px);
     box-shadow: 0 12px 18px -8px rgba(210, 133, 88, 0.7);
 }
-.top-tags ul li a.cat-shooting h4,
-.top-tags-mobile ul li a.cat-shooting {
+.top-tags ul li a.cat-shooter h4,
+.top-tags-mobile ul li a.cat-shooter {
     color: #b67854;
 }
-.top-categories li.fighting,
-.top-categories-mobile li.fighting {
+.top-categories li.action,
+.top-categories-mobile li.action {
     background-color: #cb7df6;
     box-shadow: 0 8px 18px -8px rgba(203, 125, 246, 0.7);
 }
-.top-categories li.fighting:hover,
-.top-categories-mobile li.fighting:hover {
+.top-categories li.action:hover,
+.top-categories-mobile li.action:hover {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
     -ms-transform: translate(0, -2px);
@@ -1859,17 +1859,17 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     transform: translate(0, -2px);
     box-shadow: 0 12px 18px -8px rgba(203, 125, 246, 0.7);
 }
-.top-tags ul li a.cat-fighting h4,
-.top-tags-mobile ul li a.cat-fighting {
+.top-tags ul li a.cat-action h4,
+.top-tags-mobile ul li a.cat-action {
     color: #b471d8;
 }
-.top-categories li.skill,
-.top-categories-mobile li.skill {
+.top-categories li.rpg,
+.top-categories-mobile li.rpg {
     background-color: #06d6af;
     box-shadow: 0 8px 18px -8px rgba(6, 214, 175, 0.7);
 }
-.top-categories li.skill:hover,
-.top-categories-mobile li.skill:hover {
+.top-categories li.rpg:hover,
+.top-categories-mobile li.rpg:hover {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
     -ms-transform: translate(0, -2px);
@@ -1877,17 +1877,17 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     transform: translate(0, -2px);
     box-shadow: 0 12px 18px -8px rgba(6, 214, 175, 0.7);
 }
-.top-tags ul li a.cat-skill h4,
-.top-tags-mobile ul li a.cat-skill {
+.top-tags ul li a.cat-rpg h4,
+.top-tags-mobile ul li a.cat-rpg {
     color: #55bdba;
 }
-.top-categories li.arcade_classic,
-.top-categories-mobile li.arcade_classic {
+.top-categories li.adventure,
+.top-categories-mobile li.adventure {
     background-color: #85c716;
     box-shadow: 0 8px 18px -8px rgba(133, 199, 22, 0.7);
 }
-.top-categories li.arcade_classic:hover,
-.top-categories-mobile li.arcade_classic:hover {
+.top-categories li.adventure:hover,
+.top-categories-mobile li.adventure:hover {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
     -ms-transform: translate(0, -2px);
@@ -1895,27 +1895,45 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     transform: translate(0, -2px);
     box-shadow: 0 12px 18px -8px rgba(133, 199, 22, 0.7);
 }
-.top-tags ul li a.cat-arcade_classic h4,
-.top-tags-mobile ul li a.cat-arcade_classic {
+.top-tags ul li a.cat-adventure h4,
+.top-tags-mobile ul li a.cat-adventure {
     color: #78ad1f;
 }
-.top-categories li.movie_trailer,
-.top-categories-mobile li.movie_trailer {
-    background-color: #ff5b88;
-    box-shadow: 0 8px 18px -8px rgba(255, 91, 136, 0.7);
+.top-categories li.puzzle,
+.top-categories-mobile li.puzzle {
+    background-color: #fcba03;
+    box-shadow: 0 8px 18px -8px rgba(252, 186, 3 0.7);
 }
-.top-categories li.movie_trailer:hover,
-.top-categories-mobile li.movie_trailer:hover {
+.top-categories li.puzzle:hover,
+.top-categories-mobile li.puzzle:hover {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
     -ms-transform: translate(0, -2px);
     -o-transform: translate(0, -2px);
     transform: translate(0, -2px);
-    box-shadow: 0 12px 18px -8px rgba(255, 91, 136, 0.7);
+    box-shadow: 0 12px 18px -8px rgba(252, 186, 3 0.7);
 }
-.top-tags ul li a.cat-movie_trailer h4,
-.top-tags-mobile ul li a.cat-movie_trailer {
-    color: #d95485;
+.top-tags ul li a.cat-puzzle h4,
+.top-tags-mobile ul li a.cat-puzzle {
+    color: #fcba03;
+}
+.top-categories li.other,
+.top-categories-mobile li.other {
+    background-color: #0339fc;
+    box-shadow: 0 8px 18px -8px rgba(3, 57, 252 0.7);
+}
+.top-categories li.other:hover,
+.top-categories-mobile li.other:hover {
+    -webkit-transform: translate(0, -2px);
+    -moz-transform: translate(0, -2px);
+    -ms-transform: translate(0, -2px);
+    -o-transform: translate(0, -2px);
+    transform: translate(0, -2px);
+    box-shadow: 0 12px 18px -8px rgba(3, 57, 252 0.7);
+}
+.top-tags ul li a.cat-other h4,
+.top-tags-mobile ul li a.cat-other {
+    color: #0339fc;
 }
 .top-categories li.games,
 .top-categories-mobile li.games {
@@ -2244,8 +2262,8 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     top: 8px;
     left: 11px;
 }
-.top-categories ul li a.girls::after,
-.top-categories-mobile ul li a.girls::after {
+.top-categories ul li a.rpg::after,
+.top-categories-mobile ul li a.rpg::after {
     color: #fff;
     content: "";
     font-family: "fontello";
@@ -2264,8 +2282,8 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     top: 9px;
     left: 12px;
 }
-.top-categories ul li a.management::after,
-.top-categories-mobile ul li a.management::after {
+.top-categories ul li a.simulation::after,
+.top-categories-mobile ul li a.simulation::after {
     color: #fff;
     content: "";
     font-family: "fontello";
@@ -2274,8 +2292,8 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     top: 8px;
     left: 9px;
 }
-.top-categories ul li a.thinking::after,
-.top-categories-mobile ul li a.thinking::after {
+.top-categories ul li a.puzzle::after,
+.top-categories-mobile ul li a.puzzle::after {
     color: #fff;
     content: "";
     font-family: "fontello";
@@ -2284,8 +2302,8 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     top: 8px;
     left: 11px;
 }
-.top-categories ul li a.action_adventure::after,
-.top-categories-mobile ul li a.action_adventure::after {
+.top-categories ul li a.adventure::after,
+.top-categories-mobile ul li a.adventure::after {
     color: #fff;
     content: "";
     font-family: "fontello";
@@ -2304,8 +2322,8 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     top: 8px;
     left: 11px;
 }
-.top-categories ul li a.shooting::after,
-.top-categories-mobile ul li a.shooting::after {
+.top-categories ul li a.shooter::after,
+.top-categories-mobile ul li a.shooter::after {
     color: #fff;
     content: "";
     font-family: "fontello";
@@ -2314,8 +2332,8 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     top: 8px;
     left: 10px;
 }
-.top-categories ul li a.fighting::after,
-.top-categories-mobile ul li a.fighting::after {
+.top-categories ul li a.action::after,
+.top-categories-mobile ul li a.action::after {
     color: #fff;
     content: "";
     font-family: "fontello";
@@ -2324,8 +2342,8 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     top: 10px;
     left: 10px;
 }
-.top-categories ul li a.skill::after,
-.top-categories-mobile ul li a.skill::after {
+.top-categories ul li a.platformer::after,
+.top-categories-mobile ul li a.platformer::after {
     color: #fff;
     content: "";
     font-family: "fontello";
@@ -2334,10 +2352,20 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
     top: 8px;
     left: 13px;
 }
-.top-categories ul li a.arcade_classic::after,
-.top-categories-mobile ul li a.arcade_classic::after {
+.top-categories ul li a.visual::after,
+.top-categories-mobile ul li a.visual::after {
     color: #fff;
     content: "";
+    font-family: "fontello";
+    font-size: 14px;
+    font-weight: normal;
+    top: 8px;
+    left: 11px;
+}
+.top-categories ul li a.other::after,
+.top-categories-mobile ul li a.other::after {
+    color: #fff;
+    content: "";
     font-family: "fontello";
     font-size: 14px;
     font-weight: normal;
@@ -12079,55 +12107,115 @@ html.touch body.recommended_items .box.search-trends-box {
     font-weight: bold;
     margin-top: 2px;
 }
-.item .item__technology .html5 {
-    background: url(/assets/technology_icons/html5-dc0b6633223f2e9d597dcb0ad23ba14c9bd288b9e9b455557eb8b9c80df008e5.svg)
-        left center no-repeat;
-    background-size: 12px 12px;
-    color: #ca3d19;
-    padding-left: 16px;
+
+.item .item__technology .rpg {
+    color: #06d6af;
 }
-.item .item__technology .unity_webgl {
-    background: url(/assets/technology_icons/webgl-5bbd3e4c109c2c654e3950913ff42f8a8aecd8b0b01200d7267d47d39a17b5d7.svg)
-        left center no-repeat;
-    background-size: 29px 12px;
-    color: #454545;
-    padding-left: 33px;
+
+.item .item__technology .rpg::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
 }
-.item .item__technology .desktop-only {
-    background: url(/assets/technology_icons/desktop-only-9b5143e15175d95fe3fefd324ef9339b9a277aabbb3e7ad32c1983dcd0d6a5a2.svg)
-        left center no-repeat;
-    background-size: 12px 12px;
-    color: #3a87c6;
-    padding-left: 16px;
+
+.item .item__technology .strategy {
+    color: #40c914;
 }
-.item .item__technology .video {
-    background: url(/assets/technology_icons/video-78a1a63b936f3515cecd50cd42bc44cf93dfca2807b5f52e097554d3a7dd87d1.svg)
-        left center no-repeat;
-    background-size: 12px 12px;
-    color: #cd201f;
-    padding-left: 16px;
+
+.item .item__technology .strategy::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
 }
-.item .item__technology .flash {
-    background: url(/assets/technology_icons/flash-30c5d13931ccec24dcc8e6fad5c8b997834c05b2a185ec08d407b59601171fad.svg)
-        left center no-repeat;
-    background-size: 12px 12px;
-    color: #cd201f;
-    padding-left: 16px;
+
+.item .item__technology .simulation {
+    color: #8181ff;
 }
-.item .item__technology .shockwave {
-    background: url(/assets/technology_icons/shockwave-5a72850dcbd81ee3e015457ceb89c38887bd407a30243e9f53d91b34accf7d4f.svg)
-        left center no-repeat;
-    background-size: 13px 13px;
-    color: #d16928;
-    padding-left: 17px;
+
+.item .item__technology .simulation::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
 }
-.item .item__technology .unity_player {
-    background: url(/assets/technology_icons/unity_player-baffd375624b544d898587a1192457543d852e9690ace720bf99ed22f5795ee0.svg)
-        left center no-repeat;
-    background-size: 12px 12px;
-    color: #232d38;
-    padding-left: 16px;
+
+.item .item__technology .puzzle {
+    color: #fcba03;
 }
+
+.item .item__technology .puzzle::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.item .item__technology .adventure {
+    color: #85c716;
+}
+
+.item .item__technology .adventure::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.item .item__technology .shooter {
+    color: #d28558;
+}
+
+.item .item__technology .shooter::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.item .item__technology .action {
+    color: #cb7df6;
+}
+
+.item .item__technology .action::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.item .item__technology .visual {
+    color: #ff5b88;
+}
+
+.item .item__technology .visual::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.item .item__technology .other {
+    color: #0339fc;
+}
+
+.item .item__technology .other::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
 .item a {
     display: block;
     overflow: hidden;
