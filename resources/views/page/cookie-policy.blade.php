@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>Gamekafe - Policy</title>
+<title>env('APP_NAME', 'Gamekafe') - Policy</title>
 @endsection
 
 @section('content')

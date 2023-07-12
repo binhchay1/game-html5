@@ -32,12 +32,6 @@ class GameController extends Controller
         $name = strtolower(str_replace(' ', '-', $game));
         $getGame = $this->gameRepository->getByColumn($name, 'name')->first();
 
-        $count = $getGame['count_play']++;
-        $data = [
-            'count_play' => $count,
-        ];
-
-        $this->gameRepository->update($data);
         $url = $getGame['link'];
 
         return redirect($url);

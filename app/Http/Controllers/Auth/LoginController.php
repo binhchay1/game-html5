@@ -55,7 +55,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($data)) {
             $request->session()->put('email', $data['email']);
-            if(Auth::user()->role == Role::ADMIN) {
+            if (Auth::user()->role == Role::ADMIN) {
                 return view('admin.homepage');
             } else {
                 return redirect('/');
@@ -65,11 +65,5 @@ class LoginController extends Controller
                 'custom' => 'Email or Password is wrong!'
             ]);
         }
-    }
-
-    public function logout(Request $request)
-    {
-        $request->session()->forget('email');
-        return redirect()->route('login');
     }
 }

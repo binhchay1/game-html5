@@ -35,4 +35,28 @@ class GameRepository extends BaseRepository
     {
         return $this->model->where('category', $category)->get();
     }
+
+    public function getListBySearch($filter)
+    {
+        $query = $this->model;
+
+        if (isset($filter['q'])) {
+            $query = $query->where('name', 'like', '%' . $filter['q'] . '%');
+        }
+
+        if (isset($filter['category'])) {
+            $query = $query->where('category', $filter['category']);
+        }
+
+        if (isset($filter['tags'])) {
+            $query = $query->where('tags', 'like', '%' . $filter['tags'] . '%');
+        }
+
+        return $query->get();
+    }
+
+    public function getTags()
+    {
+        return $this->model->select('tag')->get();
+    }
 }
