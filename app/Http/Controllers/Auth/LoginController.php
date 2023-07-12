@@ -47,14 +47,12 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-           'email'      => 'email|required',
-           'password'   => 'min:6|required'
+        $data = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        $data = $request->only('email', 'password');
-
-        if (Auth::attempt($data )) {
+        if (Auth::attempt($data)) {
             $request->session()->put('email', $data['email']);
             return view('admin.homepage');
         } else {

@@ -1133,3 +1133,7 @@ a.ui-button:active {
     left: 0;
     overflow: hidden;
 }
+
+.menu-policy li{
+    color: red;
+}
