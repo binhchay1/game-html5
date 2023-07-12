@@ -21,12 +21,18 @@ class GameRepository extends BaseRepository
         return $this->model->where('category', $category)->get();
     }
 
+    public function listGameByTag($tag)
+    {
+        return $this->model->where('tag', '%' . $tag . '%')->get();
+    }
+
     public function getFeatureGames()
     {
         return $this->model->orderBy('created_at')->take(10)->get();
     }
 
-    public function getGameByCategory($category) {
+    public function getGameByCategory($category)
+    {
         return $this->model->where('category', $category)->get();
     }
 }

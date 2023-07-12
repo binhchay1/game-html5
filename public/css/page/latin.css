@@ -989,16 +989,7 @@ html body .ltr {
     padding: 7px 32px 13px 34px;
     text-align: left;
 }
-.navbar .btn-header-actions::after {
-    color: #999;
-    content: "";
-    font-family: "fontello";
-    font-size: 18px;
-    font-weight: normal;
-    position: absolute;
-    right: 10px;
-    top: 9px;
-}
+
 .navbar .btn-header-actions:hover {
     background-repeat: no-repeat;
 }
@@ -2143,7 +2134,7 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
 }
 .top-categories,
 .top-categories-mobile {
-    padding: 13px 15px 0;
+    padding: 10px 0 10px 10px;
 }
 .top-categories .row,
 .top-categories-mobile .row {
@@ -2365,7 +2356,7 @@ html[dir="rtl"] .footer .bottom-section .footer-image {
 .top-categories ul li a.other::after,
 .top-categories-mobile ul li a.other::after {
     color: #fff;
-    content: "";
+    content: "";
     font-family: "fontello";
     font-size: 14px;
     font-weight: normal;
@@ -2564,7 +2555,7 @@ html[dir="rtl"] .top-categories-mobile ul li a::after {
 .top-tags,
 .top-tags-mobile {
     margin-bottom: 0;
-    padding: 5px 15px 15px;
+    padding: 10px 0 10px 10px;
 }
 .top-tags__wrapper,
 .top-tags-mobile__wrapper {
@@ -12149,7 +12140,7 @@ html.touch body.recommended_items .box.search-trends-box {
 }
 
 .item .item__technology .puzzle::before {
-    content: "";
+    content: "";
     font-family: "fontello";
     font-size: 16px;
     font-weight: normal;
@@ -12209,7 +12200,7 @@ html.touch body.recommended_items .box.search-trends-box {
 }
 
 .item .item__technology .other::before {
-    content: "";
+    content: "";
     font-family: "fontello";
     font-size: 16px;
     font-weight: normal;
