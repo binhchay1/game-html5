@@ -221,12 +221,6 @@
                     </div>
                     <ul>
                         <li>
-                            <a title="Blog" href="https://blog.Gamekafe/">Blog</a>
-                        </li>
-                        <li>
-                            <a title="Diễn đàn" href="https://forum.Gamekafe">Diễn đàn</a>
-                        </li>
-                        <li>
                             <a href="https://twitter.com/y8_com" target="_blank" rel="noreferrer nofollow" title="Twitter">Twitter</a>
                         </li>
                         <li>

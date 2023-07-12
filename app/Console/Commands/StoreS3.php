@@ -71,8 +71,6 @@ class StoreS3 extends Command
                 return [$fileName => Storage::disk('public-images-game')->get($fileName)];
             });
 
-        dd(Storage::disk('public-images-game')->allFiles());
-
         return $data;
     }
 }
