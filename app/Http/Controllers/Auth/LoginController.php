@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -54,7 +55,11 @@ class LoginController extends Controller
 
         if (Auth::attempt($data)) {
             $request->session()->put('email', $data['email']);
-            return view('admin.homepage');
+            if(Auth::user()->role == Role::ADMIN) {
+                return view('admin.homepage');
+            } else {
+                return redirect('/');
+            }
         } else {
             return back()->withErrors([
                 'custom' => 'Email or Password is wrong!'
