@@ -5,6 +5,7 @@
 @endsection
 
 @section('css')
+<link rel="manifest" href="{{ asset('json/manifest.json') }}" crossorigin="use-credentials">
 <style type="text/css">
     .disable-link {
         cursor: not-allowed;
@@ -29,8 +30,8 @@
             <div class="row single-line">
                 <ul>
                     @foreach($listCategory as $category)
-                    <li class="inactive girls li-category">
-                        <a class="girls" title="Game trực tuyến miễn phí hàng đầu gắn thẻ cho phái yếu Con gái 👧 - Gamekafe : 30000+ trò chơi trực tuyến miễn phí cho con gái trên Gamekafe. Chơi các trò chơi phối đồ của Dora và Disney cũng như các trò chơi trang điểm, trang phục, nấu ăn và hôn nhau cùng với các trò chơi búp bê barbie, tô màu và trang trí." href="/categories/girls">
+                    <li class="inactive {{ $category['name'] }} li-category">
+                        <a class="{{ $category['name'] }}" title="Game trực tuyến miễn phí hàng đầu gắn thẻ cho phái yếu Con gái 👧 - Gamekafe : 30000+ trò chơi trực tuyến miễn phí cho con gái trên Gamekafe. Chơi các trò chơi phối đồ của Dora và Disney cũng như các trò chơi trang điểm, trang phục, nấu ăn và hôn nhau cùng với các trò chơi búp bê barbie, tô màu và trang trí." href="/categories/girls">
                             <span class="name">{{ ucfirst($category['name']) }}</span>
                             <span class="number">{{ $category['games_count'] }} game</span>
                         </a>
@@ -146,7 +147,7 @@
                     <div class="item__infos">
                         <h4 class="item__title ltr">{{ $game['name'] }}</h4>
                         <div class="item__technology">
-                            <p class="html5">{{ ucfirst($game['category']) }}</p>
+                            <p class="{{ $game['category'] }}">{{ ucfirst($game['category']) }}</p>
                         </div>
                         <p class="item__rating">
                             <span class="item__number">90%
@@ -176,16 +177,18 @@
                         <a href="{{ $games->nextPageUrl() }}">{{ $games->currentPage() + 1 }}</a>
                     </li>
                     @endif
-                    @if($games->lastPage() > $games->currentPage() + 5)
+                    @if($games->lastPage() > $games->currentPage() + 2)
                     <li class="separator">
                         <span>...</span>
                     </li>
+                    @endif
+                    @if($games->lastPage() > $games->currentPage() + 1)
                     <li>
                         <a href="?page={{ $games->lastPage() }}">{{ $games->lastPage() }}</a>
                     </li>
                     @endif
                 </ul>
-                <a aria-label="arrow next" class="arrow next" href="{{ $games->nextPageUrl() }}"></a>
+                <a aria-label="arrow next" class="arrow next {{ $games->currentPage() == $games->lastPage() ? 'disable-link' : '' }}" href="{{ $games->nextPageUrl() }}"></a>
             </div>
         </div>
     </div>

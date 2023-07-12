@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html class="no-touch" lang="vi" dir="ltr">
-
 <head>
+    @vite('resources/sass/user.css')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, minimal-ui" />
     <meta name="theme-color" content="#FFF">
-    <link rel="preconnect" href="https://img.Gamekafe">
-    <link rel="preconnect" href="https://cdn.Gamekafe">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://account.Gamekafe">
-    <link rel="manifest" href="{{ asset('json/manifest.json') }}" crossorigin="use-credentials">
-
     @yield('title')
     <meta name="description" content="Chơi game miễn phí trên Gamekafe. Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay." />
     <meta name="keywords" content="chơi game miễn phí, chơi game trực tuyến, chơi game, gamekafe, gamekafe, kafe, fake, gameka, chơi game bóng đá, chơi game android, chơi game đua xe, chơi game zombie, chơi candy crush, chơi game đua tốc độ, chơi game casino, chơi poker, chơi game bắn nhau, chơi game thời trang, chơi game nữ giới, chơi game nấu ăn, chơi game phiêu lưu, chơi game câu cá, chơi game halloween, chơi game tình yêu, chơi game đố vui, chơi game thể thao, chơi game chiến tranh, chơi game bóng đá" />
@@ -39,22 +32,22 @@
             <div class="y8-navbar-left">
                 <div class="mobile-burger-menu">
                     <span class="burger-btn">
-                        <img width="20" height="17" class="hamburger-icon" alt="Menu" src="https://img.Gamekafe/assets/svg/hamburger-c3fe8358b513e219aa93bfd93e7b3d57991bc5741038ed7db7e71d347db0c6ae.svg" />
-                        <img width="16" height="16" class="hamburger-active-icon" alt="Menu" src="https://img.Gamekafe/assets/svg/hamburger-active-03129c9dbc7bf62fc4cf3b24384c95eca4fafade56f0dfe54ce726cd8a718f2f.svg" />
+                        <img width="20" height="17" class="hamburger-icon" alt="Menu" src="{{ asset('assets/svg/hamburger-c3fe8358b513e219aa93bfd93e7b3d57991bc5741038ed7db7e71d347db0c6ae.svg') }}" />
+                        <img width="16" height="16" class="hamburger-active-icon" alt="Menu" src="{{ asset('assets/svg/hamburger-active-03129c9dbc7bf62fc4cf3b24384c95eca4fafade56f0dfe54ce726cd8a718f2f.svg') }}" />
                     </span>
                 </div>
                 <div class="logo">
-                    <a class="no-event" aria-label="logo" href="https://vi.Gamekafe/">
-                        <img width="100" height="48" alt="Gamekafe" src="https://img.Gamekafe/assets/y8/header-logo-b39e5071cb111465fc5a5aef6496121adfcb414692d067f967434d9d80418afc.svg" />
+                    <a class="no-event" aria-label="logo" href="{{ route('home') }}">
+                        <img width="100" height="48" alt="Gamekafe" src="{{ asset('assets/y8/header-logo-b39e5071cb111465fc5a5aef6496121adfcb414692d067f967434d9d80418afc.svg') }}" />
                     </a>
                 </div>
                 <div class="mobile-search-user-container">
                     <div class="search-btn">
-                        <img width="28" height="28" alt="Tìm kiếm trò chơi" src="https://img.Gamekafe/assets/svg/search-9887eb433e2eff9a1fd0dda066ed7abf52897beecba0dce9ef152c2770dc9082.svg" />
+                        <img width="28" height="28" alt="Tìm kiếm trò chơi" src="{{ asset('assets/svg/search-9887eb433e2eff9a1fd0dda066ed7abf52897beecba0dce9ef152c2770dc9082.svg') }}" />
                     </div>
                     <div class="profile-btn">
-                        <img class="profile-icon avatar" alt="Profile" src="https://img.Gamekafe/assets/svg/profile-250b58e83592bb66fe437d6de217d30ee3dae674feee2ff962138996fdffde6e.svg" />
-                        <img class="arrow-up-icon" alt="Profile" src="https://img.Gamekafe/assets/svg/arrow-up-bec5455682ee6239b995f18944808d8a0c75d7776798386efce255166669e5cf.svg" />
+                        <img class="profile-icon avatar" alt="Profile" src="{{ asset('assets/svg/profile-250b58e83592bb66fe437d6de217d30ee3dae674feee2ff962138996fdffde6e.svg') }}" />
+                        <img class="arrow-up-icon" alt="Profile" src="{{ asset('assets/svg/arrow-up-bec5455682ee6239b995f18944808d8a0c75d7776798386efce255166669e5cf.svg') }}" />
                     </div>
                 </div>
             </div>
@@ -137,21 +130,25 @@
                         </ul>
                     </div>
                 </div>
+                @if (!auth()->user())
                 <div class="waiting-idnet">
                     <div id="user_not_logged_in">
                         <button type="button" class="fake-button fake-button-red idnet-fast-register-link">Đăng ký
                         </button>
-                        <button type="button" class="fake-button idnet-fast-login-link">Đăng nhập
-                        </button>
+                        <a href="{{route('login')}}">
+                            <button type="button" class="fake-button idnet-fast-login-link">Đăng nhập
+                            </button>
+                        </a>
                     </div>
-
                 </div>
-                <div class="fake-button parental-control">
+                @else
+                <div class="fake-button parental-control dropdown">
                     <div class="js-top-menu parental-control-link" data-menu="parental"></div>
-                    <a class="parental-control-link-hidden" rel="nofollow" data-remote="true" href="/parental_filters/new"></a>
+                    <a class="parental-control-link-hidden" rel="nofollow" data-remote="true" href="/parental_filters/new">
+                    </a>
                 </div>
                 <div id="parental-filter-form" class="parental-filter-form sub-menu"></div>
-                <div id="locale-selector-dropdown" class='locale-selector-dropdown fake-button'>
+                <div  id="locale-selector-dropdown" class='locale-selector-dropdown fake-button'>
                     <ul>
                         <li>
                             <a class="vi locale-chooser js-top-menu" aria-label="Lựa chọn Ngôn ngữ" data-menu="locale" href="#">
@@ -161,6 +158,17 @@
                         </li>
                     </ul>
                 </div>
+                    <div class="fake-button parental-control dropdown">
+                        <div class="js-top-menu parental-control-link" data-menu="parental"></div>
+                        <a class="icon-drop" rel="nofollow" data-remote="true" href="/parental_filters/new">
+                            <div class="dropdown-content">
+                                <a href="#">Setting</a>
+                                <a href="#">Profile</a>
+                                <a href="#">Logout</a>
+                            </div>
+                        </a>
+                    </div>
+                @endif
                 <div class="mobile-header-block">
                     <div class="popular-newest-games-links">
                         <a class="games-link new-game fake-button" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/new/games">Game Mới</a>
