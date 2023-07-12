@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -47,16 +48,18 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-           'email'      => 'email|required',
-           'password'   => 'min:6|required'
+        $data = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        $data = $request->only('email', 'password');
-
-        if (Auth::attempt($data )) {
+        if (Auth::attempt($data)) {
             $request->session()->put('email', $data['email']);
-            return view('admin.homepage');
+            if(Auth::user()->role == Role::ADMIN) {
+                return view('admin.homepage');
+            } else {
+                return redirect('/');
+            }
         } else {
             return back()->withErrors([
                 'custom' => 'Email or Password is wrong!'

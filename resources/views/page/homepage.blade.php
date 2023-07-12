@@ -1,71 +1,196 @@
 @extends('layouts.page')
 
+@section('title')
+<title>Gamekafe</title>
+@endsection
+
+@section('css')
+<style type="text/css">
+    .disable-link {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .top-tags ul li {
+        list-style-type: none;
+    }
+
+    .top-tags ul {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+@endsection
+
 @section('content')
-<div style="padding-bottom:20px;position:relative">
-    <div class="css-1iuj5ih">
-        <div class="css-cydm8w">
-            <div class="titleContainer css-x933z2">
-                <h2 class="carouselTitle">Recommended for you</h2>
-            </div>
-            <div class="prime-carousel css-1nehx92">
-                <ul class="prime-carousel-container css-lpurl3">
-                    <li class="primeCarouselLi">
-                        <a class="css-h13zhk" href="https://www.crazygames.com/game/bloxdhop-io">
-                            <div class="gameThumbTitleContainer">Bloxd.io</div><img class="GameThumbImage" loading="eager" src="{{ asset('images/games/') }}" fetchpriority="high">
-                        </a>
-                    </li>
-                </ul><button class="arrow css-1pzb6vf" aria-label="Right arrow"></button>
-            </div>
-        </div>
-        <div class="css-zyoi9w">
-            <div class="titleContainer css-18689kv">
-                <h2 class="carouselTitle"></h2>
-            </div>
-            <div class="prime-carousel css-1nehx92">
-                <ul class="prime-carousel-container css-lpurl3">
-                    @foreach($featureGames as $feature)
-                    <li class="primeCarouselLi">
-                        <a class="css-h13zhk" href="https://www.crazygames.com/game/stickman-vs-villager-save-the-girl">
-                            <div class="gameThumbTitleContainer">Stickman vs Villager: Save the Girl</div><img class="GameThumbImage" loading="eager" src="">
+<div class="main">
+    <div class="categories-tags-block box">
+        <div class="top-categories">
+            <div class="row single-line">
+                <ul>
+                    @foreach($listCategory as $category)
+                    <li class="inactive girls li-category">
+                        <a class="girls" title="Game trực tuyến miễn phí hàng đầu gắn thẻ cho phái yếu Con gái 👧 - Gamekafe : 30000+ trò chơi trực tuyến miễn phí cho con gái trên Gamekafe. Chơi các trò chơi phối đồ của Dora và Disney cũng như các trò chơi trang điểm, trang phục, nấu ăn và hôn nhau cùng với các trò chơi búp bê barbie, tô màu và trang trí." href="/categories/girls">
+                            <span class="name">{{ ucfirst($category['name']) }}</span>
+                            <span class="number">{{ $category['games_count'] }} game</span>
                         </a>
                     </li>
                     @endforeach
-                </ul><button class="arrow css-1pzb6vf" aria-label="Right arrow"></button>
+                    <li class="all-categories-btn" data-menu="browse">
+                        <span>Tất cả các thể loại
+                        </span>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div style="overflow-anchor:auto" class="css-41foc0">
-            <div style="overflow:hidden" class="css-1xcs8fm">
-                <div>
-                    <h2>Play the Newest Games Instantly</h2>
-                    <p>CrazyGames features the latest and best free online games. You can enjoy playing fun games without interruptions from downloads, intrusive ads, or pop-ups. Just load up your favorite games instantly in your web browser and enjoy the experience.</p>
-                    <p>You can play our games on desktop mobile devices. That includes everything from desktop PCs, laptops, and Chromebooks, to the latest smartphones and tablets from Apple and Android. </p>
-                    <h2>Online Games at CrazyGames</h2>
-                    <p>There are plenty of online multiplayer games with active communities on CrazyGames. You can find many of the best free multiplayer titles on our<a target="_blank" href="https://www.crazygames.com/c/io"> .io games </a>page. In these games, you can play with your friends online and with other people from around the world, no matter where you are.</p>
-                    <h2>Play our Best Games</h2>
-                    <p>CrazyGames has over 7000 fun games in every genre you can imagine. Some of our most popular games are:</p>
-                    <ul>
-                        <li><a target="_blank" href="https://www.crazygames.com/game/shellshockersio">Shell Shockers</a></li>
-                        <li><a target="_blank" href="https://www.crazygames.com/game/bullet-force-multiplayer">Bullet Force</a></li>
-                        <li><a target="_blank" href="https://www.crazygames.com/game/uno-online">Uno Online</a></li>
-                        <li><a target="_blank" href="https://www.crazygames.com/game/drift-hunters">Drift Hunters</a></li>
-                        <li><a target="_blank" href="https://www.crazygames.com/game/moto-x3m">Moto X3M</a></li>
-                        <li><a target="_blank" href="https://www.crazygames.com/game/smash-karts">Smash Karts</a></li>
-                    </ul>
-                    <h2>Explore by Genre</h2>
-                    <p>You’ll find the main categories like <a target="_blank" href="https://www.crazygames.com/c/clicker">clicker</a>, <a target="_blank" href="https://www.crazygames.com/c/driving">driving games</a>, and <a target="_blank" href="https://www.crazygames.com/c/shooting">shooting games</a> at the top of any page, but there’s also a range of subcategories that will help you find the perfect game. Popular tags include <a target="_blank" href="https://www.crazygames.com/t/car">car games</a>, <a target="_blank" href="https://www.crazygames.com/t/minecraft">Minecraft</a>, <a target="_blank" href="https://www.crazygames.com/t/fireboy-and-watergirl">Fireboy and Watergirl</a>, <a target="_blank" href="https://www.crazygames.com/t/2-player">2-player games</a>, <a target="_blank" href="https://www.crazygames.com/t/horror">horror</a>, and <a target="_blank" href="https://www.crazygames.com/t/mahjong">mahjong.</a></p>
-                    <h2>Suggest a Game</h2>
-                    <p>Is there a game that you love, but you can't find on CrazyGames? <a href="https://www.crazygames.com/contact?topic=suggestGame">Suggest a game</a> to us and we'll see what we can do to get it. You can also <a target="_blank" href="https://www.crazygames.com/contact">contact us</a> for any general suggestions or improvements.</p>
-                    <h2>About CrazyGames</h2>
-                    <p>CrazyGames is a free browser gaming platform founded in 2014 by Raf Mertens. Since then, the platform has grown to over 20 million monthly users. </p>
-                    <p>Our mission is simple - to create a browser-gaming platform that works seamlessly for users around the world, and rewards developers both big and small. Visit our corporate site and learn more <a target="_blank" href="https://about.crazygames.com/">about CrazyGames</a>.</p>
-                    <p>Check our <a target="_blank" href="https://crazygames.recruitee.com/">open job positions</a>, or take a look at our <a target="_blank" href="https://developer.crazygames.com/">game developer platform</a> if you’re interested in submitting a game.</p>
-                    <p>¿Hablas español? Visita nuestra web de <a target="_blank" href="https://www.1001juegos.com/">juegos</a> en español.</p>
-                    <p>Tu parles français ? Découvrez nos <a target="_blank" href="https://www.crazygames.fr/">jeux </a>sur notre site français.</p>
-                    <p>As of January 2023, we are rated 4.7 with 876 reviews on <a target="_blank" rel="external nofollow" href="https://www.trustpilot.com/review/crazygames.com">Trustpilot</a>.</p>
-                </div>
+        <div class="top-tags">
+            <div class="row single-line">
+                <ul>
+                    @foreach($listTag as $tag)
+                    <li style="margin-top: 5px;">
+                        <a class="tag" title="Game Trực Tuyến Miễn Phí Hàng đầu được Gắn Thẻ {{ ucfirst($tag) }} - Gamekafe : Chơi trò chơi {{ ucfirst($tag) }} trên Gamekafe. Bạn có ai chơi cùng không? Trải nghiệm những trò chơi hai người chơi này, những trò chơi cho phép hai người chơi tham gia vào cùng một trò chơi! Các trò chơi luôn luôn được tạo ra để kết nối người chơi, vì vậy các trò chơi hai người chơi là một trong những trò chơi vui vẻ nhất khi chơi các video game." href="/tags/2_players">
+                            <h4>
+                                {{ $tag }}
+                            </h4>
+                        </a>
+                    </li>
+                    @endforeach
+                    <li class="more-tags">
+                        <a class="tag all-tags top" href="https://vi.Gamekafe/tags">Tất cả các thẻ
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="css-1lo4a7f"><span class="css-ieoiqz">Show More</span></div>
         </div>
     </div>
 </div>
+<div class="main js-search-trends">
+    <div class="box search-trends-box">
+        <div class="row single-line">
+            <div class="search-trends-container col-md-12">
+                <p class='h5'>Tìm kiếm hàng đầu</p>
+                <div class="search-trends">
+                    <ul>
+                        @foreach($search as $keyword)
+                        <li style="display: inline-block;">
+                            <a href="{{ route('search') }}?q={{ $keyword }}" rel="nofollow">{{ $keyword }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="spinner-container">
+                    <img class="spinner" src="https://img.Gamekafe/assets/spinner-5f5b271a335601ed1f03c9ea4af9e708517e8fa4977229307ca47e02b5ab84a3.gif" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="country-chooser-modal sub-menu">
+    <div class="row controls-1">
+        <div class="selected-country col-md-12">
+            <ul>
+                <li class="selected" style="display: none;">
+                    <div class="wrapper">
+                        <div class="cell">
+                            <span class="c y8"></span>
+                        </div>
+                        <div class="cell">
+                            <div class="country-name">Tất cả các tìm kiếm</div>
+                            <div class="country-description">Lựa chọn hiện tại</div>
+                        </div>
+                        <div class="cell">
+                            <div class="tick"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="navbar-form">
+                <i class="y-icon y-icon--search"></i>
+                <input type="text" placeholder="Bạn đang tìm kiếm nước nào?" class="form-control search fake-button" autocomplete="off" />
+                <i class="y-icon y-icon--remove" style="display: none;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="row controls-2">
+        <div class="search-input-col col-md-12"></div>
+    </div>
+    <div class="row content-1">
+        <div class="col-md-12 countries-container">
+            <div class="countries"></div>
+        </div>
+    </div>
+    <div class="row content-2">
+        <div class="search-results"></div>
+    </div>
+</div>
+<div class="tint"></div>
+<div class="main">
+    <div class="box items-grid no-background">
+        <div class="row">
+            <div class="item-title-container col-md-12">
+                <h3 class="home-title">Trò chơi ({{ $countGame }})
+                </h3>
+            </div>
+        </div>
+        <div class="items-container" id="items_container" data-base-url="/" data-max-page="300">
+            @foreach($games as $game)
+            <div id="item_159195" class="item thumb videobox grid-column" data-item-id="159195" data-label-ids="1 Player,Adventure,Fighting,Turn Based,Role Playing,GameDistribution.com,Touchscreen,Android game,iPad,iPhone,Mobile">
+                <a title="Trò chơi Dynamons World - Chơi trực tuyến tại Gamekafe" href="https://vi.Gamekafe/games/dynamons_world">
+                    <input type="hidden" name="for-girls-159195" id="for-girls-159195" value="false" />
+                    <div class="item__thumbarea">
+                        <div class="item__microthumb"></div>
+                        <div class="item__img-container">
+                            <img class="thumb lazy playable" alt="Dynamons World - Strategy/RPG - Gamekafe" src="{{ $game['thumbs'] }}" />
+                        </div>
+                    </div>
+                    <div class="item__infos">
+                        <h4 class="item__title ltr">{{ $game['name'] }}</h4>
+                        <div class="item__technology">
+                            <p class="html5">{{ ucfirst($game['category']) }}</p>
+                        </div>
+                        <p class="item__rating">
+                            <span class="item__number">90%
+                            </span>
+                        </p>
+                        <p class="item__plays-count">3,027,577 chơi
+                        </p>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+        <div class="navigator mobile">
+            <div class="head">
+                <a aria-label="arrow previous" class="arrow previous {{ $games->currentPage() == 1 ? 'disable-link' : '' }}" href="{{ $games->previousPageUrl() }}"></a>
+                <ul>
+                    @if($games->currentPage() != 1)
+                    <li>
+                        <a href="?page={{ $games->previousPageUrl() }}">{{ $games->currentPage() - 1 }}</a>
+                    </li>
+                    @endif
+                    <li class='current'>
+                        <span>{{ $games->currentPage() }}</span>
+                    </li>
+                    @if($games->currentPage() != $games->lastPage())
+                    <li>
+                        <a href="{{ $games->nextPageUrl() }}">{{ $games->currentPage() + 1 }}</a>
+                    </li>
+                    @endif
+                    @if($games->lastPage() > $games->currentPage() + 5)
+                    <li class="separator">
+                        <span>...</span>
+                    </li>
+                    <li>
+                        <a href="?page={{ $games->lastPage() }}">{{ $games->lastPage() }}</a>
+                    </li>
+                    @endif
+                </ul>
+                <a aria-label="arrow next" class="arrow next" href="{{ $games->nextPageUrl() }}"></a>
+            </div>
+        </div>
+    </div>
+    <h1>Gamekafe - Các trò chơi Trực tuyến Miễn phí tại Gamekafe.com</h1>
+    <h2>Chơi game miễn phí trên Gamekafe. Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.</h2>
+</div>
+
 @endsection
