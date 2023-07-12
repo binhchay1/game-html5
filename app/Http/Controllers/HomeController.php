@@ -23,16 +23,19 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $listCategory = $this->categoryRepository->listCategory();
-        $featureGames = $this->gameRepository->getFeatureGames();
-        $gamesByCategory = $this->categoryRepository->getAllGameByCategory();
+        $listCategory = $this->categoryRepository->listCategoryWithCount();
+        $games = $this->gameRepository->get();
+        $countGame = count($games);
 
-        return view('page.homepage', compact('listCategory', 'featureGames', 'gamesByCategory'));
+        foreach ($games as $game) {
+            $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
+        }
+
+        return view('page.homepage', compact('listCategory', 'games', 'countGame'));
     }
 
     public function viewCategory($category)
     {
-
         $listCategory = $this->categoryRepository->listCategory();
         $games = $this->gameRepository->listGameByCategory($category);
         $query = $this->gameRepository->getGameByCategory($category);
@@ -40,5 +43,10 @@ class HomeController extends Controller
         $gameByCategory = $this->ultity->paginate($query, 10, $path);
 
         return view('page.category', compact('listCategory', 'games', 'category', 'gameByCategory'));
+    }
+
+    public function viewCookiePolicy()
+    {
+        return view('page.cookie-policy');
     }
 }

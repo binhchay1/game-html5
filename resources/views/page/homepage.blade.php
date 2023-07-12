@@ -4,71 +4,65 @@
 <title>Gamekafe</title>
 @endsection
 
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/main.css') }}">
-@endsection
-
 @section('content')
-<div class="css-1iuj5ih">
-    <div class="css-cydm8w">
-        <div class="titleContainer css-x933z2">
-            <h2 class="carouselTitle">Recommended for you</h2>
+<div class="box items-grid no-background">
+    <div class="row">
+        <div class="item-title-container col-md-12">
+            <h3 class="home-title">Trò chơi ({{ $countGame }})
+            </h3>
         </div>
-        <div class="prime-carousel css-1nehx92">
-            <ul class="prime-carousel-container css-lpurl3">
-                <li class="primeCarouselLi">
-                    <a class="css-h13zhk" href="https://www.crazygames.com/game/bloxdhop-io">
-                        <div class="gameThumbTitleContainer">Bloxd.io</div><img class="GameThumbImage" loading="eager" src="{{ asset('images/games/') }}" fetchpriority="high">
-                    </a>
+    </div>
+    <div class="items-container" id="items_container" data-base-url="/" data-max-page="300">
+        @foreach($games as $game)
+        <div id="item_159195" class="item thumb videobox grid-column" data-item-id="159195" data-label-ids="1 Player,Adventure,Fighting,Turn Based,Role Playing,GameDistribution.com,Touchscreen,Android game,iPad,iPhone,Mobile">
+            <a title="Trò chơi Dynamons World - Chơi trực tuyến tại Y8.com" href="https://vi.y8.com/games/dynamons_world">
+                <input type="hidden" name="for-girls-159195" id="for-girls-159195" value="false" />
+                <div class="item__thumbarea">
+                    <div class="item__microthumb"></div>
+                    <div class="item__img-container">
+                        <img class="thumb lazy playable" alt="Dynamons World - Strategy/RPG - Y8.COM" data-src="{{ asset($game['thumbs']) }}" data-srcset="{{ asset($game['thumbs']) }} 1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+                    </div>
+                </div>
+                <div class="item__infos">
+                    <h4 class="item__title ltr">{{ $game['name'] }}</h4>
+                    <div class="item__technology">
+                        <p class="html5">{{ ucfirst($game['category']) }}</p>
+                    </div>
+                    <p class="item__rating">
+                        <span class="item__number">90%
+                        </span>
+                    </p>
+                    <p class="item__plays-count">3,027,577 chơi
+                    </p>
+                </div>
+            </a>
+        </div>
+        @endforeach
+    </div>
+    <div class="navigator mobile">
+        <div class="head">
+            <div class='arrow previous opacity'></div>
+            <ul>
+                <li class='current'>
+                    <span>1</span>
+                </li>
+                <li>
+                    <a href="/?page=2">2</a>
+                </li>
+                <li>
+                    <a href="/?page=3">3</a>
+                </li>
+                <li class="separator">
+                    <span>...</span>
+                </li>
+                <li>
+                    <a href="/?page=300">300</a>
                 </li>
             </ul>
-            <button class="arrow css-1pzb6vf" aria-label="Right arrow"></button>
-        </div>
-    </div>
-    <div class="css-zyoi9w">
-        <div class="titleContainer css-18689kv">
-            <h2 class="carouselTitle">Feature game</h2>
-        </div>
-        <div class="prime-carousel css-1nehx92">
-            <ul class="prime-carousel-container css-lpurl3">
-                @foreach($featureGames as $feature)
-                <li class="primeCarouselLi">
-                    <a class="css-h13zhk" href="{{ $feature->link }}">
-                        <div class="gameThumbTitleContainer">{{ $feature['name'] }}</div><img class="GameThumbImage" loading="eager" src="{{ asset($feature['thumbs']) }}">
-                    </a>
-                </li>
-                @endforeach
-            </ul><button class="arrow css-1pzb6vf" aria-label="Right arrow"></button>
-        </div>
-    </div>
-
-    @foreach($gamesByCategory as $category)
-    <div class="css-zyoi9w">
-        <div class="titleContainer css-18689kv">
-            <h2 class="carouselTitle">{{ ucfirst($category->name) }}</h2>
-        </div>
-        <div class="prime-carousel css-1nehx92">
-            <ul class="prime-carousel-container css-lpurl3">
-                @foreach($category->games as $game)
-                <li class="primeCarouselLi">
-                    <a class="css-h13zhk" href="{{ $feature->link }}">
-                        <div class="gameThumbTitleContainer">{{ $game['name'] }}</div><img class="GameThumbImage" loading="eager" src="{{ asset($game['thumbs']) }}">
-                    </a>
-                </li>
-                @endforeach
-            </ul><button class="arrow css-1pzb6vf" aria-label="Right arrow"></button>
-        </div>
-    </div>
-    @endforeach
-
-    <div style="overflow-anchor:auto" class="css-41foc0">
-        <div style="overflow:hidden" class="css-1xcs8fm">
-            <div>
-                <h2>Play the Newest Games Instantly</h2>
-                <p>Gamekafe features the latest and best free online games. You can enjoy playing fun games without interruptions from downloads, intrusive ads, or pop-ups. Just load up your favorite games instantly in your web browser and enjoy the experience.</p>
-                <p>You can play our games on desktop mobile devices. That includes everything from desktop PCs, laptops, and Chromebooks, to the latest smartphones and tablets from Apple and Android. </p>
-            </div>
+            <a aria-label="arrow next" class="arrow next" href="/?page=2"></a>
         </div>
     </div>
 </div>
+<h1>Gamekafe - Các trò chơi Trực tuyến Miễn phí tại Gamekafe.com</h1>
+<h2>Chơi game miễn phí trên Gamekafe. Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Y8.com và gia nhập với cộng đồng người chơi ngay.</h2>
 @endsection

@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/get-link', [GameController::class, 'getLinksGame']);
-Route::get('/test', function () {
-    return view('test');
-});
+Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('policy');
 
 Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');;
 
