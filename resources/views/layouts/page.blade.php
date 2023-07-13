@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="no-touch" lang="vi" dir="ltr">
+
 <head>
     @vite('resources/sass/user.css')
     <meta charset="utf-8">
@@ -26,7 +27,7 @@
     @yield('css')
 </head>
 
-<body class="items index games-active" data-controller="Items" data-action="index" data-filter-compatibility-games="true" data-items-per-page="32">
+<body class="items index games-active">
     <nav class="navbar">
         <div class="container">
             <div class="y8-navbar-left">
@@ -73,14 +74,13 @@
                     </span>
                     <div class="with-notification"></div>
                 </div>
-                        </ul>
-                    </div>
-                </div>
                 @if (!auth()->user())
                 <div class="waiting-idnet">
                     <div id="user_not_logged_in">
-                        <button type="button" class="fake-button fake-button-red idnet-fast-register-link">Đăng ký
-                        </button>
+                        <a href="{{ route('register') }}">
+                            <button type="button" class="fake-button fake-button-red idnet-fast-register-link">Đăng ký
+                            </button>
+                        </a>
                         <a href="{{route('login')}}">
                             <button type="button" class="fake-button idnet-fast-login-link">Đăng nhập
                             </button>
@@ -88,33 +88,17 @@
                     </div>
                 </div>
                 @else
+
                 <div class="fake-button parental-control dropdown">
                     <div class="js-top-menu parental-control-link" data-menu="parental"></div>
-                    <a class="parental-control-link-hidden" rel="nofollow" data-remote="true" href="/parental_filters/new">
+                    <a class="icon-drop" rel="nofollow" data-remote="true" href="/parental_filters/new">
+                        <div class="dropdown-content">
+                            <a href="#">Setting</a>
+                            <a href="#">Profile</a>
+                            <a href="#">Logout</a>
+                        </div>
                     </a>
                 </div>
-
-                <div id="parental-filter-form" class="parental-filter-form sub-menu"></div>
-                <div  id="locale-selector-dropdown" class='locale-selector-dropdown fake-button'>
-                    <ul>
-                        <li>
-                            <a class="vi locale-chooser js-top-menu" aria-label="Lựa chọn Ngôn ngữ" data-menu="locale" href="#">
-                                <div class="flag vi">&nbsp;</div>
-                                <div class="locale-name">Việt</div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                    <div class="fake-button parental-control dropdown">
-                        <div class="js-top-menu parental-control-link" data-menu="parental"></div>
-                        <a class="icon-drop" rel="nofollow" data-remote="true" href="/parental_filters/new">
-                            <div class="dropdown-content">
-                                <a href="#">Setting</a>
-                                <a href="#">Profile</a>
-                                <a href="#">Logout</a>
-                            </div>
-                        </a>
-                    </div>
                 @endif
                 <div class="mobile-header-block">
                     <div class="popular-newest-games-links">
@@ -310,6 +294,7 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/page/main.js') }}"></script>
     @yield('js')
 </body>
 

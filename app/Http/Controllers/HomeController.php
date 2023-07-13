@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\SearchRepository;
+use Illuminate\Database\Eloquent\Casts\Json;
 
 class HomeController extends Controller
 {
@@ -65,11 +66,38 @@ class HomeController extends Controller
         return view('page.cookie-policy');
     }
 
-    public function viewSearch()
+    public function viewSearch(Request $request)
     {
-        $listCategory = $this->categoryRepository->get();
+        $filter = [];
+        if ($request->get('q') != null) {
+            $filter['q'] = $request->get('q');
+        }
 
-        return view('page.search', compact('listCategory'));
+        if ($request->get('tags') != null) {
+            $filter['tags'] = $request->get('tags');
+        }
+
+        if ($request->get('category') != null) {
+            $filter['category'] = $request->get('category');
+        }
+
+        $listCategory = $this->categoryRepository->get();
+        $getTags = $this->gameRepository->getTags();
+        $games = $this->gameRepository->getListBySearch($filter);
+        $listTag = [];
+
+        foreach ($getTags as $record) {
+            $arrTags = json_decode($record);
+            foreach ($arrTags as $tag) {
+                if (!in_array($tag, $listTag)) {
+                    $listTag[] = $tag;
+                }
+            }
+        }
+
+        $bodyStatus = 'search';
+
+        return view('page.search', compact('listCategory', 'bodyStatus', 'games', 'listTag'));
     }
 
     public function viewTags($tag)
@@ -82,19 +110,19 @@ class HomeController extends Controller
         return view('page.category', compact('listCategory', 'games', 'category', 'gameByCategory'));
     }
 
-    public function viewListTags() {
-
+    public function viewListTags()
+    {
     }
 
-    public function viewListCategory() {
-
+    public function viewListCategory()
+    {
     }
 
-    public function viewNewGames() {
-
+    public function viewNewGames()
+    {
     }
 
-    public function viewBestGame() {
-
+    public function viewBestGame()
+    {
     }
 }

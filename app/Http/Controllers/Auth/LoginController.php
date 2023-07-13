@@ -55,7 +55,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($data)) {
             $request->session()->put('email', $data['email']);
-            if(Auth::user()->role == Role::ADMIN) {
+            if (Auth::user()->role == Role::ADMIN) {
                 return view('admin.homepage');
             } else {
                 return redirect('/');
@@ -75,4 +75,3 @@ class LoginController extends Controller
         
         return redirect('/login');
     }
-}
