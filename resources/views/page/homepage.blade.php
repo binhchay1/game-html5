@@ -9,6 +9,7 @@
 <style type="text/css">
     .disable-link {
         cursor: not-allowed;
+        pointer-events: none;
         opacity: 0.5;
     }
 
@@ -37,10 +38,7 @@
                         </a>
                     </li>
                     @endforeach
-                    <li class="all-categories-btn" data-menu="browse">
-                        <span><a style="padding: 0;" href="{{ route('listCategory') }}">Tất cả các thể loại</a>
-                        </span>
-                    </li>
+
                 </ul>
             </div>
         </div>
@@ -121,8 +119,15 @@
                             <p class="{{ $game['category'] }}">{{ ucfirst($game['category']) }}</p>
                         </div>
                         <p class="item__rating">
-                            <span class="item__number">90%
+                            @if($game['rating'] > 50)
+                            <span class="item__success">
+                                {{ $game['rating'] }}%
                             </span>
+                            @else
+                            <span class="item__fail">
+                                {{ $game['rating'] }}%
+                            </span>
+                            @endif
                         </p>
                         <p class="item__plays-count">{{ $game['count_play'] }} chơi
                         </p>

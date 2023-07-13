@@ -28,9 +28,7 @@ Route::get('/tags', [HomeController::class, 'viewListTags'])->name('listTags');
 Route::get('/category', [HomeController::class, 'viewListCategory'])->name('listCategory');
 Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-games');
 Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
+Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
 
 Route::group(['prefix' => 'games'], function () {
     Route::get('/{game}', [GameController::class, 'viewGame'])->name('playGames');
@@ -47,5 +45,5 @@ Route::middleware(['check.auth', 'admin'])->group(
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
 
         //user
-     }
+    }
 );
