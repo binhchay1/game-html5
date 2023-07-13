@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') - Search }}</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - Search</title>
 @endsection
 
 @section('css')
