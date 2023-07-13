@@ -30,7 +30,7 @@ Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-gam
 Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
 
 Route::group(['prefix' => 'games'], function () {
-    Route::get('/{name}', [GameController::class, 'viewGame']);
+    Route::get('/{game}', [GameController::class, 'viewGame'])->name('playGames');
 });
 
 Route::get('/admin', [AdminController::class, 'index']);

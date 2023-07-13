@@ -107,13 +107,13 @@
         </div>
         <div class="items-container" id="items_container">
             @foreach($games as $game)
-            <div id="item_159195" class="item thumb videobox grid-column" data-item-id="159195" data-label-ids="1 Player,Adventure,Fighting,Turn Based,Role Playing,GameDistribution.com,Touchscreen,Android game,iPad,iPhone,Mobile">
-                <a title="Trò chơi Dynamons World - Chơi trực tuyến tại Gamekafe" href="https://vi.Gamekafe/games/dynamons_world">
+            <div id="item_159195" class="item thumb videobox grid-column" data-item-id="159195">
+                <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Gamekafe" href="{{ route('playGames', ['game' => $game['name']]) }}">
                     <input type="hidden" name="for-girls-159195" id="for-girls-159195" value="false" />
                     <div class="item__thumbarea">
                         <div class="item__microthumb"></div>
                         <div class="item__img-container">
-                            <img class="thumb lazy playable" alt="Dynamons World - Strategy/RPG - Gamekafe" src="{{ $game['thumbs'] }}" />
+                            <img class="thumb lazy playable" alt="{{ $game['name'] }} - {{ ucfirst($game['category']) }} - Gamekafe" src="{{ $game['thumbs'] }}" />
                         </div>
                     </div>
                     <div class="item__infos">

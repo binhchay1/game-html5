@@ -1,39 +1,171 @@
 @extends('layouts.page')
 
+@section('title')
+<title>Gamekafe</title>
+@endsection
+
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/main.css') }}">
-<link rel="stylesheet" href="{{ asset('css/page.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="manifest" href="{{ asset('json/manifest.json') }}" crossorigin="use-credentials">
+<style type="text/css">
+    .disable-link {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .top-tags ul li {
+        list-style-type: none;
+    }
+
+    .top-tags ul {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
 @endsection
 
 @section('content')
-<div class="css-1iuj5ih">
-    <div class="d-flex">
-        <div class="MuiBox-root css-1rpjij0">
-            <h1 style="margin-right:16px">{{ strtoupper($category) }}</h1>
-            <div style="display:flex;flex-wrap:wrap">
-                <div class="css-obv89a">Challenge a friend in our two player games! Our 2-player games include fierce sports games such as Basketball Stars and calm board games, as well as everything in between.</div>
+<div class="main">
+    <div class="categories-tags-block box">
+        <div class="top-categories">
+            <div class="row single-line">
+                <ul>
+                    @foreach($listCategory as $category)
+                    <li class="inactive {{ $category['name'] }} li-category">
+                        <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
+                            <span class="name">{{ ucfirst($category['name']) }}</span>
+                            <span class="number">{{ $category['games_count'] }} game</span>
+                        </a>
+                    </li>
+                    @endforeach
+                    <li class="all-categories-btn" data-menu="browse">
+                        <span><a style="padding: 0;" href="{{ route('listCategory') }}">Tất cả các thể loại</a>
+                        </span>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="MuiBox-root css-ohxupm">
-            <button aria-expanded="false" aria-haspopup="listbox" class="MuiSelect-root css-18csbgg" type="button">Top games
-                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="IconExpandSelect css-6qu7l6">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M21.6699 7.25758C22.08 7.62758 22.1124 8.25991 21.7424 8.66994L14.2424 16.9814C13.0169 18.3395 10.9831 18.3395 9.75757 16.9814L2.25757 8.66994C1.88757 8.25991 1.92002 7.62758 2.33005 7.25758C2.74008 6.88759 3.37241 6.92004 3.74241 7.33006L11.2424 15.6415C11.6737 16.1195 12.3263 16.1195 12.7576 15.6415L20.2576 7.33006C20.6276 6.92004 21.2599 6.88759 21.6699 7.25758Z"></path>
-                </svg>
-                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true" class="IconCollapseSelect css-6qu7l6">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.33007 16.7424C1.92005 16.3724 1.88759 15.7401 2.25759 15.3301L9.75759 7.0186C10.9831 5.66046 13.0169 5.66047 14.2424 7.01861L21.7424 15.3301C22.1124 15.7401 22.08 16.3724 21.6699 16.7424C21.2599 17.1124 20.6276 17.08 20.2576 16.6699L12.7576 8.35848C12.3263 7.88051 11.6737 7.88051 11.2424 8.35848L3.74243 16.6699C3.37243 17.08 2.7401 17.1124 2.33007 16.7424Z"></path>
-                </svg>
-            </button>
+        <div class="top-tags">
+            <div class="row single-line">
+                <ul>
+                    @foreach($listTag as $tag)
+                    <li style="margin-top: 5px;">
+                        <a class="tag" href="{{ route('tags', ['tag' => $tag]) }}">
+                            <h4>
+                                {{ $tag }}
+                            </h4>
+                        </a>
+                    </li>
+                    @endforeach
+                    <li class="more-tags">
+                        <a class="tag all-tags top" href="{{ route('listTags') }}">Tất cả các thẻ
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        @foreach($gameByCategory as $game)
-        <div class="col-2 m-2">
-            <a class="css-1fanuwr" href="{{ $game['link'] }}">
-                <div class="gameThumbTitleContainer">{{ $game['name'] }}</div><img class="GameThumbImage" loading="lazy" src="{{ $game['thumbs'] }}" width="150">
-            </a>
-        </div>
-        @endforeach
     </div>
 </div>
+<div class="main js-search-trends">
+    <div class="box search-trends-box">
+        <div class="row single-line">
+            <div class="search-trends-container col-md-12">
+                <p class='h5'>Tìm kiếm hàng đầu</p>
+                <div class="search-trends">
+                    <ul>
+                        @foreach($search as $keyword)
+                        <li style="display: inline-block;">
+                            <a href="{{ route('search') }}?q={{ $keyword }}" rel="nofollow">{{ $keyword }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="country-chooser-modal sub-menu">
+    <div class="row controls-2">
+        <div class="search-input-col col-md-12"></div>
+    </div>
+    <div class="row content-1">
+        <div class="col-md-12 countries-container">
+            <div class="countries"></div>
+        </div>
+    </div>
+    <div class="row content-2">
+        <div class="search-results"></div>
+    </div>
+</div>
+<div class="tint"></div>
+<div class="main">
+    <div class="box items-grid no-background">
+        <div class="row">
+            <div class="item-title-container col-md-12">
+                <h3 class="home-title">Trò chơi ({{ $countGame }})
+                </h3>
+            </div>
+        </div>
+        <div class="items-container" id="items_container">
+            @foreach($games as $game)
+            <div id="item_159195" class="item thumb videobox grid-column" data-item-id="159195">
+                <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Gamekafe" href="{{ route('playGames', ['game' => $game['name']]) }}">
+                    <input type="hidden" name="for-girls-159195" id="for-girls-159195" value="false" />
+                    <div class="item__thumbarea">
+                        <div class="item__microthumb"></div>
+                        <div class="item__img-container">
+                            <img class="thumb lazy playable" alt="{{ $game['name'] }} - {{ ucfirst($game['category']) }} - Gamekafe" src="{{ $game['thumbs'] }}" />
+                        </div>
+                    </div>
+                    <div class="item__infos">
+                        <h4 class="item__title ltr">{{ $game['name'] }}</h4>
+                        <div class="item__technology">
+                            <p class="{{ $game['category'] }}">{{ ucfirst($game['category']) }}</p>
+                        </div>
+                        <p class="item__rating">
+                            <span class="item__number">90%
+                            </span>
+                        </p>
+                        <p class="item__plays-count">{{ $game['count_play'] }} chơi
+                        </p>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+        <div class="navigator mobile">
+            <div class="head">
+                <a aria-label="arrow previous" class="arrow previous {{ $games->currentPage() == 1 ? 'disable-link' : '' }}" href="{{ $games->previousPageUrl() }}"></a>
+                <ul>
+                    @if($games->currentPage() != 1)
+                    <li>
+                        <a href="?page={{ $games->previousPageUrl() }}">{{ $games->currentPage() - 1 }}</a>
+                    </li>
+                    @endif
+                    <li class='current'>
+                        <span>{{ $games->currentPage() }}</span>
+                    </li>
+                    @if($games->currentPage() != $games->lastPage())
+                    <li>
+                        <a href="{{ $games->nextPageUrl() }}">{{ $games->currentPage() + 1 }}</a>
+                    </li>
+                    @endif
+                    @if($games->lastPage() > $games->currentPage() + 2)
+                    <li class="separator">
+                        <span>...</span>
+                    </li>
+                    @endif
+                    @if($games->lastPage() > $games->currentPage() + 1)
+                    <li>
+                        <a href="?page={{ $games->lastPage() }}">{{ $games->lastPage() }}</a>
+                    </li>
+                    @endif
+                </ul>
+                <a aria-label="arrow next" class="arrow next {{ $games->currentPage() == $games->lastPage() ? 'disable-link' : '' }}" href="{{ $games->nextPageUrl() }}"></a>
+            </div>
+        </div>
+    </div>
+    <h1>Gamekafe - Các trò chơi Trực tuyến Miễn phí tại Gamekafe.com</h1>
+    <h2>Chơi game miễn phí trên Gamekafe. Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.</h2>
+</div>
+
 @endsection

@@ -27,9 +27,11 @@ class GameController extends Controller
         return view('admin.game.list-game', ['dataGame' => $dataGame]);
     }
 
-    public function viewGame($name)
+    public function viewGame($game)
     {
-        $getGame = $this->gameRepository->getByColumn($name, 'name');
+        $name = strtolower(str_replace(' ', '-', $game));
+        $getGame = $this->gameRepository->getByColumn($name, 'name')->first();
+
         $count = $getGame['count_play']++;
         $data = [
             'count_play' => $count,
