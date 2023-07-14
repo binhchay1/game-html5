@@ -22,8 +22,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/black-logo-no-background.png') }}" />
     <link rel="icon" sizes="192x192" href="{{ asset('images/black-logo-no-background.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/black-logo-no-background.png') }}">
-    <link rel="stylesheet" media="screen" href="{{ asset('css/page/application.css') }}" />
-    <link rel="stylesheet" media="screen" href="{{ asset('css/page/latin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/page/application.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/page/latin.css') }}" />
     @yield('css')
 </head>
 
@@ -53,8 +53,7 @@
                 </div>
             </div>
             <form id="items-search-form" class="navbar-form" action="{{ route('search') }}" accept-charset="UTF-8" method="get">
-                <input type="hidden" name="kind" id="kind" value="game" />
-                <input type="text" name="q" id="q" placeholder="Tìm kiếm trò chơi" class="form-control query fake-button" required="required" minlength="2" maxlength="50" pattern=".{2,50}" />
+                <input type="text" name="q" id="q" placeholder="Tìm kiếm trò chơi" class="form-control query fake-button" required="required" />
                 <button type="submit" aria-label="Search">
                     <i class="y-icon y-icon--search"></i>
                 </button>

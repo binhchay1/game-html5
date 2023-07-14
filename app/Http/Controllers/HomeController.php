@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\SearchRepository;
+use App\Http\Requests\SearchRequest;
 
 class HomeController extends Controller
 {
@@ -105,24 +106,26 @@ class HomeController extends Controller
         $filter = [];
         if ($request->get('q') != null) {
             $filter['q'] = $request->get('q');
-            $querySearch = $this->searchRepository->getByColumn($filter['q'], 'keyword');
-            if (empty($querySearch)) {
-                $dataSearch = [
-                    'keyword' => $filter['q'],
-                    'count' => 0
-                ];
-                $this->searchRepository->create($dataSearch);
-            } else {
-                $dataSearch = [
-                    'count' => $querySearch['count']++
-                ];
+            if (preg_match("/[^\w]/", $request->get('q')) == 0) {
+                $querySearch = $this->searchRepository->getByColumn($filter['q'], 'keyword');
+                if (empty($querySearch)) {
+                    $dataSearch = [
+                        'keyword' => $filter['q'],
+                        'count' => 0
+                    ];
+                    $this->searchRepository->create($dataSearch);
+                } else {
+                    $dataSearch = [
+                        'count' => $querySearch['count'] + 1
+                    ];
 
-                $this->searchRepository->create($dataSearch);
+                    $this->searchRepository->update($dataSearch);
+                }
             }
         }
 
-        if ($request->get('tags') != null) {
-            $filter['tags'] = $request->get('tags');
+        if ($request->get('tag') != null) {
+            $filter['tag'] = $request->get('tag');
         }
 
         if ($request->get('category') != null) {
@@ -136,7 +139,7 @@ class HomeController extends Controller
         $listTag = [];
 
         foreach ($getTags as $record) {
-            $arrTags = json_decode($record);
+            $arrTags = json_decode($record->tag);
             foreach ($arrTags as $tag) {
                 if (!in_array($tag, $listTag)) {
                     $listTag[] = $tag;
@@ -145,6 +148,7 @@ class HomeController extends Controller
         }
 
         foreach ($games as $game) {
+            $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
             if (($game->votes['like'] + $game->votes['un_like']) == 0) {
                 $game['rating'] = 100;
             } else {

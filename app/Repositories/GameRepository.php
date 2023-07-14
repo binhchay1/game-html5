@@ -69,8 +69,8 @@ class GameRepository extends BaseRepository
             $query = $query->where('category', $filter['category']);
         }
 
-        if (isset($filter['tags'])) {
-            $query = $query->where('tags', 'like', '%' . $filter['tags'] . '%');
+        if (isset($filter['tag'])) {
+            $query = $query->where('tag', 'like', '%' . $filter['tag'] . '%');
         }
 
         return $query->get();

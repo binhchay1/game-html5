@@ -10,8 +10,9 @@ use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Storage;
+use App\Services\Crawls;
 
-class CrawlsAndStoreInformationOfGame extends Command
+class CrawlsAndStoreInformationOfGame
 {
     protected $signature = 'app:crawls-and-store-information-of-game';
     protected $description = 'Command description';

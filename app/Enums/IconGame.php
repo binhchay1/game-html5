@@ -154,10 +154,8 @@ class IconGame
         'text' => 156,
         'trigger' => 332,
         'lesbian' => 1200,
-
-
+        'ghost' => 92,
         'christmas' => 212,
-
         'tower' => 362,
         'character' => 912,
         'history' => 914,

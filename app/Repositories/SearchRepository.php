@@ -16,4 +16,9 @@ class SearchRepository extends BaseRepository
     {
         return $this->model->orderBy('count', 'desc')->limit(10)->get();
     }
+
+    public function update($data)
+    {
+        return $this->model->update($data);
+    }
 }
