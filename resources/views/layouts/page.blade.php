@@ -29,13 +29,7 @@
     @yield('css')
 </head>
 
-@if(isset($bodyStatus))
-@if($bodyStatus == 'search')
-<body class="searches show games-active">
-@else
 <body class="items index games-active">
-@endif
-@endif
     <nav class="navbar">
         <div class="container">
             <div class="y8-navbar-left">
@@ -85,8 +79,10 @@
                 @if (!auth()->user())
                 <div class="waiting-idnet">
                     <div id="user_not_logged_in">
-                        <button type="button" class="fake-button fake-button-red idnet-fast-register-link">Đăng ký
-                        </button>
+                        <a href="{{ route('register') }}">
+                            <button type="button" class="fake-button fake-button-red idnet-fast-register-link">Đăng ký
+                            </button>
+                        </a>
                         <a href="{{route('login')}}">
                             <button type="button" class="fake-button idnet-fast-login-link">Đăng nhập
                             </button>
@@ -94,12 +90,6 @@
                     </div>
                 </div>
                 @else
-                <div class="fake-button parental-control dropdown">
-                    <div class="js-top-menu parental-control-link" data-menu="parental"></div>
-                    <a class="parental-control-link-hidden" rel="nofollow" data-remote="true" href="/parental_filters/new">
-                    </a>
-                </div>
-
                 <div id="parental-filter-form" class="parental-filter-form sub-menu"></div>
                 <div id="locale-selector-dropdown" class='locale-selector-dropdown fake-button'>
                     <ul>
@@ -320,6 +310,8 @@
     </div>
 <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+    <script src="{{ asset('js/page/main.js') }}"></script>
     @yield('js')
 </body>
 
