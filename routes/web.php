@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +44,16 @@ Route::middleware(['check.auth', 'admin'])->group(
         Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
         Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
+     }
+);
 
-        //user
+//user
+Route::middleware('check.auth')->group(
+    function () {
+Route::get('/user-info/{id}', [ProfileController::class, 'show'])->name('user.show');
+Route::get('/user-profile/{id}', [ProfileController::class, 'edit'])->name('user.edit');
+Route::post('/user-profile/{id}', [ProfileController::class, 'update'])->name('user.update');
+Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
     }
 );

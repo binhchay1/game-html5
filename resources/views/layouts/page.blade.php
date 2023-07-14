@@ -18,12 +18,14 @@
     <meta property="og:image:height" content="500">
     <meta property="og:site_name" content="Gamekafe">
     <meta property="og:description" content="Chơi game miễn phí trên Gamekafe. Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.">
-
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/black-logo-no-background.png') }}" />
     <link rel="icon" sizes="192x192" href="{{ asset('images/black-logo-no-background.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/black-logo-no-background.png') }}">
     <link rel="stylesheet" media="screen" href="{{ asset('css/page/application.css') }}" />
     <link rel="stylesheet" media="screen" href="{{ asset('css/page/latin.css') }}" />
+    <link
+        href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
+        rel="stylesheet"  type='text/css'>
     @yield('css')
 </head>
 
@@ -88,18 +90,31 @@
                     </div>
                 </div>
                 @else
-
-                <div class="fake-button parental-control dropdown">
-                    <div class="js-top-menu parental-control-link" data-menu="parental"></div>
-                    <a class="icon-drop" rel="nofollow" data-remote="true" href="/parental_filters/new">
-                        <div class="dropdown-content">
-                            <a href="#">Setting</a>
-                            <a href="#">Profile</a>
-                            <a href="#">Logout</a>
-                        </div>
-                    </a>
+                <div id="parental-filter-form" class="parental-filter-form sub-menu"></div>
+                <div id="locale-selector-dropdown" class='locale-selector-dropdown fake-button'>
+                    <ul>
+                        <li>
+                            <a class="vi locale-chooser js-top-menu" aria-label="Lựa chọn Ngôn ngữ" data-menu="locale" href="#">
+                                <div class="flag vi">&nbsp;</div>
+                                <div class="locale-name">Việt</div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fa fa-user"></i>
+                        {{ Auth::user()->name }}
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Setting</a>
+                        <a href="{{route('user.edit', Auth::user()->id)}}">Profile</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </a>
+            </div>
                 @endif
+
                 <div class="mobile-header-block">
                     <div class="popular-newest-games-links">
                         <a class="games-link new-game fake-button" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/new/games">Game Mới</a>
@@ -293,6 +308,8 @@
             <span class="validate-policy">Đã hiểu</span>
         </div>
     </div>
+<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
     <script src="{{ asset('js/page/main.js') }}"></script>
     @yield('js')
