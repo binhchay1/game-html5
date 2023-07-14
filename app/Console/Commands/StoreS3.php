@@ -11,18 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class StoreS3 extends Command
 {
     protected $s3Instance;
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'app:store-s3';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Store thumb of game to s3 storage';
 
     public function __construct()
@@ -34,11 +23,6 @@ class StoreS3 extends Command
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
         $this->uploadFileToS3();

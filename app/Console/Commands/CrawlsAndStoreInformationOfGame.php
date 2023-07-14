@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Console\Commands;
 
+use Illuminate\Console\Command;
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
 use App\Enums\ListLink;
@@ -10,8 +11,10 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Storage;
 
-class GetLinkGames
+class CrawlsAndStoreInformationOfGame extends Command
 {
+    protected $signature = 'app:crawls-and-store-information-of-game';
+    protected $description = 'Command description';
     private $linkGame;
     private $attribute;
     private $crawls;
@@ -34,6 +37,11 @@ class GetLinkGames
         $this->gameRepository = $gameRepository;
         $this->categoryRepository = $categoryRepository;
         $this->ListLink = $ListLink;
+    }
+
+    public function handle()
+    {
+        $this->getLinkGameItchIo();
     }
 
     public function getLinkGameItchIo()

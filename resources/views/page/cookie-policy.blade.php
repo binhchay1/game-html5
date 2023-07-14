@@ -4,8 +4,16 @@
 <title>{{ env('APP_NAME', 'Gamekafe') }} - Policy</title>
 @endsection
 
+@section('css')
+<style type="text/css">
+    td {
+        border-bottom: 1px solid;
+    }
+</style>
+@endsection
+
 @section('content')
-<div class="white-box-bg box body static" style="padding: 0 25px; text-align: justify;">
+<div class="white-box-bg box body static" style="padding: 25px 25px; text-align: justify;">
     <div class="title-container">
         <h1 class="header-5">Cookie Policy</h1>
     </div>
@@ -25,7 +33,7 @@
     </ol>
     <h3 id="section-1">I. Definition of terms</h3>
     <p>
-        The terms “Us”, “Our”, “Ours” and “We”, as well as all other first-person pronouns, are used to refer to Web Entertainment Limited (“WEL”), which owns, operates and maintains the Websites and Y8 Account.
+        The terms “Us”, “Our”, “Ours” and “We”, as well as all other first-person pronouns, are used to refer to Web Entertainment Limited (“WEL”), which owns, operates and maintains the Websites and Gamekafe Account.
     </p>
     <p>
         The term “Websites” is used to refer to the all websites owned, published or maintained by Us, Our affiliates or business partners, including but not limited to Gamekafe, pog.com, gamepost.com and dollmania.com.
@@ -34,7 +42,7 @@
         The terms “You”, “Your”, the “User”, as well as all other second-person pronouns, are used to refer to as the user of the Websites and/or services provided by Us.
     </p>
     <p>
-        The term “Y8 Account” refers to a login system operated and maintained by Us for users, players and developers.
+        The term “Gamekafe Account” refers to a login system operated and maintained by Us for users, players and developers.
     </p>
     <h3 id="section-2">II. What are cookies?</h3>
     <p>
@@ -120,37 +128,18 @@
                         Authentification
                     </strong>
                 </td>
-                <td class="m0">
+                <td>
                     Authentification cookies are used by web servers to know whether you are logged in or not, and from which account you are logged in with. This cookie enable us to provide you a personalized web experience on Our Website.
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <strong>
-                        Security and Integrity
-                    </strong>
-                </td>
-                <td class="m0">
-                    These cookies enable us to keep Our Website safe and secure. For example, they help Us protect Your from unauthorized access to or unauthorized alteration, disclosure or destruction of information We hold.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>
-                        Site feature and Services
-                    </strong>
-                </td>
-                <td class="m0">
-                    Site feature and Services cookies are essential to enable best web experience on Our Websites. For example, they enable Us to identify You as being logged in to Our Websites and remember the information you’ve entered during your session on Our Website.
-                </td>
-            </tr>
+
             <tr>
                 <td>
                     <strong>
                         Performance
                     </strong>
                 </td>
-                <td class="m0">
+                <td>
                     We use these cookies in order Your experience on Our Website and performance. These cookies collect information about how Our Website is used, for example which pages You visit most often and where error messages are delivered. Such data does not give out any personal details.
                 </td>
             </tr>
@@ -160,7 +149,7 @@
                         Analytics
                     </strong>
                 </td>
-                <td class="m0">
+                <td>
                     These cookies provide Us reports delivering statistics which help Us determine how visitors use Our Website, how they arrived on Our Website and how We can help them find their way back.
                 </td>
             </tr>
@@ -170,7 +159,7 @@
                         Localization
                     </strong>
                 </td>
-                <td class="m0">
+                <td>
                     Localization cookies help Us provide You with a more personalized and localized experience. For that purpose We may collect and store information that is located on Your browser or computer so You will see the Website in your preferred language.
                 </td>
             </tr>
@@ -180,7 +169,7 @@
                         Advertisements
                     </strong>
                 </td>
-                <td class="m0">
+                <td>
                     Our website may use cookies to deliver personal advertisements. Personalized ads gives a more relevant ad experience while helping fund the development of new games.
                 </td>
             </tr>

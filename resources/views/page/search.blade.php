@@ -70,9 +70,6 @@
         </div>
 
         <div class="box items-grid no-background">
-            <div class="mobile-search">
-                <a href="/search?mobile=true&q=sd">Click here to show only mobile games results</a>
-            </div>
             <div class="items-container" id="search_items_container">
                 @foreach($games as $game)
                 <div id="item_104800" class="item thumb videobox grid-column">
@@ -80,7 +77,7 @@
                         <div class="item__thumbarea">
                             <div class="item__microthumb"></div>
                             <div class="item__img-container">
-                                <img class="thumb playable" alt="{{ $game['name'] }}" src="{{ $game['thumbs'] }}">
+                                <img class="thumb playable" alt="{{ $game['name'] }} - {{ ucfirst($game['category']) }} - Gamekafe" src="{{ $game['thumbs'] }}">
                             </div>
                         </div>
 
@@ -93,9 +90,15 @@
                             </div>
 
                             <p class="item__rating">
-                                <span class="item__number">
-                                    82%
+                                @if($game['rating'] > 50)
+                                <span class="item__success">
+                                    {{ $game['rating'] }}%
                                 </span>
+                                @else
+                                <span class="item__fail">
+                                    {{ $game['rating'] }}%
+                                </span>
+                                @endif
                             </p>
 
                             <p class="item__plays-count">

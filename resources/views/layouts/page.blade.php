@@ -296,7 +296,7 @@
         </div>
     </footer>
     <div class="dark-overlay"></div>
-    <div class="policy-validation" id="policy-validation" style="display:none;">
+    <div class="policy-validation" id="policy-validation" style="display: none;">
         <div class="logo">
             <img width="59" height="27" alt="Gamekafe" src="{{ asset('images/color-logo-no-background.png') }}" />
         </div>
@@ -304,7 +304,7 @@
             Chúng tôi sử dụng cookie để đề xuất nội dung và phân tích lưu lượng truy cập và quảng cáo. Khi sử dụng trang web này, bạn đồng ý với <a target="_blank" rel="nofollow" href="https://vi.Gamekafe/privacy">Chính sách bảo mật</a>
             và <a target="_blank" rel="nofollow" href="{{ route('cookie-policy') }}">Chính sách Cookie</a>
         </div>
-        <div class="actions">
+        <div class="actions" onclick="storeAccepted('accepted')">
             <span class="validate-policy">Đã hiểu</span>
         </div>
     </div>
