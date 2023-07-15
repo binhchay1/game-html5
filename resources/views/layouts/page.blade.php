@@ -2,7 +2,6 @@
 <html class="no-touch" lang="vi" dir="ltr">
 
 <head>
-    @vite('resources/sass/user.css')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, minimal-ui" />
     <meta name="theme-color" content="#FFF">
@@ -23,7 +22,8 @@
     <link rel="apple-touch-icon" href="{{ asset('images/black-logo-no-background.png') }}">
     <link rel="stylesheet" href="{{ asset('css/page/application.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/page/latin.css') }}" />
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
     @yield('css')
 </head>
 
@@ -60,19 +60,24 @@
                 <span class="close-search-form"></span>
             </form>
             <div class="y8-navbar-right">
-                <div class="fake-button js-top-menu two-lines btn-header-actions new-games" data-menu="newgames">
-                    Game Mới
-                    <span class="sub-title">
-                        trong tháng
-                    </span>
-                </div>
+                <a style="text-decoration: none;" href="{{ route('new-games') }}">
+                    <div class="fake-button js-top-menu two-lines btn-header-actions new-games">
+                        Game Mới
+                        <span class="sub-title">
+                            trong tháng
+                        </span>
+                    </div>
+                </a>
 
-                <div class="fake-button js-top-menu two-lines btn-header-actions browse" data-menu="browse">
-                    Game Phổ Biến
-                    <span class="sub-title">được quan tâm
-                    </span>
-                    <div class="with-notification"></div>
-                </div>
+                <a style="text-decoration: none;" href="{{ route('best-games') }}">
+                    <div class="fake-button js-top-menu two-lines btn-header-actions browse">
+                        Game Phổ Biến
+                        <span class="sub-title">được quan tâm
+                        </span>
+                        <div class="with-notification"></div>
+                    </div>
+                </a>
+
                 @if (!auth()->user())
                 <div class="waiting-idnet">
                     <div id="user_not_logged_in">
@@ -87,17 +92,6 @@
                     </div>
                 </div>
                 @else
-                <div id="parental-filter-form" class="parental-filter-form sub-menu"></div>
-                <div id="locale-selector-dropdown" class='locale-selector-dropdown fake-button'>
-                    <ul>
-                        <li>
-                            <a class="vi locale-chooser js-top-menu" aria-label="Lựa chọn Ngôn ngữ" data-menu="locale" href="#">
-                                <div class="flag vi">&nbsp;</div>
-                                <div class="locale-name">Việt</div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
 
                 <div class="dropdown">
                     <button class="dropbtn"><i class="fa fa-user"></i>
@@ -108,8 +102,8 @@
                         <a href="{{route('user.edit', Auth::user()->id)}}">Profile</a>
                         <a href="#">Logout</a>
                     </div>
-                </a>
-            </div>
+                    </a>
+                </div>
                 @endif
 
                 <div class="mobile-header-block">
@@ -305,8 +299,8 @@
             <span class="validate-policy">Đã hiểu</span>
         </div>
     </div>
-<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
     <script src="{{ asset('js/page/main.js') }}"></script>
     @yield('js')

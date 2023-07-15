@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\SearchRepository;
-use App\Http\Requests\SearchRequest;
 
 class HomeController extends Controller
 {

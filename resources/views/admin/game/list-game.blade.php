@@ -26,8 +26,8 @@
                 <td>{{ $dataGame->name }}</th>
                 <td>{{ $dataGame->link }}</th>
                 <td>{{ $dataGame->categories->name }}</th>
-                <td><img class="image" src="{{$dataGame->thumbs}}" alt="avatar"></td>
-                <td>{{ $dataGame->status }}</th>
+                <td><img class="image" src="{{$dataGame->thumbs}}" alt="avatar" width="100" height="50"></td>
+                <td>{{ $dataGame->status == 1 ? 'active' : 'de-active' }}</th>
                 <td class="text_flow text-center">
                     <a href="" class="btn btn-info">
                         <i class="fas fa-info-circle"></i>

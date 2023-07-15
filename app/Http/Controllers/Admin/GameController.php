@@ -24,6 +24,7 @@ class GameController extends Controller
     public function index()
     {
         $dataGame = $this->gameRepository->listGame();
+
         return view('admin.game.list-game', ['dataGame' => $dataGame]);
     }
 

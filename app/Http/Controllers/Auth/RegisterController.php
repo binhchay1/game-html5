@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Repositories\GameRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -31,14 +33,16 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    private $userRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
+        $this->userRepository = $userRepository;
         $this->middleware('guest');
     }
 
@@ -73,17 +77,20 @@ class RegisterController extends Controller
         ]);
 
         $data = $request->all();
-        $check = $this->create($data);
+        $this->create($data);
 
         return redirect("/");
     }
 
     protected function create(array $data)
     {
-        return User::create([
+        $dataCreate = [
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+            'role' => \App\Enums\Role::USER
+        ];
+
+        return $this->userRepository->create($dataCreate);
     }
 }

@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin@123'),
             'email_verified_at' => date('Y-m-d H:i:s'),
             'role' => 'admin',
+            'image' => 'sdadsadsadsad',
         ];
 
         $this->userRepository->create($data);
