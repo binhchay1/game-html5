@@ -94,10 +94,10 @@
                 @else
 
                 <div class="dropdown">
-                    <button class="dropbtn"><i class="fa fa-user"></i>
+                    <button class="dropbtn" style="background-color: #f1f1f1; color: #666; font-size: 13px; font-weight: 700;"><i class="fa fa-user"></i>
                         {{ Auth::user()->name }}
                     </button>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content" style="background-color: #8BC34A;">
                         <a href="#">Setting</a>
                         <a href="{{route('user.edit')}}">Profile</a>
                         <a href="#">Logout</a>
@@ -171,7 +171,7 @@
         @yield('content')
     </div>
     <div class="header-menu-modal" style="display:none"></div>
-    <footer class="footer">
+    <footer class="footer" style=" margin-top: 15px;">
         <div class="container">
             <div class="text-container">
                 <div class="column question-icon">
