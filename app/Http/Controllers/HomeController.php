@@ -48,11 +48,13 @@ class HomeController extends Controller
 
         foreach ($games as $game) {
             $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
+
             if (($game->votes['like'] + $game->votes['un_like']) == 0) {
                 $game['rating'] = 100;
             } else {
                 $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
             }
+
             $listTagDecode = json_decode($game['tag']);
             foreach ($listTagDecode as $decode) {
                 if (count($listTag) >= 13) {
@@ -133,7 +135,7 @@ class HomeController extends Controller
 
         $listCategory = $this->categoryRepository->get();
         $getTags = $this->gameRepository->getTags();
-        $games = $this->gameRepository->getListBySearch($filter);
+        $listGame = $this->gameRepository->getListBySearch($filter);
 
         $listTag = [];
 
@@ -146,30 +148,18 @@ class HomeController extends Controller
             }
         }
 
-        foreach ($games as $game) {
-            $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
-            if (($game->votes['like'] + $game->votes['un_like']) == 0) {
-                $game['rating'] = 100;
-            } else {
-                $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
-            }
-        }
+        $games = $this->ultity->renameAndCalculateVote($listGame);
 
         return view('page.search', compact('listCategory', 'games', 'listTag'));
     }
 
     public function viewTags($tag)
     {
-        $listCategory = $this->categoryRepository->listCategory();
-        $games = $this->gameRepository->listGameByTag($tag);
-        $query = $this->gameRepository->getGameByCategory($category);
-        $gameByCategory = $this->ultity->paginate($query, 10);
+        $query = $this->gameRepository->listGameByTag($tag);
+        $listGame = $this->ultity->paginate($query, 10);
+        $games = $this->ultity->renameAndCalculateVote($listGame);
 
-        foreach ($games as $game) {
-            $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
-        }
-
-        return view('page.category', compact('listCategory', 'games', 'category', 'gameByCategory'));
+        return view('page.tags', compact('games', 'tag'));
     }
 
     public function viewListTags()
@@ -196,34 +186,48 @@ class HomeController extends Controller
     public function viewNewGames()
     {
         $getGame = $this->gameRepository->getNewestGame();
-        $games = $this->ultity->paginate($getGame, 30);
+        $listGame = $this->ultity->paginate($getGame, 30);
+        $games = $this->ultity->renameAndCalculateVote($listGame);
+        $getTags = $this->gameRepository->getTags();
+        $listTag = [];
 
-        foreach ($games as $game) {
-            $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
-
-            if (($game->votes['like'] + $game->votes['un_like']) == 0) {
-                $game['rating'] = 100;
-            } else {
-                $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
+        foreach ($getTags as $record) {
+            $arrTags = json_decode($record->tag);
+            foreach ($arrTags as $tag) {
+                $listTag[] = $tag;
             }
         }
-        return view('page.best-game', compact('games'));
+
+        $count = count($listTag);
+
+        return view('page.best-game', compact('games', 'count'));
     }
 
     public function viewBestGame()
     {
         $getGame = $this->gameRepository->getBestGame();
-        $games = $this->ultity->paginate($getGame, 30);
+        $listGame = $this->ultity->paginate($getGame, 30);
+        $games = $this->ultity->renameAndCalculateVote($listGame);
+        $getTags = $this->gameRepository->getTags();
+        $listTag = [];
 
-        foreach ($games as $game) {
-            $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
-
-            if (($game->votes['like'] + $game->votes['un_like']) == 0) {
-                $game['rating'] = 100;
-            } else {
-                $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
+        foreach ($getTags as $record) {
+            $arrTags = json_decode($record->tag);
+            foreach ($arrTags as $tag) {
+                $listTag[] = $tag;
             }
         }
-        return view('page.best-game', compact('games'));
+
+        $count = count($listTag);
+
+        return view('page.best-game', compact('games', 'count'));
+    }
+
+    public function viewGame($game)
+    {
+        $getGame = $this->gameRepository->getByColumn($game, 'name')->first();
+        dd($getGame);
+
+        return view('page.games');
     }
 }

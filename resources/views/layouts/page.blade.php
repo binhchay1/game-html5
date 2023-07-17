@@ -99,7 +99,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="#">Setting</a>
-                        <a href="{{route('user.edit', Auth::user()->id)}}">Profile</a>
+                        <a href="{{route('user.edit')}}">Profile</a>
                         <a href="#">Logout</a>
                     </div>
                     </a>

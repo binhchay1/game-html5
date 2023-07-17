@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - Policy</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - Cookie Policy</title>
 @endsection
 
 @section('css')

@@ -164,7 +164,7 @@ class CrawlsAndStoreInformationOfGame extends Command
         }
 
         foreach ($listLink as $key => $link) {
-            if (!array_key_exists('link', $link) or !array_key_exists('thumb', $link)) {
+            if (!array_key_exists('link', $link) or !array_key_exists('link', $link)) {
                 continue;
             }
 
@@ -254,8 +254,8 @@ class CrawlsAndStoreInformationOfGame extends Command
     {
         $content = file_get_contents($url);
         $fileName = str_replace("%2", "G", $fileName);
-        if (!Storage::disk('s3')->has($fileName)) {
-            Storage::disk('s3')->put($fileName, $content);
+        if (!Storage::disk('public-images-game')->has($fileName)) {
+            Storage::disk('public-images-game')->put($fileName, $content);
         }
     }
 }

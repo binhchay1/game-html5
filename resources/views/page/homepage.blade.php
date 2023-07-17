@@ -55,7 +55,7 @@
                     </li>
                     @endforeach
                     <li class="more-tags">
-                        <a class="tag all-tags top" href="{{ route('listTags') }}">Tất cả các thẻ
+                        <a class="tag all-tags top" href="{{ route('listTags') }}">{{ __('Tất cả các thẻ') }}
                         </a>
                     </li>
                 </ul>
@@ -67,7 +67,7 @@
     <div class="box search-trends-box">
         <div class="row single-line">
             <div class="search-trends-container col-md-12">
-                <p class='h5'>Tìm kiếm hàng đầu</p>
+                <p class='h5'>{{ __('Tìm kiếm hàng đầu') }}</p>
                 <div class="search-trends">
                     <ul>
                         @foreach($search as $keyword)
@@ -99,14 +99,14 @@
     <div class="box items-grid no-background">
         <div class="row">
             <div class="item-title-container col-md-12">
-                <h3 class="home-title">Trò chơi ({{ $countGame }})
+                <h3 class="home-title">{{ __('Trò chơi') }} ({{ $countGame }})
                 </h3>
             </div>
         </div>
         <div class="items-container" id="items_container">
             @foreach($games as $game)
             <div id="item_159195" class="item thumb videobox grid-column">
-                <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Gamekafe" href="{{ route('playGames', ['game' => $game['name']]) }}">
+                <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('playGames', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                     <div class="item__thumbarea">
                         <div class="item__microthumb"></div>
                         <div class="item__img-container">
@@ -129,7 +129,7 @@
                             </span>
                             @endif
                         </p>
-                        <p class="item__plays-count">{{ $game['count_play'] }} chơi
+                        <p class="item__plays-count">{{ $game['count_play'] }} {{ __('chơi') }}
                         </p>
                     </div>
                 </a>
@@ -168,8 +168,7 @@
             </div>
         </div>
     </div>
-    <h1>Gamekafe - Các trò chơi Trực tuyến Miễn phí tại Gamekafe.com</h1>
-    <h2>Chơi game miễn phí trên Gamekafe. Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.</h2>
+    <h1>Gamekafe - {{ __('Các trò chơi Trực tuyến Miễn phí tại') }} Gamekafe.com</h1>
+    <h2>{{ __('Chơi game miễn phí trên Gamekafe. Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.') }}</h2>
 </div>
-
 @endsection

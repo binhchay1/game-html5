@@ -59,7 +59,7 @@ return [
         'public-images-game' => [
             'driver' => 'local',
             'root' => public_path() . '/images/games',
-            'url' => env('APP_URL').'/images/games',
+            'url' => env('APP_URL') .'/images/games',
             'visibility' => 'public',
             'throw' => false,
         ],
