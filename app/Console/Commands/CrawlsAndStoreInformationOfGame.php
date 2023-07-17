@@ -118,7 +118,7 @@ class CrawlsAndStoreInformationOfGame extends Command
                 if (!empty($img->attr)) {
                     $link = $img->attr['data-lazy_src'];
                     $file_name = basename($link);
-                    $pathSave = asset('images/games');
+                    $pathSave = asset('images/games/thumb');
                     $file_name = str_replace("%2", "G", $file_name);
                     $path = $pathSave . '/' . $file_name;
                     $listLink[$key]['thumb'] = $path;
@@ -136,7 +136,7 @@ class CrawlsAndStoreInformationOfGame extends Command
                         if (!empty($value->attr)) {
                             $link = $value->attr['data-lazy_src'];
                             $file_name = basename($link);
-                            $this->saveImageThumb($link, $file_name);
+                            $this->saveImage($link, $file_name, 'thumb');
                         }
                     }
                 }
@@ -201,9 +201,14 @@ class CrawlsAndStoreInformationOfGame extends Command
                 if (isset($style->attr)) {
                     if (array_key_exists('type', $style->attr)) {
                         if ($style->attr['id'] == 'game_theme') {
-                            $result = $this->breakCSS($style->innertext);
-
-                            dd($result);
+                            $background = $this->breakCSS($style->innertext);
+                            $pathSave = asset('images/games/background');
+                            $file_name = str_replace("%2", "G", $background['image']);
+                            $path = $pathSave . '/' . $file_name;
+                            $data['background'] = $path;
+                            $fileNameToSave = basename($background['image']);
+                            $this->saveImage($background['image'], $fileNameToSave, 'background');
+                            break;
                         }
                     }
                 }
@@ -213,7 +218,12 @@ class CrawlsAndStoreInformationOfGame extends Command
                 if (isset($link->attr)) {
                     if (array_key_exists('type', $link->attr)) {
                         if ($link->attr['type'] == 'image/png') {
-                            $data['icon'] = $link->attr['href'];
+                            $pathSave = asset('images/games/icon');
+                            $file_name = str_replace("%2", "G", $link->attr['href']);
+                            $path = $pathSave . '/' . $file_name;
+                            $data['icon'] = $path;
+                            $fileNameToSave = basename($background['image']);
+                            $this->saveImage($link->attr['href'], $fileNameToSave, 'background');
                             break;
                         }
                     }
@@ -277,27 +287,58 @@ class CrawlsAndStoreInformationOfGame extends Command
         return $returnList;
     }
 
-    public function saveImageThumb($url, $fileName)
+    public function saveImage($url, $fileName, $type)
     {
         $content = file_get_contents($url);
+        $path = 'public-images-game-' . $type;
         $fileName = str_replace("%2", "G", $fileName);
-        if (!Storage::disk('public-images-game')->has($fileName)) {
-            Storage::disk('public-images-game')->put($fileName, $content);
+        if (!Storage::disk($path)->has($fileName)) {
+            Storage::disk($path)->put($fileName, $content);
         }
     }
 
     function breakCSS($css)
     {
-        $results = array();
+        $background = array();
         preg_match_all('/(.+?)\s?\{\s?(.+?)\s?\}/', $css, $matches);
         $arrClasses = $matches[1];
-        foreach ($matches[0] as $i => $original)
-            foreach (explode(';', $matches[2][$i]) as $attr)
-                if (strlen(trim($attr)) > 0) {
-                    list($name, $value) = explode(':', $attr);
-                    $results[$arrClasses[$i]][trim($name)] = trim($value);
+        foreach ($matches[0] as $i => $original) {
+            if ($arrClasses[$i] == '.wrapper') {
+                $explodeExp = explode(';', $matches[2][$i]);
+                foreach ($explodeExp as $attr) {
+                    if (strlen(trim($attr)) > 0) {
+                        $explodeAttr = explode(':', $attr);
+                        if (count($explodeAttr) == 2) {
+                            list($name, $value) = $explodeAttr;
+                            if (trim($name) == 'background-color') {
+                                $background['color'] = trim($value);
+                            }
+                            if (strpos(trim($name), 'background-image')) {
+                                $background['image'] = trim($value);
+                            }
+                        } elseif (count($explodeAttr) == 3) {
+                            list($name, $value, $important) = $explodeAttr;
+                            if (trim($name) == 'background-color') {
+                                $background['color'] = trim($value);
+                            }
+                            if (strpos(trim($name), 'background-image')) {
+                                $background['image'] = trim($important);
+                            }
+                        } else {
+                            continue;
+                        }
+                    }
                 }
 
-        return $results;
+                continue;
+            }
+        }
+
+        if (array_key_exists('image', $background)) {
+            $stringImage = $background['image'];
+            $background['image'] = trim(str_replace(")", "", $stringImage));
+        }
+
+        return $background;
     }
 }
