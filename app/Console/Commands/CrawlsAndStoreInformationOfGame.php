@@ -149,12 +149,12 @@ class CrawlsAndStoreInformationOfGame extends Command
             $page++;
         }
 
-        foreach ($listResultSrcFrame as $linkSrcFrame) {
-            $pathProcess = public_path() . '/process/list.txt';
-            $fp = fopen($pathProcess, 'a');
-            fwrite($fp, $linkSrcFrame . PHP_EOL);
-            fclose($fp);
-        }
+        // foreach ($listResultSrcFrame as $linkSrcFrame) {
+        //     $pathProcess = public_path() . '/process/list.txt';
+        //     $fp = fopen($pathProcess, 'a');
+        //     fwrite($fp, $linkSrcFrame . PHP_EOL);
+        //     fclose($fp);
+        // }
     }
 
     public function processGameWithListLinks($listLink)
@@ -189,10 +189,37 @@ class CrawlsAndStoreInformationOfGame extends Command
                 continue;
             }
 
-            $query = $this->gameRepository->getByColumn($data['name'], 'name');
-            if (!empty($query)) {
-                continue;
+            // $query = $this->gameRepository->getByColumn($data['name'], 'name');
+            // if (!empty($query)) {
+            //     continue;
+            // }
+
+            $linkStyle = $html->find('link');
+            $styleElement = $html->find('style');
+
+            foreach ($styleElement as $style) {
+                if (isset($style->attr)) {
+                    if (array_key_exists('type', $style->attr)) {
+                        if ($style->attr['id'] == 'game_theme') {
+                            $result = $this->breakCSS($style->innertext);
+
+                            dd($result);
+                        }
+                    }
+                }
             }
+
+            foreach ($linkStyle as $link) {
+                if (isset($link->attr)) {
+                    if (array_key_exists('type', $link->attr)) {
+                        if ($link->attr['type'] == 'image/png') {
+                            $data['icon'] = $link->attr['href'];
+                            break;
+                        }
+                    }
+                }
+            }
+
 
             $listTagGames = [];
             foreach ($getA as $a) {
@@ -257,5 +284,20 @@ class CrawlsAndStoreInformationOfGame extends Command
         if (!Storage::disk('public-images-game')->has($fileName)) {
             Storage::disk('public-images-game')->put($fileName, $content);
         }
+    }
+
+    function breakCSS($css)
+    {
+        $results = array();
+        preg_match_all('/(.+?)\s?\{\s?(.+?)\s?\}/', $css, $matches);
+        $arrClasses = $matches[1];
+        foreach ($matches[0] as $i => $original)
+            foreach (explode(';', $matches[2][$i]) as $attr)
+                if (strlen(trim($attr)) > 0) {
+                    list($name, $value) = explode(':', $attr);
+                    $results[$arrClasses[$i]][trim($name)] = trim($value);
+                }
+
+        return $results;
     }
 }

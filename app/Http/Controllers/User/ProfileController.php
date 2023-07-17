@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
     public function show()
     {
-        $dataUser = $this->userRepository->showUser(Auth::user()->id);
+        $this->userRepository->showUser(Auth::user()->id);
     }
 
     public function edit()
