@@ -69,8 +69,8 @@ class GameRepository extends BaseRepository
             $query = $query->where('category', $filter['category']);
         }
 
-        if (isset($filter['tags'])) {
-            $query = $query->where('tags', 'like', '%' . $filter['tags'] . '%');
+        if (isset($filter['tag'])) {
+            $query = $query->where('tag', 'like', '%' . $filter['tag'] . '%');
         }
 
         return $query->get();
@@ -94,5 +94,15 @@ class GameRepository extends BaseRepository
     public function countGameByTag($tag)
     {
         return $this->model->where('tag', 'like', '%' . $tag . '%')->count();
+    }
+
+    public function updateGameNameByThumbs($fileName, $url)
+    {
+        return $this->model->where('thumbs', 'like', '%' . $fileName . '%')->update(['thumbs' => $url]);
+    }
+
+    public function updateGameWithLinkS3($gameName, $data)
+    {
+        return $this->model->where('name', $gameName)->update($data);
     }
 }

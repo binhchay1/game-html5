@@ -24,7 +24,7 @@ class Game extends Model
 
     public function categories()
     {
-        return $this->belongsTo('App\Models\Category', 'category', 'id');
+        return $this->belongsTo('App\Models\Category', 'category', 'name');
     }
 
     public function votes()

@@ -10,7 +10,8 @@
         <thead>
         <tr class="design-text">
             <th style="width: 8%;" scope="col">ID</th>
-            <th style="width: 75%;"  scope="col">Name</th>
+            <th style="width: 30%;"  scope="col">Name</th>
+            <th style="width: 30%;"  scope="col">Title</th>
             <th style="width: 10%" scope="col">Action</th>
         </tr>
         </thead>
@@ -19,6 +20,7 @@
             <tr class="design-text">
                 <td>{{ $dataCategory->id }}</td>
                 <td>{{ $dataCategory->name }}</th>
+                <td>{{ $dataCategory->title }}</th>
                 <td class="text_flow text-center">
                     <a href="" class="btn btn-info">
                         <i class="fas fa-info-circle"></i>

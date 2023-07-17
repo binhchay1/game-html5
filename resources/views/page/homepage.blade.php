@@ -72,7 +72,7 @@
                     <ul>
                         @foreach($search as $keyword)
                         <li style="display: inline-block;">
-                            <a href="{{ route('search') }}?q={{ $keyword }}" rel="nofollow">{{ $keyword }}</a>
+                            <a href="{{ route('search') }}?q={{ $keyword['keyword'] }}" rel="nofollow">{{ $keyword['keyword'] }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -105,7 +105,7 @@
         </div>
         <div class="items-container" id="items_container">
             @foreach($games as $game)
-            <div id="item_159195" class="item thumb videobox grid-column" data-item-id="159195">
+            <div id="item_159195" class="item thumb videobox grid-column">
                 <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Gamekafe" href="{{ route('playGames', ['game' => $game['name']]) }}">
                     <div class="item__thumbarea">
                         <div class="item__microthumb"></div>

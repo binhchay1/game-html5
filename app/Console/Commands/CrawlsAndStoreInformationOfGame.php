@@ -10,6 +10,7 @@ use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Storage;
+use App\Services\Crawls;
 
 class CrawlsAndStoreInformationOfGame extends Command
 {
@@ -37,6 +38,7 @@ class CrawlsAndStoreInformationOfGame extends Command
         $this->gameRepository = $gameRepository;
         $this->categoryRepository = $categoryRepository;
         $this->ListLink = $ListLink;
+        parent::__construct();
     }
 
     public function handle()
@@ -71,6 +73,7 @@ class CrawlsAndStoreInformationOfGame extends Command
                 }
             }
 
+            dump('------------------ Start Page ' . $page . ' ------------------');
             $url = $this->linkGame::GAME_ITCHIO;
             $url = $url . "?page=" . $page . "&format=json";
             $html = $this->crawls->getDom($url, 'text');
@@ -140,6 +143,8 @@ class CrawlsAndStoreInformationOfGame extends Command
 
                 $count = $count + count($resultGetSrcFrame['listGameDone']);
             }
+            dump('------------------ Total Game : ' . $count . ' ------------------');
+            dump('------------------ End Page ' . $page . ' ------------------');
 
             $page++;
         }
@@ -150,13 +155,6 @@ class CrawlsAndStoreInformationOfGame extends Command
             fwrite($fp, $linkSrcFrame . PHP_EOL);
             fclose($fp);
         }
-
-        $response = [
-            'totalPage' => $page,
-            'totalGame' => $count
-        ];
-
-        return $response;
     }
 
     public function processGameWithListLinks($listLink)
@@ -166,7 +164,7 @@ class CrawlsAndStoreInformationOfGame extends Command
         }
 
         foreach ($listLink as $key => $link) {
-            if (!array_key_exists('link', $link)) {
+            if (!array_key_exists('link', $link) or !array_key_exists('thumb', $link)) {
                 continue;
             }
 
@@ -256,8 +254,8 @@ class CrawlsAndStoreInformationOfGame extends Command
     {
         $content = file_get_contents($url);
         $fileName = str_replace("%2", "G", $fileName);
-        if (!Storage::disk('public-images-game')->has($fileName)) {
-            Storage::disk('public-images-game')->put($fileName, $content);
+        if (!Storage::disk('s3')->has($fileName)) {
+            Storage::disk('s3')->put($fileName, $content);
         }
     }
 }

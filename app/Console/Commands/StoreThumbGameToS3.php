@@ -2,20 +2,23 @@
 
 namespace App\Console\Commands;
 
+use App\Repositories\GameRepository;
+use Illuminate\Console\Command;
 use Aws\CommandPool;
 use Aws\Exception\AwsException;
 use Aws\S3\S3Client;
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
-class StoreS3 extends Command
+class StoreThumbGameToS3 extends Command
 {
-    protected $s3Instance;
-    protected $signature = 'app:store-s3';
+    protected $signature = 'app:store-thumb-game-to-s3';
     protected $description = 'Store thumb of game to s3 storage';
+    private $gameRepository;
+    protected $s3Instance;
 
-    public function __construct()
+    public function __construct(GameRepository $gameRepository)
     {
+        $this->gameRepository = $gameRepository;
         $this->s3Instance = new S3Client([
             'version' => 'latest',
             'region'  => env('AWS_DEFAULT_REGION', 'us-west-2')
@@ -35,17 +38,25 @@ class StoreS3 extends Command
                 ->map(function ($value, $key) {
                     return $this->s3Instance->getCommand('PutObject', [
                         'Bucket' => env('AWS_BUCKET'),
-                        'Key' => $key,
+                        'Key' => 'images/thumb-games/' . $key,
                         'Body' => $value,
                     ]);
                 });
 
-            CommandPool::batch($this->s3Instance, $commands);
+            $result = CommandPool::batch($this->s3Instance, $commands);
+
+            foreach ($result as $record) {
+                $data = $record->toArray();
+                $url = $data['ObjectURL'];
+
+                $parse = parse_url($url);
+                $explode = explode('/', $parse['path']);
+                $fileName = end($explode);
+                $this->gameRepository->updateGameNameByThumbs($fileName, $url);
+            }
         } catch (AwsException $ex) {
             error_log($ex->getMessage());
         }
-
-        echo 'Total execution batch multi upload: ';
     }
 
     public function getLocalFiles()

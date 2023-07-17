@@ -264,15 +264,7 @@ html[dir="rtl"]
     color: #333;
     font-weight: bold;
 }
-.gray-select .select-options .gray-select__item.active::after {
-    background: url(/assets/svg/tick-black-ff75818df7f9eb5d3ac69d98f8e22501f84271eef8ecdbcf0e3d0fb285ca8099.svg)
-        center center no-repeat;
-    content: "";
-    height: 9px;
-    position: absolute;
-    right: 17px;
-    width: 11px;
-}
+
 html[dir="rtl"] .gray-select .select-options .gray-select__item.active::after {
     left: 17px;
     right: auto;
@@ -341,16 +333,7 @@ html[dir="rtl"] .gray-checkbox + label::before {
     background: #ddd;
     box-shadow: none;
 }
-.gray-checkbox:checked + label::after {
-    background: url(/assets/svg/tick-black-ff75818df7f9eb5d3ac69d98f8e22501f84271eef8ecdbcf0e3d0fb285ca8099.svg)
-        center center no-repeat;
-    content: "";
-    height: 9px;
-    left: 6px;
-    position: absolute;
-    top: 7px;
-    width: 11px;
-}
+
 html[dir="rtl"] .gray-checkbox:checked + label::after {
     left: auto;
     right: 6px;
@@ -557,7 +540,7 @@ body.searches .search-container .advanced-serach-options .icon.all-categories {
     background: url(/assets/svg/all-categories-c5b691554c1b438965cf9eeac636484f88a34057dc5a2962f2532a0a22609f4e.svg)
         center center no-repeat;
 }
-body.searches .search-container .advanced-serach-options .icon.fighting::after {
+body.searches .search-container .advanced-serach-options .icon.action::after {
     color: #cb7df6;
     content: "";
     font-family: "fontello";
@@ -567,8 +550,8 @@ body.searches .search-container .advanced-serach-options .icon.fighting::after {
 body.searches
     .search-container
     .advanced-serach-options
-    .icon.driving_racing::after {
-    color: #00c1d5;
+    .icon.other::after {
+    color: #0339fc;
     content: "";
     font-family: "fontello";
     font-size: 16px;
@@ -591,14 +574,14 @@ body.searches .search-container .advanced-serach-options .icon.strategy::after {
 body.searches
     .search-container
     .advanced-serach-options
-    .icon.management::after {
+    .icon.simulation::after {
     color: #8181ff;
     content: "";
     font-family: "fontello";
     font-size: 15px;
     font-weight: normal;
 }
-body.searches .search-container .advanced-serach-options .icon.thinking::after {
+body.searches .search-container .advanced-serach-options .icon.puzzle::after {
     color: #ffa300;
     content: "";
     font-family: "fontello";
@@ -608,8 +591,8 @@ body.searches .search-container .advanced-serach-options .icon.thinking::after {
 body.searches
     .search-container
     .advanced-serach-options
-    .icon.action_adventure::after {
-    color: #ff4a52;
+    .icon.adventure::after {
+    color: #85c716;
     content: "";
     font-family: "fontello";
     font-size: 9px;
@@ -622,15 +605,15 @@ body.searches .search-container .advanced-serach-options .icon.sports::after {
     font-size: 16px;
     font-weight: normal;
 }
-body.searches .search-container .advanced-serach-options .icon.shooting::after {
+body.searches .search-container .advanced-serach-options .icon.shooter::after {
     color: #d28558;
     content: "";
     font-family: "fontello";
     font-size: 16px;
     font-weight: normal;
 }
-body.searches .search-container .advanced-serach-options .icon.skill::after {
-    color: #06d6af;
+body.searches .search-container .advanced-serach-options .icon.platformer::after {
+    color: #00c1d5;
     content: "";
     font-family: "fontello";
     font-size: 16px;
@@ -639,15 +622,15 @@ body.searches .search-container .advanced-serach-options .icon.skill::after {
 body.searches
     .search-container
     .advanced-serach-options
-    .icon.arcade_classic::after {
-    color: #85c716;
+    .icon.rpg::after {
+    color: #06d6af;
     content: "";
     font-family: "fontello";
     font-size: 14px;
     font-weight: normal;
 }
-body.searches .search-container .advanced-serach-options .icon.fun::after {
-    color: #f88756;
+body.searches .search-container .advanced-serach-options .icon.visual::after {
+    color: #ff5b88;
     content: "";
     font-family: "fontello";
     font-size: 17px;
