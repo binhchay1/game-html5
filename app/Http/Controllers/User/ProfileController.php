@@ -94,7 +94,7 @@ class ProfileController extends Controller
         ]);
 
         #Match The Old Password
-        if(Hash::check($request->old_password, auth()->user()->password)){
+        if(!Hash::check($request->old_password, auth()->user()->password)){
             return back()->with("error", "Old Password Doesn't match!");
         }
 

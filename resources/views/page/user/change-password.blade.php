@@ -8,7 +8,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="manifest" href="{{ asset('json/manifest.json') }}" crossorigin="use-credentials">
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite('resources/sass/user.css')
     <style type="text/css">
         .disable-link {
             cursor: not-allowed;
@@ -27,21 +27,23 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container1">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Change Password') }}</div>
+                    <div class="card-header">
+                        <h3>{{ __('Thay đổi mật khẩu') }}</h3>
+                    </div>
 
                     <form action="{{ route('update-password') }}" method="POST">
                         @csrf
                         <div class="card-body">
                             @if (session('status'))
-                                <div class="alert alert-success" role="alert">
+                                <div class="alert text-alert-success" role="alert">
                                     {{ session('status') }}
                                 </div>
                             @elseif (session('error'))
-                                <div class="alert alert-danger" role="alert">
+                                <div class="alert text-alert-danger" role="alert">
                                     {{ session('error') }}
                                 </div>
                             @endif
@@ -68,7 +70,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-success">Submit</button>
+                            <button class="btn btn-success">{{ __('Lưu') }}</button>
                         </div>
                     </form>
                 </div>
