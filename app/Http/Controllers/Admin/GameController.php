@@ -21,4 +21,9 @@ class GameController extends Controller
 
         return view('admin.game.list-game', ['dataGame' => $dataGame]);
     }
+
+    public function voteByUser(Request $request)
+    {
+        dd($request);
+    }
 }
