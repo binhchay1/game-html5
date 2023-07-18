@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-Route::get('/get-link', [GameController::class, 'getLinksGame']);
 Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie-policy');
 Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
 Route::get('/tags/{tag}', [HomeController::class, 'viewTags'])->name('tags');
@@ -30,12 +29,8 @@ Route::get('/category', [HomeController::class, 'viewListCategory'])->name('list
 Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-games');
 Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
 Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
+Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('playGames');
 
-Route::group(['prefix' => 'games'], function () {
-    Route::get('/{game}', [GameController::class, 'viewGame'])->name('playGames');
-});
-
-Route::get('/admin', [AdminController::class, 'index']);
 Auth::routes();
 
 Route::middleware(['check.auth', 'admin'])->group(
@@ -44,16 +39,16 @@ Route::middleware(['check.auth', 'admin'])->group(
         Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
         Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
-     }
+    }
 );
 
-//user
 Route::middleware('check.auth')->group(
     function () {
-Route::get('/user-info/{id}', [ProfileController::class, 'show'])->name('user.show');
-Route::get('/user-profile/{id}', [ProfileController::class, 'edit'])->name('user.edit');
-Route::post('/user-profile/{id}', [ProfileController::class, 'update'])->name('user.update');
-Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
-Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+        Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
+        Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
+        Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
+        Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
+        Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+        Route::get('/user-logout', [ProfileController::class, 'logout'])->name('user.logout');
     }
 );

@@ -24,6 +24,13 @@ if ($handle) {
                 @$doc->loadHTML($html);
                 $nodes = $doc->getElementsByTagName('title');
                 $gameName = str_replace(' ', '-', strtolower($nodes->item(0)->nodeValue));
+                if (strpos($gameName, "|")) {
+                    $explode = explode("|", $gameName);
+                    $gameName = $explode[1];
+                    if (strpos($gameName, "-") == 0) {
+                        $gameName = substr($gameName, 1);
+                    }
+                }
                 echo "-----------lay ten game - " . $gameName . "---------------- \n";
                 mkdirWithPath($gameName);
 
@@ -49,7 +56,7 @@ if ($handle) {
             $numberCount++;
         } catch (Throwable $t) {
             $processFile = fopen("error.txt", "a");
-            fwrite($processFile, $gameName . ' - ' . $line . ' - ' . $t . PHP_EOL);
+            fwrite($processFile, $gameName . ' - ' . $line . ' - ' . $t . PHP_EOL . PHP_EOL);
             fclose($processFile);
             continue;
         }
@@ -65,10 +72,10 @@ function curl($url, $path, $type = null)
     curl_setopt($ch, CURLOPT_TIMEOUT, 600);
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
     if ($type == 'file') {
         curl_setopt($ch, CURLOPT_FILE, $fp);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
         curl_exec($ch);
         curl_close($ch);
@@ -137,7 +144,7 @@ function file_get_contents_curl($url)
 function mkdirWithPath($path)
 {
     if (!file_exists($path)) {
-        mkdir($path, 0744, true);
+        mkdir($path, 0777, true);
     }
 }
 

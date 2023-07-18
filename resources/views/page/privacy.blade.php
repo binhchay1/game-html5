@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - Privacy</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Chính sách') }}</title>
 @endsection
 
 @section('content')
@@ -11,13 +11,12 @@
     </div>
     <p>
         <small>
-            Effective on 25th May 2018
+            {{ __('Có hiệu lực từ ngày 25 tháng 7 năm 2023') }}
         </small>
     </p>
 
     <p>
-        This Privacy Policy (the “Policy”), together with Our Terms of Service (“Terms”), discloses the privacy practices of Web Entertainment Limited (“WEL”) regarding any Personal Data You provide or make available to Us or We receive from You or otherwise known to Us.
-    </p>
+        {{ __(Chính sách quyền riêng tư này (“Chính sách”), cùng với Điều khoản dịch vụ của chúng tôi (“Điều khoản”), tiết lộ các thông lệ về quyền riêng tư của Web Entertainment Limited (“WEL”) liên quan đến bất kỳ Dữ liệu cá nhân nào mà Bạn cung cấp hoặc cung cấp cho Chúng tôi hoặc Chúng tôi nhận được từ Bạn hoặc được biết đến với chúng tôi.') }}
     <p>
         Please read this Policy carefully. By accessing or using Our Websites, You acknowledge that You have read, understand and agree to be bound by the terms of this Policy. If You do not agree with this Policy, please do not use Our Websites. We reserve the right to change this Policy from time to time and it is Your responsibility to review this Policy on a regular basis. By accessing or using Our Websites, you have construction notice of this Policy, which is made available on all of Our Websites.
     </p>
@@ -355,7 +354,7 @@
         IX. Contacting Us
     </h3>
     <p>
-        If You have any questions, queries, comments, or requests, We are happy to receive and answer them. Please feel free to contact Us by sending an email at <a href="mailto:privacy@Gamekafe.com">privacy@Gamekafe.com</a>.
+        If You have any questions, queries, comments, or requests, We are happy to receive and answer them. Please feel free to contact Us by sending an email at <a href="mailto:privacy@gamekafe.com">privacy@gamekafe.com</a>.
     </p>
 </div>
 @endsection

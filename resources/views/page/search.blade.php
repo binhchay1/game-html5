@@ -34,7 +34,7 @@
                                 <div class="select-options__wrapper scroll">
                                     <div class="gray-select__item active" id="category-all-categories" onclick="pickSelect(this.id)">
                                         <span class="icon all-categories"></span>
-                                        <div class="select-item-title">Tất cả các thể loại</div>
+                                        <div class="select-item-title">{{ __('Tất cả các thể loại') }}</div>
                                     </div>
                                     @foreach($listCategory as $category)
                                     <div class="gray-select__item" id="category-{{ $category['name'] }}" onclick="pickSelect(this.id)">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="column">
                         <div class="gray-select tag-select" id="tag-search">
-                            <div class="select-header" id="tag-search-header" onclick="dropDown('tag-search')">Tất cả các nhãn</div>
+                            <div class="select-header" id="tag-search-header" onclick="dropDown('tag-search')">{{ __('Tất cả các nhãn') }}</div>
                             <div class="select-options">
                                 <div class="select-search">
                                     <input type="text" placeholder="Search" class="select-search-input" onkeyup="searchTags(this.value)" />
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="select-options__wrapper scroll" onclick="dropDown('tag-search')" id="selection-option-wrapper">
                                     <div class="gray-select__item active" id="tag-all-tags" onclick="pickSelect(this.id)">
-                                        <div class="select-item-title">Tất cả các nhãn</div>
+                                        <div class="select-item-title">{{ __('Tất cả các nhãn') }}</div>
                                     </div>
                                     @foreach($listTag as $tag)
                                     <div class="gray-select__item" id="tag-{{ $tag }}" onclick="pickSelect(this.id)">
@@ -75,7 +75,7 @@
             <div class="items-container" id="search_items_container">
                 @foreach($games as $game)
                 <div id="item_104800" class="item thumb videobox grid-column">
-                    <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Y8.com" href="{{ route('playGames', ['game' => $game['name']]) }}">
+                    <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Y8.com" href="{{ route('playGames', ['game' => ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                         <div class="item__thumbarea">
                             <div class="item__microthumb"></div>
                             <div class="item__img-container">
@@ -102,7 +102,7 @@
                                 @endif
                             </p>
                             <p class="item__plays-count">
-                                {{ $game['count_play'] }} chơi
+                                {{ $game['count_play'] }} {{ __('chơi') }}
                             </p>
                         </div>
                     </a>
@@ -154,7 +154,7 @@
             let tagHeader = document.getElementById('tag-search-header');
             if (content == 'all-tags') {
                 value = '';
-                content = 'Tất cả các nhãn';
+                content = "{{ __('Tất cả các nhãn') }}";
             }
             tagInput.value = value;
             tagHeader.innerHTML = content;
@@ -168,7 +168,7 @@
             let categoryHeader = document.getElementById('category-search-header');
             let textContent = content.charAt(0).toUpperCase() + content.slice(1);
             if (content == 'all-categories') {
-                textContent = 'Tất cả các thể loại';
+                textContent = "{{ __('Tất cả các nhãn') }}";
                 value = '';
             }
 

@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - Newest Game</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Game mới nhất') }}</title>
 @endsection
 
 @section('content')
@@ -10,14 +10,14 @@
         <div class="col-md-12">
             <h1 class="header-6">TẤT CẢ CÁC THỂ LOẠI GAME MIỄN PHÍ.<br> CHỌN BẤT KỲ MỘT TỪ KHÓA NÀO VÀ CHƠI NGAY!</h1>
             <h2 class="text-regular">Bạn đang tìm kiếm một thể loại trò chơi nhất định? Kiểm tra danh sách mở rộng các loại trò chơi tại Y8 Games. Chúng tôi đã gắn nhãn các trò chơi bằng cách sử dụng các tag và danh mục trong hơn một thập kỷ qua. Trang này liệt kê hàng trăm tag khác nhau đại diện cho toàn bộ các bộ sưu tập trò chơi có thể chơi trên trình duyệt.</h2>
-            <h3 class="header-7">Tất cả 393 thẻ gắn để tìm game miễn phí về giấc mơ của bạn</h3>
+            <h3 class="header-7">Tất cả {{ $count }} thẻ gắn để tìm game miễn phí về giấc mơ của bạn</h3>
         </div>
     </div>
 
     <div class="items-container" id="items_container">
         @foreach($games as $game)
         <div id="item_159195" class="item thumb videobox grid-column" data-item-id="159195">
-            <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Gamekafe" href="{{ route('playGames', ['game' => $game['name']]) }}">
+            <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Gamekafe" href="{{ route('playGames', ['game' => ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                 <div class="item__thumbarea">
                     <div class="item__microthumb"></div>
                     <div class="item__img-container">

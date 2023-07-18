@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - Category</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Thể loại') }}</title>
 @endsection
 
 @section('css')
@@ -24,7 +24,7 @@
             </div>
             <div class="text-col">
                 <h1 class="title header-5">
-                    Game trực tuyến miễn phí hàng đầu gắn thẻ {{ ucfirst($category['name']) }}
+                    {{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ ucfirst($category['name']) }}
                 </h1>
                 <h2 class="description text-regular">
                     {{ $category['title'] }}
@@ -36,18 +36,18 @@
                 <div class="row">
                     <div class="collapse-tags-container col-md-12">
                         <h3 class="title">
-                            Các thẻ liên quan tới chiến thuật &amp; nhập vai
+                            {{ __('Các thẻ liên quan tới') }} chiến thuật &amp; nhập vai
                         </h3>
                         <div class="tags-container">
                             @foreach($listTag as $tag)
-                            <a class="tag cat-strategy" title="" href="/tags/role_playing">
+                            <a class="tag cat-strategy" title="{{ __('Tham gia chiến game cùng với ') }} {{ $tag }}" href="{{ route('tags', ['tag' => $tag]) }}">
                                 <h4><span>{{ $tag }}</span></h4>
                             </a>
                             @endforeach
                         </div>
                         <p class="view-all-link">
                             <span>
-                                Hiển thị tất cả
+                                {{ __('Hiển thị tất cả') }}
                             </span>
                         </p>
                     </div>
@@ -61,7 +61,7 @@
             <div class="col-md-12">
                 <div class="sub-title">
                     <div class="left">
-                        <a class="active" title="Game trực tuyến miễn phí hàng đầu gắn thẻ Chiến lược &amp; RPG ♘ - {{ env('APP_URL', 'Gamekafe.com') }}" href="/categories/strategy">
+                        <a class="active" title="{{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ $category }} - {{ env('APP_URL', 'Gamekafe.com') }}" href="/categories/strategy">
                             <h3>
                                 Tất cả
                                 {{ ucfirst($category['name']) }}
@@ -70,11 +70,11 @@
                         </a>
                     </div>
                     <div class="sort-by">
-                        <span>Sắp xếp theo:</span>
+                        <span>{{ __('Sắp xếp theo:') }}</span>
                         <select name="sort" id="sort" class="form-control">
-                            <option value="popularity">Độ phổ biến</option>
-                            <option value="rating">Đánh giá</option>
-                            <option value="date">Ngày</option>
+                            <option value="popularity">{{ __('Độ phổ biến') }}</option>
+                            <option value="rating">{{ __('Đánh giá') }}</option>
+                            <option value="date">{{ __('Ngày') }}</option>
                         </select>
                     </div>
                 </div>
@@ -83,9 +83,8 @@
 
         <div class="items-container">
             @foreach($games as $game)
-            <div id="item_5515" class="item thumb videobox grid-column" data-item-id="5515" data-label-ids="Fighting,1 Player,Action,Series,Dinosaur,Strategy,Defend,GameDistribution.com,HTML5,Touchscreen,Android game,iPad,iPhone,Mobile" data-poster-url="https://img.{{ env('APP_URL', 'Gamekafe.com') }}/assets/video_loader_180x135-63697df7850db644b0fe994bd8a23977d297e8e22941cb82c831a334ec57745a.gif" data-technologies="[&quot;html5&quot;,&quot;flash&quot;]" data-mp4-movie="https://img.{{ env('APP_URL', 'Gamekafe.com') }}/cloud/y8-rollover/videos/1891/886b918d03ee393e14795e99c6d6c09bf71f7b23.mp4?1459138753" data-ogv-movie="https://img.{{ env('APP_URL', 'Gamekafe.com') }}/cloud/y8-rollover/videos/1891/954a86fed305ed9349c404fd06e71680d11157f9.ogv?1459138753" data-vp8-movie="https://img.{{ env('APP_URL', 'Gamekafe.com') }}/cloud/y8-rollover/videos/1891/2583e41d3a894b9e70e97be322cbcf6db8d0bf06.webm?1459138753" data-thumb-movie="[&quot;https://img.{{ env('APP_URL', 'Gamekafe.com') }}/cloud/y8-rollover/videos/1891/2dec5e74754053fb765439f6662dcb28ffd5997d.gif?1459138753&quot;,&quot;https://img.{{ env('APP_URL', 'Gamekafe.com') }}/cloud/y8-rollover/videos/1891/3ce60e143b78551d38c571d54d93efe9680a1359.gif?1459138753&quot;,&quot;https://img.{{ env('APP_URL', 'Gamekafe.com') }}/cloud/y8-rollover/videos/1891/065e7629af9d600c193f7f78420b1169f49144e4.gif?1459138753&quot;,&quot;https://img.{{ env('APP_URL', 'Gamekafe.com') }}/cloud/y8-rollover/videos/1891/92d1a421c9ba1873d8a3c93f50ac6f3fcb50507e.gif?1459138753&quot;]">
-                <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('playGames', ['game' => $game['name']]) }}">
-                    <input type="hidden" name="for-girls-5515" id="for-girls-5515" value="false">
+            <div id="item_5515" class="item thumb videobox grid-column">
+                <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('playGames', ['game' => ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                     <div class="item__thumbarea">
                         <div class="item__microthumb"></div>
                         <div class="item__img-container">

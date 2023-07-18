@@ -23,15 +23,19 @@ final class Ultity
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
-    public function storeImage($image, $path)
+    public function saveImage($fileName, $content, $prefix_path = null)
     {
-        $image_name = $image->getClientOriginalName();
-        $image_add = time() . '_' . $image_name;
-        $image->move(public_path($path), $image_add);
+        if ($prefix_path != null) {
+            $fileName =  $fileName . '/' . $prefix_path;
+        }
 
-        $pathFull = "$path/$image_add";
+        if (!Storage::disk('s3')->has($fileName)) {
+            Storage::disk('s3')->put($fileName, $content);
+        }
 
-        return $pathFull;
+        $url = Storage::disk('s3')->url($fileName);
+
+        return $url;
     }
 
     public function downloadFile($url, $filename)
@@ -40,5 +44,20 @@ final class Ultity
         $url = Storage::path($filename);
 
         return response()->download($url);
+    }
+
+    public function renameAndCalculateVote($games)
+    {
+        foreach ($games as $game) {
+            $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
+
+            if (($game->votes['like'] + $game->votes['un_like']) == 0) {
+                $game['rating'] = 100;
+            } else {
+                $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
+            }
+        }
+
+        return $games;
     }
 }
