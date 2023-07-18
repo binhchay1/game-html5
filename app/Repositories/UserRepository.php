@@ -61,5 +61,4 @@ class UserRepository extends BaseRepository
     {
         return $this->model->where('id', $userId)->first();
     }
-
 }
