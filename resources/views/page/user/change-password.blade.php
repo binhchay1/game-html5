@@ -34,17 +34,12 @@
                     <div class="card-header">
                         <h3>{{ __('Thay đổi mật khẩu') }}</h3>
                     </div>
-
                     <form action="{{ route('update-password') }}" method="POST">
                         @csrf
                         <div class="card-body">
                             @if (session('status'))
-                                <div class="alert text-alert-success" role="alert">
+                                <div class="alert text-alert-success" style="color: green; font-size: 20px;" role="alert">
                                     {{ session('status') }}
-                                </div>
-                            @elseif (session('error'))
-                                <div class="alert text-alert-danger" role="alert">
-                                    {{ session('error') }}
                                 </div>
                             @endif
                             <div class="mb-3">
@@ -54,6 +49,11 @@
                                 @error('old_password')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
+                                @if(session('error'))
+                                    <div class="alert text-alert-danger" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                             </div>
                             <div class="mb-3">
                                 <label for="newPasswordInput" class="form-label">New Password</label>

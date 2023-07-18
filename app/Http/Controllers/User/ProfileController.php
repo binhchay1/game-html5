@@ -52,7 +52,7 @@ class ProfileController extends Controller
             'new_password' => 'required|confirmed',
         ]);
 
-        if (Hash::check($request->old_password, auth()->user()->password)) {
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
             return back()->with("error", "Old Password Doesn't match!");
         }
 
@@ -61,5 +61,14 @@ class ProfileController extends Controller
         ]);
 
         return back()->with("status", "Password changed successfully!");
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }
