@@ -63,7 +63,7 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <div style="">
+                    <div>
                         <label for="img">Image</label>
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                         <div class=" choose-avatar">
