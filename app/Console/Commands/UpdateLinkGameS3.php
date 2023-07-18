@@ -46,7 +46,7 @@ class UpdateLinkGameS3 extends Command
                     $explode = explode('/', $object['Key']);
                     $gameName = $explode[1];
                     $dataUpdate = [
-                        'link' => $object['Key']
+                        'link' => env('AWS_URL_MAIN') . $object['Key']
                     ];
                     $this->gameRepository->updateGameWithLinkS3($gameName, $dataUpdate);
                 }

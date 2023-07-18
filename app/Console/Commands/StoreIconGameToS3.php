@@ -9,10 +9,10 @@ use Aws\Exception\AwsException;
 use Aws\S3\S3Client;
 use Illuminate\Support\Facades\Storage;
 
-class StoreThumbGameToS3 extends Command
+class StoreIconGameToS3 extends Command
 {
-    protected $signature = 'app:store-thumb-game-to-s3';
-    protected $description = 'Store thumb of game to s3 storage';
+    protected $signature = 'app:store-icon-game-to-s3';
+    protected $description = 'Store icon of game to s3 storage';
     private $gameRepository;
     protected $s3Instance;
 
@@ -38,7 +38,7 @@ class StoreThumbGameToS3 extends Command
                 ->map(function ($value, $key) {
                     return $this->s3Instance->getCommand('PutObject', [
                         'Bucket' => env('AWS_BUCKET'),
-                        'Key' => 'images/games/thumb' . $key,
+                        'Key' => 'images/games/icon' . $key,
                         'Body' => $value,
                     ]);
                 });
@@ -61,9 +61,9 @@ class StoreThumbGameToS3 extends Command
 
     public function getLocalFiles()
     {
-        $data = collect(Storage::disk('public-images-game-thumb')->allFiles())
+        $data = collect(Storage::disk('public-images-game-icon')->allFiles())
             ->mapWithKeys(function ($fileName) {
-                return [$fileName => Storage::disk('public-images-game-thumb')->get($fileName)];
+                return [$fileName => Storage::disk('public-images-game-icon')->get($fileName)];
             });
 
         return $data;

@@ -149,10 +149,10 @@ class CrawlsAndStoreInformationOfGame extends Command
             $page++;
         }
 
-        foreach ($listResultSrcFrame as $linkSrcFrame) {
+        foreach ($listResultSrcFrame as $nameOfGame => $linkSrcFrame) {
             $pathProcess = public_path() . '/process/list.txt';
             $fp = fopen($pathProcess, 'a');
-            fwrite($fp, $linkSrcFrame . PHP_EOL);
+            fwrite($fp, $linkSrcFrame . ' - ' . $nameOfGame . PHP_EOL);
             fclose($fp);
         }
     }
@@ -178,7 +178,6 @@ class CrawlsAndStoreInformationOfGame extends Command
 
             $data = [
                 'name' => $gameName,
-                'link' => $link['link'],
                 'thumbs' => $link['thumb'],
             ];
 
@@ -188,6 +187,13 @@ class CrawlsAndStoreInformationOfGame extends Command
             if (empty($getFrame)) {
                 continue;
             }
+
+            $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);
+            $parseFrame = $this->crawls->getDom($srcFrame, 'file');
+            $getChild = $parseFrame->childNodes();
+            $src = $getChild[0]->attr['src'];
+
+            $data['link'] = $src;
 
             $query = $this->gameRepository->getByColumn($data['name'], 'name');
             if (!empty($query)) {
@@ -212,7 +218,7 @@ class CrawlsAndStoreInformationOfGame extends Command
                                 $this->saveImage($background['image'], $fileNameToSave, 'background');
                             }
                             $data['color'] = $background['color'];
-
+                            $data['text-color'] = $background['text-color'];
                             break;
                         }
                     }
@@ -271,12 +277,7 @@ class CrawlsAndStoreInformationOfGame extends Command
             }
 
             $listGameDone[] = $key;
-
-            $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);
-            $parseFrame = $this->crawls->getDom($srcFrame, 'file');
-            $getChild = $parseFrame->childNodes();
-            $src = $getChild[0]->attr['src'];
-            $listSrcFrame[] = $src;
+            $listSrcFrame[$key] = $src;
 
             $returnList = [
                 'listGameDone' => $listGameDone,
@@ -342,10 +343,21 @@ class CrawlsAndStoreInformationOfGame extends Command
                 foreach ($explodeExp as $attr) {
                     if (strlen(trim($attr)) > 0) {
                         $explodeAttr = explode(':', $attr);
-                        list($name, $value, $important) = $explodeAttr;
+                        if (count($explodeAttr) == 2) {
+                            if ($explodeAttr[0] == 'color') {
+                                list($name, $value) = $explodeAttr;
+                                $background['text-color'] = trim($value);
+                            }
+                        } elseif (count($explodeAttr) == 3) {
+                            if ($explodeAttr[0] == 'color') {
+                                list($name, $value, $important) = $explodeAttr;
+                                $background['text-color'] = trim($important);
+                            }
+                        } else {
+                            continue;
+                        }
                     }
                 }
-                $background['text-color'] = $important;
             }
         }
 

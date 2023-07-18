@@ -103,7 +103,7 @@ class GameRepository extends BaseRepository
 
     public function updateGameWithLinkS3($gameName, $data)
     {
-        return $this->model->where('name', $gameName)->update($data);
+        return $this->model->where('name', 'like', '%' . $gameName . '%')->update($data);
     }
 
     public function getGameByName($gameName)
