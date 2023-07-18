@@ -22,4 +22,11 @@ class UserController extends Controller
 
         return view('admin.user.list-user', ['dataUser' => $dataUser]);
     }
+
+    public function showUser($userId)
+    {
+        $dataUser = $this->userRepository->userInfo($userId);
+
+        return view('admin.user.show-user', ['dataUser' => $dataUser]);
+    }
 }

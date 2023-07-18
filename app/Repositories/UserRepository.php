@@ -56,4 +56,10 @@ class UserRepository extends BaseRepository
             return false;
         }
     }
+
+    public function userInfo($userId)
+    {
+        return $this->model->where('id', $userId)->first();
+    }
+
 }
