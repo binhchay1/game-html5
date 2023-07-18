@@ -14,9 +14,15 @@
     <thead>
         <tr class="design-text">
             <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th style="width: 10%" scope="col">Action</th>
+            <th scope="col">{{ __('Name') }}</th>
+            <th scope="col">{{ __('Mail') }}</th>
+            <th scope="col">{{ __('Hình ảnh') }}</th>
+            <th scope="col">{{ __('Số điện thoại') }}</th>
+            <th scope="col">{{ __('Địa chỉ') }}</th>
+            <th scope="col">{{ __('Tuổi') }}</th>
+            <th scope="col">{{ __('Giới tính') }}</th>
+
+            <th style="width: 10%" scope="col">{{ __('Hành động') }}</th>
         </tr>
     </thead>
     <tbody>
@@ -25,8 +31,13 @@
             <td>{{ $dataUser->id }}</td>
             <td>{{ $dataUser->name }}</th>
             <td>{{ $dataUser->email }}</td>
+            <td>{{ $dataUser->iamge }}</td>
+            <td>{{ $dataUser->phone }}</td>
+            <td>{{ $dataUser->address }}</td>
+            <td>{{ $dataUser->age }}</td>
+            <td>{{ $dataUser->sex }}</td>
             <td class="text_flow text-center">
-                <a href="" class="btn btn-info">
+                <a href="{{route('user.showUser', $dataUser['id'])}}" class="btn btn-info">
                     <i class="fas fa-info-circle"></i>
                 </a>
                 <a href="">
