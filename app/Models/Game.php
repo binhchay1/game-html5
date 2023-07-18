@@ -19,7 +19,9 @@ class Game extends Model
         'status',
         'tag',
         'icon',
-        'background'
+        'background',
+        'color',
+        'text-color'
     ];
 
     public $timestamps = true;

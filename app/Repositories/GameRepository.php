@@ -105,4 +105,9 @@ class GameRepository extends BaseRepository
     {
         return $this->model->where('name', $gameName)->update($data);
     }
+
+    public function getGameByName($gameName)
+    {
+        return $this->model->where('name', $gameName)->first();
+    }
 }

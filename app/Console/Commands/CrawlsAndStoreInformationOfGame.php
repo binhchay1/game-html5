@@ -149,12 +149,12 @@ class CrawlsAndStoreInformationOfGame extends Command
             $page++;
         }
 
-        // foreach ($listResultSrcFrame as $linkSrcFrame) {
-        //     $pathProcess = public_path() . '/process/list.txt';
-        //     $fp = fopen($pathProcess, 'a');
-        //     fwrite($fp, $linkSrcFrame . PHP_EOL);
-        //     fclose($fp);
-        // }
+        foreach ($listResultSrcFrame as $linkSrcFrame) {
+            $pathProcess = public_path() . '/process/list.txt';
+            $fp = fopen($pathProcess, 'a');
+            fwrite($fp, $linkSrcFrame . PHP_EOL);
+            fclose($fp);
+        }
     }
 
     public function processGameWithListLinks($listLink)
@@ -189,10 +189,10 @@ class CrawlsAndStoreInformationOfGame extends Command
                 continue;
             }
 
-            // $query = $this->gameRepository->getByColumn($data['name'], 'name');
-            // if (!empty($query)) {
-            //     continue;
-            // }
+            $query = $this->gameRepository->getByColumn($data['name'], 'name');
+            if (!empty($query)) {
+                continue;
+            }
 
             $linkStyle = $html->find('link');
             $styleElement = $html->find('style');
@@ -202,12 +202,17 @@ class CrawlsAndStoreInformationOfGame extends Command
                     if (array_key_exists('type', $style->attr)) {
                         if ($style->attr['id'] == 'game_theme') {
                             $background = $this->breakCSS($style->innertext);
-                            $pathSave = asset('images/games/background');
-                            $file_name = str_replace("%2", "G", $background['image']);
-                            $path = $pathSave . '/' . $file_name;
-                            $data['background'] = $path;
-                            $fileNameToSave = basename($background['image']);
-                            $this->saveImage($background['image'], $fileNameToSave, 'background');
+                            if (array_key_exists('image', $background)) {
+                                $pathSave = asset('images/games/background');
+                                $fileNameToSave = basename($background['image']);
+                                $file_name = str_replace("%2", "G", $fileNameToSave);
+                                $path = $pathSave . '/' . $file_name;
+                                $data['background'] = $path;
+                                $background['image'] = 'https:' . $background['image'];
+                                $this->saveImage($background['image'], $fileNameToSave, 'background');
+                            }
+                            $data['color'] = $background['color'];
+
                             break;
                         }
                     }
@@ -217,19 +222,18 @@ class CrawlsAndStoreInformationOfGame extends Command
             foreach ($linkStyle as $link) {
                 if (isset($link->attr)) {
                     if (array_key_exists('type', $link->attr)) {
-                        if ($link->attr['type'] == 'image/png') {
+                        if ($link->attr['type'] == 'image/png' or $link->attr['type'] == 'image/gif') {
                             $pathSave = asset('images/games/icon');
-                            $file_name = str_replace("%2", "G", $link->attr['href']);
+                            $fileNameToSave = basename($link->attr['href']);
+                            $file_name = str_replace("%2", "G", $fileNameToSave);
                             $path = $pathSave . '/' . $file_name;
                             $data['icon'] = $path;
-                            $fileNameToSave = basename($background['image']);
-                            $this->saveImage($link->attr['href'], $fileNameToSave, 'background');
+                            $this->saveImage($link->attr['href'], $fileNameToSave, 'icon');
                             break;
                         }
                     }
                 }
             }
-
 
             $listTagGames = [];
             foreach ($getA as $a) {
@@ -331,6 +335,17 @@ class CrawlsAndStoreInformationOfGame extends Command
                 }
 
                 continue;
+            }
+
+            if ($arrClasses[$i] == '.inner_column h1,.inner_column h2,.inner_column h3,.inner_column h4,.inner_column h5,.inner_column h6') {
+                $explodeExp = explode(';', $matches[2][$i]);
+                foreach ($explodeExp as $attr) {
+                    if (strlen(trim($attr)) > 0) {
+                        $explodeAttr = explode(':', $attr);
+                        list($name, $value, $important) = $explodeAttr;
+                    }
+                }
+                $background['text-color'] = $important;
             }
         }
 
