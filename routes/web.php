@@ -49,5 +49,6 @@ Route::middleware('check.auth')->group(
         Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
         Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
         Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+        Route::get('/user-logout', [ProfileController::class, 'logout'])->name('user.logout');
     }
 );

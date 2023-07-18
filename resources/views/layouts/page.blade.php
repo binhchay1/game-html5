@@ -100,7 +100,7 @@
                     <div class="dropdown-content" style="background-color: #8BC34A;">
                         <a href="#">Setting</a>
                         <a href="{{route('user.edit')}}">Profile</a>
-                        <a href="#">Logout</a>
+                        <a href="{{route('user.logout')}}">Logout</a>
                     </div>
                     </a>
                 </div>

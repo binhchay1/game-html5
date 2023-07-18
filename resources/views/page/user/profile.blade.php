@@ -30,7 +30,10 @@
 
 @section('content')
     <div class="container1">
-        <form method="POST" action="{{route('user.update',  Auth::user()->id)}}" enctype="multipart/form-data">
+        <div class="card-header">
+            <h3>{{ __('Hồ sơ của tôi') }}</h3>
+        </div>
+        <form method="POST" action="{{route('user.update')}}" enctype="multipart/form-data">
             @csrf
             @if (session('success'))
                 <div class="alert alert-success" style="color: green; font-size: 20px;" role="alert">
@@ -43,16 +46,16 @@
                         <label for="name">Name</label>
                         <input type ="text" value="{{Auth::user()->name}}" name= "name" class="form-control @error('name') is-invalid  @enderror" placeholder="name">
                         @error('name')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" style="color: red" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="name">Email</label>
-                        <input type ="text" value="{{Auth::user()->email}}" name= "email" class="form-control @error('email') is-invalid  @enderror" placeholder="name">
+                        <input type ="text" value="{{Auth::user()->email}}" name= "email" class="form-control @error('email') is-invalid  @enderror" placeholder="name" disabled>
                         @error('email')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" style="color: red" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
@@ -65,7 +68,7 @@
                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                             <div class=" choose-avatar" >
                                 <div id="btnimage">
-                                    <img id="showImage" style="width: 45px" class="show-avatar" src ="{{asset('/images/user.jpg')}}" alt="avatar">
+                                    <img id="showImage" style="width: 110px" class="show-avatar" src ="{{Auth::user()->image ?? asset('/images/user.jpg')}}" alt="avatar">
                                 </div>
                                 <div id="button" >
                                     <i id="btn_chooseImg" class="fa fa-camera"></i>
