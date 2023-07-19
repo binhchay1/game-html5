@@ -226,7 +226,7 @@ class HomeController extends Controller
     public function viewGame($game)
     {
         $getGame = $this->gameRepository->getGameByName($game, 'name');
-        $getGame['name'] = ucwords(str_replace('-', ' ', $getGame['name']));
+        $getGame['title-game'] = ucwords(str_replace('-', ' ', $getGame['name']));
 
         return view('page.games', compact('getGame'));
     }

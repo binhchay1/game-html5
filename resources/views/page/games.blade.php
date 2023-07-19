@@ -5,7 +5,7 @@
     <meta content="#000000" name="theme-color">
     <link type="image/png" href="{{ $getGame['icon'] }}" rel="icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>{{ $getGame['name'] }}</title>
+    <title>{{ $getGame['title-game'] }}</title>
     <?php
     if (!empty($getGame['background'])) {
         echo
@@ -24,8 +24,8 @@
     }
 
     echo ".wrapper {
-        width: 700px;
-        height: 500px;
+        width: 1000px;
+        height: 700px;
         position: relative;
         margin: -30px auto 0 auto;
         top: 15%;
@@ -54,30 +54,48 @@
 
 <body>
     <div class="wrapper">
-        <iframe src="{{ $getGame['link'] }}" width="100%" height="100%" frameBorder="0"></iframe>
+        <iframe src="{{ $getGame['link'] }}" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
     </div>
 
     @if(Auth::check())
     <div class="vote">
-        <a onclick="voteHandle('like')" style="margin-right: 20px;"><i class="fa fa-thumbs-up"></i></a>
-        <a onclick="voteHandle('unlike')"><i class="fa fa-thumbs-down"></i></a>
+        <a id="vote-like" style="margin-right: 20px;"><i class="fa fa-thumbs-up"></i></a>
+        <a id="vote-unlike"><i class="fa fa-thumbs-down"></i></a>
         <h1>Vote if you like it!</h1>
     </div>
     @endif
 
     <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
     <script>
-        function voteHandle($id) {
+        const gameName = '<?php echo $getGame['name']; ?>';
+
+        $('#vote-like').on('click', function() {
             $.ajax({
                 url: '/vote-by-user',
                 type: 'GET',
                 data: {
-                    vote: $id
+                    vote: 'like',
+                    gameName: gameName
                 }
             }).done(function(result) {
-
+                $('#vote-unlike').css('opacity', '0.3');
+                $('#vote-like').css('opacity', '1');
             });
-        }
+        });
+
+        $('#vote-unlike').on('click', function() {
+            $.ajax({
+                url: '/vote-by-user',
+                type: 'GET',
+                data: {
+                    vote: 'unlike',
+                    gameName: gameName
+                }
+            }).done(function(result) {
+                $('#vote-like').css('opacity', '0.3');
+                $('#vote-unlike').css('opacity', '1');
+            });
+        });
     </script>
 </body>
 

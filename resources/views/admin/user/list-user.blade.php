@@ -35,12 +35,12 @@
             <td>{{ $dataUser->phone }}</td>
             <td>{{ $dataUser->address }}</td>
             <td>{{ $dataUser->age }}</td>
-            <td>{{ $dataUser->sex }}</td>
+            <td>{{ $dataUser->sex == 1 ? "Nữ" : "Nam" }}</td>
             <td class="text_flow text-center">
                 <a href="{{route('user.showUser', $dataUser['id'])}}" class="btn btn-info">
                     <i class="fas fa-info-circle"></i>
                 </a>
-                <a href="">
+                <a href=" {{route('user.editUser', $dataUser['id'])}}">
                     <button type="button" class="btn btn-success">
                         <i class="fas fa-edit"></i>
                     </button>
