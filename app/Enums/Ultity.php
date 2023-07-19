@@ -26,7 +26,7 @@ final class Ultity
     public function saveImage($fileName, $content, $prefix_path = null)
     {
         if ($prefix_path != null) {
-            $fileName =  $fileName . '/' . $prefix_path;
+            $fileName =  $prefix_path . '/' . $fileName;
         }
 
         if (!Storage::disk('s3')->has($fileName)) {

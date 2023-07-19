@@ -8,9 +8,9 @@
 <div class="box items-grid no-background">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="header-6">TẤT CẢ CÁC THỂ LOẠI GAME MIỄN PHÍ.<br> CHỌN BẤT KỲ MỘT TỪ KHÓA NÀO VÀ CHƠI NGAY!</h1>
-            <h2 class="text-regular">Bạn đang tìm kiếm một thể loại trò chơi nhất định? Kiểm tra danh sách mở rộng các loại trò chơi tại Y8 Games. Chúng tôi đã gắn nhãn các trò chơi bằng cách sử dụng các tag và danh mục trong hơn một thập kỷ qua. Trang này liệt kê hàng trăm tag khác nhau đại diện cho toàn bộ các bộ sưu tập trò chơi có thể chơi trên trình duyệt.</h2>
-            <h3 class="header-7">Tất cả {{ $count }} thẻ gắn để tìm game miễn phí về giấc mơ của bạn</h3>
+            <h1 class="header-6">{{ __('TẤT CẢ CÁC THỂ LOẠI GAME MIỄN PHÍ.') }}<br> {{ __('CHỌN BẤT KỲ MỘT TỪ KHÓA NÀO VÀ CHƠI NGAY!') }}</h1>
+            <h2 class="text-regular">{{ __('Bạn đang tìm kiếm một thể loại trò chơi nhất định? Kiểm tra danh sách mở rộng các loại trò chơi tại Y8 Games. Chúng tôi đã gắn nhãn các trò chơi bằng cách sử dụng các tag và danh mục trong hơn một thập kỷ qua. Trang này liệt kê hàng trăm tag khác nhau đại diện cho toàn bộ các bộ sưu tập trò chơi có thể chơi trên trình duyệt.')}}</h2>
+            <h3 class="header-7">{{ __('Tất cả') }} {{ $count }} {{ __('thẻ gắn để tìm game miễn phí về giấc mơ của bạn') }}</h3>
         </div>
     </div>
 

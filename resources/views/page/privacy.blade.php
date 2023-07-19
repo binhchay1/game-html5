@@ -81,100 +81,100 @@
         (a) {{ __('Thông tin chúng tôi nhận được về bạn') }}
     </h4>
     <p>
-        The information that We receive includes sets of information: Your information and the information we receive about You.
+        {{ __('Thông tin mà Chúng tôi nhận được bao gồm các bộ thông tin: Thông tin của Bạn và thông tin chúng tôi nhận được về Bạn.') }}
     </p>
     <p>
-        Your information is the information entered when You fill out forms on Our Websites, when You register, i.e. Your Gamekafe Account. It includes Your name, email address, birthday and gender.
+        {{ __('Thông tin của Bạn là thông tin được nhập khi Bạn điền vào biểu mẫu trên Trang web của chúng tôi, khi Bạn đăng ký, tức là Tài khoản') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('của Bạn. Nó bao gồm tên, địa chỉ email, ngày sinh và giới tính của bạn.') }}
     </p>
     <p>
-        The information We receive about You concerns
+        {{ __('Thông tin Chúng tôi nhận được về mối quan tâm của Bạn') }}
     </p>
 
     <h5>
-        i. non-personal information:
+        i. {{ __('thông tin phi cá nhân:') }}
     </h5>
     <ul>
         <li>
-            Data in relation to the use of the Websites, such as the date and time You visit the Websites, the web address or the URL You are on;
+            {{ __('Dữ liệu liên quan đến việc sử dụng Trang web, chẳng hạn như ngày và giờ Bạn truy cập Trang web, địa chỉ trang web hoặc URL Bạn đang truy cập')}}
         </li>
         <li>
-            Data in relation to the Websites services and activities, such as the game You play, the score You make in supported game, achievements You unlocked in supported games and Your game progress in supported games.;
+            {{ __('Dữ liệu liên quan đến các dịch vụ và hoạt động của Trang web, chẳng hạn như trò chơi Bạn chơi, điểm số Bạn đạt được trong trò chơi được hỗ trợ, thành tích Bạn đã đạt được trong các trò chơi được hỗ trợ và tiến độ trò chơi của Bạn trong các trò chơi được hỗ trợ.') }}
         </li>
     </ul>
 
     <h5>
-        ii. technical information, including:
+        ii. {{ __('thông tin kỹ thuật, bao gồm:') }}
     </h5>
     <ul>
         <li>
-            the IP address,
+            {{ __('địa chỉ IP') }}
         </li>
         <li>
-            the browser You use,
+            {{ __('trình duyệt bạn sử dụng') }}
         </li>
         <li>
-            the operating system You use;
+            {{ __('hệ điều hành bạn sử dụng') }}
         </li>
         <li>
-            if You are logged in to Gamekafe Account, Your User ID.
+            {{ __('if You are logged in to') }} {{ ('env('APP_NAME', 'Gamekafe')') }} {{ __('Account, Your User ID.') }}
         </li>
     </ul>
 
     <h4>
-        (b) How We use the information We receive
+        {{ __('(b) Cách chúng tôi sử dụng thông tin chúng tôi nhận được') }}
     </h4>
     <p>
-        Any information we receive regarding You is to enable Us to offer better services to You. We may use non-personal and technical information, to improve the design and content of Our Website, to personalize Our visitors’ experience or to offer products, programs and services.
+        {{ __('Bất kỳ thông tin nào chúng tôi nhận được liên quan đến Bạn là để cho phép Chúng tôi cung cấp các dịch vụ tốt hơn cho Bạn. Chúng tôi có thể sử dụng thông tin phi cá nhân và thông tin kỹ thuật để cải thiện thiết kế và nội dung của Trang web của chúng tôi, để cá nhân hóa trải nghiệm của khách truy cập hoặc để cung cấp sản phẩm, chương trình và dịch vụ.')}}
     </p>
     <p>
-        We may also use information to ensure that Our Users are in compliance with our Terms. We do not retain any Personal Information beyond the time it is needed.
+        {{ __('Chúng tôi cũng có thể sử dụng thông tin để đảm bảo rằng Người dùng của chúng tôi tuân thủ Điều khoản của chúng tôi. Chúng tôi không giữ lại bất kỳ Thông tin cá nhân nào ngoài thời gian cần thiết.')}}
     </p>
 
     <h4>
-        (c) Information we share
+        {{ __('(c) Thông tin chúng tôi chia sẻ') }}
     </h4>
     <p>
-        We do not share Your Gamekafe Account information with companies, organizations and individuals outside of the Company unless one of the following circumstances apply:
+        {{ __('Chúng tôi không chia sẻ thông tin Tài khoản Gamekafe của Bạn với các công ty, tổ chức và cá nhân bên ngoài Công ty trừ khi xảy ra một trong các trường hợp sau:')}}
     </p>
 
     <h5>
-        With Your consent
+        {{ __('Với sự đồng ý của bạn') }}
     </h5>
     <p>
-        We will share Your Gamekafe Account information with companies, organizations and individuals outside of the Company when We have your consent to do so. We also share Your Information to third party games that use Gamekafe Account login system. We require opt-in consent for the sharing of any Personal Information.
+        {{ __('Chúng tôi sẽ chia sẻ thông tin Tài khoản Gamekafe của Bạn với các công ty, tổ chức và cá nhân bên ngoài Công ty khi Chúng tôi được bạn đồng ý làm như vậy. Chúng tôi cũng chia sẻ Thông tin của bạn cho các trò chơi của bên thứ ba sử dụng hệ thống đăng nhập Tài khoản') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('Chúng tôi yêu cầu sự đồng ý chọn tham gia để chia sẻ bất kỳ Thông tin cá nhân nào.') }}
     </p>
 
     <h5>
-        For external processing
+        {{ __('Đối với xử lý bên ngoài') }}
     </h5>
     <p>
-        We provide Personal Information to Our affiliates or other trusted businesses or persons to process it for Us or the hosting company which host all Data, based on Our instructions and in compliance with Our Privacy Policy and any other relevant rules and regulations with confidentiality and security measures.
+        {{ __('Chúng tôi cung cấp Thông tin cá nhân cho các chi nhánh của Chúng tôi hoặc các doanh nghiệp hoặc người đáng tin cậy khác để xử lý thông tin đó cho Chúng tôi hoặc công ty lưu trữ lưu trữ tất cả Dữ liệu, dựa trên hướng dẫn của Chúng tôi và tuân thủ Chính sách quyền riêng tư của Chúng tôi cũng như bất kỳ quy tắc và quy định có liên quan nào khác với các biện pháp bảo mật và an ninh .')}}
     </p>
 
     <h5>
-        For legal reason
+        {{ __('Vì lý do pháp lý') }}
     </h5>
     <p>
-        We share Personal Information with companies, organizations or individuals, outside the Company, if We have a reasonable belief that access, use, preservation or disclosure of the information is reasonably necessary to:
+        {{ __('Chúng tôi chia sẻ Thông tin cá nhân với các công ty, tổ chức hoặc cá nhân, bên ngoài Công ty, nếu Chúng tôi có niềm tin hợp lý rằng việc truy cập, sử dụng, bảo toàn hoặc tiết lộ thông tin là cần thiết một cách hợp lý để:')}}
     </p>
     <ul>
         <li>
-            meet any applicable law, regulation, legal process or enforceable governmental request (including legal requests from jurisdictions outside of Hong Kong)
+            {{ __('đáp ứng mọi luật, quy định, quy trình pháp lý hiện hành hoặc yêu cầu có thể thi hành của chính phủ (bao gồm các yêu cầu pháp lý từ các khu vực tài phán bên ngoài Hồng Kông)') }}
         </li>
         <li>
-            enforce applicable Terms of Service, including investigation of potential violations detect, prevent, or otherwise address fraud, security or technical issues; or
+            {{ __('thực thi các Điều khoản dịch vụ hiện hành, bao gồm cả việc điều tra các vi phạm tiềm ẩn, phát hiện, ngăn chặn hoặc giải quyết các vấn đề gian lận, bảo mật hoặc kỹ thuật; hoặc')}}
         </li>
         <li>
-            protect against harm to the rights, property or safety of the Website, Our Users or the public as required or permitted by law.
+            {{ __('bảo vệ chống lại tác hại đối với các quyền, tài sản hoặc sự an toàn của Trang web, Người dùng của chúng tôi hoặc công chúng theo yêu cầu hoặc được pháp luật cho phép.')}}
         </li>
     </ul>
     <p></p>
     <p>
-        If the Company is involved in a merger, acquisition or asset sale or disposal, We will continue to use Our best endeavors to ensure the confidentiality of all Personal Information We collected and give affected Users notice before the Personal Information is transferred or becomes subject to a different privacy policy.
+        {{ __('Nếu Công ty tham gia vào việc sáp nhập, mua lại hoặc bán hoặc định đoạt tài sản, Chúng tôi sẽ tiếp tục nỗ lực hết mình để đảm bảo tính bảo mật của tất cả Thông tin cá nhân mà Chúng tôi đã thu thập và thông báo cho Người dùng bị ảnh hưởng trước khi Thông tin cá nhân được chuyển giao hoặc trở thành đối tượng của một chính sách bảo mật khác nhau.')}}
     </p>
 
     <h4>
-        (d) Where Your information is located
+        {{ __('(d) Nơi đặt thông tin của Bạn') }}
     </h4>
     <p>
         We are incorporated and headquartered in Hong Kong. However, Our login system is hosted by servers in the Netherlands. Personal information may be accessed by Us or transferred to Us in the Netherlands or to Our affiliates, business partners or service providers located elsewhere in the world. By providing Us with information We receive about You, You consent to such transfer. We will use our best endeavors to protect the privacy and security of this information according to Our Privacy Policy, regardless of where it is processed or stored.

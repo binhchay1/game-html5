@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>env('APP_NAME', 'Gamekafe') - {{ __('Hồ sơ của tôi') }}</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Hồ sơ của tôi') }}</title>
 @endsection
 
 @section('css')
@@ -70,7 +70,7 @@
                             <div id="btnimage">
                                 <img id="showImage" style="width: 110px" class="show-avatar" src="{{Auth::user()->image ?? asset('/images/user.jpg')}}" alt="avatar">
                             </div>
-                            <div id="button">
+                            <div id="button" style="margin-top: 10px;">
                                 <i id="btn_chooseImg" class="fa fa-camera"></i>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
         </div>
         <div>
             <a href="{{route('change-password')}}">
-                <h3> Thay đổi mật khẩu</h3>
+                <h3> {{ __('Thay đổi mật khẩu') }}</h3>
             </a>
         </div>
     </form>

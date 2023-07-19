@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Enums\Ultity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
@@ -13,10 +14,13 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     protected $userRepository;
+    protected $ultity;
     public function __construct(
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        Ultity $ultity
     ) {
         $this->userRepository = $userRepository;
+        $this->ultity = $ultity;
     }
 
     public function show()
@@ -35,6 +39,12 @@ class ProfileController extends Controller
     public function update(UserRequest $request)
     {
         $input = $request->except(['_token']);
+
+        if (array_key_exists('image', $input)) {
+            $url = $this->ultity->saveImage($input['image']->getClientOriginalName(), file_get_contents($input['image']));
+            $input['image'] = $url;
+        }
+
         $this->userRepository->update($input, Auth::user()->id);
 
         return back()->with('success', 'Updated successfully.');

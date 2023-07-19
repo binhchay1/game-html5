@@ -22,8 +22,8 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=> 'required|max:255',
-            'email' =>'required|email',
+            'name' => 'required|max:255',
+            'image' => 'mimes:jpeg,png,jpg,gif|image|size:5024',
         ];
     }
 
@@ -32,8 +32,6 @@ class UserRequest extends FormRequest
         return [
             'name.required' => __('validation.required'),
             'name.max' => __('validation.max'),
-            'email.required' => __('validation.required'),
-            'email.email' => __('validation.email'),
         ];
     }
 }
