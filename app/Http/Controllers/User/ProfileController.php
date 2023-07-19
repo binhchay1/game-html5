@@ -47,6 +47,10 @@ class ProfileController extends Controller
             $input['image'] = $url;
         }
 
+        $getOldImage = $this->userRepository->getById(Auth::user()->id);
+        if (Storage::disk('s3')->exists($getOldImage->image)) {
+            Storage::disk('s3')->delete($getOldImage->image);
+        }
         $this->userRepository->update($input, Auth::user()->id);
 
         return back()->with('success', 'Updated successfully.');
