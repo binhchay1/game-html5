@@ -15,7 +15,7 @@ use App\Services\Crawls;
 class CrawlsAndStoreInformationOfGame extends Command
 {
     protected $signature = 'app:crawls-and-store-information-of-game';
-    protected $description = 'Command description';
+    protected $description = 'Get information of game with link itch.io';
     private $linkGame;
     private $attribute;
     private $crawls;
@@ -294,7 +294,11 @@ class CrawlsAndStoreInformationOfGame extends Command
 
     public function saveImage($url, $fileName, $type)
     {
-        $content = file_get_contents($url);
+        $context = stream_context_create(array(
+            'http' => array('ignore_errors' => true),
+        ));
+
+        $content = file_get_contents($url, false, $context);
         $path = 'public-images-game-' . $type;
         $fileName = str_replace("%2", "G", $fileName);
         if (!Storage::disk($path)->has($fileName)) {
