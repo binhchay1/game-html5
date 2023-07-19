@@ -41,12 +41,16 @@ class ProfileController extends Controller
         $input = $request->except(['_token']);
 
         if (array_key_exists('image', $input)) {
-            $idFolder = Hash::make(Auth::user()->name . Auth::user()->id);
+            $idFolder = Hash::make('acwbe' . Auth::user()->id);
             $path = 'images/user/' . $idFolder . '/' . $input['image']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['image']));
             $input['image'] = $url;
         }
 
+        $getOldImage = $this->userRepository->getById(Auth::user()->id);
+        if (Storage::disk('s3')->exists($getOldImage->image)) {
+            Storage::disk('s3')->delete($getOldImage->image);
+        }
         $this->userRepository->update($input, Auth::user()->id);
 
         return back()->with('success', 'Updated successfully.');

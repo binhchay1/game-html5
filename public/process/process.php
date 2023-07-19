@@ -10,20 +10,16 @@ $numberCount = 1;
 if ($handle) {
     while (($line = fgets($handle)) !== false) {
         try {
+            $explodeLine = explode(" - ", $line);
+            $gameName = trim($explodeLine[1]);
             $processFile = fopen("process.txt", "w");
-            fwrite($processFile, trim($line));
+            fwrite($processFile, trim($explodeLine[0]));
             fclose($processFile);
 
             $listResult = json_decode(exec('python process.py'), true);
 
             foreach ($listResult[0] as $item) {
                 echo "-----------bat dau game so " . $numberCount . "---------------- \n";
-                $urlIndexHtml = end($item);
-                $html = file_get_contents_curl(trim($urlIndexHtml[0]));
-                $doc = new DOMDocument();
-                @$doc->loadHTML($html);
-                $nodes = $doc->getElementsByTagName('title');
-                $gameName = str_replace(' ', '-', strtolower($nodes->item(0)->nodeValue));
                 if (strpos($gameName, "|")) {
                     $explode = explode("|", $gameName);
                     $gameName = $explode[1];
@@ -50,7 +46,8 @@ if ($handle) {
                     }
                 }
 
-                getIndexHtml($urlIndexHtml[0], $gameName);
+                $urlIndexHtml = end($item);
+                getIndexHtml(str_replace(' ', '%20', trim($urlIndexHtml[0])), $gameName);
                 echo "-----------done game " . $gameName . " - game so " . $numberCount . "---------------- \n";
             };
             $numberCount++;
@@ -82,6 +79,7 @@ function curl($url, $path, $type = null)
 
         echo "-----------tao file - " . $path . "---------------- \n";
 
+        fclose($fp);
         return;
     }
 
@@ -130,6 +128,7 @@ function file_get_contents_curl($url)
 {
     $ch = curl_init();
 
+    curl_setopt($ch, CURLOPT_TIMEOUT, 600);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_URL, $url);
