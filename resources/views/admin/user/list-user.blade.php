@@ -10,7 +10,7 @@
         <button type="button" id="btn-add" class="btn btn-success">Add</button>
     </a>
 </div>
-<table class="table table-bordered" id="customers">
+<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="customers">
     <thead>
         <tr class="design-text">
             <th scope="col">ID</th>
@@ -59,6 +59,7 @@
         $('#customers').DataTable({
             pagingType: 'full_numbers',
         });
+        $('.dataTables_length').addClass('bs-select');
     })
 </script>
 @endsection

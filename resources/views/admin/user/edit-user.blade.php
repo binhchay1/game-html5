@@ -14,7 +14,7 @@
             @csrf
             <div class="col-md-6">
                 <label for="inputAddress" class="form-label">{{__('Tên')}}</label>
-                <input name="name" value="{{$dataUser->name}}"  type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
+                <input name="name" value="{{old('name', $dataUser->name)}}"  type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
                 @error('name')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
@@ -26,6 +26,11 @@
                     <div>
                         <label for="img">Image</label>
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
+                        @error('image')
+                        <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                         <div class=" choose-avatar">
                             <div id="btnimage">
                                 <img id="showImage" style="width: 150px" class="show-avatar" src="{{ $dataUser->image ?? asset('/images/user.jpg')}}" alt="avatar">
@@ -39,7 +44,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputAddress" class="form-label">{{__('Email')}}</label>
-                <input name="email" value="{{$dataUser->email}}" type="email"   class="form-control @error('email') is-invalid @enderror" placeholder="">
+                <input name="email" value="{{old('email', $dataUser->email)}}"  type="email"   class="form-control @error('email') is-invalid @enderror" placeholder="">
                 @error('email')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
@@ -48,7 +53,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputAddress" class="form-label">{{__('Số điện thoại')}}</label>
-                <input name="phone" value="{{$dataUser->phone}}" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
+                <input name="phone" value="{{old('phone', $dataUser->phone)}}"  type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
                 @error('phone')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
@@ -58,7 +63,7 @@
 
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">{{__('Địa chỉ')}}</label>
-                <input name="address" type="text" value="{{$dataUser->address}}" class="form-control @error('address') is-invalid @enderror" id="inputCity">
+                <input name="address" type="text" value="{{old('address', $dataUser->address)}}"  class="form-control @error('address') is-invalid @enderror" id="inputCity">
                 @error('address')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
@@ -67,7 +72,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">{{__('Tuổi')}}</label>
-                <input name="age" type="text" value="{{$dataUser->address}}"  class="form-control @error('age') is-invalid @enderror" id="inputCity">
+                <input name="age" type="text" value="{{old('age', $dataUser->age)}}"   class="form-control @error('age') is-invalid @enderror" id="inputCity">
                 @error('age')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
