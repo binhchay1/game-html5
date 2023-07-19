@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -28,5 +29,20 @@ class UserController extends Controller
         $dataUser = $this->userRepository->userInfo($userId);
 
         return view('admin.user.show-user', ['dataUser' => $dataUser]);
+    }
+
+    public function create()
+    {
+        $gender = config('user.sex');
+        return view ('admin.user.create-user', ['gender' => $gender]);
+    }
+
+    public function store(StoreUserRequest $request)
+    {
+        $dataCreate = $request->all();
+        $dataCreate['role'] = \App\Enums\Role::USER;
+        $dataUser = $this->userRepository->store($dataCreate);
+
+        return redirect('list-user');
     }
 }
