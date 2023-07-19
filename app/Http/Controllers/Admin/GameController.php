@@ -55,6 +55,8 @@ class GameController extends Controller
                 $dataVote = [
                     'un_like' => ($getVote['un_like'] + 1),
                 ];
+
+                $dataVoteByUser['status'] = 0;
             }
 
             $this->voteRepository->updateByGame($gameName, $dataVote);
@@ -66,6 +68,8 @@ class GameController extends Controller
                     'like' => ($getVote['like'] + 1),
                     'un_like' => ($getVote['un_like'] - 1)
                 ];
+
+                $dataVoteByUser['status'] = 1;
             }
 
             if ($vote == 'unlike') {
@@ -73,6 +77,8 @@ class GameController extends Controller
                     'like' => ($getVote['like'] - 1),
                     'un_like' => ($getVote['un_like'] + 1)
                 ];
+
+                $dataVoteByUser['status'] = 0;
             }
 
             $this->voteByUserRepository->updateByUser(Auth::user()->id, $getGame->id, $dataVoteByUser);

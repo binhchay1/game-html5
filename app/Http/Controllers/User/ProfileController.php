@@ -41,7 +41,9 @@ class ProfileController extends Controller
         $input = $request->except(['_token']);
 
         if (array_key_exists('image', $input)) {
-            $url = $this->ultity->saveImage($input['image']->getClientOriginalName(), file_get_contents($input['image']));
+            $idFolder = Hash::make(Auth::user()->name . Auth::user()->id);
+            $path = 'images/user/' . $idFolder . '/' . $input['image']->getClientOriginalName();
+            $url = $this->ultity->saveImage($$path, file_get_contents($input['image']));
             $input['image'] = $url;
         }
 

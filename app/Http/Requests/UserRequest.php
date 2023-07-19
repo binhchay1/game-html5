@@ -23,7 +23,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'image' => 'mimes:jpeg,png,jpg,gif|image|size:5024',
+            'image' => 'mimes:jpeg,png,jpg,gif|image',
         ];
     }
 

@@ -33,7 +33,7 @@
     <div class="card-header">
         <h3>{{ __('Hồ sơ của tôi') }}</h3>
     </div>
-    <form method="POST" action="{{route('user.update')}}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data">
         @csrf
         @if (session('success'))
         <div class="alert alert-success" style="color: green; font-size: 20px;" role="alert">

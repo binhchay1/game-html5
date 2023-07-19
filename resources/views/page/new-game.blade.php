@@ -17,11 +17,11 @@
     <div class="items-container" id="items_container">
         @foreach($games as $game)
         <div id="item_159195" class="item thumb videobox grid-column" data-item-id="159195">
-            <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Gamekafe" href="{{ route('playGames', ['game' => ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
+            <a title="Trò chơi {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('playGames', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                 <div class="item__thumbarea">
                     <div class="item__microthumb"></div>
                     <div class="item__img-container">
-                        <img class="thumb lazy playable" alt="{{ $game['name'] }} - {{ ucfirst($game['category']) }} - Gamekafe" src="{{ $game['thumbs'] }}" />
+                        <img class="thumb lazy playable" alt="{{ $game['name'] }} - {{ ucfirst($game['category']) }} - {{ env('APP_NAME', 'Gamekafe') }}" src="{{ $game['thumbs'] }}" />
                     </div>
                 </div>
                 <div class="item__infos">
