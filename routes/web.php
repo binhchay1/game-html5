@@ -36,8 +36,13 @@ Auth::routes();
 Route::middleware(['check.auth', 'admin'])->group(
     function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+        //User
         Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
         Route::get('/user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
+        Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
+        Route::post('/store-user', [UserController::class, 'store'])->name('user.store');
+
         Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
     }
