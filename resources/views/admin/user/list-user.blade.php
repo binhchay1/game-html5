@@ -10,7 +10,7 @@
         <button type="button" id="btn-add" class="btn btn-success">Add</button>
     </a>
 </div>
-<table class="table table-bordered" id="customers">
+<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="customers">
     <thead>
         <tr class="design-text">
             <th scope="col">ID</th>
@@ -35,12 +35,12 @@
             <td>{{ $dataUser->phone }}</td>
             <td>{{ $dataUser->address }}</td>
             <td>{{ $dataUser->age }}</td>
-            <td>{{ $dataUser->sex }}</td>
+            <td>{{ $dataUser->sex == 1 ? "Nữ" : "Nam" }}</td>
             <td class="text_flow text-center">
                 <a href="{{route('user.showUser', $dataUser['id'])}}" class="btn btn-info">
                     <i class="fas fa-info-circle"></i>
                 </a>
-                <a href="">
+                <a href=" {{route('user.editUser', $dataUser['id'])}}">
                     <button type="button" class="btn btn-success">
                         <i class="fas fa-edit"></i>
                     </button>
@@ -59,6 +59,7 @@
         $('#customers').DataTable({
             pagingType: 'full_numbers',
         });
+        $('.dataTables_length').addClass('bs-select');
     })
 </script>
 @endsection

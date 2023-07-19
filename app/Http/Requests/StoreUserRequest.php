@@ -27,6 +27,7 @@ class StoreUserRequest extends FormRequest
             'address' => 'required',
             'age' => 'required',
             'phone' => 'bail|required|digits_between:10,11',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 
@@ -44,6 +45,11 @@ class StoreUserRequest extends FormRequest
             'phone.required' => __('validation.required'),
             'phone.bail' => __('validation.bail'),
             'phone.digits_between' => __('validation.digits_between'),
+            'image.digits_between' => __('validation.digits_between'),
+            'image.required' => __('validation.required'),
+            'image.image' => __('validation.image'),
+            'image.mimes' => __('validation.mimes'),
+            'image.max' => __('validation.max'),
         ];
     }
 }
