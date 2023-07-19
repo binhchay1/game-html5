@@ -6,7 +6,7 @@
 
 @section('main_content')
 <div class="row justify-content-start m-1 mb-2 mt-2">
-    <a href="">
+    <a  href="{{route('user.create')}}" >
         <button type="button" id="btn-add" class="btn btn-success">Add</button>
     </a>
 </div>

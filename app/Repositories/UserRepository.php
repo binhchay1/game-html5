@@ -30,4 +30,9 @@ class UserRepository extends BaseRepository
     {
         return $this->model->where('id', $userId)->first();
     }
+
+    public function store($dataCreate)
+    {
+        return $this->model->create($dataCreate);
+    }
 }
