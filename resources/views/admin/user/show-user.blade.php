@@ -10,7 +10,7 @@
     </div>
     <div class=" container row g-3">
         <div class="col-md-6">
-            <label for="inputAddress" class="form-label">{{__('Name')}}</label>
+            <label for="inputAddress" class="form-label">{{__('Tên')}}</label>
             <input value="{{$dataUser->name}}" type="email" class="form-control" placeholder="1234 Main St">
         </div>
         <div class="col-md-6">
@@ -24,7 +24,7 @@
         <div class="col-md-3">
             <div class="form-group" >
                 <div style="">
-                    <label for="img">Image</label>
+                    <label for="img">{{__('Hình ảnh')}}</label>
                     <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                     <div class=" choose-avatar" >
                         <div id="btnimage">

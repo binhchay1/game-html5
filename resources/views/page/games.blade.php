@@ -65,9 +65,18 @@
     </div>
     @endif
 
+    <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
     <script>
         function voteHandle($id) {
+            $.ajax({
+                url: '/vote-by-user',
+                type: 'GET',
+                data: {
+                    vote: $id
+                }
+            }).done(function(result) {
 
+            });
         }
     </script>
 </body>

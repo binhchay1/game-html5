@@ -40,10 +40,11 @@ Route::middleware(['check.auth', 'admin'])->group(
         //User
         Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
         Route::get('/user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
+        Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
+        Route::post('/store-user', [UserController::class, 'store'])->name('user.store');
+
         Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
-
-
     }
 );
 
@@ -55,5 +56,6 @@ Route::middleware('check.auth')->group(
         Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
         Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
         Route::get('/user-logout', [ProfileController::class, 'logout'])->name('user.logout');
+        Route::get('/vote-by-user', [GameController::class, 'voteByUser'])->name('vote-by-user');
     }
 );

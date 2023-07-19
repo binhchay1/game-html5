@@ -16,69 +16,69 @@
     </p>
 
     <p>
-        {{ __(Chính sách quyền riêng tư này (“Chính sách”), cùng với Điều khoản dịch vụ của chúng tôi (“Điều khoản”), tiết lộ các thông lệ về quyền riêng tư của Web Entertainment Limited (“WEL”) liên quan đến bất kỳ Dữ liệu cá nhân nào mà Bạn cung cấp hoặc cung cấp cho Chúng tôi hoặc Chúng tôi nhận được từ Bạn hoặc được biết đến với chúng tôi.') }}
+        {{ __('Chính sách quyền riêng tư này (“Chính sách”), cùng với Điều khoản dịch vụ của chúng tôi (“Điều khoản”), tiết lộ các thông lệ về quyền riêng tư của Web Entertainment Limited (“WEL”) liên quan đến bất kỳ Dữ liệu cá nhân nào mà Bạn cung cấp hoặc cung cấp cho Chúng tôi hoặc Chúng tôi nhận được từ Bạn hoặc được biết đến với chúng tôi.') }}
     <p>
-        Please read this Policy carefully. By accessing or using Our Websites, You acknowledge that You have read, understand and agree to be bound by the terms of this Policy. If You do not agree with this Policy, please do not use Our Websites. We reserve the right to change this Policy from time to time and it is Your responsibility to review this Policy on a regular basis. By accessing or using Our Websites, you have construction notice of this Policy, which is made available on all of Our Websites.
+        {{ __('Xin vui lòng đọc chính sách này một cách cẩn thận. Bằng cách truy cập hoặc sử dụng Trang web của chúng tôi, Bạn thừa nhận rằng Bạn đã đọc, hiểu và đồng ý bị ràng buộc bởi các điều khoản của Chính sách này. Nếu Bạn không đồng ý với Chính sách này, vui lòng không sử dụng Trang web của chúng tôi. Chúng tôi bảo lưu quyền thay đổi Chính sách này theo thời gian và Bạn có trách nhiệm xem xét Chính sách này một cách thường xuyên. Bằng cách truy cập hoặc sử dụng Trang web của chúng tôi, bạn có thông báo xây dựng về Chính sách này, được cung cấp trên tất cả các Trang web của chúng tôi.') }}
     </p>
     <p>
-        This Policy is governed by and construed in accordance of the Personal Data (Privacy) Ordinance, Cap. 486, the laws of Hong Kong Special Administrative Region (“HKSAR”), and other relevant laws, rules and regulations within or outside the jurisdiction of HKSAR. Data subject is the user of the Websites and the Data User is WEL.
+        {{ __('Chính sách này được điều chỉnh và hiểu theo Pháp lệnh Dữ liệu Cá nhân (Quyền riêng tư), Cap. 486, luật của Đặc khu hành chính Hồng Kông (“HKSAR”) và các luật, quy tắc và quy định có liên quan khác trong hoặc ngoài phạm vi quyền hạn của HKSAR. Chủ thể dữ liệu là người dùng của Trang web và Người dùng dữ liệu là WEL.') }}
     </p>
     <p>
-        For EU-based Users, this Privacy Policy complies with the General Data Protection Regulation (GDPR).
+        {{ __('Đối với Người dùng ở EU, Chính sách quyền riêng tư này tuân thủ Quy định bảo vệ dữ liệu chung (GDPR).') }}
     </p>
     <p>
-        Our Privacy Policy explains:
+        {{ __('Chính sách bảo mật của chúng tôi giải thích:') }}
     </p>
     <ul>
-        <li>What information We receive</li>
-        <li>How We use that information</li>
-        <li>The choices We offer, including how to access and update information</li>
+        <li>{{ __('Chúng tôi nhận được thông tin gì') }}</li>
+        <li>{{ __('Cách chúng tôi sử dụng thông tin đó') }}</li>
+        <li>{{ __('Các lựa chọn Chúng tôi cung cấp, bao gồm cách truy cập và cập nhật thông tin') }}</li>
     </ul>
     <p></p>
     <p>
-        In order to facilitate Your reading, here is an outline of Our Privacy Policy:
+        {{ __('Để tạo điều kiện thuận lợi cho việc đọc của Bạn, đây là phác thảo Chính sách Bảo mật của Chúng tôi:') }}
     </p>
     <ol>
-        <li><a href="#section-I">Definitions</a></li>
-        <li><a href="#section-II">Information We receive and how it is used</a></li>
-        <li><a href="#section-III">Other websites</a></li>
-        <li><a href="#section-IV">Cookies and similar technologies</a></li>
-        <li><a href="#section-V">Protection of Personal Information</a></li>
-        <li><a href="#section-VI">Accessing and Correcting Your Personal Information</a></li>
-        <li><a href="#section-VII">Children and minors</a></li>
-        <li><a href="#section-VIII">Rights to Your Personal Information</a></li>
-        <li><a href="#section-IX">Contacting Us</a></li>
+        <li><a href="#section-I">{{ __('Các định nghĩa') }}</a></li>
+        <li><a href="#section-II">{{ __('Thông tin chúng tôi nhận được và cách sử dụng thông tin đó') }}</a></li>
+        <li><a href="#section-III">{{ __('Các trang web khác') }}</a></li>
+        <li><a href="#section-IV">{{ __('Cookies và các công nghệ tương tự') }}</a></li>
+        <li><a href="#section-V">{{ __('Bảo vệ thông tin cá nhân') }}</a></li>
+        <li><a href="#section-VI">{{ __('Truy cập và Chỉnh sửa Thông tin Cá nhân của Bạn') }}</a></li>
+        <li><a href="#section-VII">{{ __('Trẻ em và trẻ vị thành niên') }}</a></li>
+        <li><a href="#section-VIII">{{ __('Quyền đối với thông tin cá nhân của bạn') }}</a></li>
+        <li><a href="#section-IX">{{ __('Liên hệ với chúng tôi') }}</a></li>
     </ol>
     <p></p>
 
     <h3 id="section-I">
-        I. Definition
+        I. {{ __('Sự định nghĩa') }}
     </h3>
     <p>
-        The terms “Personal Data” and “Personal Information” refers to any data or information relating directly or indirectly to an individual, from which it is practicable for the identity of the individual to be directly or indirectly ascertained, and in a form in which access to or processing of the data is practicable. For the purposes of this Policy, the words “data” and “information” has the same meaning.
+        {{ __('Thuật ngữ “Dữ liệu cá nhân” và “Thông tin cá nhân” đề cập đến bất kỳ dữ liệu hoặc thông tin nào liên quan trực tiếp hoặc gián tiếp đến một cá nhân, từ đó có thể xác định được danh tính của cá nhân đó một cách trực tiếp hoặc gián tiếp và ở dạng truy cập hoặc xử lý dữ liệu là có thể thực hiện được. Đối với các mục đích của Chính sách này, các từ "dữ liệu" và "thông tin" có cùng ý nghĩa.') }}
     </p>
     <p>
-        The term “User ID” refers to the username You use to identify Your Gamekafe Account.
+        {{ __('Thuật ngữ “ID Người dùng” đề cập đến tên người dùng Bạn sử dụng để xác định Tài khoản Gamekafe của Bạn.') }}
     </p>
     <p>
-        The terms “Us”, “Our”, “Ours” and “We”, as well as all other first-person pronouns, are used to refer to WEL, which owns, operates and maintains the Websites and Gamekafe Account.
+        {{ __('Các thuật ngữ “Chúng tôi”, “Của chúng tôi”, “Của chúng tôi” và “Chúng tôi”, cũng như tất cả các đại từ ngôi thứ nhất khác, được dùng để chỉ WEL, công ty sở hữu, điều hành và duy trì Trang web và Tài khoản.') }} {{ env('APP_NAME', 'Gamekafe') }}
     </p>
     <p>
-        The term “Websites” is used to refer to the all gaming and video websites owned, published or maintained by Us, Our affiliates or business partners, including but not limited to Gamekafe Account (<a target="_blank" rel="noreferrer" href="https://account.Gamekafe.com">account.Gamekafe.com</a>), Gamekafe (<a target="_blank" rel="noreferrer" href="https://www.Gamekafe.com">Gamekafe.com</a>), Pog (<a target="_blank" rel="noreferrer" href="https://www.pog.com">pog.com</a>), Gamepost (<a target="_blank" rel="noreferrer" href="https://www.gamepost.com">gamepost.com</a>), Dollmania (<a target="_blank" rel="noreferrer" href="https://www.dollmania.com">dollmania.com</a>) and Videotime (<a target="_blank" rel="noreferrer" href="https://www.videotime.com">videotime.com</a>).
+        {{ __('Thuật ngữ “Trang web” được sử dụng để chỉ tất cả các trang web trò chơi và video do Chúng tôi sở hữu, xuất bản hoặc duy trì, các chi nhánh hoặc đối tác kinh doanh của Chúng tôi, bao gồm nhưng không giới hạn ở Tài khoản') }} {{ env('APP_NAME', 'Gamekafe') }}
     </p>
     <p>
-        The terms “You”, “Your”, the “User”, as well as all other second-person pronouns, are used to refer to as the user and/or players of the Websites and/or services provided by Us.
+        {{ __('Các thuật ngữ “Bạn”, “Của bạn”, “Người dùng”, cũng như tất cả các đại từ ngôi thứ hai khác, được dùng để chỉ người dùng và/hoặc người chơi của Trang web và/hoặc dịch vụ do Chúng tôi cung cấp.') }}
     </p>
     <p>
-        The term “Gamekafe Account” refers to a login system operated and maintained by Us for users, players and developers.
+        {{ __('Thuật ngữ “Tài khoản') }} {{ env('APP_NAME', 'Gamekafe') }}” {{ __('dùng để chỉ một hệ thống đăng nhập do Chúng tôi vận hành và duy trì cho người dùng, người chơi và nhà phát triển.') }}
     </p>
 
     <h3 id="section-II">
-        II. Information We receive and how it is used
+        II. {{ __('Thông tin chúng tôi nhận được và cách sử dụng thông tin đó') }}
     </h3>
 
     <h4>
-        (a) Information We receive about You
+        (a) {{ __('Thông tin chúng tôi nhận được về bạn') }}
     </h4>
     <p>
         The information that We receive includes sets of information: Your information and the information we receive about You.
