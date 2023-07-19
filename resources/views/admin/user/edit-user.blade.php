@@ -7,14 +7,14 @@
 @vite('resources/js/user.js')
 @section('main_content')
     <div class="card-header mt-4">
-        <h3>{{ __('Tạo người dùng') }}</h3>
+        <h3>{{ __('Cập nhâp thông tin người dùng') }}</h3>
     </div>
     <div class=" container ">
-        <form action="{{route('user.store')}}" method="POST" class="row g-3"  enctype="multipart/form-data">
+        <form action="{{route('user.updateUser', $dataUser['id'])}}" method="POST" class="row g-3"  enctype="multipart/form-data">
             @csrf
             <div class="col-md-6">
                 <label for="inputAddress" class="form-label">{{__('Tên')}}</label>
-                <input name="name"  type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
+                <input name="name" value="{{$dataUser->name}}"  type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
                 @error('name')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
@@ -28,7 +28,7 @@
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
-                                <img id="showImage" style="width: 150px" class="show-avatar" src="{{ url('/images/user.jpg')}}" alt="avatar">
+                                <img id="showImage" style="width: 150px" class="show-avatar" src="{{ $dataUser->image ?? asset('/images/user.jpg')}}" alt="avatar">
                             </div>
                             <div id="button">
                                 <i id="btn_chooseImg" class="fa fa-camera"></i>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputAddress" class="form-label">{{__('Email')}}</label>
-                <input name="email"  type="email"  class="form-control @error('email') is-invalid @enderror" placeholder="">
+                <input name="email" value="{{$dataUser->email}}" type="email"   class="form-control @error('email') is-invalid @enderror" placeholder="">
                 @error('email')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputAddress" class="form-label">{{__('Số điện thoại')}}</label>
-                <input name="phone" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
+                <input name="phone" value="{{$dataUser->phone}}" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
                 @error('phone')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
 
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">{{__('Địa chỉ')}}</label>
-                <input name="address" type="text"  class="form-control @error('address') is-invalid @enderror" id="inputCity">
+                <input name="address" type="text" value="{{$dataUser->address}}" class="form-control @error('address') is-invalid @enderror" id="inputCity">
                 @error('address')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
@@ -67,7 +67,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">{{__('Tuổi')}}</label>
-                <input name="age" type="text"  class="form-control @error('age') is-invalid @enderror" id="inputCity">
+                <input name="age" type="text" value="{{$dataUser->address}}"  class="form-control @error('age') is-invalid @enderror" id="inputCity">
                 @error('age')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
@@ -84,7 +84,7 @@
                 </select>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-success">{{__('Tạo')}}</button>
+                <button type="submit" class="btn btn-success">{{__('Cập nhập')}}</button>
             </div>
         </form>
     </div>

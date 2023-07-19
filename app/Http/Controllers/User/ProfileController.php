@@ -43,7 +43,7 @@ class ProfileController extends Controller
         if (array_key_exists('image', $input)) {
             $idFolder = Hash::make(Auth::user()->name . Auth::user()->id);
             $path = 'images/user/' . $idFolder . '/' . $input['image']->getClientOriginalName();
-            $url = $this->ultity->saveImage($$path, file_get_contents($input['image']));
+            $url = $this->ultity->saveImage($path, file_get_contents($input['image']));
             $input['image'] = $url;
         }
 

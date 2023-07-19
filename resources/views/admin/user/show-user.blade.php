@@ -45,7 +45,7 @@
         </div>
         <div class="col-md-2">
             <label for="inputCity" class="form-label">{{__('Giới tính')}}</label>
-            <input type="text" value={{$dataUser->sex}} class="form-control" id="inputCity">
+            <input type="text" value={{$dataUser->sex == 1 ? "Nam" : "Nữ"}} class="form-control" id="inputCity">
         </div>
     </div>
 @endsection
