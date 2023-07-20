@@ -126,3 +126,51 @@ https://v6p9d9t4.ssl.hwcdn.net/html/8324385/Superstition S3/index.html - superst
 https://v6p9d9t4.ssl.hwcdn.net/html/6215836/From_the_Sun_to_the_MoonBROWSER/index.html - from-the-sun-to-the-moon
 https://v6p9d9t4.ssl.hwcdn.net/html/4896801/www/index.html - time-is-solid-here
 https://v6p9d9t4.ssl.hwcdn.net/html/5594312/OffDay WebGL 3.0 Final Build/index.html - off-day
+https://v6p9d9t4.ssl.hwcdn.net/html/1720573/index.html?v=1574334836 - oathbreaker
+https://v6p9d9t4.ssl.hwcdn.net/html/6585419/index.html - undertale-gameboy-demake
+https://v6p9d9t4.ssl.hwcdn.net/html/8036168/Boc_Public/index.html - the-bastard-of-camelot
+https://v6p9d9t4.ssl.hwcdn.net/html/5706065/index.html - truck-and-police-browser
+https://v6p9d9t4.ssl.hwcdn.net/html/8328101/WebGLTemplate/index.html - different-strokes
+https://v6p9d9t4.ssl.hwcdn.net/html/4531906/index.html - from-below
+https://v6p9d9t4.ssl.hwcdn.net/html/7840948/web/index.html - the-fallen-crown
+https://v6p9d9t4.ssl.hwcdn.net/html/2314826/web/index.html?v=1591301542 - theres-nothing-to-do-in-this-town
+https://v6p9d9t4.ssl.hwcdn.net/html/6429858/Speaker/index.html - speaker
+https://v6p9d9t4.ssl.hwcdn.net/html/7876385/VanguardMonstersWeb/index.html - vanguard-monsters
+https://v6p9d9t4.ssl.hwcdn.net/html/7645906/TKH/index.html - the-kings-hound
+https://v6p9d9t4.ssl.hwcdn.net/html/3140171/TinyIslands_RuleTweak_v14/index.html - tiny-islands
+https://v6p9d9t4.ssl.hwcdn.net/html/8293245/WebGL1.3/index.html - touch
+https://v6p9d9t4.ssl.hwcdn.net/html/5842483/ItsAPromise-1.0-web/index.html - its-a-promise
+https://v6p9d9t4.ssl.hwcdn.net/html/6785819/index.html - mothkeeper
+https://v6p9d9t4.ssl.hwcdn.net/html/3602925-383830/index.html - feedvid
+https://v6p9d9t4.ssl.hwcdn.net/html/6763730/index.html - swordbird
+https://v6p9d9t4.ssl.hwcdn.net/html/3781913/WebGLFinal/index.html - pirate-fox-detective
+https://v6p9d9t4.ssl.hwcdn.net/html/6291947/web/index.html - capybara-quest
+https://v6p9d9t4.ssl.hwcdn.net/html/3750086/index.html - peckin-pixels
+https://v6p9d9t4.ssl.hwcdn.net/html/1767546/Kyle is Famous Web/index.html?v=1574334709 - kyle-is-famous
+https://v6p9d9t4.ssl.hwcdn.net/html/4281133/index.html - haachamaware
+https://v6p9d9t4.ssl.hwcdn.net/html/3103500/web_v1.0.3/index.html - cookies-bakery
+https://v6p9d9t4.ssl.hwcdn.net/html/3585977/HIKEBACK-1.1-web/index.html - hikeback
+https://v6p9d9t4.ssl.hwcdn.net/html/4618717-788498/index.html - plant-therapy
+https://v6p9d9t4.ssl.hwcdn.net/html/8332262/index.html - for-love
+https://v6p9d9t4.ssl.hwcdn.net/html/1716122/index.html?v=1574334849 - ignis-universia
+https://v6p9d9t4.ssl.hwcdn.net/html/3589026/index.html - nextdoor
+https://v6p9d9t4.ssl.hwcdn.net/html/7228562/index.html - baldis-fun-new-school-remastered
+https://v6p9d9t4.ssl.hwcdn.net/html/1426083/webgl (post jam ver 3)/index.html?v=1574335575 - slice-of-scythe
+https://v6p9d9t4.ssl.hwcdn.net/html/2259008/webv0_1_5/index.html?v=1591301690 - grey-box-testing
+https://v6p9d9t4.ssl.hwcdn.net/html/5185382/index.html - vampire-survivors
+https://v6p9d9t4.ssl.hwcdn.net/html/8161526/index.html - the-night-abridged
+https://v6p9d9t4.ssl.hwcdn.net/html/2766663/index.html - space-frog
+https://v6p9d9t4.ssl.hwcdn.net/html/1656281/MayITakeYourOrder-Ver.1.01-web/index.html?v=1574335014 - may-i-take-your-order
+https://v6p9d9t4.ssl.hwcdn.net/html/8271483/index.html - video-editors-toolkit
+https://v6p9d9t4.ssl.hwcdn.net/html/7043289/index.html - the-great-protector
+https://v6p9d9t4.ssl.hwcdn.net/html/8161286/Asgards Fall Alpha_0_0_4_web/index.html - asgards-fall
+https://html.itch.zone/html/8333297/index.html - i-overscoped
+https://v6p9d9t4.ssl.hwcdn.net/html/8155289/index.html - when-the-wind-blew-you-away
+https://v6p9d9t4.ssl.hwcdn.net/html/6218264/PreOdyssey-1.0-web/index.html - preodyssey
+https://v6p9d9t4.ssl.hwcdn.net/html/8313453/ALateNightConvo-1.1-web/index.html - a-late-night-convo
+https://v6p9d9t4.ssl.hwcdn.net/html/5001930/ThePrincessoftheTowerWantsaHero-1.0-web/index.html - prinhero
+https://v6p9d9t4.ssl.hwcdn.net/html/8100689/index.html - amayadoru
+https://v6p9d9t4.ssl.hwcdn.net/html/3707493/index.html - chainsaw-dance
+https://v6p9d9t4.ssl.hwcdn.net/html/5200254/WhenYouCall-1.0-web/index.html - im-the-echo-when-you-call
+https://v6p9d9t4.ssl.hwcdn.net/html/8317029/Bonnie&#039;s Bakery (WebGL) v2.0/index.html - bonnies-bakery
+https://v6p9d9t4.ssl.hwcdn.net/html/6248804/public/index.html - fire-and-dice
