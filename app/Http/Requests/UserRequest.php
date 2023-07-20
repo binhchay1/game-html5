@@ -23,7 +23,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 
@@ -33,7 +33,6 @@ class UserRequest extends FormRequest
             'name.required' => __('validation.required'),
             'name.max' => __('validation.max'),
             'image.digits_between' => __('validation.digits_between'),
-            'image.required' => __('validation.required'),
             'image.image' => __('validation.image'),
             'image.mimes' => __('validation.mimes'),
             'image.max' => __('validation.max'),
