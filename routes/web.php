@@ -47,6 +47,11 @@ Route::middleware(['check.auth', 'admin'])->group(
 
         Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');
+        Route::get('/create-category', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/store-category', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
     }
 );
 
