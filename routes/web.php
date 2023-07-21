@@ -30,6 +30,7 @@ Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-gam
 Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
 Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
 Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('playGames');
+Route::get('/count-play', [HomeController::class, 'countPlay'])->name('countPlay');
 
 Auth::routes();
 

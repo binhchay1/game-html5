@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - Cookie Policy</title>
+<title>{{ env('APP_NAME', '{{ env('APP_NAME', 'Gamekafe') }}') }} - {{ __('Chính sách cookie') }}</title>
 @endsection
 
 @section('css')
@@ -15,104 +15,104 @@
 @section('content')
 <div class="white-box-bg box body static" style="padding: 25px 25px; text-align: justify;">
     <div class="title-container">
-        <h1 class="header-5">Cookie Policy</h1>
+        <h1 class="header-5">{{ __('Chính sách cookie') }}</h1>
     </div>
     <p>
         <small>
-            Effective on 25th May 2018
+            {{ __('Có hiệu lực vào ngày 25 tháng 5 năm 2018') }}
         </small>
     </p>
     <ol class="menu-policy">
-        <li><a href="#section-1">Definition of terms</a></li>
-        <li><a href="#section-2">What are cookies?</a></li>
-        <li><a href="#section-3">What do we use cookies for?</a></li>
-        <li><a href="#section-4">How can I control or disable cookies?</a></li>
-        <li><a href="#section-5">What types of cookies do we use?</a></li>
-        <li><a href="#section-6">The categories of cookies that we are currently using</a></li>
-        <li><a href="#section-7">Third party cookies</a></li>
+        <li><a href="#section-1">{{ __('Định nghĩa thuật ngữ') }}</a></li>
+        <li><a href="#section-2">{{ __('Cookie là gì?') }}</a></li>
+        <li><a href="#section-3">{{ __('Chúng tôi sử dụng cookie để làm gì?') }}</a></li>
+        <li><a href="#section-4">{{ __('Làm cách nào để kiểm soát hoặc tắt cookie?') }}</a></li>
+        <li><a href="#section-5">{{ __('Chúng tôi sử dụng những loại cookie nào?') }}</a></li>
+        <li><a href="#section-6">{{ __('Các loại cookie mà chúng tôi hiện đang sử dụng') }}</a></li>
+        <li><a href="#section-7">{{ __('Cookie của bên thứ ba') }}</a></li>
     </ol>
-    <h3 id="section-1">I. Definition of terms</h3>
+    <h3 id="section-1">I. {{ __('Định nghĩa thuật ngữ') }}</h3>
     <p>
-        The terms “Us”, “Our”, “Ours” and “We”, as well as all other first-person pronouns, are used to refer to Web Entertainment Limited (“WEL”), which owns, operates and maintains the Websites and Gamekafe Account.
+        {{ __('Các thuật ngữ “Chúng tôi”, “Của chúng tôi”, “Của chúng tôi” và “Chúng tôi”, cũng như tất cả các đại từ ngôi thứ nhất khác, được dùng để chỉ Web Entertainment Limited (“WEL”), công ty sở hữu, điều hành và duy trì Trang web và') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('Tài khoản') }}.
     </p>
     <p>
-        The term “Websites” is used to refer to the all websites owned, published or maintained by Us, Our affiliates or business partners, including but not limited to Gamekafe, pog.com, gamepost.com and dollmania.com.
+        {{ __('Thuật ngữ “Trang web” được sử dụng để chỉ tất cả các trang web do Chúng tôi sở hữu, xuất bản hoặc duy trì, các chi nhánh hoặc đối tác kinh doanh của Chúng tôi, bao gồm nhưng không giới hạn ở') }} {{ env('APP_URL', 'Gamekafe.com') }}, pog.com, gamepost.com and dollmania.com.
     </p>
     <p>
-        The terms “You”, “Your”, the “User”, as well as all other second-person pronouns, are used to refer to as the user of the Websites and/or services provided by Us.
+        {{ __('Các thuật ngữ “Bạn”, “Của bạn”, “Người dùng”, cũng như tất cả các đại từ ngôi thứ hai khác, được dùng để chỉ người dùng Trang web và/hoặc dịch vụ do Chúng tôi cung cấp.') }}
     </p>
     <p>
-        The term “Gamekafe Account” refers to a login system operated and maintained by Us for users, players and developers.
+        {{ __('Thuật ngữ') }} “{{ env('APP_NAME', 'Gamekafe') }} {{ __('Tài khoản” là hệ thống đăng nhập do Chúng tôi vận hành và duy trì cho người dùng, người chơi và nhà phát triển.') }}
     </p>
-    <h3 id="section-2">II. What are cookies?</h3>
+    <h3 id="section-2">II. {{ __('Cookie là gì?') }}</h3>
     <p>
-        Cookies are files or small pieces of data that We store on your computer, mobile phone or other internet enabled devices when You visit Our Websites. The uses of cookies is intended to make Our Websites easier use and to provide you with a personalized Web experience.
-    </p>
-    <p>
-        What cookies usually contain is a result of personal information resulting from Your own input on a website. Most often, when a cookie stores personal information, this information is coded in such a way that it is unreadable to any third party who happens to access Your cookie folder.
+        {{ __('Cookie là các tệp hoặc mẩu dữ liệu nhỏ mà Chúng tôi lưu trữ trên máy tính, điện thoại di động hoặc các thiết bị hỗ trợ internet khác của Bạn khi Bạn truy cập Trang web của Chúng tôi. Việc sử dụng cookie nhằm mục đích giúp Trang web của chúng tôi sử dụng dễ dàng hơn và cung cấp cho bạn trải nghiệm Web được cá nhân hóa.') }}
     </p>
     <p>
-        A cookie is a small piece of data sent from Our websites and stored on Your computer by Your web browser while You are browsing.
+        {{ __('Những cookie thường chứa là kết quả của thông tin cá nhân do chính Bạn nhập vào một trang web. Thông thường, khi cookie lưu trữ thông tin cá nhân, thông tin này được mã hóa theo cách mà bất kỳ bên thứ ba nào tình cờ truy cập vào thư mục cookie của Bạn đều không thể đọc được.') }}
+    </p>
+    <p>
+        {{ __('Cookie là một mẩu dữ liệu nhỏ được gửi từ các trang web của Chúng tôi và được trình duyệt web của Bạn lưu trữ trên máy tính của Bạn trong khi Bạn đang duyệt.') }}
     </p>
     <h4>
-        Technically how does it work?
+        {{ __('Về mặt kỹ thuật nó hoạt động như thế nào?') }}
     </h4>
     <p>
-        When used, cookies are downloaded to Your computer. The cookie files are stored on or transferred to Your hard drive.
+        {{ __('Khi được sử dụng, cookie sẽ được tải xuống máy tính của Bạn. Các tệp cookie được lưu trữ trên hoặc chuyển sang ổ cứng của Bạn.') }}
     </p>
 
-    <h3 id="section-3">III. What do we use cookies for?</h3>
+    <h3 id="section-3">III. {{ __('Chúng tôi sử dụng cookie để làm gì?') }}</h3>
     <p>
-        Our Websites and Services may use cookies. Cookies enable Us to personalize Your experience on Our sites, tell Us which parts of Our Websites people have visited, help Us measure the effectiveness of ads and web searches, and give Us insights into user behavior so We can improve Our Websites and Services. This data does not give out any personal details. This collection of data is used for statistical analysis about our Website for use by Us.
+        {{ __('Trang web và Dịch vụ của chúng tôi có thể sử dụng cookie. Cookie cho phép Chúng tôi cá nhân hóa trải nghiệm của Bạn trên các trang web của Chúng tôi, cho chúng tôi biết mọi người đã truy cập những phần nào trên Trang web của chúng tôi, giúp Chúng tôi đo lường hiệu quả của quảng cáo và tìm kiếm trên web, đồng thời cung cấp cho Chúng tôi thông tin chi tiết về hành vi của người dùng để Chúng tôi có thể cải thiện Trang web và Dịch vụ của mình. Dữ liệu này không đưa ra bất kỳ chi tiết cá nhân nào. Việc thu thập dữ liệu này được sử dụng để phân tích thống kê về Trang web của chúng tôi để chúng tôi sử dụng.') }}
     </p>
 
-    <h3 id="section-4">IV. How can I control or disable cookies?</h3>
+    <h3 id="section-4">IV. {{ __('Làm cách nào để kiểm soát hoặc tắt cookie?') }}</h3>
     <p>
-        You may disable or clear cookies anytime. Please beware that because cookies are used throughout Our Websites, disabling or clearing cookies may prevent You from using certain parts of Our Websites and Services.
+        {{ __('Bạn có thể tắt hoặc xóa cookie bất cứ lúc nào. Xin lưu ý rằng vì cookie được sử dụng trên toàn bộ Trang web của chúng tôi, nên việc vô hiệu hóa hoặc xóa cookie có thể ngăn Bạn sử dụng một số phần nhất định trên Trang web và Dịch vụ của chúng tôi.') }}
     </p>
     <p>
-        If you are using Google Chrome, to disable cookies:
+        {{ __('Nếu bạn đang sử dụng Google Chrome, để tắt cookie:') }}
     </p>
     <ul>
-        <li>Go to 'Tools Menu'</li>
-        <li>Click on 'Options'</li>
-        <li>Click on 'Under the Hood'</li>
-        <li>'Cookie Setting' should be selected. Once done select 'Block all Cookies'</li>
-        <li>Now all cookies should be blocked on your Google Chrome</li>
+        <li>{{ __("Đi đến 'Tiện ích'") }}</li>
+        <li>{{ __("Nhấp vào 'Tùy chọn'") }}</li>
+        <li>{{ __("Nhấp vào 'Dưới mui xe'") }}</li>
+        <li>{{ __("'Cài đặt cookie' nên được chọn. Sau khi hoàn tất, hãy chọn 'Chặn tất cả Cookie'") }}</li>
+        <li>{{ __('Bây giờ tất cả các cookie sẽ bị chặn trên Google Chrome của bạn') }}</li>
     </ul>
     <p></p>
     <p>
-        To clear existing cookies:
+        {{ __('Để xóa các cookie hiện có:') }}
     </p>
     <ul>
-        <li>Go to 'Tools Menu'</li>
-        <li>Click on 'Options'</li>
-        <li>Click on 'Under the Hood'</li>
-        <li>Under 'Privacy' section select 'Show Cookies'</li>
-        <li>A new window should open called 'Cookies' In here you can see all the cookies within your Google Chrome Browser.</li>
-        <li>Click on 'Remove All' to remove all traces of cookies</li>
-        <li>If you wish to only remove a certain cookie, simply highlight and click 'Remove'</li>
+        <li>{{ __("Đi đến 'Tiện ích'") }}</li>
+        <li>{{ __("Nhấp vào 'Tùy chọn'") }}</li>
+        <li>{{ __("Nhấp vào 'Dưới mui xe'") }}</li>
+        <li>{{ __("Trong phần 'Quyền riêng tư', chọn 'Hiển thị cookie'") }}</li>
+        <li>{{ __("Một cửa sổ mới sẽ mở ra có tên là 'Cookie' Tại đây, bạn có thể xem tất cả các cookie trong Trình duyệt Google Chrome của mình.") }}</li>
+        <li>{{ __("Nhấp vào 'Xóa tất cả' để xóa tất cả dấu vết của cookie") }}</li>
+        <li>{{ __("Nếu bạn chỉ muốn xóa một cookie nhất định, chỉ cần đánh dấu và nhấp vào 'Xóa'") }}</li>
     </ul>
     <p></p>
     <h4>
-        Other browsers
+        {{ __('Các trình duyệt khác') }}
     </h4>
     <p>
-        For other browsers, please see the relevant browser's support resources or guidelines.
+        {{ __('Đối với các trình duyệt khác, vui lòng xem tài nguyên hoặc nguyên tắc hỗ trợ của trình duyệt có liên quan.') }}
     </p>
 
-    <h3 id="section-5">V. What types of cookies do We use?</h3>
+    <h3 id="section-5">V. {{ __('Chúng tôi sử dụng những loại cookie nào?') }}</h3>
     <p>
-        Our Websites use session cookies and persistent cookies.
+        {{ __('Trang web của chúng tôi sử dụng cookie phiên và cookie liên tục.') }}
     </p>
     <p>
-        <b>Session cookies:</b> These are temporary cookie files which are erased when You close Your browser.
+        <b>{{ __('Cookie phiên:') }}</b> {{ __('Đây là những tệp cookie tạm thời sẽ bị xóa khi Bạn đóng trình duyệt của mình.') }}
     </p>
     <p>
-        <b>Persistent cookies:</b> These stay in one of Your browser's sub-folders until You erase them or they expire.
+        <b>{{ __('Cookie liên tục:') }}</b> {{ __('Chúng nằm trong một trong các thư mục con của trình duyệt của Bạn cho đến khi Bạn xóa chúng hoặc chúng hết hạn.') }}
     </p>
 
-    <h3 id="section-6">VI. The categories of cookies that we are currently using</h3>
+    <h3 id="section-6">VI. {{ __('Các loại cookie mà chúng tôi hiện đang sử dụng') }}</h3>
     <table border="0" cellspacing="10" cellpadding="10" class="valign-top">
         <tbody>
         </tbody>
@@ -125,59 +125,59 @@
             <tr>
                 <td>
                     <strong>
-                        Authentification
+                        {{ __('Xác thực') }}
                     </strong>
                 </td>
                 <td>
-                    Authentification cookies are used by web servers to know whether you are logged in or not, and from which account you are logged in with. This cookie enable us to provide you a personalized web experience on Our Website.
+                    {{ __('Cookie xác thực được các máy chủ web sử dụng để biết bạn đã đăng nhập hay chưa và bạn đã đăng nhập bằng tài khoản nào. Cookie này cho phép chúng tôi cung cấp cho bạn trải nghiệm web được cá nhân hóa trên Trang web của chúng tôi.') }}
                 </td>
             </tr>
 
             <tr>
                 <td>
                     <strong>
-                        Performance
+                        {{ __('Hiệu suất') }}
                     </strong>
                 </td>
                 <td>
-                    We use these cookies in order Your experience on Our Website and performance. These cookies collect information about how Our Website is used, for example which pages You visit most often and where error messages are delivered. Such data does not give out any personal details.
+                    {{ __('Chúng tôi sử dụng các cookie này để trải nghiệm của Bạn trên Trang web của chúng tôi và hiệu suất. Những cookie này thu thập thông tin về cách Trang web của chúng tôi được sử dụng, ví dụ như trang nào Bạn truy cập thường xuyên nhất và nơi gửi thông báo lỗi. Dữ liệu đó không đưa ra bất kỳ chi tiết cá nhân nào.') }}
                 </td>
             </tr>
             <tr>
                 <td>
                     <strong>
-                        Analytics
+                        {{ __('Phân tích') }}
                     </strong>
                 </td>
                 <td>
-                    These cookies provide Us reports delivering statistics which help Us determine how visitors use Our Website, how they arrived on Our Website and how We can help them find their way back.
+                    {{ __('Những cookie này cung cấp cho Chúng tôi các báo cáo cung cấp số liệu thống kê giúp Chúng tôi xác định cách khách truy cập sử dụng Trang web của chúng tôi, cách họ truy cập Trang web của chúng tôi và cách Chúng tôi có thể giúp họ tìm đường quay lại.') }}
                 </td>
             </tr>
             <tr>
                 <td>
                     <strong>
-                        Localization
+                        {{ __('Bản địa hóa') }}
                     </strong>
                 </td>
                 <td>
-                    Localization cookies help Us provide You with a more personalized and localized experience. For that purpose We may collect and store information that is located on Your browser or computer so You will see the Website in your preferred language.
+                    {{ __('Cookie bản địa hóa giúp Chúng tôi cung cấp cho Bạn trải nghiệm được bản địa hóa và cá nhân hóa hơn. Vì mục đích đó, chúng tôi có thể thu thập và lưu trữ thông tin có trên trình duyệt hoặc máy tính của Bạn để Bạn có thể xem Trang web bằng ngôn ngữ ưa thích của mình.') }}
                 </td>
             </tr>
             <tr>
                 <td>
                     <strong>
-                        Advertisements
+                        {{ __('Quảng cáo') }}
                     </strong>
                 </td>
                 <td>
-                    Our website may use cookies to deliver personal advertisements. Personalized ads gives a more relevant ad experience while helping fund the development of new games.
+                    {{ __('Trang web của chúng tôi có thể sử dụng cookie để gửi quảng cáo cá nhân. Quảng cáo được cá nhân hóa mang lại trải nghiệm quảng cáo phù hợp hơn đồng thời giúp tài trợ cho việc phát triển các trò chơi mới.') }}
                 </td>
             </tr>
         </tbody>
     </table>
-    <h3 id="section-7">VII. Third party cookies</h3>
+    <h3 id="section-7">VII. {{ __('Cookie của bên thứ ba') }}</h3>
     <p>
-        We use a number of third party services that may also set cookies on Your computer on Our behalf when you visit Our Websites to allow them to deliver the services they are providing. For example, We are using third party cookies for statistical purposes. More information about these cookies is available on the corresponding third party’s website.
+        {{ __('Chúng tôi sử dụng một số dịch vụ của bên thứ ba cũng có thể đặt cookie trên máy tính của Bạn thay mặt Chúng tôi khi bạn truy cập Trang web của Chúng tôi để cho phép họ cung cấp các dịch vụ mà họ đang cung cấp. Ví dụ: Chúng tôi đang sử dụng cookie của bên thứ ba cho mục đích thống kê. Thông tin thêm về các cookie này có sẵn trên trang web của bên thứ ba tương ứng.') }}
     </p>
 </div>
 @endsection

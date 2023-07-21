@@ -4,18 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    @yield('title')
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="{{asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/plugins/daterangepicker/daterangepicker.css')}}">
-    <link rel="stylesheet" href="{{asset('backend/plugins/summernote/summernote-bs4.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -27,7 +25,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-
             @vite(['resources/sass/app.scss', 'resources/js/app.js'])
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
@@ -51,14 +48,22 @@
         @php $route = Route::currentRouteName(); @endphp
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="" class="brand-link">
-                <img src="{{asset('/backend/images/1536478465006.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">Modobom</span>
+                <img src="{{asset('/backend/images/1536478465006.jpg')}}" alt="{{ env('APP_NAME', 'Gamekafe') }} Logo" class="brand-image img-circle elevation-3">
+                <span class="brand-text font-weight-light">{{ env('APP_NAME', 'Gamekafe') }}</span>
             </a>
             <div class="sidebar">
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{route('user.index')}}" class="nav-link ">
+                            <a href="{{ route('admin')}}" class="nav-link ">
+                                <i class="nav-icon fas fa-solid fa-chart-line"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('user.index') }}" class="nav-link ">
                                 <i class="nav-icon fas fa-solid fa-user"></i>
                                 <p>
                                     User
@@ -66,7 +71,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('category.index')}}" class="nav-link  ">
+                            <a href="{{ route('category.index') }}" class="nav-link  ">
                                 <i class="nav-icon fas fa-solid fa-list"></i>
                                 <p>
                                     Category
@@ -74,8 +79,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('game.index')}}" class="nav-link  ">
-                                <i class="nav-icon fas fa-solid fa-calendar"></i>
+                            <a href="{{ route('game.index') }}" class="nav-link  ">
+                                <i class="nav-icon fas fa-solid fa-gamepad"></i>
                                 <p>
                                     Game
                                 </p>
@@ -109,19 +114,15 @@
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('backend/plugins/chart.js/Chart.min.js')}}"></script>
-    <script src="{{asset('backend/plugins/sparklines/sparkline.js')}}"></script>
-    <script src="{{asset('backend/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
     <script src="{{asset('backend/plugins/moment/moment.min.js')}}"></script>
     <script src="{{asset('backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
-    <script src="{{asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-    <script src="{{asset('backend/plugins/summernote/summernote-bs4.min.js')}}"></script>
     <script src="{{asset('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
     <script src="{{asset('backend/dist/js/adminlte.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
     <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    @yield('js')
 </body>
 
 </html>

@@ -161,5 +161,13 @@ class IconGame
         'history' => 914,
         'fae' => 968,
         'frog' => 54,
+        'html5' => 315,
+        'boys' => 157,
+        'male' => 113,
+        'viking' => 61,
+        'web' => 315,
+        'racing' => 124,
+        'catboy' => 370,
+        'city' => 183,
     ];
 }
