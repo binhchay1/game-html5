@@ -12,13 +12,12 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{{asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
-    <link rel="stylesheet" href="{{asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/plugins/daterangepicker/daterangepicker.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/black-logo-no-background.png') }}" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     @yield('js_sort_users')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 </head>
 
@@ -48,14 +47,14 @@
         @php $route = Route::currentRouteName(); @endphp
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="" class="brand-link">
-                <img src="{{asset('/backend/images/1536478465006.jpg')}}" alt="{{ env('APP_NAME', 'Gamekafe') }} Logo" class="brand-image img-circle elevation-3">
+                <img src="{{ asset('/images/color-logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Gamekafe') }} Logo" class="brand-image img-circle elevation-3">
                 <span class="brand-text font-weight-light">{{ env('APP_NAME', 'Gamekafe') }}</span>
             </a>
             <div class="sidebar">
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('admin')}}" class="nav-link ">
+                            <a href="{{ route('admin')}}" class="nav-link" id="admin">
                                 <i class="nav-icon fas fa-solid fa-chart-line"></i>
                                 <p>
                                     Dashboard
@@ -63,7 +62,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('user.index') }}" class="nav-link ">
+                            <a href="{{ route('user.index') }}" class="nav-link" id="list-user">
                                 <i class="nav-icon fas fa-solid fa-user"></i>
                                 <p>
                                     User
@@ -71,7 +70,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('category.index') }}" class="nav-link  ">
+                            <a href="{{ route('category.index') }}" class="nav-link" id="list-category">
                                 <i class="nav-icon fas fa-solid fa-list"></i>
                                 <p>
                                     Category
@@ -79,7 +78,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('game.index') }}" class="nav-link  ">
+                            <a href="{{ route('game.index') }}" class="nav-link" id="list-game">
                                 <i class="nav-icon fas fa-solid fa-gamepad"></i>
                                 <p>
                                     Game
@@ -113,15 +112,12 @@
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('backend/plugins/moment/moment.min.js')}}"></script>
-    <script src="{{asset('backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
-    <script src="{{asset('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-    <script src="{{asset('backend/dist/js/adminlte.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
+    <script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('backend/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('backend/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('backend/dist/js/adminlte.js') }}"></script>
+    <script src="{{ asset('js/admin/admin.js') }}"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     @yield('js')
 </body>
 

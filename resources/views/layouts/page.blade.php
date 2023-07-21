@@ -175,7 +175,7 @@
                         <img width="67" height="30" alt="Gamekafe" src="{{ asset('images/black-logo-no-background.png') }}" />
                     </a>
                     <span>© 2023 {{ env('APP_NAME', 'Gamekafe') }}</span>
-                    <span>Đã đăng ký bản quyền.</span>
+                    <span>{{ __('Đã đăng ký bản quyền.') }}</span>
                 </div>
                 <div class="menu-games">
                     <div class="title">{{ env('APP_NAME', 'Gamekafe') }}
