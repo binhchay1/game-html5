@@ -82,11 +82,11 @@
                 <div class="waiting-idnet">
                     <div id="user_not_logged_in">
                         <a href="{{ route('register') }}">
-                            <button type="button" class="fake-button fake-button-red idnet-fast-register-link">Đăng ký
+                            <button type="button" class="fake-button fake-button-red idnet-fast-register-link">{{ __('Đăng ký') }}
                             </button>
                         </a>
                         <a href="{{route('login')}}">
-                            <button type="button" class="fake-button idnet-fast-login-link">Đăng nhập
+                            <button type="button" class="fake-button idnet-fast-login-link">{{ __('Đăng nhập') }}
                             </button>
                         </a>
                     </div>
@@ -97,59 +97,14 @@
                     <button class="dropbtn" style="background-color: #f1f1f1; color: #666; font-size: 13px; font-weight: 700;"><i class="fa fa-user"></i>
                         {{ Auth::user()->name }}
                     </button>
-                    <div class="dropdown-content" style="background-color: #8BC34A;">
-                        <a href="#">Setting</a>
-                        <a href="{{route('user.edit')}}">Profile</a>
-                        <a href="{{route('user.logout')}}">Logout</a>
+                    <div class="dropdown-content" >
+                        <a href="{{ route('user.setting') }}">{{ __('Cài đặt') }}</a>
+                        <a href="{{ route('user.edit') }}">{{ __('Profile') }}</a>
+                        <a href="{{ route('user.logout') }}">{{ __('Đăng xuất') }}</a>
                     </div>
                     </a>
                 </div>
                 @endif
-
-                <div class="mobile-header-block">
-                    <div class="popular-newest-games-links">
-                        <a class="games-link new-game fake-button" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/new/games">Game Mới</a>
-                        <a class="games-link pop-game fake-button" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/games/best">Game Phổ biến Nhất</a>
-                        <a class="games-link best-game fake-button" title="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại Gamekafe" href="/best">Game mới hay nhất</a>
-                    </div>
-                    <div class="top-categories-mobile">
-                        <div class="title">Các loại Game
-                        </div>
-                        <div class="row">
-                            <ul>
-                                <li class="inactive girls li-category">
-                                    <a class="girls" title="Game trực tuyến miễn phí hàng đầu gắn thẻ cho phái yếu Con gái 👧 - Gamekafe : 30000+ trò chơi trực tuyến miễn phí cho con gái trên Gamekafe. Chơi các trò chơi phối đồ của Dora và Disney cũng như các trò chơi trang điểm, trang phục, nấu ăn và hôn nhau cùng với các trò chơi búp bê barbie, tô màu và trang trí." href="/categories/girls">
-                                        <span class="name">Cho Con Gái</span>
-                                        <span class="number">2,920 game</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="top-tags-mobile">
-                        <div class="title">Thẻ
-                        </div>
-                        <div class="top-tags-mobile__wrapper">
-                            <div class="row top-tags__height">
-                                <ul>
-                                    <li>
-                                        <a class="tag" title="Game Trực Tuyến Miễn Phí Hàng đầu được Gắn Thẻ 2 Người Chơi - Gamekafe : Chơi trò chơi cho hai người trên Gamekafe. Bạn có ai chơi cùng không? Trải nghiệm những trò chơi hai người chơi này, những trò chơi cho phép hai người chơi tham gia vào cùng một trò chơi! Các trò chơi luôn luôn được tạo ra để kết nối người chơi, vì vậy các trò chơi hai người chơi là một trong những trò chơi vui vẻ nhất khi chơi các video game." href="/tags/2_players">
-                                            <h4>
-                                                2 Người chơi<span style="font-size:13px;">407</span>
-                                            </h4>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="all-tags" href="https://vi.Gamekafe/tags">Xem tất cả thẻ gắn
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div id="flash-messages-box" class="flash-messages-box">

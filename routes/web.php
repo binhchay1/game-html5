@@ -37,7 +37,6 @@ Route::middleware(['check.auth', 'admin'])->group(
     function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
-        //User
         Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
         Route::get('/user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
         Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
@@ -47,6 +46,11 @@ Route::middleware(['check.auth', 'admin'])->group(
 
         Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');
+        Route::get('/create-category', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/store-category', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
     }
 );
 
@@ -58,6 +62,7 @@ Route::middleware('check.auth')->group(
         Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
         Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
         Route::get('/user-logout', [ProfileController::class, 'logout'])->name('user.logout');
+        Route::get('/user-setting', [ProfileController::class, 'setting'])->name('user.setting');
         Route::get('/vote-by-user', [GameController::class, 'voteByUser'])->name('vote-by-user');
     }
 );

@@ -87,4 +87,8 @@ class ProfileController extends Controller
 
         return redirect('/login');
     }
+
+    public function setting() {
+
+    }
 }
