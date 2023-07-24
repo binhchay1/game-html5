@@ -35,5 +35,7 @@ class CreateVoteForGame extends Command
                 $this->voteRepository->create($data);
             }
         }
+
+        dump('---------Created vote games---------');
     }
 }

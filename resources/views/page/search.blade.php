@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - Search</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Tìm kiếm') }}</title>
 @endsection
 
 @section('css')
@@ -18,17 +18,17 @@
                 <input type="hidden" name="tag" id="tag-search-input">
                 <i class="y-icon y-icon--search y-icon--big"></i>
                 <button class="search-btn" type="submit" aria-label="Search">
-                    Tìm kiếm
+                    {{ __('Tìm kiếm') }}
                 </button>
             </form>
             <div class="advanced-serach-options">
-                <div class="title">Tùy chọn tìm kiếm nâng cao</div>
+                <div class="title">{{ __('Tùy chọn tìm kiếm nâng cao') }}</div>
                 <div class="column-container">
                     <div class="column">
                         <div class="gray-select category-select" id="category-search" onclick="dropDown('category-search')">
                             <div class="select-header" id="category-search-header">
                                 <span class="icon all-categories" id="category-search-title"></span>
-                                Tất cả các thể loại
+                                {{ __('Tất cả các thể loại') }}
                             </div>
                             <div class="select-options scroll">
                                 <div class="select-options__wrapper scroll">
@@ -75,7 +75,7 @@
             <div class="items-container" id="search_items_container">
                 @foreach($games as $game)
                 <div id="item_104800" class="item thumb videobox grid-column">
-                    <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại Y8.com" href="{{ route('playGames', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
+                    <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('playGames', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                         <div class="item__thumbarea">
                             <div class="item__microthumb"></div>
                             <div class="item__img-container">
@@ -121,14 +121,14 @@
         const urlParams = new URLSearchParams(queryString);
         let category = urlParams.get('category');
         let tag = urlParams.get('tag');
-        if (category != '') {
+        if (category != null) {
             let id = 'category-' + category;
             let categoryInput = document.getElementById('category-search-input');
             categoryInput.value = category;
             pickSelect(id);
         }
 
-        if (tag != '') {
+        if (tag != null) {
             let id = 'tag-' + tag;
             let tagInput = document.getElementById('tag-search-input');
             tagInput.value = tag;

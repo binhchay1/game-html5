@@ -17,8 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-composer.lock
-package-lock.json
 /public/process/list.txt
 /public/process/process.txt
 /public/images/games/*

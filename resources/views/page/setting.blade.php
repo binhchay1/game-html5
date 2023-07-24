@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', '{{ env('APP_NAME', 'Gamekafe') }}') }} - {{ __('Chính sách cookie') }}</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Cá nhân') }}</title>
 @endsection
 
 @section('css')
