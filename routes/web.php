@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\GameController;
+use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie-policy');
 Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
@@ -31,8 +34,10 @@ Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-g
 Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
 Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('playGames');
 Route::get('/count-play', [HomeController::class, 'countPlay'])->name('countPlay');
-
-Auth::routes();
+Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
+Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
 
 Route::middleware(['check.auth', 'admin'])->group(
     function () {

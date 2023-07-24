@@ -35,4 +35,24 @@ class UserRepository extends BaseRepository
     {
         return $this->model->create($input);
     }
+
+    public function getUserByEmail($email)
+    {
+        return $this->model->where('email', $email)->first();
+    }
+
+    public function updateSocialID($email, $data)
+    {
+        return $this->model->where('email', $email)->update($data);
+    }
+
+    public function getUserByGoogle($googleID)
+    {
+        return $this->model->where('google_id', $googleID)->first();
+    }
+
+    public function getUserByFacebook($facebookID)
+    {
+        return $this->model->where('facebook_id', $facebookID)->first();
+    }
 }
