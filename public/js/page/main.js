@@ -12,18 +12,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     checkSessions();
 
-    window.onclick = function (event) {
-        if (!event.target.matches('#button-flag')) {
-            var dropdowns = document.getElementById("locate-dropdown");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
+    window.addEventListener('click', function (e) {
+        if (!document.getElementById('locale-selector-dropdown').contains(e.target)) {
+            let element = document.getElementById("locate-dropdown");
+            element.style.display = 'none';
         }
-    }
+    });
 });
 
 function writeCookie(name, value, days) {

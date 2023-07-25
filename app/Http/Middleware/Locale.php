@@ -19,6 +19,14 @@ class Locale
     public function handle(Request $request, Closure $next): Response
     {
         $currentLocale = Session::get('locale');
+        if (empty($currentLocale)) {
+            $locale = Config::get('app.locale');
+
+            Session::put('locale', 'vi');
+            App::setLocale($locale);
+
+            return $next($request);
+        }
 
         if (in_array($currentLocale, Config::get('app.locales'))) {
             $locale = $currentLocale;
