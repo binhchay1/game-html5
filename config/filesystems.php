@@ -39,7 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -58,24 +58,24 @@ return [
 
         'public-images-game-icon' => [
             'driver' => 'local',
-            'root' => public_path() . '/images/games/icon',
-            'url' => env('APP_URL') .'/images/games/icon',
+            'root' => storage_path('app/public') . '/images/games/icon',
+            'url' => env('APP_URL') . '/storage/images/games/icon',
             'visibility' => 'public',
             'throw' => false,
         ],
 
         'public-images-game-thumb' => [
             'driver' => 'local',
-            'root' => public_path() . '/images/games/thumb',
-            'url' => env('APP_URL') .'/images/games/thumb',
+            'root' => storage_path('app/public') . '/images/games/thumb',
+            'url' => env('APP_URL') . '/storage/images/games/thumb',
             'visibility' => 'public',
             'throw' => false,
         ],
 
         'public-images-game-background' => [
             'driver' => 'local',
-            'root' => public_path() . '/images/games/background',
-            'url' => env('APP_URL') .'/images/games/background',
+            'root' => storage_path('app/public') . '/images/games/background',
+            'url' => env('APP_URL') . '/storage/images/games/background',
             'visibility' => 'public',
             'throw' => false,
         ],
