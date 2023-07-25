@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-6">
             <label for="inputAddress" class="form-label">{{__('Số điện thoại')}}</label>
-            <input type="text" value={{$dataUser->phone}} class="form-control" placeholder="1234 Main St">
+            <input type="text" value="{{$dataUser->phone}}" class="form-control" placeholder="1234 Main St">
         </div>
         <div class="col-md-3">
             <div class="form-group" >
@@ -37,15 +37,15 @@
         </div>
         <div class="col-md-6">
             <label for="inputCity" class="form-label">{{__('Địa chỉ')}}</label>
-            <input type="text" value={{$dataUser->address}} class="form-control" id="inputCity">
+            <input type="text" value= "{{$dataUser->address}}" class="form-control" id="inputCity">
         </div>
         <div class="col-md-4">
             <label for="inputCity" class="form-label">{{__('Tuổi')}}</label>
-            <input type="text" value={{$dataUser->age}} class="form-control" id="inputCity">
+            <input type="text" value="{{$dataUser->age}}" class="form-control" id="inputCity">
         </div>
         <div class="col-md-2">
             <label for="inputCity" class="form-label">{{__('Giới tính')}}</label>
-            <input type="text" value={{$dataUser->sex == 1 ? "Nam" : "Nữ"}} class="form-control" id="inputCity">
+            <input type="text" value="{{$dataUser->sex == 0 ? "Nam" : "Nữ"}}" class="form-control" id="inputCity">
         </div>
     </div>
 @endsection

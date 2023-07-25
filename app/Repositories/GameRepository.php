@@ -110,4 +110,19 @@ class GameRepository extends BaseRepository
     {
         return $this->model->where('name', $gameName)->first();
     }
+
+    public function showGame($id)
+    {
+        return $this->model->where('id',$id)->first();
+    }
+
+    public function store($input)
+    {
+        return $this->model->with( 'categories')->create($input);
+    }
+
+    public function update($input, $id)
+    {
+        return $this->model->with('categories')->where('id', $id)->update($input);
+    }
 }
