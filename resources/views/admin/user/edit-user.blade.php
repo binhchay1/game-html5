@@ -79,12 +79,13 @@
                         </span>
                 @enderror
             </div>
-            <div class="col-md-4">
-                <label for="inputCity" class="form-label">{{__('Giới tính')}}</label>
+            <div class="col-md-6">
                 <label for="status">{{__('Giới tính')}}</label>
                 <select class="form-select" aria-label="Default select example" name="sex" id="" >
-                    @foreach($gender as $gender => $value)
-                        <option selected id="status" value="{{$value}}">{{$gender}}</option>
+                    @foreach ($gender as $gender =>$value)
+                        <option value="{{ $value }}" @if($dataUser->sex == $value) selected @endif>
+                            {{$gender  }}
+                        </option>
                     @endforeach
                 </select>
             </div>

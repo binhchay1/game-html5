@@ -31,7 +31,7 @@
             <td>{{ $dataUser->id }}</td>
             <td>{{ $dataUser->name }}</th>
             <td>{{ $dataUser->email }}</td>
-            <td>{{ $dataUser->iamge }}</td>
+            <td><img class="image" src="{{$dataUser->image}}" alt="avatar" width="100" height="50"></td>
             <td>{{ $dataUser->phone }}</td>
             <td>{{ $dataUser->address }}</td>
             <td>{{ $dataUser->age }}</td>

@@ -51,6 +51,12 @@ Route::middleware(['check.auth', 'admin'])->group(
         Route::post('/update-user/{id}', [UserController::class, 'updateUser'])->name('user.updateUser');
 
         Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
+        Route::get('/game-info/{id}', [GameController::class, 'showGame'])->name('game.showGame');
+        Route::get('/create-game', [GameController::class, 'create'])->name('game.create');
+        Route::post('/store-game', [GameController::class, 'store'])->name('game.store');
+        Route::get('/edit-game/{id}', [GameController::class, 'edit'])->name('game.edit');
+        Route::post('/update-game/{id}', [GameController::class, 'update'])->name('game.update');
+
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
         Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');
         Route::get('/create-category', [CategoryController::class, 'create'])->name('category.create');
