@@ -114,7 +114,7 @@ class CrawlsAndStoreInformationOfGame extends Command
                 if (!empty($img->attr)) {
                     $link = $img->attr['data-lazy_src'];
                     $file_name = basename($link);
-                    $pathSave = asset('images/games/thumb');
+                    $pathSave = storage_path('app/public') . '/images/games/thumb';
                     $file_name = str_replace("%2", "G", $file_name);
                     $path = $pathSave . '/' . $file_name;
                     $listLink[$key]['thumb'] = $path;
@@ -201,7 +201,7 @@ class CrawlsAndStoreInformationOfGame extends Command
                         if ($style->attr['id'] == 'game_theme') {
                             $background = $this->breakCSS($style->innertext);
                             if (array_key_exists('image', $background)) {
-                                $pathSave = asset('images/games/background');
+                                $pathSave = storage_path('app/public') . '/images/games/background';
                                 $fileNameToSave = basename($background['image']);
                                 $file_name = str_replace("%2", "G", $fileNameToSave);
                                 $path = $pathSave . '/' . $file_name;
@@ -221,7 +221,7 @@ class CrawlsAndStoreInformationOfGame extends Command
                 if (isset($link->attr)) {
                     if (array_key_exists('type', $link->attr)) {
                         if ($link->attr['type'] == 'image/png' or $link->attr['type'] == 'image/gif') {
-                            $pathSave = asset('images/games/icon');
+                            $pathSave = storage_path('app/public') . '/images/games/icon';
                             $fileNameToSave = basename($link->attr['href']);
                             $file_name = str_replace("%2", "G", $fileNameToSave);
                             $path = $pathSave . '/' . $file_name;
