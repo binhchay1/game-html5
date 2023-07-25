@@ -23,7 +23,7 @@ class SetupLaravelForServer extends Command
         exec("php artisan db:seed");
         dump('------------DB:Seed successful------------');
 
-        exec("app:crawls-and-store-information-of-game");
+        exec("php artisan app:crawls-and-store-information-of-game");
         dump('------------Get Information successful------------');
 
         exec("php artisan app:create-vote-for-game");
