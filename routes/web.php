@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\GameController;
+use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie-policy');
 Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
@@ -30,13 +34,15 @@ Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-gam
 Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
 Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
 Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('playGames');
-
-Auth::routes();
+Route::get('/count-play', [HomeController::class, 'countPlay'])->name('countPlay');
+Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
+Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
 
 Route::middleware(['check.auth', 'admin'])->group(
     function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
         Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
         Route::get('/user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
         Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
@@ -52,11 +58,20 @@ Route::middleware(['check.auth', 'admin'])->group(
         Route::post('/update-game/{id}', [GameController::class, 'update'])->name('game.update');
 
         Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');
+        Route::get('/create-category', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/store-category', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
     }
 );
 
 Route::middleware('check.auth')->group(
     function () {
+        Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+        Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
+        Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+
         Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
         Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
         Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');

@@ -1,12 +1,14 @@
 @extends('layouts.admin')
+@section('js_sort_users')
+    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+@endsection
 @section('main_content')
-    @vite(['resources/sass/user.css'])
     <div class="row justify-content-start m-1 mb-2 mt-2">
-        <a href="">
+        <a href="{{route('category.create')}}">
             <button type="button" id="btn-add" class="btn btn-success">Add</button>
         </a>
     </div>
-    <table class="table table-bordered" id="customers">
+    <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="customers">
         <thead>
         <tr class="design-text">
             <th style="width: 8%;" scope="col">ID</th>
@@ -22,10 +24,10 @@
                 <td>{{ $dataCategory->name }}</th>
                 <td>{{ $dataCategory->title }}</th>
                 <td class="text_flow text-center">
-                    <a href="" class="btn btn-info">
+                    <a href="{{route('category.showCategory', $dataCategory['id'])}}" class="btn btn-info">
                         <i class="fas fa-info-circle"></i>
                     </a>
-                    <a href="">
+                    <a href="{{route('category.edit', $dataCategory['id'])}}">
                         <button type="button" class="btn btn-success">
                             <i class="fas fa-edit"></i>
                         </button>
@@ -42,10 +44,11 @@
     </table>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#customers').DataTable({
                 pagingType: 'full_numbers',
             });
+            $('.dataTables_length').addClass('bs-select');
         })
     </script>
 @endsection

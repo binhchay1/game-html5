@@ -88,7 +88,9 @@ class ProfileController extends Controller
         return redirect('/login');
     }
 
-    public function setting() {
-
+    public function setting()
+    {
+        // $query = $this->userRepository->get();
+        return view('page.setting');
     }
 }

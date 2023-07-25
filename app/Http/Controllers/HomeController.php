@@ -7,6 +7,7 @@ use App\Enums\Ultity;
 use Illuminate\Http\Request;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
+use App\Repositories\IpUserRepository;
 use App\Repositories\SearchRepository;
 
 class HomeController extends Controller
@@ -17,14 +18,22 @@ class HomeController extends Controller
     private $searchRepository;
     private $ultity;
     private $iconGame;
+    private $ipUserRepository;
 
-    public function __construct(GameRepository $gameRepository, CategoryRepository $categoryRepository, SearchRepository $searchRepository, Ultity $ultity, IconGame $iconGame)
-    {
+    public function __construct(
+        GameRepository $gameRepository,
+        CategoryRepository $categoryRepository,
+        SearchRepository $searchRepository,
+        Ultity $ultity,
+        IconGame $iconGame,
+        IpUserRepository $ipUserRepository
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
         $this->searchRepository = $searchRepository;
         $this->ultity = $ultity;
         $this->iconGame = $iconGame;
+        $this->ipUserRepository = $ipUserRepository;
     }
 
     public function viewCookiePolicy()
@@ -228,6 +237,30 @@ class HomeController extends Controller
         $getGame = $this->gameRepository->getGameByName($game, 'name');
         $getGame['title-game'] = ucwords(str_replace('-', ' ', $getGame['name']));
 
+        $this->gameRepository;
+
         return view('page.games', compact('getGame'));
+    }
+
+    public function countPlay(Request $request)
+    {
+        $ip = $request->get('ip');
+        $gameName = $request->get('gameName');
+
+        $queryIP = $this->ipUserRepository->getIpByUser($ip, $gameName);
+
+        if (empty($queryIP)) {
+            $dataIpUser = [
+                'ip_address' => $ip,
+                'game_name' => $gameName
+            ];
+            $this->ipUserRepository->create($dataIpUser);
+            $getCount = $this->gameRepository->getCountByGame($gameName);
+            $count = (int) ($getCount['count_play']) + 1;
+
+            $this->gameRepository->updateCountPlay($gameName, $count);
+        }
+
+        return 'success';
     }
 }
