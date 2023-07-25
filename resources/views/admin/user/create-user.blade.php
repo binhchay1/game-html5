@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <div>
                         <label for="img">Image</label>
-                        <input value="image" type="file" class=" form-control @error('name') is-invalid @enderror border-0 bg-light pl-0" name="image" id="image" hidden>
+                        <input value="image" type="file" class=" form-control @error('image') is-invalid @enderror border-0 bg-light pl-0" name="image" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
                                 <img id="showImage" style="width: 150px" class="show-avatar" src="{{ url('/images/user.jpg')}}" alt="avatar">
