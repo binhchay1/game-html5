@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\Role;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Repositories\GameRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Session;
+use App\Models\UserVerify;
+use Illuminate\Support\Str;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -70,27 +76,22 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
+        $this->validate(request(), [
             'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
 
-        $data = $request->all();
-        $this->create($data);
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'role' => Role::USER,
+        ]);
 
-        return redirect("/");
-    }
+        event(new Registered($user));
+        auth()->login($user);
 
-    protected function create(array $data)
-    {
-        $dataCreate = [
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role' => \App\Enums\Role::USER
-        ];
-
-        return $this->userRepository->create($dataCreate);
+        return redirect('/')->with('success', "Account successfully registered.");
     }
 }
