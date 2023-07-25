@@ -54,7 +54,7 @@
 
 <body>
     <div class="wrapper">
-        <iframe src="{{ $getGame['link'] }}" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
+        <iframe id="iframe-games" src="{{ $getGame['link'] }}" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
     </div>
 
     @if(Auth::check())
@@ -96,6 +96,21 @@
                 $('#vote-unlike').css('opacity', '1');
             });
         });
+
+        function countPlay() {
+            $.getJSON("https://api.ipify.org?format=json", function(data) {
+                let ip = data.ip;
+                $.ajax({
+                    url: '/count-play',
+                    type: 'GET',
+                    data: {
+                        ip: ip,
+                        gameName: gameName
+                    }
+                });
+            })
+        }
+        setTimeout(countPlay, 10000);
     </script>
 </body>
 

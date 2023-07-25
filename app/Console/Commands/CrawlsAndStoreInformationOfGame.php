@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Enums\LinkGame;
 use App\Enums\Attribute;
-use App\Enums\ListLink;
 use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
@@ -20,7 +19,6 @@ class CrawlsAndStoreInformationOfGame extends Command
     private $attribute;
     private $crawls;
     private $gameRepository;
-    private $ListLink;
 
     public function __construct(
         LinkGame $linkGame,
@@ -29,7 +27,6 @@ class CrawlsAndStoreInformationOfGame extends Command
         Ultity $ultity,
         GameRepository $gameRepository,
         CategoryRepository $categoryRepository,
-        ListLink $ListLink
     ) {
         $this->linkGame = $linkGame;
         $this->attribute = $attribute;
@@ -37,7 +34,6 @@ class CrawlsAndStoreInformationOfGame extends Command
         $this->ultity = $ultity;
         $this->gameRepository = $gameRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->ListLink = $ListLink;
         parent::__construct();
     }
 
@@ -165,10 +161,6 @@ class CrawlsAndStoreInformationOfGame extends Command
 
         foreach ($listLink as $key => $link) {
             if (!array_key_exists('link', $link) or !array_key_exists('link', $link)) {
-                continue;
-            }
-
-            if (in_array($link['link'], $this->ListLink::LIST_IGNORE)) {
                 continue;
             }
 

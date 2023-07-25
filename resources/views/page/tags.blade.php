@@ -23,15 +23,15 @@
                         {{ __('Game trực tuyến miễn phí hàng đầu được gắn thẻ') }} {{ $tag }}
                     </h1>
                     <h2 class="text-regular">
-                        {{ __('Xem tất cả thẻ gắn') }} {{ __('Chơi game') }} {{ $tag }} trên {{ env('APP_URL', 'Gamekafe.com') }}.
+                        {{ __('Xem tất cả thẻ gắn') }} {{ __('Chơi game') }} {{ $tag }} {{ __('trên') }} {{ env('APP_URL', 'Gamekafe.com') }}.
                     </h2>
                 </div>
                 <div class="sub-title">
                     <div class="left">
                         <a class="active" rel="nofollow" title="{{ __('Game Trực Tuyến Miễn Phí Hàng đầu được Gắn Thẻ') }} {{ $tag }} - {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('tags', ['tag' => $tag]) }}">
                             <h3>
-                                Tất cả
-                                Game trực tuyến miễn phí hàng đầu được gắn thẻ War
+                                {{ __('Tất cả') }}
+                                {{ __('Game trực tuyến miễn phí hàng đầu được gắn thẻ') }} {{ $tag }}
                                 <span>({{ count($games) }})</span>
                             </h3>
                         </a>
@@ -51,7 +51,7 @@
             <div class="items-container">
                 @foreach($games as $game)
                 <div id="item_5515" class="item thumb videobox grid-column">
-                    <a title="Trò chơi {{ $game['name'] }} - Chơi trực tuyến tại {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('playGames', ['game' => ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
+                    <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('playGames', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                         <div class="item__thumbarea">
                             <div class="item__microthumb"></div>
                             <div class="item__img-container">

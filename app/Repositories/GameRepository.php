@@ -110,4 +110,14 @@ class GameRepository extends BaseRepository
     {
         return $this->model->where('name', $gameName)->first();
     }
+
+    public function updateCountPlay($gameName, $count)
+    {
+        return $this->model->where('name', $gameName)->update(['count_play' => $count]);
+    }
+
+    public function getCountByGame($gameName)
+    {
+        return $this->model->select('count_play')->where('name', $gameName)->first();
+    }
 }

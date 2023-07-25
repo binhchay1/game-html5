@@ -20,8 +20,6 @@
         </thead>
         <tbody>
         @foreach($dataGame as $dataGame)
-            @dd($dataGame);
-
             <tr class="design-text">
                 <td>{{ $dataGame->id }}</td>
                 <td>{{ $dataGame->name }}</th>

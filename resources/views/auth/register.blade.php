@@ -22,29 +22,39 @@
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus />
                                             <label class="form-label" for="form2Example17">Name</label>
+                                            <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus />
+                                            @error('name')
+                                            <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                                             <label class="form-label" for="form2Example17">Email address</label>
+                                            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
+                                            @error('email')
+                                            <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
                                             <label class="form-label" for="form2Example27">Password</label>
+                                            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
+                                            @error('password')
+                                            <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="password-confirm" class="form-control @error('password-confirm') is-invalid @enderror" name="password-confirm" required autocomplete="current-password"/>
                                             <label class="form-label" for="form2Example27">Password Confirm</label>
+                                            <input type="password" id="password-confirm" class="form-control @error('password-confirm') is-invalid @enderror" name="password-confirm" required autocomplete="current-password"/>
                                         </div>
-                                        @if(isset($errors))
-                                            @foreach ($errors->all() as $error)
-                                                <div style="color: red; margin: 10px">{{ $error }}</div>
-                                            @endforeach
-                                        @endif
                                         <div class="pt-1 mb-4">
                                             <button class="btn btn-dark btn-lg btn-block" type="submit">Register</button>
                                         </div>
