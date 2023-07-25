@@ -19,6 +19,6 @@ yarn-error.log
 /.vscode
 /public/process/list.txt
 /public/process/process.txt
-# /public/images/games/*
+/public/images/games/*
 /public/img/*
 
