@@ -23,19 +23,24 @@
                                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                                         <label class="form-label" for="form2Example17">Email address</label>
+                                        <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
+                                        @error('email')
+                                        <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
                                         <label class="form-label" for="form2Example27">Password</label>
+                                        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
+                                        @error('password')
+                                        <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
-                                    @if(isset($errors))
-                                    @foreach ($errors->all() as $error)
-                                    <div style="color: red; margin: 10px">{{ $error }}</div>
-                                    @endforeach
-                                    @endif
                                     <div class="pt-1 mb-4">
                                         <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                                     </div>

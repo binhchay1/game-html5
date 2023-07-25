@@ -8,6 +8,7 @@ use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,6 @@ Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFace
 Route::middleware(['check.auth', 'admin'])->group(
     function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
         Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
         Route::get('/user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
         Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
@@ -62,6 +62,10 @@ Route::middleware(['check.auth', 'admin'])->group(
 
 Route::middleware('check.auth')->group(
     function () {
+        Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+        Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
+        Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+
         Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
         Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
         Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
