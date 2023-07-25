@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class SetupLaravelForServer extends Command
 {
@@ -17,16 +18,16 @@ class SetupLaravelForServer extends Command
 
     public function handle()
     {
-        exec("php artisan migrate");
+        Artisan::call("migrate");
         dump('------------Migrate successful------------');
 
-        exec("php artisan db:seed");
+        Artisan::call("db:seed");
         dump('------------DB:Seed successful------------');
 
-        exec("php artisan app:crawls-and-store-information-of-game");
+        Artisan::call("app:crawls-and-store-information-of-game");
         dump('------------Get Information successful------------');
 
-        exec("php artisan app:create-vote-for-game");
+        Artisan::call("app:create-vote-for-game");
         dump('------------Create Vote For Game successful------------');
     }
 }
