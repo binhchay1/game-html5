@@ -8,7 +8,7 @@
     @yield('title')
     <meta name="description" content="{{ __('Chơi game miễn phí trên') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.') }}" />
     <meta name="keywords" content="{{ __('chơi game miễn phí') }}, {{ __('chơi game trực tuyến') }}, chơi game, gamekafe, gamekafe, kafe, fake, gameka, chơi game bóng đá, chơi game android, chơi game đua xe, chơi game zombie, chơi candy crush, chơi game đua tốc độ, chơi game casino, chơi poker, chơi game bắn nhau, chơi game thời trang, chơi game nữ giới, chơi game nấu ăn, chơi game phiêu lưu, chơi game câu cá, chơi game halloween, chơi game tình yêu, chơi game đố vui, chơi game thể thao, chơi game chiến tranh, chơi game bóng đá" />
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta property="og:title" content="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại {{ env('APP_NAME', 'Gamekafe') }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ env('APP_URL', 'gamekafe.com') }}">
