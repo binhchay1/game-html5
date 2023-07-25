@@ -33,7 +33,7 @@
 
     .vote {
         position: relative;
-        top: 30%;
+        top: 20%;
         text-align: center;
     }
 
@@ -48,11 +48,27 @@
     .vote a {
         text-decoration: none;
     }
+
+    .top-conner{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .top-conner a {
+        color: beige;
+    }
     </style>";
     ?>
 </head>
 
 <body>
+    <div class="top-conner">
+        <a>
+            ❤ Add to collection
+        </a>
+    </div>
+
     <div class="wrapper">
         <iframe id="iframe-games" src="{{ $getGame['link'] }}" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
     </div>

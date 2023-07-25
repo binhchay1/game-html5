@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Enums\LinkGame;
-use App\Enums\Attribute;
 use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
@@ -16,20 +15,17 @@ class CrawlsAndStoreInformationOfGame extends Command
     protected $signature = 'app:crawls-and-store-information-of-game';
     protected $description = 'Get information of game with link itch.io';
     private $linkGame;
-    private $attribute;
     private $crawls;
     private $gameRepository;
 
     public function __construct(
         LinkGame $linkGame,
-        Attribute $attribute,
         Crawls $crawls,
         Ultity $ultity,
         GameRepository $gameRepository,
         CategoryRepository $categoryRepository,
     ) {
         $this->linkGame = $linkGame;
-        $this->attribute = $attribute;
         $this->crawls = $crawls;
         $this->ultity = $ultity;
         $this->gameRepository = $gameRepository;
@@ -45,7 +41,8 @@ class CrawlsAndStoreInformationOfGame extends Command
     public function getLinkGameItchIo()
     {
         $break = false;
-        $attrA = $this->attribute::LIST_ATTRIBUTE[$this->linkGame::GAME_ITCHIO];
+        $attrA = '.thumb_link';
+        $attrPlatform = '.game_platform';
         $attrImg = '.lazy_loaded';
         $page = env('PAGE_GET_GAME', 1);
         $count = 0;
@@ -83,8 +80,11 @@ class CrawlsAndStoreInformationOfGame extends Command
 
             $listA = $this->crawls->getListAttribute($content, $attrA, 'file');
             $listImg = $this->crawls->getListAttribute($content, $attrImg, 'file');
+            $listGamePlatform = $this->crawls->getListAttribute($content, $attrPlatform, 'file');
             $listNameGame = [];
             $listLink = [];
+
+            dd($listGamePlatform);
 
             foreach ($listA as $item) {
                 if (!empty($item->attr)) {

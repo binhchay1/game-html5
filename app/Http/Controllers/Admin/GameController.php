@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\GameReuqest;
+use App\Http\Requests\GameRequest;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -105,7 +105,7 @@ class GameController extends Controller
         return view('admin.game.create-game', ['dataCategory'=> $dataCategory, 'status'=> $status]);
     }
 
-    public function store(GameReuqest $request)
+    public function store(GameRequest $request)
     {
         $input = $request->all();
         if (array_key_exists('thumbs', $input)) {
