@@ -41,7 +41,7 @@
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example27">{{ __('Mật khẩu') }}</label>
+                                        <label class="form-label" for="password">{{ __('Mật khẩu') }}</label>
                                         <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
                                         @error('password')
                                         <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
@@ -51,8 +51,8 @@
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example27">{{ __('Xác nhận mật khẩu') }}</label>
-                                        <input type="password" id="password-confirm" class="form-control @error('password-confirm') is-invalid @enderror" name="password-confirm" required autocomplete="current-password" />
+                                        <label class="form-label" for="password_confirm">{{ __('Xác nhận mật khẩu') }}</label>
+                                        <input type="password" id="password-confirm" class="form-control @error('password-confirm') is-invalid @enderror" name="password_confirmation" required autocomplete="current-password" />
                                     </div>
 
                                     <div class="pt-1 mb-4">

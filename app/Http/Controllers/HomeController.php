@@ -257,11 +257,15 @@ class HomeController extends Controller
         }
 
         $getGame['title-game'] = ucwords(str_replace('-', ' ', $game));
-        $query = $this->gameCollectionRepository->getByGameNameAndUserId($game, Auth::user()->id);
-        if (empty($query)) {
-            $status = false;
-        } else {
-            $status = true;
+        $status = null;
+
+        if (Auth::check()) {
+            $query = $this->gameCollectionRepository->getByGameNameAndUserId($game, Auth::user()->id);
+            if (empty($query)) {
+                $status = false;
+            } else {
+                $status = true;
+            }
         }
 
         return view('page.games', compact('getGame', 'status'));
@@ -296,5 +300,11 @@ class HomeController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function viewVerifyEmail($user)
+    {
+        dd($user);
+        return view('auth.verify-email');
     }
 }

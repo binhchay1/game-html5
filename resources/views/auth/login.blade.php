@@ -25,23 +25,17 @@
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example17">{{ __('Hòm thư') }}</label>
                                         <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
-                                        @error('email')
-                                        <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example27">{{ __('Mật khẩu')}}</label>
                                         <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('email') }}" required autocomplete="current-password" />
-                                        @error('password')
-                                        <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-
                                     </div>
+
+                                    @if($errors->any())
+                                    <div class="text-danger mb-3">{{ implode('', $errors->all(':message')) }}</div>
+                                    @endif
+
                                     <div class="pt-1 mb-4">
                                         <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Đăng nhập') }}</button>
                                     </div>

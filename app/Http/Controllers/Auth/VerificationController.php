@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Foundation\Auth\VerifiesEmails;
-use App\Enums\VerifyEmail;
+use Illuminate\Http\Request;
+
 class VerificationController extends Controller
 {
     /*
@@ -20,7 +20,7 @@ class VerificationController extends Controller
     |
     */
 
-    use VerifiesEmails, RedirectsUsers;
+    use VerifiesEmails;
 
     /**
      * Where to redirect users after verification.
@@ -36,7 +36,6 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
@@ -49,4 +48,6 @@ class VerificationController extends Controller
                 'pageTitle' => __('Account Verification')
             ]);
     }
+
+
 }
