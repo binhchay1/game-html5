@@ -9,18 +9,27 @@ use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Repositories\GameCollectionRepository;
+use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
     protected $userRepository;
     protected $ultity;
+    protected $gameCollectionRepository;
+    protected $gameRepository;
+
     public function __construct(
         UserRepository $userRepository,
-        Ultity $ultity
+        Ultity $ultity,
+        GameCollectionRepository $gameCollectionRepository,
+        GameRepository $gameRepository
     ) {
         $this->userRepository = $userRepository;
         $this->ultity = $ultity;
+        $this->gameCollectionRepository = $gameCollectionRepository;
+        $this->gameRepository = $gameRepository;
     }
 
     public function show()
@@ -30,16 +39,17 @@ class ProfileController extends Controller
 
     public function edit()
     {
+        $gender = config('user.sex');
         $dataUser = $this->userRepository->showUser(Auth::user()->id);
         return view('page.user.profile', [
-            'dataUser' => $dataUser
+            'dataUser' => $dataUser,
+            'gender' => $gender
         ]);
     }
 
     public function update(UserRequest $request)
     {
         $input = $request->except(['_token']);
-
         if (array_key_exists('image', $input)) {
             $idFolder = Hash::make('acwbe' . Auth::user()->id);
             $path = 'images/user/' . $idFolder . '/' . $input['image']->getClientOriginalName();
@@ -90,7 +100,17 @@ class ProfileController extends Controller
 
     public function setting()
     {
-        // $query = $this->userRepository->get();
-        return view('page.setting');
+        $listGameName = $this->gameCollectionRepository->getCollectionByUser(Auth::user()->id);
+        $listGame = [];
+        foreach ($listGameName as $game) {
+            $getGame = $this->gameRepository->getGameByName($game['game_name']);
+            $listGame[] = $getGame;
+        }
+
+        $listGame = $this->ultity->paginate($listGame, 30);
+
+        $games = $this->ultity->renameAndCalculateVote($listGame);
+
+        return view('page.setting', compact('games'));
     }
 }

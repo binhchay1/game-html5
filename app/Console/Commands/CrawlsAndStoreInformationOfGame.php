@@ -84,8 +84,6 @@ class CrawlsAndStoreInformationOfGame extends Command
             $listNameGame = [];
             $listLink = [];
 
-            dd($listGamePlatform);
-
             foreach ($listA as $item) {
                 if (!empty($item->attr)) {
                     $link = $item->attr["href"];
@@ -210,7 +208,6 @@ class CrawlsAndStoreInformationOfGame extends Command
                                 $this->saveImage($background['image'], $fileNameToSave, 'background');
                             }
                             $data['color'] = $background['color'];
-                            $data['text-color'] = $background['text-color'];
                             break;
                         }
                     }
@@ -288,6 +285,10 @@ class CrawlsAndStoreInformationOfGame extends Command
     {
         $context = stream_context_create(array(
             'http' => array('ignore_errors' => true),
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+            ),
         ));
 
         $content = file_get_contents($url, false, $context);
@@ -332,28 +333,6 @@ class CrawlsAndStoreInformationOfGame extends Command
                 }
 
                 continue;
-            }
-
-            if ($arrClasses[$i] == '.inner_column h1,.inner_column h2,.inner_column h3,.inner_column h4,.inner_column h5,.inner_column h6') {
-                $explodeExp = explode(';', $matches[2][$i]);
-                foreach ($explodeExp as $attr) {
-                    if (strlen(trim($attr)) > 0) {
-                        $explodeAttr = explode(':', $attr);
-                        if (count($explodeAttr) == 2) {
-                            if ($explodeAttr[0] == 'color') {
-                                list($name, $value) = $explodeAttr;
-                                $background['text-color'] = trim($value);
-                            }
-                        } elseif (count($explodeAttr) == 3) {
-                            if ($explodeAttr[0] == 'color') {
-                                list($name, $value, $important) = $explodeAttr;
-                                $background['text-color'] = trim($important);
-                            }
-                        } else {
-                            continue;
-                        }
-                    }
-                }
             }
         }
 
