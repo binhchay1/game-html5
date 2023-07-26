@@ -7,13 +7,13 @@
 @vite('resources/js/user.js')
 @section('main_content')
     <div class="card-header mt-4">
-        <h3>{{ __('Tạo game') }}</h3>
+        <h3>Create Game</h3>
     </div>
     <div class="container">
         <form action="{{route('game.store')}}" method="POST" class="row g-3" enctype="multipart/form-data">
             @csrf
             <div class="col-md-6">
-                <label for="inputAddress" class="form-label">{{__('Tên')}}</label>
+                <label for="inputAddress" class="form-label">Name</label>
                 <input name="name" value="{{old('name')}}"  type="text"  class="form-control @error('name') is-invalid @enderror" placeholder="">
                 @error('name')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
@@ -22,7 +22,7 @@
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="inputAddress" class="form-label">{{__('Liên kết')}}</label>
+                <label for="inputAddress" class="form-label">Link</label>
                 <input name="link" value="{{old('link')}}" type="text"  class="form-control @error('link') is-invalid @enderror" placeholder="" >
                 @error('link')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
@@ -31,7 +31,7 @@
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="status">{{__('Thể loại game')}}</label>
+                <label for="status">Category Game</label>
                 <select class="form-select form-control @error('category') is-invalid @enderror" aria-label="Default select example" name="category" id="" >
                     @foreach ($dataCategory as $dataCategory)
                         <option value="{{ $dataCategory->name }}" >
@@ -43,7 +43,7 @@
             <div class="col-md-2">
                 <div class="form-group" >
                     <div style="">
-                        <label for="img">{{__('Thumbs')}}</label>
+                        <label for="img">Thumbs</label>
                         <input value="" type="file" class="border-0 bg-light pl-0 @error('thumbs') is-invalid @enderror" name="thumbs" id="image" hidden>
                         <div class=" choose-avatar" >
                             <div id="btnimage">
@@ -61,7 +61,7 @@
             <div class="col-md-2">
                 <div class="form-group" >
                     <div style="">
-                        <label for="img">{{__('Icon')}}</label>
+                        <label for="img">Icon</label>
                         <input value="" type="file" class="border-0 bg-light pl-0 @error('icon') is-invalid @enderror" name="icon" id="image" hidden>
                         <div class=" choose-avatar" >
                             <div id="btnimage">
@@ -79,7 +79,7 @@
             <div class="col-md-2">
                 <div class="form-group" >
                     <div style="">
-                        <label for="img">{{__('Background')}}</label>
+                        <label for="img">Background</label>
                         <input value="" type="file" class="border-0 bg-light pl-0 @error('background') is-invalid @enderror" name="background" id="image" hidden>
                         <div class=" choose-avatar" >
                             <div id="btnimage">
@@ -95,15 +95,15 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label for="inputCity" class="form-label">{{__('Tag')}}</label>
+                <label for="inputCity" class="form-label">Tag</label>
                 <input type="text" name="tag" value="{{old('tag')}}" class="form-control" id="inputCity">
             </div>
             <div class="col-md-4">
-                <label for="inputCity" class="form-label">{{__('Count_play')}}</label>
+                <label for="inputCity" class="form-label">CountPlay</label>
                 <input type="text"  name="count_play" value="{{old('count_play')}}" class="form-control" id="inputCity">
             </div>
             <div class="col-md-4">
-                <label for="status">{{__('Status')}}</label>
+                <label for="status">Status</label>
                 <select class="form-select" aria-label="Default select example" name="status" id="" >
                     @foreach($status as $status => $value)
                         <option selected id="status" value="{{$value}}">{{$status}}</option>
@@ -111,15 +111,15 @@
                 </select>
             </div>
             <div class="col-md-2">
-                <label for="inputCity" class="form-label">{{__('Color')}}</label>
+                <label for="inputCity" class="form-label">Color</label>
                 <input type="text" name="color" value="{{old('color')}}" class="form-control" id="inputCity">
             </div>
             <div class="col-md-2">
-                <label for="inputCity" class="form-label">{{__('Text-color')}}</label>
+                <label for="inputCity" class="form-label">TextColor</label>
                 <input type="text" name="text_color" value="{{old('text_color')}}" class="form-control" id="inputCity">
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-success">{{__('Tạo')}}</button>
+                <button type="submit" class="btn btn-success">Create</button>
             </div>
         </form>
     </div>
