@@ -226,15 +226,17 @@
     </footer>
     <div class="dark-overlay"></div>
     <div class="policy-validation" id="policy-validation" style="display: none;">
-        <div class="logo">
-            <img width="59" height="27" alt="Gamekafe" src="{{ asset('images/color-logo-no-background.png') }}" />
-        </div>
-        <div class="content">
-            {{ __('Chúng tôi sử dụng cookie để đề xuất nội dung và phân tích lưu lượng truy cập và quảng cáo. Khi sử dụng trang web này, bạn đồng ý với') }} <a target="_blank" rel="nofollow" href="{{ route('privacy') }}">{{ __('Chính sách bảo mật') }}</a>
-            {{ __('và') }} <a target="_blank" rel="nofollow" href="{{ route('cookie-policy') }}">{{ __('Chính sách Cookie') }}</a>
-        </div>
-        <div class="actions" onclick="storeAccepted('accepted')">
-            <span class="validate-policy">{{ __('Đã hiểu') }}</span>
+        <div style="display: flex;">
+            <div class="logo">
+                <img width="59" height="27" alt="Gamekafe" src="{{ asset('images/black-logo-no-background.png') }}" />
+            </div>
+            <div class="content">
+                {{ __('Chúng tôi sử dụng cookie để đề xuất nội dung và phân tích lưu lượng truy cập và quảng cáo. Khi sử dụng trang web này, bạn đồng ý với') }} <a target="_blank" rel="nofollow" href="{{ route('privacy') }}">{{ __('Chính sách bảo mật') }}</a>
+                {{ __('và') }} <a target="_blank" rel="nofollow" href="{{ route('cookie-policy') }}">{{ __('Chính sách Cookie') }}</a>
+            </div>
+            <div class="actions" onclick="storeAccepted('accepted')">
+                <span class="validate-policy">{{ __('Đã hiểu') }}</span>
+            </div>
         </div>
     </div>
 

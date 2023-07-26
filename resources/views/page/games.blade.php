@@ -37,10 +37,6 @@
         text-align: center;
     }
 
-    .vote h1, .vote h2, .vote h3, .vote h4, .vote h5, .vote h6, .vote i {
-        color:" . $getGame['text-color'] . "
-    }
-
     .vote i {
         font-size: 25px !important;
     }
@@ -53,21 +49,32 @@
         position: absolute;
         top: 10px;
         right: 10px;
+        cursor: pointer;
     }
 
-    .top-conner a {
-        color: beige;
+    .top-conner p {
+        font-size: 20px;
     }
     </style>";
     ?>
 </head>
 
 <body>
-    <div class="top-conner">
-        <a>
+    @if(Auth::check())
+    @if(!$status)
+    <div class="top-conner" onclick="saveCollection()" id="button-add-collection">
+        <p>
             ❤ Add to collection
-        </a>
+        </p>
     </div>
+    @else
+    <div class="top-conner" id="button-add-collection" style="cursor: auto;">
+        <p>
+            Game in your collection!
+        </p>
+    </div>
+    @endif
+    @endif
 
     <div class="wrapper">
         <iframe id="iframe-games" src="{{ $getGame['link'] }}" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
@@ -84,6 +91,12 @@
     <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
     <script>
         const gameName = '<?php echo $getGame['name']; ?>';
+        const themeColor = '<?php echo $getGame['color']; ?>';
+        var all = document.getElementsByTagName("*");
+
+        for (var i = 0, max = all.length; i < max; i++) {
+            all[i].style.color = invertColor(themeColor);
+        }
 
         $('#vote-like').on('click', function() {
             $.ajax({
@@ -127,6 +140,48 @@
             })
         }
         setTimeout(countPlay, 10000);
+
+        function invertColor(hex) {
+            if (hex.indexOf('#') === 0) {
+                hex = hex.slice(1);
+            }
+
+            if (hex.length === 3) {
+                hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+            }
+            if (hex.length !== 6) {
+                throw new Error('Invalid HEX color.');
+            }
+
+            var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
+                g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
+                b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
+
+            return '#' + padZero(r) + padZero(g) + padZero(b);
+        }
+
+        function padZero(str, len) {
+            len = len || 2;
+            var zeros = new Array(len).join('0');
+            return (zeros + str).slice(-len);
+        }
+
+
+        function saveCollection() {
+            $.ajax({
+                url: '/save-collection',
+                type: 'GET',
+                data: {
+                    gameName: gameName
+                }
+            }).done(function(result) {
+                $('#button-add-collection').css('cursor', 'auto');
+                $('#button-add-collection p').html('Game in your collection!');
+                $('#button-add-collection').each(function() {
+                    this.style.pointerEvents = 'none';
+                });
+            });
+        }
     </script>
 </body>
 

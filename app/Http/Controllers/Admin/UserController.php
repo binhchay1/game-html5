@@ -7,24 +7,21 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
     protected $userRepository;
     protected $ultity;
 
     public function __construct(
         UserRepository $userRepository,
-                Ultity $ultity
+        Ultity $ultity
 
     ) {
         $this->userRepository = $userRepository;
         $this->ultity = $ultity;
-
     }
 
     public function index()
@@ -43,7 +40,7 @@ class UserController extends Controller
     public function create()
     {
         $gender = config('user.sex');
-        return view ('admin.user.create-user', ['gender' => $gender]);
+        return view('admin.user.create-user', ['gender' => $gender]);
     }
 
     public function store(StoreUserRequest $request)
@@ -57,7 +54,7 @@ class UserController extends Controller
         }
 
         $input['role'] = \App\Enums\Role::USER;
-        $dataUser = $this->userRepository->store($input);
+        $this->userRepository->store($input);
 
         return redirect('list-user');
     }
@@ -66,11 +63,13 @@ class UserController extends Controller
     {
         $dataUser = $this->userRepository->userInfo($id);
         $gender = config('user.sex');
-        return view ('admin.user.edit-user',
+        return view(
+            'admin.user.edit-user',
             [
                 'gender' => $gender,
                 'dataUser' => $dataUser
-            ]);
+            ]
+        );
     }
 
     public function updateUser(UpdateUserRequest $request, $id)
@@ -84,7 +83,7 @@ class UserController extends Controller
             $input['image'] = $url;
         }
 
-        $dataUser = $this->userRepository->update($input , $id);
+        $this->userRepository->update($input, $id);
         return redirect('list-user');
     }
 }

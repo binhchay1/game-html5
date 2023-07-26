@@ -9,8 +9,10 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
 use App\Repositories\SearchRepository;
+use App\Repositories\GameCollectionRepository;
 use Config;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -20,6 +22,7 @@ class HomeController extends Controller
     private $ultity;
     private $iconGame;
     private $ipUserRepository;
+    private $gameCollectionRepository;
 
     public function __construct(
         GameRepository $gameRepository,
@@ -27,7 +30,8 @@ class HomeController extends Controller
         SearchRepository $searchRepository,
         Ultity $ultity,
         IconGame $iconGame,
-        IpUserRepository $ipUserRepository
+        IpUserRepository $ipUserRepository,
+        GameCollectionRepository $gameCollectionRepository
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
@@ -35,6 +39,7 @@ class HomeController extends Controller
         $this->ultity = $ultity;
         $this->iconGame = $iconGame;
         $this->ipUserRepository = $ipUserRepository;
+        $this->gameCollectionRepository = $gameCollectionRepository;
     }
 
     public function viewCookiePolicy()
@@ -90,6 +95,11 @@ class HomeController extends Controller
         $getGames = $this->gameRepository->listGameByCategory($category, $sort);
         $games = $this->ultity->paginate($getGames, 30);
         $category = $this->categoryRepository->getByColumn($category, 'name');
+
+        if (empty($category)) {
+            abort(404);
+        }
+
         $listTag = [];
 
 
@@ -166,6 +176,11 @@ class HomeController extends Controller
     public function viewTags($tag)
     {
         $query = $this->gameRepository->listGameByTag($tag);
+
+        if (empty($query)) {
+            abort(404);
+        }
+
         $listGame = $this->ultity->paginate($query, 10);
         $games = $this->ultity->renameAndCalculateVote($listGame);
 
@@ -235,12 +250,21 @@ class HomeController extends Controller
 
     public function viewGame($game)
     {
-        $getGame = $this->gameRepository->getGameByName($game, 'name');
-        $getGame['title-game'] = ucwords(str_replace('-', ' ', $getGame['name']));
+        $getGame = $this->gameRepository->getGameByName($game);
 
-        $this->gameRepository;
+        if (empty($getGame)) {
+            abort(404);
+        }
 
-        return view('page.games', compact('getGame'));
+        $getGame['title-game'] = ucwords(str_replace('-', ' ', $game));
+        $query = $this->gameCollectionRepository->getByGameNameAndUserId($game, Auth::user()->id);
+        if (empty($query)) {
+            $status = false;
+        } else {
+            $status = true;
+        }
+
+        return view('page.games', compact('getGame', 'status'));
     }
 
     public function countPlay(Request $request)

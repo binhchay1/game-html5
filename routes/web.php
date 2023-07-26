@@ -83,5 +83,6 @@ Route::middleware('check.auth')->group(
         Route::get('/user-logout', [ProfileController::class, 'logout'])->name('user.logout');
         Route::get('/user-setting', [ProfileController::class, 'setting'])->name('user.setting');
         Route::get('/vote-by-user', [GameController::class, 'voteByUser'])->name('vote-by-user');
+        Route::get('/save-collection', [GameController::class, 'saveCollection'])->name('save-collection');
     }
 );

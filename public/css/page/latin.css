@@ -7379,7 +7379,7 @@ body.static .title-container {
     nav.navbar .y8-navbar-right .fake-button.idnet-fast-login-link,
     nav.navbar .y8-navbar-right .fake-button.parental-control,
     nav.navbar .y8-navbar-right .fake-button.locale-selector-dropdown {
-        margin: 0 0 0 10px;
+        margin: 0 0 0 5px;
     }
     nav.navbar .y8-navbar-right .btn-header-actions.browse {
         margin: 0 0 0 10px;

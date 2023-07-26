@@ -6,6 +6,7 @@ use App\Http\Requests\GameRequest;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\GameCollectionRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\VoteByUserRepository;
 use App\Repositories\VoteRepository;
@@ -18,13 +19,20 @@ class GameController extends Controller
     protected $voteRepository;
     protected $voteByUserRepository;
     protected $categoryRepository;
+    protected $gameCollectionRepository;
 
-    public function __construct(GameRepository $gameRepository, VoteRepository $voteRepository, VoteByUserRepository $voteByUserRepository, CategoryRepository $categoryRepository)
-    {
+    public function __construct(
+        GameRepository $gameRepository,
+        VoteRepository $voteRepository,
+        VoteByUserRepository $voteByUserRepository,
+        CategoryRepository $categoryRepository,
+        GameCollectionRepository $gameCollectionRepository
+    ) {
         $this->gameRepository = $gameRepository;
         $this->voteRepository = $voteRepository;
         $this->voteByUserRepository = $voteByUserRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->gameCollectionRepository = $gameCollectionRepository;
     }
 
     public function index()
@@ -37,9 +45,19 @@ class GameController extends Controller
     public function voteByUser(Request $request)
     {
         $vote = $request->get('vote');
+
+        if ($vote != 'like' and $vote != 'unlike') {
+            return '-1';
+        }
+
         $gameName = $request->get('gameName');
         $getVote = $this->voteRepository->getVoteByGame($gameName);
         $getGame = $this->gameRepository->getGameByName($gameName);
+
+        if (empty($getGame)) {
+            return '-1';
+        }
+
         $checkVoteByUser = $this->voteByUserRepository->getVoteByUserAndGame($getGame->id, Auth::user()->id);
         if (empty($checkVoteByUser)) {
             $dataVoteByUser = [
@@ -67,7 +85,6 @@ class GameController extends Controller
             $this->voteRepository->updateByGame($gameName, $dataVote);
             $this->voteByUserRepository->create($dataVoteByUser);
         } else {
-
             if ($vote == 'like') {
                 $dataVote = [
                     'like' => ($getVote['like'] + 1),
@@ -102,7 +119,7 @@ class GameController extends Controller
     {
         $status = config('game.status');
         $dataCategory = $this->categoryRepository->listCategory();
-        return view('admin.game.create-game', ['dataCategory'=> $dataCategory, 'status'=> $status]);
+        return view('admin.game.create-game', ['dataCategory' => $dataCategory, 'status' => $status]);
     }
 
     public function store(GameRequest $request)
@@ -128,7 +145,9 @@ class GameController extends Controller
             $url = $this->ultity->saveImage($path, file_get_contents($input['background']));
             $input['background'] = $url;
         }
-        $dataUser = $this->gameRepository->store($input);
+
+        $this->gameRepository->store($input);
+
         return redirect('list-game');
     }
 
@@ -140,11 +159,11 @@ class GameController extends Controller
         return view('admin.game.edit-game', [
             'dataGame' => $dataGame,
             'dataCategory' => $dataCategory,
-            'status'=> $status
+            'status' => $status
         ]);
     }
 
-    public function update(GameRequest $request,$id)
+    public function update(GameRequest $request, $id)
     {
         $input = $request->except(['_token']);
 
@@ -169,7 +188,29 @@ class GameController extends Controller
             $input['background'] = $url;
         }
 
-        $dataGame = $this->gameRepository->update($input, $id);
+        $this->gameRepository->update($input, $id);
+
         return redirect('list-game');
+    }
+
+    public function saveCollection(Request $request)
+    {
+        if (!empty($request->get('gameName'))) {
+            $gameName = $request->get('gameName');
+
+            $checkGame = $this->gameCollectionRepository->getByGameNameAndUserId($gameName, Auth::user()->id);
+            $data = [
+                'game_name' => $gameName,
+                'users_id' => Auth::user()->id
+            ];
+
+            if (empty($checkGame)) {
+                $this->gameCollectionRepository->create($data);
+            }
+
+            return 'success';
+        }
+
+        return '-1';
     }
 }

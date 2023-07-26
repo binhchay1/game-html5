@@ -108,7 +108,7 @@ class GameRepository extends BaseRepository
 
     public function getGameByName($gameName)
     {
-        return $this->model->where('name', $gameName)->first();
+        return $this->model->with('votes')->where('name', $gameName)->first();
     }
 
     public function showGame($id)
@@ -125,7 +125,7 @@ class GameRepository extends BaseRepository
     {
         return $this->model->with('categories')->where('id', $id)->update($input);
     }
-  
+
     public function updateCountPlay($gameName, $count)
     {
         return $this->model->where('name', $gameName)->update(['count_play' => $count]);
