@@ -58,7 +58,7 @@ class LoginController extends Controller
             if (Auth::user()->role == Role::ADMIN) {
                 return view('admin.homepage');
             } else {
-                return redirect('/');
+                return redirect('home');
             }
         } else {
             return back()->withErrors([
