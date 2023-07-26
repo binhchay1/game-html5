@@ -17,13 +17,11 @@
                                     @csrf
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                        <span class="h1 fw-bold mb-0">{{ __('Đăng nhập') }}</span>
+                                        <span class="h1 fw-bold mb-0">Login</span>
                                     </div>
 
-                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">{{ __('Đăng nhập bằng tài khoản của bạn') }}</h5>
-
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example17">{{ __('Hòm thư') }}</label>
+                                        <label class="form-label" for="form2Example17">Email</label>
                                         <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                                         @error('email')
                                         <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
@@ -33,7 +31,7 @@
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example27">{{ __('Mật khẩu')}}</label>
+                                        <label class="form-label" for="form2Example27">Password</label>
                                         <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('email') }}" required autocomplete="current-password" />
                                         @error('password')
                                         <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
@@ -43,10 +41,11 @@
 
                                     </div>
                                     <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Đăng nhập') }}</button>
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                                     </div>
                                     <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                                        <p class="lead fw-normal mb-0 me-3">{{ __('Đăng nhập với') }}</p>
+                                        <p class="lead fw-normal mb-0 me-3">
+                                            Login with</p>
                                         <a href="{{ route('auth.facebook') }}" class="btn btn-primary btn-floating mx-1" style="width: 40px;">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
@@ -56,10 +55,10 @@
                                         </a>
                                     </div>
                                     @if (Route::has('password.request'))
-                                    <a class="small text-muted" href="{{ route('password.request') }}">{{ __('Quên mật khẩu') }}</a>
+                                    <a class="small text-muted" href="{{ route('password.request') }}">Forgot password</a>
                                     @endif
-                                    <p class="mb-5 pb-lg-2" style="color: #393f81;">{{ __('Bạn chưa có tài khoản?') }}
-                                        <a href="{{route('register')}}" style="color: #393f81;">{{ __('Đăng ký ') }}</a>
+                                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Do not have an account?
+                                        <a href="{{route('register')}}" style="color: #393f81;">Register</a>
                                     </p>
                                 </form>
                             </div>
