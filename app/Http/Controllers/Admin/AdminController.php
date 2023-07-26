@@ -17,8 +17,16 @@ class AdminController extends Controller
 
     public function index()
     {
-        $chart = $this->chart->renderChartCountPlayers();
-        dd($chart);
         return view('admin.homepage');
+    }
+
+    public function getChartCountPlay(Request $request)
+    {
+        if (!empty($request->get('type'))) {
+            $type = $request->get('type');
+        }
+        $chartCountPlay = (object) $this->chart->renderChartCountPlayers($type);
+
+        return $chartCountPlay;
     }
 }

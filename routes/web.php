@@ -39,6 +39,7 @@ Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->
 Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
 Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
+Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
 
 Route::middleware(['check.auth', 'admin'])->group(
     function () {
@@ -63,6 +64,8 @@ Route::middleware(['check.auth', 'admin'])->group(
         Route::post('/store-category', [CategoryController::class, 'store'])->name('category.store');
         Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
         Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
+
+        Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
     }
 );
 

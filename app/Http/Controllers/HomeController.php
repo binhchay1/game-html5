@@ -9,10 +9,11 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
 use App\Repositories\SearchRepository;
+use Config;
+use Session;
 
 class HomeController extends Controller
 {
-
     private $categoryRepository;
     private $gameRepository;
     private $searchRepository;
@@ -262,5 +263,14 @@ class HomeController extends Controller
         }
 
         return 'success';
+    }
+
+    public function changeLocate($locale)
+    {
+        if (in_array($locale, Config::get('app.locales'))) {
+            Session::put('locale', $locale);
+        }
+
+        return redirect()->back();
     }
 }

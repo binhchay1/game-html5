@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, minimal-ui" />
     <meta name="theme-color" content="#FFF">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
     @yield('title')
+
     <meta name="description" content="{{ __('Chơi game miễn phí trên') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.') }}" />
     <meta name="keywords" content="{{ __('chơi game miễn phí') }}, {{ __('chơi game trực tuyến') }}, chơi game, gamekafe, gamekafe, kafe, fake, gameka, chơi game bóng đá, chơi game android, chơi game đua xe, chơi game zombie, chơi candy crush, chơi game đua tốc độ, chơi game casino, chơi poker, chơi game bắn nhau, chơi game thời trang, chơi game nữ giới, chơi game nấu ăn, chơi game phiêu lưu, chơi game câu cá, chơi game halloween, chơi game tình yêu, chơi game đố vui, chơi game thể thao, chơi game chiến tranh, chơi game bóng đá" />
-
-    <meta property="og:title" content="Gamekafe -  Các trò chơi Trực tuyến Miễn phí tại {{ env('APP_NAME', 'Gamekafe') }}">
+    <meta property="og:title" content="{{ env('APP_NAME', 'Gamekafe') }} -  {{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ env('APP_URL', 'gamekafe.com') }}">
     <meta property="og:image" content="{{ asset('images/black-logo-no-background.png') }}">
@@ -44,7 +46,7 @@
                 </div>
                 <div class="mobile-search-user-container">
                     <div class="search-btn">
-                        <img width="28" height="28" alt="Tìm kiếm trò chơi" src="{{ asset('assets/svg/search-9887eb433e2eff9a1fd0dda066ed7abf52897beecba0dce9ef152c2770dc9082.svg') }}" />
+                        <img width="28" height="28" alt="{{ __('Tìm kiếm trò chơi') }}" src="{{ asset('assets/svg/search-9887eb433e2eff9a1fd0dda066ed7abf52897beecba0dce9ef152c2770dc9082.svg') }}" />
                     </div>
                     <div class="profile-btn">
                         <img class="profile-icon avatar" alt="Profile" src="{{ asset('assets/svg/profile-250b58e83592bb66fe437d6de217d30ee3dae674feee2ff962138996fdffde6e.svg') }}" />
@@ -53,7 +55,7 @@
                 </div>
             </div>
             <form id="items-search-form" class="navbar-form" action="{{ route('search') }}" accept-charset="UTF-8" method="get">
-                <input type="text" name="q" id="q" placeholder="Tìm kiếm trò chơi" class="form-control query fake-button" required="required" />
+                <input type="text" name="q" id="q" placeholder="{{ __('Tìm kiếm trò chơi') }}" class="form-control query fake-button" required="required" />
                 <button type="submit" aria-label="Search">
                     <i class="y-icon y-icon--search"></i>
                 </button>
@@ -77,7 +79,26 @@
                         <div class="with-notification"></div>
                     </div>
                 </a>
+                <div id="locale-selector-dropdown" class="locale-selector-dropdown fake-button">
+                    <div id="button-flag" onclick="dropDown()">
+                        <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag">
+                    </div>
 
+                    <div id="locate-dropdown">
+                        <ul>
+                            <li>
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
+                                    <img src="{{ asset('svg/flag/vn.svg') }}" class="image-flag mt-3">
+                                </a>
+                            </li>
+                            <li>
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
+                                    <img src="{{ asset('svg/flag/gb.svg') }}" class="image-flag mt-3">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 @if (!auth()->user())
                 <div class="waiting-idnet">
                     <div id="user_not_logged_in">

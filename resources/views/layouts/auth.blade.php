@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('images/black-logo-no-background.png') }}" type="image/x-icon" />
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>{{ config('app.name', 'Gamekafe') }}</title>
 
     <link rel="dns-prefetch" href="//fonts.bunny.net">

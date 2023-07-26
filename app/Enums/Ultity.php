@@ -60,4 +60,9 @@ final class Ultity
 
         return $games;
     }
+
+    public function rndRGBColorCode()
+    {
+        return 'rgb(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ')';
+    }
 }

@@ -5,12 +5,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.body.className = 'searches show games-active';
     }
 
-    if(path.search('category') >= 0) {
+    if (path.search('category') >= 0) {
         document.body.className = '';
         document.body.className = 'categories show games-active';
     }
 
     checkSessions();
+
+    window.addEventListener('click', function (e) {
+        if (!document.getElementById('locale-selector-dropdown').contains(e.target)) {
+            let element = document.getElementById("locate-dropdown");
+            element.style.display = 'none';
+        }
+    });
 });
 
 function writeCookie(name, value, days) {
@@ -69,4 +76,15 @@ function storeAccepted() {
         writeCookie(id, status, 1);
         element.style.display = 'none';
     }
+}
+
+function dropDown() {
+    let element = document.getElementById("locate-dropdown");
+
+    if (element.style.display == '' || element.style.display == 'none') {
+        element.style.display = 'block';
+    } else {
+        element.style.display = 'none';
+    }
+
 }
