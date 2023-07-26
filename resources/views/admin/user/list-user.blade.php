@@ -5,7 +5,10 @@
 @endsection
 
 @section('main_content')
-<div class="row justify-content-start m-1 mb-2 mt-2">
+<div class="card-header mt-4">
+    <h3>List User</h3>
+</div>
+<div class="row justify-content-start m-1 mb-2 mt-4">
     <a  href="{{route('user.create')}}" >
         <button type="button" id="btn-add" class="btn btn-success">Add</button>
     </a>
@@ -14,15 +17,15 @@
     <thead>
         <tr class="design-text">
             <th scope="col">ID</th>
-            <th scope="col">{{ __('Name') }}</th>
-            <th scope="col">{{ __('Mail') }}</th>
-            <th scope="col">{{ __('Hình ảnh') }}</th>
-            <th scope="col">{{ __('Số điện thoại') }}</th>
-            <th scope="col">{{ __('Địa chỉ') }}</th>
-            <th scope="col">{{ __('Tuổi') }}</th>
-            <th scope="col">{{ __('Giới tính') }}</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Image</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Address</th>
+            <th scope="col">Age</th>
+            <th scope="col">Gender</th>
 
-            <th style="width: 10%" scope="col">{{ __('Hành động') }}</th>
+            <th style="width: 10%" scope="col">Action</th>
         </tr>
     </thead>
     <tbody>

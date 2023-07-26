@@ -4,25 +4,28 @@
     <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 @endsection
 @section('main_content')
-    <div class="row justify-content-start m-1 mb-2 mt-2">
+    <div class="card-header mt-4">
+        <h3>List Game</h3>
+    </div>
+    <div class="row justify-content-start m-1 mb-2 mt-4">
         <a href="{{route('game.create')}}">
-            <button type="button" id="btn-add" class="btn btn-success">{{ __('Thêm') }}</button>
+            <button type="button" id="btn-add" class="btn btn-success">Add</button>
         </a>
     </div>
     <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="customers">
         <thead>
         <tr class="design-text">
             <th scope="col">ID</th>
-            <th scope="col">{{ __('Name') }}</th>
-            <th scope="col">{{ __('Liên kết') }}</th>
-            <th scope="col">{{ __('Thể loại') }}</th>
+            <th scope="col">Name</th>
+            <th scope="col">Link</th>
+            <th scope="col">Category Game</th>
             <th scope="col">Thumbs</th>
-            <th scope="col">icon</th>
-            <th scope="col">background</th>
-            <th style="width: 15%" scope="col">tag</th>
-            <th scope="col">count_play</th>
-            <th scope="col">color</th>
-            <th scope="col">text-color</th>
+            <th scope="col">Icon</th>
+            <th scope="col">Background</th>
+            <th style="width: 15%" scope="col">Tag</th>
+            <th scope="col">CountPlay</th>
+            <th scope="col">Color</th>
+            <th scope="col">TextColor</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
         </tr>
