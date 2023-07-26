@@ -39,16 +39,17 @@ class ProfileController extends Controller
 
     public function edit()
     {
+        $gender = config('user.sex');
         $dataUser = $this->userRepository->showUser(Auth::user()->id);
         return view('page.user.profile', [
-            'dataUser' => $dataUser
+            'dataUser' => $dataUser,
+            'gender' => $gender
         ]);
     }
 
     public function update(UserRequest $request)
     {
         $input = $request->except(['_token']);
-
         if (array_key_exists('image', $input)) {
             $idFolder = Hash::make('acwbe' . Auth::user()->id);
             $path = 'images/user/' . $idFolder . '/' . $input['image']->getClientOriginalName();

@@ -51,17 +51,8 @@
                     </span>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="name">Email</label>
-                    <input type="text" value="{{Auth::user()->email}}" name="email" class="form-control @error('email') is-invalid  @enderror" placeholder="name" disabled>
-                    @error('email')
-                    <span class="invalid-feedback" style="color: red" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <div class="form-group">
                     <div>
                         <label for="img">Image</label>
@@ -76,6 +67,53 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-6">
+                <label for="name">Email</label>
+                <input type="text" value="{{Auth::user()->email}}" name="email" class="form-control @error('email') is-invalid  @enderror" placeholder="name" disabled>
+                @error('email')
+                <span class="invalid-feedback" style="color: red" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label for="inputAddress" class="form-label">Phone Number</label>
+                <input name="phone" value="{{old('phone', Auth::user()->phone)}}"  type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
+                @error('phone')
+                <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                @enderror
+            </div>
+
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Address</label>
+                <input name="address" type="text" value="{{old('address', Auth::user()->address)}}"  class="form-control @error('address') is-invalid @enderror" id="inputCity">
+                @error('address')
+                <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Age</label>
+                <input name="age" type="text" value="{{old('age', Auth::user()->age)}}"   class="form-control @error('age') is-invalid @enderror" id="inputCity">
+                @error('age')
+                <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label for="status">Gender</label>
+                <select class="form-select" aria-label="Default select example" name="sex" id="" >
+                    @foreach ($gender as $gender =>$value)
+                        <option value="{{ $value }}" @if(Auth::user()->sex == $value) selected @endif>
+                            {{$gender  }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="row mb-0">
