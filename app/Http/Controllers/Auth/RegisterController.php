@@ -92,6 +92,6 @@ class RegisterController extends Controller
         event(new Registered($user));
         auth()->login($user);
 
-        return redirect('home')->with('success', "Account successfully registered.");
+        return redirect()->route('home')->with('success', "Account successfully registered.");
     }
 }
