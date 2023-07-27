@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html class="no-touch" lang="vi" dir="ltr">
-
+<style>
+    #locate-dropdown ul{
+        margin-top: 20px;
+        width: 250px;
+        margin-left: -100px;
+        display: flex;
+        background: white;
+        justify-content: space-between;
+    }
+    #locate-dropdown ul li{
+        float:left;
+        height:50px;
+        width:30px;
+        margin-top: 7px;
+    }
+    #locate-dropdown li:nth-child(even){
+        margin-right:0;
+    }
+</style>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, minimal-ui" />
@@ -79,26 +97,6 @@
                         <div class="with-notification"></div>
                     </div>
                 </a>
-                <div id="locale-selector-dropdown" class="locale-selector-dropdown fake-button">
-                    <div id="button-flag" onclick="dropDown()">
-                        <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag">
-                    </div>
-
-                    <div id="locate-dropdown">
-                        <ul>
-                            <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
-                                    <img src="{{ asset('svg/flag/vn.svg') }}" class="image-flag mt-3">
-                                </a>
-                            </li>
-                            <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
-                                    <img src="{{ asset('svg/flag/gb.svg') }}" class="image-flag mt-3">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 @if (!auth()->user())
                 <div class="waiting-idnet">
                     <div id="user_not_logged_in">
@@ -128,6 +126,42 @@
                     </a>
                 </div>
                 @endif
+                <div id="locale-selector-dropdown" class="locale-selector-dropdown fake-button">
+                    <div id="button-flag" onclick="dropDown()">
+                        <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag">
+                    </div>
+
+                    <div id="locate-dropdown">
+                        <ul>
+                            <li>
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
+                                    <img src="{{ asset('svg/flag/vn.svg') }}" class="image-flag mt-3">
+                                </a>
+                            </li>
+                            <li>
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
+                                    <img src="{{ asset('svg/flag/gb.svg') }}" class="image-flag mt-3">
+                                </a>
+                            </li>
+                            <li>
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'hr']) }}">
+                                    <img src="{{ asset('svg/flag/hr.svg') }}" class="image-flag mt-3">
+                                </a>
+                            </li>
+                            <li>
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'th']) }}">
+                                    <img src="{{ asset('svg/flag/th.svg') }}" class="image-flag mt-3">
+                                </a>
+                            </li>
+                            <li>
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'ro']) }}">
+                                    <img src="{{ asset('svg/flag/ro.svg') }}" class="image-flag mt-3">
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="flash-messages-box" class="flash-messages-box">
