@@ -19,8 +19,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
 
-    public const VERIFY = '/verify-email';
-
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */

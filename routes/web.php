@@ -20,23 +20,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie-policy');
-Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
-Route::get('/tags/{tag}', [HomeController::class, 'viewTags'])->name('tags');
-Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');
-Route::get('/tags', [HomeController::class, 'viewListTags'])->name('listTags');
-Route::get('/category', [HomeController::class, 'viewListCategory'])->name('listCategory');
-Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-games');
-Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
-Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
-Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('playGames');
-Route::get('/count-play', [HomeController::class, 'countPlay'])->name('countPlay');
-Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
-Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
-Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
-Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
+Route::middleware(['verified'])->group(function () {
+    Route::get('/', [HomeController::class, 'viewHome'])->name('home');
+    Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie-policy');
+    Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
+    Route::get('/tags/{tag}', [HomeController::class, 'viewTags'])->name('tags');
+    Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');
+    Route::get('/tags', [HomeController::class, 'viewListTags'])->name('listTags');
+    Route::get('/category', [HomeController::class, 'viewListCategory'])->name('listCategory');
+    Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-games');
+    Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
+    Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
+    Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('playGames');
+    Route::get('/count-play', [HomeController::class, 'countPlay'])->name('countPlay');
+    Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
+    Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
+    Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
+    Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
+    Route::get('/verify-email', [HomeController::class, 'viewVerify'])->name('view.verify.email');
+});
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
@@ -45,12 +48,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
     Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
     Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
-    Route::get('/user-logout', [ProfileController::class, 'logout'])->name('user.logout');
     Route::get('/user-setting', [ProfileController::class, 'setting'])->name('user.setting');
     Route::get('/vote-by-user', [GameController::class, 'voteByUser'])->name('vote-by-user');
     Route::get('/save-collection', [GameController::class, 'saveCollection'])->name('save-collection');
 
-    Route::middleware(['admin'])->group(function () {
+    Route::middleware(['admin'])->group(
+        function () {
             Route::get('/admin', [AdminController::class, 'index'])->name('admin');
             Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
             Route::get('/user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
@@ -77,6 +80,3 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
         }
     );
 });
-
-
-require_once __DIR__ . '/jetstream.php';

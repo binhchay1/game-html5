@@ -1,45 +1,39 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+@extends('layouts.auth')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-        </div>
+@section('content')
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="{{ asset('images/auth-image.png') }}" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;height: 100%;" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <div class="mb-4 text-sm text-gray-600 text-center">
+                                    {{ __('Cám ơn vì đã tham gia cộng đồng của chúng tôi. Trước khi tiếp tục trải nghiệm, hãy kiểm tra hòm thử của bạn để xác thực thông tin mà bạn đã cung cấp. Nếu không nhận được thư hãy ấn vào nút phía bên dưới để chúng tôi có thể gửi lại mẫu thư cho bạn') }}
+                                </div>
 
-        @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
-            </div>
-        @endif
+                                @if (session('status') == 'verification-link-sent')
+                                <div class="mb-4 font-medium text-sm text-green-600 text-center">
+                                    {{ __('Thư mới đã gửi đến hòm thư của bạn. Vui lòng kiểm tra lại!') }}
+                                </div>
+                                @endif
 
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="{{ route('verification.send') }}">
-                @csrf
-
-                <div>
-                    <x-button type="submit">
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
+                                <div class="mt-4 flex items-center justify-center">
+                                    <form method="POST" action="{{ route('verification.send') }}" class="d-flex justify-content-center">
+                                        @csrf
+                                        <button id="buttonSendVerify" type="submit" class="btn btn-dark btn-lg btn-block"><span id="textButtonResend">{{ __('Gửi lại thư xác thực') }}</span></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
-
-            <div>
-                <a
-                    href="{{ route('profile.show') }}"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                    {{ __('Edit Profile') }}</a>
-
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-
-                    <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-2">
-                        {{ __('Log Out') }}
-                    </button>
-                </form>
             </div>
         </div>
-    </x-authentication-card>
-</x-guest-layout>
+    </div>
+</section>
+@endsection
