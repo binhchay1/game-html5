@@ -53,7 +53,7 @@ if ($handle) {
             $numberCount++;
         } catch (Throwable $t) {
             $processFile = fopen("error.txt", "a");
-            fwrite($processFile, $gameName . ' - ' . $line . ' - ' . $t . PHP_EOL . PHP_EOL);
+            fwrite($processFile, $line . ' - ' . $t . PHP_EOL . PHP_EOL);
             fclose($processFile);
             continue;
         }
