@@ -31,7 +31,7 @@
                                     </div>
 
                                     @if($errors->any())
-                                    <div class="text-danger mb-3">{{ implode('', $errors->all(':message')) }}</div>
+                                    <div class="text-danger mb-3" style="font-weight: bolder;">{{ implode('', $errors->all(':message')) }}</div>
                                     @endif
 
                                     <div class="pt-1 mb-4">
