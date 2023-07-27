@@ -43,8 +43,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" value="{{Auth::user()->name}}" name="name" class="form-control @error('name') is-invalid  @enderror" placeholder="name">
+                    <label for="name">{{ __('Tên') }}</label>
+                    <input type="text" value="{{ Auth::user()->name }}" name="name" class="form-control @error('name') is-invalid  @enderror" placeholder="name">
                     @error('name')
                     <span class="invalid-feedback" style="color: red" role="alert">
                         <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div>
-                        <label for="img">Image</label>
+                        <label for="img">{{ __('Ảnh đại diện') }}</label>
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
@@ -69,49 +69,49 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="name">Email</label>
-                <input type="text" value="{{Auth::user()->email}}" name="email" class="form-control @error('email') is-invalid  @enderror" placeholder="name" disabled>
+                <label for="name">{{ __('Hòm thư') }}</label>
+                <input type="text" value="{{ Auth::user()->email }}" name="email" class="form-control @error('email') is-invalid  @enderror" placeholder="name" disabled>
                 @error('email')
                 <span class="invalid-feedback" style="color: red" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="inputAddress" class="form-label">Phone Number</label>
-                <input name="phone" value="{{old('phone', Auth::user()->phone)}}"  type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
+                <label for="inputAddress" class="form-label">{{ __('Số điện thoại') }}</label>
+                <input name="phone" value="{{ old('phone', Auth::user()->phone) }}" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
                 @error('phone')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
 
             <div class="col-md-6">
-                <label for="inputCity" class="form-label">Address</label>
-                <input name="address" type="text" value="{{old('address', Auth::user()->address)}}"  class="form-control @error('address') is-invalid @enderror" id="inputCity">
+                <label for="inputCity" class="form-label">{{ __('Địa chỉ') }}</label>
+                <input name="address" type="text" value="{{ old('address', Auth::user()->address) }}" class="form-control @error('address') is-invalid @enderror">
                 @error('address')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="inputCity" class="form-label">Age</label>
-                <input name="age" type="text" value="{{old('age', Auth::user()->age)}}"   class="form-control @error('age') is-invalid @enderror" id="inputCity">
+                <label for="inputCity" class="form-label">{{ __('Tuổi') }}</label>
+                <input name="age" type="text" value="{{ old('age', Auth::user()->age) }}" class="form-control @error('age') is-invalid @enderror">
                 @error('age')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="status">Gender</label>
-                <select class="form-select" aria-label="Default select example" name="sex" id="" >
+                <label for="status">{{ __('Giới tính') }}</label>
+                <select class="form-select" aria-label="{{ __('Giới tính') }}" name="sex" id="">
                     @foreach ($gender as $gender =>$value)
-                        <option value="{{ $value }}" @if(Auth::user()->sex == $value) selected @endif>
-                            {{$gender  }}
-                        </option>
+                    <option value="{{ $value }}" @if(Auth::user()->sex == $value) selected @endif>
+                        {{$gender }}
+                    </option>
                     @endforeach
                 </select>
             </div>
