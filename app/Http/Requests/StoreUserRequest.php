@@ -21,11 +21,12 @@ class StoreUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $age = date("Y-m-d", time() + 86400);
+
         return [
             'name' => 'required|max:255',
             'email' => 'required|string|email|unique:users,email',
-            'address' => 'required',
-            'age' => 'required',
+            'age' => 'before:'.$age,
             'phone' => 'bail|required|digits_between:10,11',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ];
@@ -40,12 +41,9 @@ class StoreUserRequest extends FormRequest
             'email.email' => __('validation.email'),
             'email.string' => __('validation.string'),
             'email.unique' => __('validation.unique'),
-            'address.required' => __('validation.required'),
-            'age.required' => __('validation.required'),
-            'phone.required' => __('validation.required'),
+            'age.before' => __('validation.before'),
             'phone.bail' => __('validation.bail'),
             'phone.digits_between' => __('validation.digits_between'),
-            'image.digits_between' => __('validation.digits_between'),
             'image.image' => __('validation.image'),
             'image.mimes' => __('validation.mimes'),
             'image.max' => __('validation.max'),
