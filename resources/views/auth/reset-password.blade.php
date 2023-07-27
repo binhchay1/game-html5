@@ -24,14 +24,12 @@
                                         <input class="form-control form-register disable-input" id="email" type="email" name="email" value="{{ isset($request->email) ? $request->email : null }}" autocomplete="email" readonly>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">{{ __('Mật khẩu') }}</label>
-                                        <input class="form-control form-register" id="password" type="password" name="password" required autocomplete="new-password">
-                                        @error('password')
-                                        <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="password">{{ __('Mật khẩu') }}</label>
+                                        <input type="password" id="password" class="form-control @if($errors->any()) is-invalid @endif" name="password" required autocomplete="current-password" />
+                                        @if($errors->any())
+                                        <div class="text-danger mb-3 mt-3" style="font-weight: bolder;">{{ implode('', $errors->all(':message')) }}</div>
+                                        @endif
                                     </div>
 
                                     <div class="mb-4">

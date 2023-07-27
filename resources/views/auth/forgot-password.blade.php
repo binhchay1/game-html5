@@ -24,7 +24,7 @@
                                         </div>
 
                                         @if($errors->any())
-                                        <div class="text-danger mb-3 mt-3">{{ implode('', $errors->all(':message')) }}</div>
+                                        <div class="text-danger mb-3 mt-3" style="font-weight: bolder;">{{ implode('', $errors->all(':message')) }}</div>
                                         @endif
 
                                         <div class="d-flex justify-content-center mt-4">
