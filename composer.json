@@ -13,11 +13,12 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/fortify": "^1.17",
         "laravel/framework": "^10.10",
+        "laravel/jetstream": "^3.2",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.8",
         "laravel/tinker": "^2.8",
-        "laravel/ui": "^4.2",
         "league/flysystem-aws-s3-v3": "^3.15",
+        "livewire/livewire": "^2.11",
         "symfony/process": "^6.3",
         "yajra/laravel-datatables": "^10.0"
     },

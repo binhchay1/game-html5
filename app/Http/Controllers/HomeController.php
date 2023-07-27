@@ -301,10 +301,4 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
-
-    public function viewVerifyEmail($user)
-    {
-        dd($user);
-        return view('auth.verify-email');
-    }
 }

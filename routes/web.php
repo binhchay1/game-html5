@@ -8,7 +8,6 @@ use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +19,6 @@ use App\Http\Controllers\Auth\VerificationController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Auth::routes();
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie-policy');
@@ -40,50 +37,46 @@ Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogle
 Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
 Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
-Route::get('/verify-email/{user}', [HomeController::class, 'viewVerifyEmail'])->name('verify.email');
-Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
-Route::middleware(['check.auth', 'admin'])->group(
-    function () {
-        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-        Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
-        Route::get('/user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
-        Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
-        Route::post('/store-user', [UserController::class, 'store'])->name('user.store');
-        Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('user.editUser');
-        Route::post('/update-user/{id}', [UserController::class, 'updateUser'])->name('user.updateUser');
+Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
-        Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
-        Route::get('/game-info/{id}', [GameController::class, 'showGame'])->name('game.showGame');
-        Route::get('/create-game', [GameController::class, 'create'])->name('game.create');
-        Route::post('/store-game', [GameController::class, 'store'])->name('game.store');
-        Route::get('/edit-game/{id}', [GameController::class, 'edit'])->name('game.edit');
-        Route::post('/update-game/{id}', [GameController::class, 'update'])->name('game.update');
+    Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
+    Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
+    Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
+    Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
+    Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+    Route::get('/user-logout', [ProfileController::class, 'logout'])->name('user.logout');
+    Route::get('/user-setting', [ProfileController::class, 'setting'])->name('user.setting');
+    Route::get('/vote-by-user', [GameController::class, 'voteByUser'])->name('vote-by-user');
+    Route::get('/save-collection', [GameController::class, 'saveCollection'])->name('save-collection');
 
-        Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
-        Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');
-        Route::get('/create-category', [CategoryController::class, 'create'])->name('category.create');
-        Route::post('/store-category', [CategoryController::class, 'store'])->name('category.store');
-        Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-        Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::middleware(['admin'])->group(function () {
+            Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+            Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
+            Route::get('/user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
+            Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
+            Route::post('/store-user', [UserController::class, 'store'])->name('user.store');
+            Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('user.editUser');
+            Route::post('/update-user/{id}', [UserController::class, 'updateUser'])->name('user.updateUser');
 
-        Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
-    }
-);
+            Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
+            Route::get('/game-info/{id}', [GameController::class, 'showGame'])->name('game.showGame');
+            Route::get('/create-game', [GameController::class, 'create'])->name('game.create');
+            Route::post('/store-game', [GameController::class, 'store'])->name('game.store');
+            Route::get('/edit-game/{id}', [GameController::class, 'edit'])->name('game.edit');
+            Route::post('/update-game/{id}', [GameController::class, 'update'])->name('game.update');
 
-Route::middleware('check.auth')->group(
-    function () {
-        Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
-        Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
+            Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
+            Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');
+            Route::get('/create-category', [CategoryController::class, 'create'])->name('category.create');
+            Route::post('/store-category', [CategoryController::class, 'store'])->name('category.store');
+            Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+            Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
 
-        Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
-        Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
-        Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
-        Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
-        Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
-        Route::get('/user-logout', [ProfileController::class, 'logout'])->name('user.logout');
-        Route::get('/user-setting', [ProfileController::class, 'setting'])->name('user.setting');
-        Route::get('/vote-by-user', [GameController::class, 'voteByUser'])->name('vote-by-user');
-        Route::get('/save-collection', [GameController::class, 'saveCollection'])->name('save-collection');
-    }
-);
+            Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
+        }
+    );
+});
+
+
+require_once __DIR__ . '/jetstream.php';
