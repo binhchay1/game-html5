@@ -89,15 +89,6 @@ class ProfileController extends Controller
         return back()->with("status", "Password changed successfully!");
     }
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('/login');
-    }
-
     public function setting()
     {
         $listGameName = $this->gameCollectionRepository->getCollectionByUser(Auth::user()->id);

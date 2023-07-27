@@ -17,11 +17,11 @@
                                     @csrf
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                        <span class="h1 fw-bold mb-0">Register</span>
+                                        <span class="h1 fw-bold mb-0">{{ __('Đăng ký') }}</span>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example17">Name</label>
+                                        <label class="form-label" for="form2Example17">{{ __('Tên') }}</label>
                                         <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus />
                                         @error('name')
                                         <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
@@ -31,7 +31,7 @@
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example17">Email</label>
+                                        <label class="form-label" for="form2Example17">{{ __('Hòm thư') }}</label>
                                         <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                                         @error('email')
                                         <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
@@ -56,10 +56,9 @@
                                     </div>
 
                                     <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Register</button>
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Đăng ký') }}</button>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>

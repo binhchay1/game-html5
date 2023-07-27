@@ -120,7 +120,10 @@
                     <div class="dropdown-content">
                         <a href="{{ route('user.setting') }}">{{ __('Cá nhân') }}</a>
                         <a href="{{ route('user.edit') }}">{{ __('Thông tin') }}</a>
-                        <a href="{{ route('user.logout') }}">{{ __('Đăng xuất') }}</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a onclick="this.closest('form').submit();return false;">{{ __('Đăng xuất') }}</a>
+                        </form>
                     </div>
                     </a>
                 </div>

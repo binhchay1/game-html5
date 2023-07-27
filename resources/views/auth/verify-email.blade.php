@@ -23,7 +23,7 @@
                                 @endif
 
                                 <div class="mt-4 flex items-center justify-center">
-                                    <form method="POST" action="{{ route('verification.resend') }}" class="d-flex justify-content-center">
+                                    <form method="POST" action="{{ route('verification.send') }}" class="d-flex justify-content-center">
                                         @csrf
                                         <button id="buttonSendVerify" type="submit" class="btn btn-dark btn-lg btn-block"><span id="textButtonResend">{{ __('Gửi lại thư xác thực') }}</span></button>
                                     </form>
