@@ -40,6 +40,8 @@ Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogle
 Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
 Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
+Route::get('/verify-email/{user}', [HomeController::class, 'viewVerifyEmail'])->name('verify.email');
+Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
 Route::middleware(['check.auth', 'admin'])->group(
     function () {
@@ -73,7 +75,6 @@ Route::middleware('check.auth')->group(
     function () {
         Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
         Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
-        Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
         Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
         Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');

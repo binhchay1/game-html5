@@ -62,7 +62,7 @@ class LoginController extends Controller
             }
         } else {
             return back()->withErrors([
-                'custom' => 'Email or Password is wrong!'
+                'custom' => __('Hòm thư hoặc mật khẩu không đúng!')
             ]);
         }
     }
@@ -73,6 +73,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect()->route('home');
     }
 }

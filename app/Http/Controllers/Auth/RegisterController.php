@@ -4,19 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Enums\Role;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use App\Repositories\GameRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use Session;
-use App\Models\UserVerify;
-use Illuminate\Support\Str;
-use Mail;
 
 class RegisterController extends Controller
 {
@@ -38,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::VERIFY;
     private $userRepository;
 
     /**
@@ -52,46 +45,18 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function register(RegisterRequest $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-
-    public function register(Request $request)
-    {
-        $this->validate(request(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        $user = User::create([
+        $data = [
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'role' => Role::USER,
-        ]);
+        ];
 
+        $user = $this->userRepository->create($data);
         event(new Registered($user));
-        auth()->login($user);
 
-        return redirect()->route('home')->with('success', "Account successfully registered.");
+        return redirect()->route('verify.email', [$user]);
     }
 }
