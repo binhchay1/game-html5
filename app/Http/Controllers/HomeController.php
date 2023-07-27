@@ -13,6 +13,8 @@ use App\Repositories\GameCollectionRepository;
 use Config;
 use Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,7 @@ class HomeController extends Controller
     private $iconGame;
     private $ipUserRepository;
     private $gameCollectionRepository;
+    private $guard;
 
     public function __construct(
         GameRepository $gameRepository,
@@ -31,7 +34,8 @@ class HomeController extends Controller
         Ultity $ultity,
         IconGame $iconGame,
         IpUserRepository $ipUserRepository,
-        GameCollectionRepository $gameCollectionRepository
+        GameCollectionRepository $gameCollectionRepository,
+        StatefulGuard $guard
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
@@ -40,6 +44,7 @@ class HomeController extends Controller
         $this->iconGame = $iconGame;
         $this->ipUserRepository = $ipUserRepository;
         $this->gameCollectionRepository = $gameCollectionRepository;
+        $this->guard = $guard;
     }
 
     public function viewCookiePolicy()
@@ -52,10 +57,26 @@ class HomeController extends Controller
         return view('page.privacy');
     }
 
+    public function viewVerify()
+    {
+        return view('auth.verify-email-success');
+    }
+
+    public function viewResetPassword()
+    {
+        return view('auth.reset-password-success');
+    }
+
+    public function viewResetPasswordSuccess()
+    {
+        return view('auth.reset-password-success');
+    }
+
     public function viewHome()
     {
         $listCategory = $this->categoryRepository->listCategoryWithCount();
         $query = $this->gameRepository->getListGameWithVote();
+        $query = $query->shuffle();
         $games = $this->ultity->paginate($query, 30);
         $countGame = count($query);
         $search = $this->searchRepository->listOrderByCount();
@@ -93,6 +114,7 @@ class HomeController extends Controller
         }
 
         $getGames = $this->gameRepository->listGameByCategory($category, $sort);
+        $getGames = $getGames->shuffle();
         $games = $this->ultity->paginate($getGames, 30);
         $category = $this->categoryRepository->getByColumn($category, 'name');
 
@@ -168,7 +190,9 @@ class HomeController extends Controller
             }
         }
 
-        $games = $this->ultity->renameAndCalculateVote($listGame);
+        $getGames = $listGame->shuffle();
+        $games = $this->ultity->paginate($getGames, 30);
+        $games = $this->ultity->renameAndCalculateVote($games);
 
         return view('page.search', compact('listCategory', 'games', 'listTag'));
     }
@@ -302,8 +326,13 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function viewVerify()
+    public function registerRetry(Request $request)
     {
-        return view('auth.verify-email-success');
+        $this->guard->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        Cookie::queue(Cookie::forget(strtolower(str_replace(' ', '_', config('app.name'))) . '_session'));
+
+        return redirect('/');
     }
 }

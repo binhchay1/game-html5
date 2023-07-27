@@ -28,6 +28,9 @@
                                         <button id="buttonSendVerify" type="submit" class="btn btn-dark btn-lg btn-block"><span id="textButtonResend">{{ __('Gửi lại thư xác thực') }}</span></button>
                                     </form>
                                 </div>
+
+                                <p class="mt-3 mb-0 text-center"><small>Issues with the verification process or entered the wrong email?
+                                        <br>Please sign up with <a href="{{ route('register.retry') }}" style="text-decoration: underline; font-weight: 800;">another</a> email address.</small></p>
                             </div>
                         </div>
                     </div>

@@ -41,6 +41,9 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/verify-email', [HomeController::class, 'viewVerify'])->name('verify.email');
 });
 
+Route::get('/reset-password', [HomeController::class, 'viewResetPassword'])->name('reset.password');
+Route::get('/register-retry', [HomeController::class, 'registerRetry'])->name('register.retry');
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
     Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
