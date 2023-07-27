@@ -17,7 +17,7 @@
                                 </div>
 
                                 @if (session('status') == 'verification-link-sent')
-                                <div class="mb-4 font-medium text-sm text-green-600 text-center">
+                                <div class="mb-4 font-medium text-success text-center">
                                     {{ __('Thư mới đã gửi đến hòm thư của bạn. Vui lòng kiểm tra lại!') }}
                                 </div>
                                 @endif
@@ -36,4 +36,29 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('js')
+<script>
+    const btn = document.getElementById("buttonSendVerify");
+    this.disableButton();
+
+    function disableButton() {
+        btn.disabled = true;
+        var seconds = 60,
+            $seconds = document.querySelector('#textButtonResend');
+        const text = "{{ __('Gửi lại thư xác thực') }}";
+        btn.classList.add("disable-button-with-timer");
+        (function countdown() {
+            $seconds.textContent = text + ' ( ' + seconds + ' ) ';
+            if (seconds-- > 0) {
+                setTimeout(countdown, 1000);
+                return;
+            };
+            btn.disabled = false;
+            $seconds.textContent = text;
+            btn.classList.remove("disable-button-with-timer");
+        })();
+    }
+</script>
 @endsection

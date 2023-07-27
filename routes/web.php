@@ -38,7 +38,7 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
     Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
     Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
-    Route::get('/verify-email', [HomeController::class, 'viewVerify'])->name('view.verify.email');
+    Route::get('/verify-email', [HomeController::class, 'viewVerify'])->name('verify.email');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {

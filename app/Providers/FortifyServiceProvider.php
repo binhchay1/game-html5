@@ -8,8 +8,13 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse as SuccessfulPasswordResetLinkRequestResponseContract;
+use App\Http\Responses\SuccessfulPasswordResetLinkRequestResponse;
+use Laravel\Fortify\Contracts\PasswordResetResponse as PasswordResetResponseContract;
+use App\Http\Responses\PasswordResetResponse;
+use Laravel\Fortify\Contracts\VerifyEmailResponse as VerifyEmailResponseContract;
+use App\Http\Responses\VerifyEmailResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {

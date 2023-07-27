@@ -43,17 +43,6 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="name">{{ __('Tên') }}</label>
-                    <input type="text" value="{{ Auth::user()->name }}" name="name" class="form-control @error('name') is-invalid  @enderror" placeholder="name">
-                    @error('name')
-                    <span class="invalid-feedback" style="color: red" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
                     <div>
                         <label for="img">{{ __('Ảnh đại diện') }}</label>
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
@@ -66,6 +55,17 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">{{ __('Tên') }}</label>
+                    <input type="text" value="{{ Auth::user()->name }}" name="name" class="form-control @error('name') is-invalid  @enderror" placeholder="name">
+                    @error('name')
+                    <span class="invalid-feedback" style="color: red" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-6">
