@@ -21,12 +21,12 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $age = date("Y-m-d", time() + 86400);
         return [
             'name' => 'required|max:255',
             'email' => 'required|string|email',
-            'address' => 'required',
-            'age' => 'required',
-            'phone' => 'bail|required|digits_between:10,11',
+            'age' => 'before:'.$age,
+            'phone' => 'bail|digits_between:10,11',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
 
         ];
@@ -40,9 +40,7 @@ class UpdateUserRequest extends FormRequest
             'email.required' => __('validation.required'),
             'email.email' => __('validation.email'),
             'email.string' => __('validation.string'),
-            'address.required' => __('validation.required'),
-            'age.required' => __('validation.required'),
-            'phone.required' => __('validation.required'),
+            'age.before' => __('validation.before'),
             'phone.bail' => __('validation.bail'),
             'phone.digits_between' => __('validation.digits_between'),
             'image.digits_between' => __('validation.digits_between'),

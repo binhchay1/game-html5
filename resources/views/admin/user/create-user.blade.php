@@ -72,7 +72,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">Age</label>
-                <input name="age" type="text" value="{{old('age')}}"  class="form-control @error('age') is-invalid @enderror" id="inputCity">
+                <input name="age" type="date" value="{{old('age')}}"  class="form-control @error('age') is-invalid @enderror" id="inputCity">
                 @error('age')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                             <strong>{{ $message }}</strong>
