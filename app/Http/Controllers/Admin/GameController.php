@@ -39,6 +39,11 @@ class GameController extends Controller
     {
         $dataGame = $this->gameRepository->listGame();
 
+        foreach($dataGame as $game) {
+            $tags = json_decode($game['tag']);
+            $game['tag'] = implode(', ', $tags);
+        }
+
         return view('admin.game.list-game', ['dataGame' => $dataGame]);
     }
 

@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+<title>{{ env('APP_NAME', 'Gamekafe') }} - Game</title>
+@endsection
+
 @section('js_sort_users')
     <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 @endsection

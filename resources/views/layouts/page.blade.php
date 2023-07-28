@@ -182,7 +182,6 @@
     <div class="container">
         @yield('content')
     </div>
-    <div class="header-menu-modal" style="display:none"></div>
     <footer class="footer" style=" margin-top: 15px;">
         <div class="container">
             <div class="text-container">
