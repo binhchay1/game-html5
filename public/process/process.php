@@ -5,6 +5,10 @@ const EXTENSION_FILE_LIST = [
     'png', 'jpg', 'jpeg', 'ogg', 'gtz'
 ];
 
+const IGNORE_EXTENSION_FILE_LIST = [
+    'wasm', 'pck'
+];
+
 $handle = fopen("list.txt", "r");
 $numberCount = 1;
 if ($handle) {

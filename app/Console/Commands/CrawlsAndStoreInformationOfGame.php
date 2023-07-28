@@ -156,7 +156,7 @@ class CrawlsAndStoreInformationOfGame extends Command
         }
 
         foreach ($listLink as $key => $link) {
-            if (!array_key_exists('link', $link) or !array_key_exists('link', $link)) {
+            if (!array_key_exists('link', $link) or !array_key_exists('thumb', $link)) {
                 continue;
             }
 
@@ -284,8 +284,7 @@ class CrawlsAndStoreInformationOfGame extends Command
         $context = stream_context_create(array(
             'http' => array('ignore_errors' => true),
             "ssl" => array(
-                "verify_peer" => false,
-                "verify_peer_name" => false,
+                "ignore_errors" => true,
             ),
         ));
 

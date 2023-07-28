@@ -127,7 +127,7 @@
                 </div>
                 @endif
                 <div id="locale-selector-dropdown" class="locale-selector-dropdown fake-button">
-                    <div id="button-flag" onclick="dropDown()">
+                    <div id="button-flag" onclick="dropDownLocate()">
                         <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag">
                     </div>
 
