@@ -15,6 +15,6 @@ final class CategoryVietnamese
         'Adventure' => 'Phiêu lưu',
         'Shooter' => 'Bắn súng',
         'Platformer' => 'Đi cảnh',
-        'Sport' => 'Thể thao'
+        'Sports' => 'Thể thao'
     ];
 }
