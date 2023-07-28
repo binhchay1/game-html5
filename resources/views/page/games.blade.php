@@ -1,5 +1,17 @@
 <html lang="en">
+<style>
+.set-button{
+    background-color: #9E9E9E;
+    height: 50px;
+}
+#fullscreeniframe {
+    height: 50px;
+    float: right;
+    color: rgb(19, 22, 20);
+    width: 50px;
+}
 
+</style>
 <head>
     <meta charset="UTF-8">
     <meta content="#000000" name="theme-color">
@@ -78,6 +90,9 @@
 
     <div class="wrapper">
         <iframe id="iframe-games" src="{{ $getGame['link'] }}" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
+       <div class="set-button">
+           <button id="fullscreeniframe" title="view in full screen" class="button btn btn-warning"><i class="fas fa-expand"></i></button>
+       </div>
     </div>
 
     @if(Auth::check())
@@ -182,6 +197,46 @@
                 });
             });
         }
+
+
+        (function(window, document){
+            var $ = function(selector,context){return(context||document).querySelector(selector)};
+
+            var iframe = $("iframe"),
+                domPrefixes = 'Webkit Moz O ms Khtml'.split(' ');
+
+            var fullscreen = function(elem) {
+                var prefix;
+                // Mozilla and webkit intialise fullscreen slightly differently
+                for ( var i = -1, len = domPrefixes.length; ++i < len; ) {
+                    prefix = domPrefixes[i].toLowerCase();
+
+                    if ( elem[prefix + 'EnterFullScreen'] ) {
+                        // Webkit uses EnterFullScreen for video
+                        return prefix + 'EnterFullScreen';
+                        break;
+                    } else if( elem[prefix + 'RequestFullScreen'] ) {
+                        // Mozilla uses RequestFullScreen for all elements and webkit uses it for non video elements
+                        return prefix + 'RequestFullScreen';
+                        break;
+                    }
+                }
+
+                return false;
+            };
+            // Webkit uses "requestFullScreen" for non video elements
+            var fullscreenother = fullscreen(document.createElement("iframe"));
+
+            if(!fullscreen) {
+                alert("Fullscreen won't work, please make sure you're using a browser that supports it and you have enabled the feature");
+                return;
+            }
+
+            $("#fullscreeniframe").addEventListener("click", function(){
+                // iframe fullscreen and non video elements in webkit use request over enter
+                iframe[fullscreenother]();
+            }, false);
+        })(this, this.document);
     </script>
 </body>
 
