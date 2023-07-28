@@ -120,7 +120,7 @@
                         <a href="{{ route('user.edit') }}">{{ __('Thông tin') }}</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a onclick="this.closest('form').submit();return false;">{{ __('Đăng xuất') }}</a>
+                            <a onclick="this.closest('form').submit();return false;" style="color: #333 !important; cursor: pointer;">{{ __('Đăng xuất') }}</a>
                         </form>
                     </div>
                     </a>

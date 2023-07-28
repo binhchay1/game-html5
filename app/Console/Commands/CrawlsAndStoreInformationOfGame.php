@@ -42,7 +42,6 @@ class CrawlsAndStoreInformationOfGame extends Command
     {
         $break = false;
         $attrA = '.thumb_link';
-        $attrPlatform = '.game_platform';
         $attrImg = '.lazy_loaded';
         $page = env('PAGE_GET_GAME', 1);
         $count = 0;
@@ -80,7 +79,6 @@ class CrawlsAndStoreInformationOfGame extends Command
 
             $listA = $this->crawls->getListAttribute($content, $attrA, 'file');
             $listImg = $this->crawls->getListAttribute($content, $attrImg, 'file');
-            $listGamePlatform = $this->crawls->getListAttribute($content, $attrPlatform, 'file');
             $listNameGame = [];
             $listLink = [];
 

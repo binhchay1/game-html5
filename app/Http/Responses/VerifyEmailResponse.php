@@ -17,6 +17,6 @@ class VerifyEmailResponse implements VerifyEmailResponseContract
     {
         return $request->wantsJson()
             ? new JsonResponse('', 204)
-            : redirect()->route('set-up-new-user');
+            : redirect()->route('verify.email');
     }
 }

@@ -58,6 +58,9 @@
                                     <div class="pt-1 mb-4">
                                         <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Đăng ký') }}</button>
                                     </div>
+                                    <p class="mb-5 pb-lg-2" style="color: #393f81;">{{ __('Bạn có tài khoản ?') }}
+                                        <a href="{{route('login')}}" style="color: #393f81;">{{ __('Đăng nhập') }}</a>
+                                    </p>
                                 </form>
                             </div>
                         </div>

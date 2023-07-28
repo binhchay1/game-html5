@@ -33,7 +33,7 @@
                     @foreach($listCategory as $category)
                     <li class="inactive {{ $category['name'] }} li-category">
                         <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
-                            <span class="name">{{ ucfirst($category['name']) }}</span>
+                            <span class="name">{{ ucfirst( __($category['name']) ) }}</span>
                             <span class="number">{{ $category['games_count'] }} game</span>
                         </a>
                     </li>

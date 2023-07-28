@@ -22,7 +22,7 @@ class Locale
         if (empty($currentLocale)) {
             $locale = Config::get('app.locale');
 
-            Session::put('locale', 'vi');
+            Session::put('locale', 'en');
             App::setLocale($locale);
 
             return $next($request);

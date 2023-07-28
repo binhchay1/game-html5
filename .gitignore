@@ -21,4 +21,5 @@ yarn-error.log
 /public/process/process.txt
 /public/images/games/*
 /public/img/*
+/public/process/*
 
