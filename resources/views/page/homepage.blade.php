@@ -33,7 +33,11 @@
                     @foreach($listCategory as $category)
                     <li class="inactive {{ $category['name'] }} li-category">
                         <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
+                            @if(session('locale') == 'vi')
+                            <span class="name">{{ \App\Enums\CategoryVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
+                            @else
                             <span class="name">{{ ucfirst( __($category['name']) ) }}</span>
+                            @endif
                             <span class="number">{{ $category['games_count'] }} game</span>
                         </a>
                     </li>

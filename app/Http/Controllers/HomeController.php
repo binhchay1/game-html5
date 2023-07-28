@@ -10,11 +10,12 @@ use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
 use App\Repositories\SearchRepository;
 use App\Repositories\GameCollectionRepository;
-use Config;
-use Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Cookie;
+use Stichoza\GoogleTranslate\GoogleTranslate;
+use Config;
+use Session;
 
 class HomeController extends Controller
 {
@@ -103,6 +104,10 @@ class HomeController extends Controller
             }
         }
 
+        $stringTrans = implode(', ', $listTag);
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $listTag = explode(', ', $translate);
+
         return view('page.homepage', compact('listCategory', 'games', 'countGame', 'listTag', 'search'));
     }
 
@@ -124,7 +129,6 @@ class HomeController extends Controller
 
         $listTag = [];
 
-
         foreach ($games as $game) {
             $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
             if (($game->votes['like'] + $game->votes['un_like']) == 0) {
@@ -140,6 +144,10 @@ class HomeController extends Controller
                 }
             }
         }
+
+        $stringTrans = implode(', ', $listTag);
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $listTag = explode(', ', $translate);
 
         return view('page.category', compact('games', 'category', 'listTag'));
     }
@@ -190,6 +198,10 @@ class HomeController extends Controller
             }
         }
 
+        $stringTrans = implode(', ', $listTag);
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $listTag = explode(', ', $translate);
+
         $getGames = $listGame->shuffle();
         $games = $this->ultity->paginate($getGames, 30);
         $games = $this->ultity->renameAndCalculateVote($games);
@@ -228,6 +240,19 @@ class HomeController extends Controller
                 }
             }
         }
+
+        $stringTrans = implode(', ', array_keys($listTag));
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $listTagNew = explode(', ', $translate);
+        $count = 0;
+        $newList = [];
+
+        foreach ($listTag as $tag => $value) {
+            $listTag[$tag]['trans'] = $listTagNew[$count];
+            $newList[$tag] = $listTag[$tag];
+            $count++;
+        }
+        $listTag = $newList;
 
         return view('page.list-tag', compact('listTag'));
     }
