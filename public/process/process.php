@@ -23,6 +23,20 @@ if ($handle) {
             $listResult = json_decode(exec('python process.py'), true);
 
             foreach ($listResult[0] as $item) {
+                foreach ($item as $attr) {
+                    $url = $attr["name"];
+                    $parse = parse_url($url);
+                    $explode = explode('/', $parse['path']);
+                    $path = generatePath($explode, $gameName);
+                    $extensionFile = getExtensionFile(end($explode));
+
+                    if (in_array($extensionFile, IGNORE_EXTENSION_FILE_LIST)) {
+                        continue 3;
+                    }
+                }
+            }
+
+            foreach ($listResult[0] as $item) {
                 echo "-----------bat dau game so " . $numberCount . "---------------- \n";
                 if (strpos($gameName, "|")) {
                     $explode = explode("|", $gameName);

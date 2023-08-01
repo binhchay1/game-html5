@@ -39,7 +39,7 @@ class GameController extends Controller
     {
         $dataGame = $this->gameRepository->listGame();
 
-        foreach($dataGame as $game) {
+        foreach ($dataGame as $game) {
             $tags = json_decode($game['tag']);
             $game['tag'] = implode(', ', $tags);
         }
@@ -217,5 +217,19 @@ class GameController extends Controller
         }
 
         return '-1';
+    }
+
+    public function getAndPrintGame()
+    {
+        $games = $this->gameRepository->get();
+
+        foreach ($games as $game) {
+            $pathProcess = public_path() . '/process/list.txt';
+            $fp = fopen($pathProcess, 'a');
+            fwrite($fp, $game['link'] . ' - ' . $game['name'] . PHP_EOL);
+            fclose($fp);
+        }
+
+        dd('done');
     }
 }
