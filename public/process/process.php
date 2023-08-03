@@ -24,14 +24,14 @@ if ($handle) {
 
             foreach ($listResult[0] as $item) {
                 foreach ($item as $attr) {
-                    $url = $attr["name"];
-                    $parse = parse_url($url);
-                    $explode = explode('/', $parse['path']);
-                    $path = generatePath($explode, $gameName);
-                    $extensionFile = getExtensionFile(end($explode));
-
-                    if (in_array($extensionFile, IGNORE_EXTENSION_FILE_LIST)) {
-                        continue 3;
+                    if (array_key_exists('name', $attr)) {
+                        $url = $attr["name"];
+                        $parse = parse_url($url);
+                        $explode = explode('/', $parse['path']);
+                        $extensionFile = getExtensionFile(end($explode));
+                        if (in_array($extensionFile, IGNORE_EXTENSION_FILE_LIST)) {
+                            continue 3;
+                        }
                     }
                 }
             }
@@ -54,6 +54,10 @@ if ($handle) {
                         $parse = parse_url($url);
                         $explode = explode('/', $parse['path']);
                         $path = generatePath($explode, $gameName);
+                        if ($path == '') {
+                            continue;
+                        }
+
                         $extensionFile = getExtensionFile(end($explode));
 
                         if (in_array($extensionFile, EXTENSION_FILE_LIST)) {
@@ -65,7 +69,7 @@ if ($handle) {
                 }
 
                 $urlIndexHtml = end($item);
-                getIndexHtml(str_replace(' ', '%20', trim($urlIndexHtml[0])), $gameName);
+                getIndexHtml(trim($urlIndexHtml[0]), $gameName);
                 echo "-----------done game " . $gameName . " - game so " . $numberCount . "---------------- \n";
             };
             $numberCount++;
@@ -83,6 +87,7 @@ if ($handle) {
 function curl($url, $path, $type = null)
 {
     $ch = curl_init();
+    $path = str_replace("%20", " ", $path);
     $fp = fopen($path, "w");
     curl_setopt($ch, CURLOPT_TIMEOUT, 600);
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -113,9 +118,17 @@ function curl($url, $path, $type = null)
 
 function generatePath($explode, $gameName)
 {
-    $path = 'C:\Users\Admin\Desktop\getNetWorkByPython\\' . $gameName;
+    $path = $source = 'C:\Users\Admin\Desktop\getNetWorkByPython\\' . $gameName;
     $numItems = count($explode);
     $i = 4;
+
+    if ($numItems <= 2) {
+        return '';
+    }
+
+    if (end($explode) == '' || empty(end($explode)) || end($explode) == null) {
+        return '';
+    }
 
     foreach ($explode as $key => $value) {
         if ($key <= 2) {
@@ -129,6 +142,10 @@ function generatePath($explode, $gameName)
         }
 
         $i++;
+    }
+
+    if ($path == $source) {
+        return '';
     }
 
     return $path;

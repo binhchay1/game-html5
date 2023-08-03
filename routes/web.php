@@ -27,7 +27,6 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/tags/{tag}', [HomeController::class, 'viewTags'])->name('tags');
     Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');
     Route::get('/tags', [HomeController::class, 'viewListTags'])->name('listTags');
-    Route::get('/category', [HomeController::class, 'viewListCategory'])->name('listCategory');
     Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-games');
     Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
     Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');

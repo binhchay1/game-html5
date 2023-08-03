@@ -113,12 +113,12 @@ class GameRepository extends BaseRepository
 
     public function showGame($id)
     {
-        return $this->model->where('id',$id)->first();
+        return $this->model->where('id', $id)->first();
     }
 
     public function store($input)
     {
-        return $this->model->with( 'categories')->create($input);
+        return $this->model->with('categories')->create($input);
     }
 
     public function update($input, $id)
@@ -134,5 +134,10 @@ class GameRepository extends BaseRepository
     public function getCountByGame($gameName)
     {
         return $this->model->select('count_play')->where('name', $gameName)->first();
+    }
+
+    public function updateLinkImageById($id, $data)
+    {
+        return $this->model->where('id', $id)->update($data);
     }
 }

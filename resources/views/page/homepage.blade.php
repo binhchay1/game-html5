@@ -36,7 +36,7 @@
                             @if(session('locale') == 'vi')
                             <span class="name">{{ \App\Enums\CategoryVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
                             @else
-                            <span class="name">{{ ucfirst( __($category['name']) ) }}</span>
+                            <span class="name">{{ __(ucfirst($category['name'])) }}</span>
                             @endif
                             <span class="number">{{ $category['games_count'] }} game</span>
                         </a>
