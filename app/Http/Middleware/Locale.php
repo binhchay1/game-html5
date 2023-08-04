@@ -20,10 +20,10 @@ class Locale
     {
         $currentLocale = Session::get('locale');
         if (empty($currentLocale)) {
-            $locale = Config::get('app.locale');
+            $enableLocale = env('ENABLE_LOCALE', 'en');
 
-            Session::put('locale', 'en');
-            App::setLocale($locale);
+            Session::put('locale', $enableLocale);
+            App::setLocale($enableLocale);
 
             return $next($request);
         }
