@@ -157,10 +157,20 @@ class CrawlsAndStoreInformationOfGame extends Command
             $getFrame = $html->getElementByTagName('iframe');
 
             if (empty($getFrame)) {
-                continue;
+                $getFrame = $html->find('div[class=iframe_placeholder]');
+
+                if (empty($getFrame)) {
+                    continue;
+                }
+
+                $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);
+                $parseFrame = $this->crawls->getDom($srcFrame, 'file');
+                $getChild = $parseFrame->childNodes();
+                $src = $getChild[0]->attr['src'];
+            } else {
+                $src = $getFrame->attr['src'];
             }
 
-            $src = $getFrame->attr['src'];
             $data['link'] = $src;
 
             $query = $this->gameRepository->getByColumn($data['name'], 'name');
