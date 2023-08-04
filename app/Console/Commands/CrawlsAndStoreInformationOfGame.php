@@ -105,7 +105,6 @@ class CrawlsAndStoreInformationOfGame extends Command
             }
 
             $resultGetSrcFrame = $this->processGameWithListLinks($listLink);
-            dd($resultGetSrcFrame);
 
             if (!empty($resultGetSrcFrame)) {
                 $listResultSrcFrame = array_merge($listResultSrcFrame, $resultGetSrcFrame['listSrcFrame']);
