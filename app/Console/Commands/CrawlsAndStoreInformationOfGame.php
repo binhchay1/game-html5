@@ -42,7 +42,6 @@ class CrawlsAndStoreInformationOfGame extends Command
     {
         $break = false;
         $attrA = '.thumb_link';
-        $attrImg = '.lazy_loaded';
         $page = env('PAGE_GET_GAME', 1);
         $count = 0;
         $breakCount = env('BREAK_COUNT', -1); //change this for break by count game ( default -1 = non break )
@@ -78,58 +77,43 @@ class CrawlsAndStoreInformationOfGame extends Command
             }
 
             $listA = $this->crawls->getListAttribute($content, $attrA, 'file');
-            $listImg = $this->crawls->getListAttribute($content, $attrImg, 'file');
-            $listNameGame = [];
             $listLink = [];
 
             foreach ($listA as $item) {
                 if (!empty($item->attr)) {
                     $link = $item->attr["href"];
-                    $listLink[]['link'] = $link;
-                }
-            }
+                    $childNode = $item->childNodes();
+                    $linkGame = parse_url($link, PHP_URL_PATH);
+                    $gameName = substr($linkGame, 1);
+                    $listLink[$gameName]['link'] = $link;
 
-            foreach ($listLink as $key => $link) {
-                if (!array_key_exists('link', $link)) {
-                    unset($listLink[$key]);
-                    continue;
-                }
-                $path = parse_url($link['link'], PHP_URL_PATH);
-                $gameName = substr($path, 1);
-                $listLink[$gameName] = $listLink[$key];
-                $listNameGame[] = $gameName;
-                unset($listLink[$key]);
-            }
-
-            foreach ($listImg as $key => $link) {
-                $listImg[$listNameGame[$key]] = $listImg[$key];
-                unset($listImg[$key]);
-            }
-
-            foreach ($listImg as $key => $img) {
-                if (!empty($img->attr)) {
-                    $link = $img->attr['data-lazy_src'];
-                    $file_name = basename($link);
-                    $pathSave = asset('images/games/thumb');
-                    $file_name = str_replace("%2", "G", $file_name);
-                    $path = $pathSave . '/' . $file_name;
-                    $listLink[$key]['thumb'] = $path;
-                    $listLink[$key]['file_name'] = $file_name;
+                    if (!empty($childNode)) {
+                        if (!empty($childNode[0]->attr)) {
+                            if (array_key_exists("data-lazy_src", $childNode[0]->attr)) {
+                                $link = $childNode[0]->attr['data-lazy_src'];
+                                $file_name = basename($link);
+                                $pathSave = asset('images/games/thumb');
+                                $file_name = str_replace("%2", "G", $file_name);
+                                $path = $pathSave . '/' . $file_name;
+                                $listLink[$gameName]['thumb'] = $path;
+                                $listLink[$gameName]['file_name'] = $file_name;
+                                $listLink[$gameName]['base_thumb'] = $link;
+                            }
+                        }
+                    }
                 }
             }
 
             $resultGetSrcFrame = $this->processGameWithListLinks($listLink);
+            dd($resultGetSrcFrame);
 
             if (!empty($resultGetSrcFrame)) {
                 $listResultSrcFrame = array_merge($listResultSrcFrame, $resultGetSrcFrame['listSrcFrame']);
                 $listResultGameDone = array_merge($listResultGameDone, $resultGetSrcFrame['listGameDone']);
-                foreach ($listImg as $key => $value) {
+                foreach ($listLink as $key => $value) {
                     if (in_array($key, $resultGetSrcFrame['listGameDone'])) {
-                        if (!empty($value->attr)) {
-                            $link = $value->attr['data-lazy_src'];
-                            $file_name = basename($link);
-                            $this->saveImage($link, $file_name, 'thumb');
-                        }
+                        $file_name = basename($value['base_thumb']);
+                        $this->saveImage($value['base_thumb'], $file_name, 'thumb');
                     }
                 }
 
@@ -170,17 +154,13 @@ class CrawlsAndStoreInformationOfGame extends Command
             ];
 
             $getA = $html->find('a');
-            $getFrame = $html->find('div[class=iframe_placeholder]');
+            $getFrame = $html->getElementByTagName('iframe');
 
             if (empty($getFrame)) {
                 continue;
             }
 
-            $srcFrame = html_entity_decode($getFrame[0]->attr['data-iframe']);
-            $parseFrame = $this->crawls->getDom($srcFrame, 'file');
-            $getChild = $parseFrame->childNodes();
-            $src = $getChild[0]->attr['src'];
-
+            $src = $getFrame->attr['src'];
             $data['link'] = $src;
 
             $query = $this->gameRepository->getByColumn($data['name'], 'name');

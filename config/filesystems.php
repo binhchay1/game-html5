@@ -59,7 +59,7 @@ return [
         'public-images-game-icon' => [
             'driver' => 'local',
             'root' => public_path() . '/images/games/icon',
-            'url' => env('APP_URL') .'/images/games/icon',
+            'url' => env('APP_URL') . '/images/games/icon',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -67,7 +67,7 @@ return [
         'public-images-game-thumb' => [
             'driver' => 'local',
             'root' => public_path() . '/images/games/thumb',
-            'url' => env('APP_URL') .'/images/games/thumb',
+            'url' => env('APP_URL') . '/images/games/thumb',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -75,7 +75,7 @@ return [
         'public-images-game-background' => [
             'driver' => 'local',
             'root' => public_path() . '/images/games/background',
-            'url' => env('APP_URL') .'/images/games/background',
+            'url' => env('APP_URL') . '/images/games/background',
             'visibility' => 'public',
             'throw' => false,
         ],
