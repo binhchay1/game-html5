@@ -11,4 +11,8 @@ final class Locale
         'ro' => 'svg/flag/ro.svg',
         'th' => 'svg/flag/th.svg',
     ];
+
+    const LIST_LOCALE = [
+        'en', 'vi', 'hr', 'ro', 'th'
+    ];
 }
