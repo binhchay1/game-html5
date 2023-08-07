@@ -1,7 +1,6 @@
 import time
 import json
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import UnexpectedAlertPresentException
 from selenium.webdriver.chrome.options import Options
@@ -16,6 +15,7 @@ i = 0
 file = open("process.txt")
 
 for line in file.readlines():
+    driver.implicitly_wait(10)
     driver.get(line)
     time.sleep(30)
     data = driver.execute_script("return window.performance.getEntriesByType('resource');")

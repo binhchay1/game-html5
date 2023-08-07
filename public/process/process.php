@@ -2,12 +2,12 @@
 set_time_limit(0);
 
 const EXTENSION_FILE_LIST = [
-    'png', 'jpg', 'jpeg', 'ogg', 'gtz'
+    'png', 'jpg', 'jpeg', 'ogg', 'gtz', 'mp3', 'gb'
 ];
 
-const IGNORE_EXTENSION_FILE_LIST = [
-    'wasm', 'pck'
-];
+// const IGNORE_EXTENSION_FILE_LIST = [
+//     'wasm', 'pck'
+// ];
 
 $handle = fopen("list.txt", "r");
 $numberCount = 1;
@@ -22,19 +22,19 @@ if ($handle) {
 
             $listResult = json_decode(exec('python process.py'), true);
 
-            foreach ($listResult[0] as $item) {
-                foreach ($item as $attr) {
-                    if (array_key_exists('name', $attr)) {
-                        $url = $attr["name"];
-                        $parse = parse_url($url);
-                        $explode = explode('/', $parse['path']);
-                        $extensionFile = getExtensionFile(end($explode));
-                        if (in_array($extensionFile, IGNORE_EXTENSION_FILE_LIST)) {
-                            continue 3;
-                        }
-                    }
-                }
-            }
+            // foreach ($listResult[0] as $item) {
+            //     foreach ($item as $attr) {
+            //         if (array_key_exists('name', $attr)) {
+            //             $url = $attr["name"];
+            //             $parse = parse_url($url);
+            //             $explode = explode('/', $parse['path']);
+            //             $extensionFile = getExtensionFile(end($explode));
+            //             if (in_array($extensionFile, IGNORE_EXTENSION_FILE_LIST)) {
+            //                 continue 3;
+            //             }
+            //         }
+            //     }
+            // }
 
             foreach ($listResult[0] as $item) {
                 echo "-----------bat dau game so " . $numberCount . "---------------- \n";
@@ -177,6 +177,7 @@ function file_get_contents_curl($url)
 
 function mkdirWithPath($path)
 {
+    $path = str_replace("%20", " ", $path);
     if (!file_exists($path)) {
         mkdir($path, 0777, true);
     }
