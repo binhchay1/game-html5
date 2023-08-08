@@ -35,6 +35,8 @@ class UpdateLinkGameS3 extends Command
             "Prefix" => "games/"
         ]);
 
+        $this->gameRepository->updateStatusToHide();
+
         foreach ($results as $result) {
             $content = $result->toArray();
             foreach ($content['Contents'] as $key => $object) {
@@ -46,11 +48,14 @@ class UpdateLinkGameS3 extends Command
                     $explode = explode('/', $object['Key']);
                     $gameName = $explode[1];
                     $dataUpdate = [
-                        'link' => env('AWS_URL_MAIN') . $object['Key']
+                        'link' => env('AWS_URL_MAIN') . $object['Key'],
+                        'status' => 1
                     ];
                     $this->gameRepository->updateGameWithLinkS3($gameName, $dataUpdate);
                 }
             }
         }
+
+        dump("---------Updated link game---------");
     }
 }
