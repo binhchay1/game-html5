@@ -44,6 +44,7 @@ Route::middleware(['verified'])->group(function () {
 Route::get('/reset-password', [HomeController::class, 'viewResetPassword'])->name('reset.password');
 Route::get('/reset-password-success', [HomeController::class, 'viewResetPasswordSuccess'])->name('reset.password.success');
 Route::get('/register-retry', [HomeController::class, 'registerRetry'])->name('register.retry');
+Route::get('/print-game', [HomeController::class, 'getAndPrintGame']);
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 

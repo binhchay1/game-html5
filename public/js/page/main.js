@@ -78,7 +78,7 @@ function storeAccepted() {
     }
 }
 
-function dropDown() {
+function dropDownLocate() {
     let element = document.getElementById("locate-dropdown");
 
     if (element.style.display == '' || element.style.display == 'none') {

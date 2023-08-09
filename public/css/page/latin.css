@@ -21776,3 +21776,7 @@ only screen and (min-resolution: 144dpi) {
 #user_not_logged_in a {
     text-decoration: none;
 }
+
+#button-flag {
+    padding: 8px;
+}

@@ -127,7 +127,7 @@
                 </div>
                 @endif
                 <div id="locale-selector-dropdown" class="locale-selector-dropdown fake-button">
-                    <div id="button-flag" onclick="dropDown()">
+                    <div id="button-flag" onclick="dropDownLocate()">
                         <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag">
                     </div>
 
@@ -182,7 +182,6 @@
     <div class="container">
         @yield('content')
     </div>
-    <div class="header-menu-modal" style="display:none"></div>
     <footer class="footer" style=" margin-top: 15px;">
         <div class="container">
             <div class="text-container">

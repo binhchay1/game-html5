@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+<title>{{ env('APP_NAME', 'Gamekafe') }} - Game</title>
+@endsection
+
 @section('js_sort_users')
     <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 @endsection
@@ -18,14 +22,10 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Link</th>
-            <th scope="col">Category Game</th>
+            <th scope="col">Category</th>
             <th scope="col">Thumbs</th>
-            <th scope="col">Icon</th>
-            <th scope="col">Background</th>
             <th style="width: 15%" scope="col">Tag</th>
             <th scope="col">CountPlay</th>
-            <th scope="col">Color</th>
-            <th scope="col">TextColor</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
         </tr>
@@ -38,13 +38,9 @@
                 <td>{{ Str::limit($listGame->link,10) }}</td>
                 <td>{{ $listGame->categories->name ?? "" }}</td>
                 <td><img class="image" src="{{$listGame->thumbs}}" alt="avatar" width="100" height="50"></td>
-                <td><img class="image" src="{{$listGame->icon}}" alt="avatar" width="100" height="50"></td>
-                <td><img class="image" src="{{$listGame->background}}" alt="avatar" width="100" height="50"></td>
-                <td>{{ Str::limit($listGame->tag,20) }}</td>
+                <td>{{ Str::limit($listGame->tag, 20) }}</td>
                 <td>{{ $listGame->count_play }}</td>
-                <td>{{ $listGame->color }}</td>
-                <td>{{ $listGame->text_color }}</td>
-                <td>{{ $listGame->status == 0 ? 'active' : 'de-active' }}</th>
+                <td>{{ $listGame->status == 1 ? 'active' : 'de-active' }}</th>
                 <td class="text_flow text-center">
                     <a href="{{route('game.showGame', $listGame['id'])}}" class="btn btn-info">
                         <i class="fas fa-info-circle"></i>

@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+<title>{{ env('APP_NAME', 'Gamekafe') }} - Game</title>
+@endsection
+
 @section('js_sort_users')
     <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 @endsection
@@ -42,7 +46,7 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group" >
-                    <div style="">
+                    <div>
                         <label for="img">Thumbs</label>
                         <input value="" type="file" class="border-0 bg-light pl-0 @error('thumbs') is-invalid @enderror" name="thumbs" id="image" hidden>
                         <div class=" choose-avatar" >
@@ -60,7 +64,7 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group" >
-                    <div style="">
+                    <div>
                         <label for="img">Icon</label>
                         <input value="" type="file" class="border-0 bg-light pl-0 @error('icon') is-invalid @enderror" name="icon" id="image" hidden>
                         <div class=" choose-avatar" >
@@ -78,7 +82,7 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group" >
-                    <div style="">
+                    <div>
                         <label for="img">Background</label>
                         <input value="" type="file" class="border-0 bg-light pl-0 @error('background') is-invalid @enderror" name="background" id="image" hidden>
                         <div class=" choose-avatar" >

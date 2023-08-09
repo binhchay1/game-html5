@@ -21,13 +21,13 @@
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example17">{{ __('Hòm thư') }}</label>
-                                        <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
+                                        <label class="form-label" for="email">{{ __('Hòm thư') }}</label>
+                                        <input type="email" id="email" class="form-control @if($errors->any()) is-invalid @endif" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example27">{{ __('Mật khẩu') }}</label>
-                                        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('email') }}" required autocomplete="current-password" />
+                                        <label class="form-label" for="password">{{ __('Mật khẩu') }}</label>
+                                        <input type="password" id="password" class="form-control @if($errors->any()) is-invalid @endif" name="password" value="{{ old('password') }}" required autocomplete="current-password" autofocus/>
                                     </div>
 
                                     @if($errors->any())
