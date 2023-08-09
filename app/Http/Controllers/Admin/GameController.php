@@ -224,28 +224,16 @@ class GameController extends Controller
         return '-1';
     }
 
-    public function getAndPrintGame()
+    public function fileStore(Request $request)
     {
-        $games = $this->gameRepository->get();
-
-        foreach ($games as $game) {
-            $pathProcess = public_path() . '/process/list.txt';
-            $fp = fopen($pathProcess, 'a');
-            fwrite($fp, $game['link'] . ' - ' . $game['name'] . PHP_EOL);
-            fclose($fp);
-        }
-
-        dd('done');
-    }
-
-    public function fileStore(Request $request) {
         $image = $request->file('file');
         $imageName = $image->getClientOriginalName();
-        $image->move(public_path('images'),$imageName);
+        dd($request);
+        $image->move(public_path('images') . '/games/game', $imageName);
 
         $imageUpload = new Game();
         $imageUpload->filename = $imageName;
         $imageUpload->save();
-        return response()->json(['success'=>$imageName]);
+        return response()->json(['success' => $imageName]);
     }
 }

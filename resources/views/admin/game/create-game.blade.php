@@ -140,7 +140,9 @@
 <div id="myModal" class="modal fade" style="{{Session::has("code") ? Session::get('code')==1 ? "display:block":"" : "display:none"}}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <p><h1>Laravel 9 Multiple Upload Images using Dropzone drag and drop</h1></p>
+            <p>
+            <h1>Laravel 9 Multiple Upload Images using Dropzone drag and drop</h1>
+            </p>
             <form method="post" action="{{route('game.image')}}" enctype="multipart/form-data" class="dropzone" id="dropzone">
                 @csrf
             </form>
@@ -154,30 +156,30 @@
     </div>
 </div>
 
-    <script type="text/javascript">
-        $(function() {
-            $('#myModal').modal('show');
-            $(document).on('click', '#close', function(){
-                $('#myModal').modal('hide');
-            });
-
+<script type="text/javascript">
+    $(function() {
+        $('#myModal').modal('show');
+        $(document).on('click', '#close', function() {
+            $('#myModal').modal('hide');
         });
-        Dropzone.options.dropzone =
-            {
-                maxFilesize: 12,
-                renameFile: function(file) {
-                    var dt = new Date();
-                    var time = dt.getTime();
-                    return time+file.name;
-                },
-                addRemoveLinks: true,
-                timeout: 5000,
-                success: function(file, response) {
-                    console.log(response);
-                },
-                error: function(file, response){
-                    return false;
-                }
-            };
-    </script>
+
+    });
+    Dropzone.options.dropzone = {
+        init: function() {
+            this.on("sending", function(file, xhr, data) {
+
+                console.log(file);
+            });
+        },
+        maxFilesize: 12,
+        addRemoveLinks: true,
+        timeout: 5000,
+        success: function(file, response) {
+            console.log(response);
+        },
+        error: function(file, response) {
+            return false;
+        }
+    };
+</script>
 @endsection
