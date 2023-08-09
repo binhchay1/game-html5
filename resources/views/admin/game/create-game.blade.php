@@ -7,8 +7,15 @@
 @section('js_sort_users')
 <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 @endsection
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-@vite('resources/js/user.js')
+<title>Webappfix - Laravel 9 Multiple Upload Images using Dropzone drag and drop</title>
+<meta name="_token" content="{{csrf_token()}}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.0/dropzone.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.0/dropzone.js"></script>
+@vite('resources/js/game-icon.js')
+@vite('resources/js/game-background.js')
+@vite('resources/js/game-thumb.js')
 @section('main_content')
 <div class="card-header mt-4">
     <h3>Create Game</h3>
@@ -47,11 +54,14 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="img">Thumbs</label>
-                <input value="" type="file" class="border-0 bg-light pl-0 @error('thumbs') is-invalid @enderror" name="thumbs" id="image" hidden>
+                <input value="thumbs" type="file" class="border-0 bg-light pl-0 @error('thumbs') is-invalid @enderror" name="thumbs" id="thumb" hidden>
                 <div class=" choose-avatar">
                     <div id="btnimage">
-                        <img id="showImage" style="height: 150px; width: 150px" src="" alt="avatar">
+                        <img id="showImage-thumb" style="height: 150px; width: 150px" src="" alt="avatar">
                     </div>
+                </div>
+                <div id="button">
+                    <i id="btn_thumb" class="fa fa-camera"></i>
                 </div>
                 @error('thumbs')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
@@ -63,11 +73,14 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="img">Icon</label>
-                <input value="" type="file" class="border-0 bg-light pl-0 @error('icon') is-invalid @enderror" name="icon" id="image" hidden>
+                <input value="icon" type="file" class="border-0 bg-light pl-0 @error('icon') is-invalid @enderror" name="icon" id="icon" hidden>
                 <div class=" choose-avatar">
                     <div id="btnimage">
-                        <img id="showImage" style="height: 150px; width: 150px" src=" " alt="avatar">
+                        <img id="showImage-icon" style="height: 150px; width: 150px" src=" " alt="avatar">
                     </div>
+                </div>
+                <div id="button">
+                    <i id="btn_icon" class="fa fa-camera"></i>
                 </div>
                 @error('icon')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
@@ -79,11 +92,14 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="img">Background</label>
-                <input value="" type="file" class="border-0 bg-light pl-0 @error('background') is-invalid @enderror" name="background" id="image" hidden>
+                <input value="background" type="file" class="border-0 bg-light pl-0 @error('background') is-invalid @enderror" name="background" id="background" hidden>
                 <div class=" choose-avatar">
                     <div id="btnimage">
-                        <img id="showImage" style="height: 150px; width: 150px" src="" alt="avatar">
+                        <img id="showImage-background" style="height: 150px; width: 150px" src="" alt="avatar">
                     </div>
+                </div>
+                <div id="button">
+                    <i id="btn_background" class="fa fa-camera"></i>
                 </div>
                 @error('icon')
                 <span class="invalid-feedback" style="font-size: 100%;" role="alert">
@@ -121,4 +137,47 @@
         </div>
     </form>
 </div>
+<div id="myModal" class="modal fade" style="{{Session::has("code") ? Session::get('code')==1 ? "display:block":"" : "display:none"}}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <p><h1>Laravel 9 Multiple Upload Images using Dropzone drag and drop</h1></p>
+            <form method="post" action="{{route('game.image')}}" enctype="multipart/form-data" class="dropzone" id="dropzone">
+                @csrf
+            </form>
+            <div class="modal-body">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" id="close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#myModal').modal('show');
+            $(document).on('click', '#close', function(){
+                $('#myModal').modal('hide');
+            });
+
+        });
+        Dropzone.options.dropzone =
+            {
+                maxFilesize: 12,
+                renameFile: function(file) {
+                    var dt = new Date();
+                    var time = dt.getTime();
+                    return time+file.name;
+                },
+                addRemoveLinks: true,
+                timeout: 5000,
+                success: function(file, response) {
+                    console.log(response);
+                },
+                error: function(file, response){
+                    return false;
+                }
+            };
+    </script>
 @endsection

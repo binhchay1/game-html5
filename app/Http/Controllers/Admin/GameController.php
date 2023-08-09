@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Ultity;
 use App\Http\Requests\GameRequest;
+use App\Models\Game;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,19 +22,22 @@ class GameController extends Controller
     protected $voteByUserRepository;
     protected $categoryRepository;
     protected $gameCollectionRepository;
+    protected $ultity;
 
     public function __construct(
         GameRepository $gameRepository,
         VoteRepository $voteRepository,
         VoteByUserRepository $voteByUserRepository,
         CategoryRepository $categoryRepository,
-        GameCollectionRepository $gameCollectionRepository
+        GameCollectionRepository $gameCollectionRepository,
+        Ultity $ultity
     ) {
         $this->gameRepository = $gameRepository;
         $this->voteRepository = $voteRepository;
         $this->voteByUserRepository = $voteByUserRepository;
         $this->categoryRepository = $categoryRepository;
         $this->gameCollectionRepository = $gameCollectionRepository;
+        $this->ultity = $ultity;
     }
 
     public function index()
@@ -132,21 +137,21 @@ class GameController extends Controller
         $input = $request->all();
         if (array_key_exists('thumbs', $input)) {
             $idFolder = Hash::make('acwbe' . Auth::user()->id);
-            $path = 'images/user/' . $idFolder . '/' . $input['thumbs']->getClientOriginalName();
+            $path = 'images/games/thumb' . $idFolder . '/' . $input['thumbs']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['thumbs']));
             $input['thumbs'] = $url;
         }
 
         if (array_key_exists('icon', $input)) {
             $idFolder = Hash::make('acwbe' . Auth::user()->id);
-            $path = 'images/user/' . $idFolder . '/' . $input['icon']->getClientOriginalName();
+            $path = 'images/games/icon' . $idFolder . '/' . $input['icon']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['icon']));
             $input['icon'] = $url;
         }
 
         if (array_key_exists('background', $input)) {
             $idFolder = Hash::make('acwbe' . Auth::user()->id);
-            $path = 'images/user/' . $idFolder . '/' . $input['background']->getClientOriginalName();
+            $path = 'images/games/background' . $idFolder . '/' . $input['background']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['background']));
             $input['background'] = $url;
         }
@@ -231,5 +236,16 @@ class GameController extends Controller
         }
 
         dd('done');
+    }
+
+    public function fileStore(Request $request) {
+        $image = $request->file('file');
+        $imageName = $image->getClientOriginalName();
+        $image->move(public_path('images'),$imageName);
+
+        $imageUpload = new Game();
+        $imageUpload->filename = $imageName;
+        $imageUpload->save();
+        return response()->json(['success'=>$imageName]);
     }
 }
