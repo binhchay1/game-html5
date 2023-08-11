@@ -72,7 +72,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::post('/store-game', [GameController::class, 'store'])->name('game.store');
             Route::get('/edit-game/{id}', [GameController::class, 'edit'])->name('game.edit');
             Route::post('/update-game/{id}', [GameController::class, 'update'])->name('game.update');
-            Route::post('/image/upload/store', [GameController::class, 'fileStore'])->name('game.image');
+            Route::post("/extract-zip",[GameController::class,"extractUploadedZip"]);
 
             Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
             Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');
