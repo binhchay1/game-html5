@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\Ultity;
 use App\Http\Requests\GameRequest;
-use App\Models\Game;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -200,7 +199,14 @@ class GameController extends Controller
 
         $this->gameRepository->update($input, $id);
 
-        return redirect('list-game');
+        return redirect()->route('game.index');
+    }
+
+    public function delete(Request $request)
+    {
+        $this->gameRepository->deleteById($request->get('id-game'));
+
+        return redirect()->route('game.index')->with('success', 'Delete successfully!');
     }
 
     public function saveCollection(Request $request)
@@ -224,19 +230,23 @@ class GameController extends Controller
         return '-1';
     }
 
-    public function extractUploadedZip(Request $request){
+    public function extractUploadedZip(Request $request)
+    {
         $zip = new \ZipArchive();
         dd($request->file());
         $status = $zip->open($request->file("zip")->getRealPath());
         if ($status !== true) {
             throw new \Exception($status);
-        }
-        else{
-            $storageDestinationPath= realpath(app_path('../public/games'));
+        } else {
+            $storageDestinationPath = realpath(app_path('../public/games'));
             $zip->extractTo($storageDestinationPath);
             $zip->close();
             return back()
-                ->with('success','You have successfully extracted zip.');
+                ->with('success', 'You have successfully extracted zip.');
         }
+    }
+
+    public function uploadFileDropzone(Request $request) {
+        dd($request);
     }
 }
