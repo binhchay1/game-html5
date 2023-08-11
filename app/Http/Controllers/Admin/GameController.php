@@ -224,16 +224,19 @@ class GameController extends Controller
         return '-1';
     }
 
-    public function fileStore(Request $request)
-    {
-        $image = $request->file('file');
-        $imageName = $image->getClientOriginalName();
-        dd($request);
-        $image->move(public_path('images') . '/games/game', $imageName);
-
-        $imageUpload = new Game();
-        $imageUpload->filename = $imageName;
-        $imageUpload->save();
-        return response()->json(['success' => $imageName]);
+    public function extractUploadedZip(Request $request){
+        $zip = new \ZipArchive();
+        dd($request->file());
+        $status = $zip->open($request->file("zip")->getRealPath());
+        if ($status !== true) {
+            throw new \Exception($status);
+        }
+        else{
+            $storageDestinationPath= realpath(app_path('../public/games'));
+            $zip->extractTo($storageDestinationPath);
+            $zip->close();
+            return back()
+                ->with('success','You have successfully extracted zip.');
+        }
     }
 }
