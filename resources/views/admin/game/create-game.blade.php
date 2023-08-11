@@ -139,45 +139,39 @@
 </div>
 <div id="myModal" class="modal fade" style="{{Session::has("code") ? Session::get('code')==1 ? "display:block":"" : "display:none"}}">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <p><h1>Laravel 9 Multiple Upload Images using Dropzone drag and drop</h1></p>
-            <form method="post" action="{{route('game.image')}}" enctype="multipart/form-data" class="dropzone" id="dropzone">
-                @csrf
-            </form>
-            <div class="modal-body">
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-link" id="close" data-dismiss="modal">Close</button>
+        <div class=" container modal-content">
+            <p>
+            <h1>Upload File</h1>
+            </p>
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
                 </div>
-            </div>
 
+            @endif
+            <br><br>
+            <form action="{{ url('extract-zip') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="file" placeholder="ZIP" name="zip">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-4">
+                        <button type="submit" class="btn btn-success">Upload</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-    <script type="text/javascript">
-        $(function() {
-            $('#myModal').modal('show');
-            $(document).on('click', '#close', function(){
-                $('#myModal').modal('hide');
-            });
+<script type="text/javascript">
+    $(function() {
+        $('#myModal').modal('show');
+    });
 
-        });
-        Dropzone.options.dropzone =
-            {
-                maxFilesize: 12,
-                renameFile: function(file) {
-                    var dt = new Date();
-                    var time = dt.getTime();
-                    return time+file.name;
-                },
-                addRemoveLinks: true,
-                timeout: 5000,
-                success: function(file, response) {
-                    console.log(response);
-                },
-                error: function(file, response){
-                    return false;
-                }
-            };
-    </script>
+</script>
 @endsection

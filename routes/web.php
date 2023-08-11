@@ -28,7 +28,6 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/tags/{tag}', [HomeController::class, 'viewTags'])->name('tags');
     Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');
     Route::get('/tags', [HomeController::class, 'viewListTags'])->name('listTags');
-    Route::get('/category', [HomeController::class, 'viewListCategory'])->name('listCategory');
     Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-games');
     Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
     Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
@@ -45,7 +44,6 @@ Route::middleware(['verified'])->group(function () {
 Route::get('/reset-password', [HomeController::class, 'viewResetPassword'])->name('reset.password');
 Route::get('/reset-password-success', [HomeController::class, 'viewResetPasswordSuccess'])->name('reset.password.success');
 Route::get('/register-retry', [HomeController::class, 'registerRetry'])->name('register.retry');
-Route::get('/print-game', [HomeController::class, 'getAndPrintGame']);
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
@@ -74,7 +72,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::post('/store-game', [GameController::class, 'store'])->name('game.store');
             Route::get('/edit-game/{id}', [GameController::class, 'edit'])->name('game.edit');
             Route::post('/update-game/{id}', [GameController::class, 'update'])->name('game.update');
-            Route::post('/image/upload/store', [GameController::class, 'fileStore'])->name('game.image');
+            Route::post("/extract-zip",[GameController::class,"extractUploadedZip"]);
 
             Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
             Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');

@@ -18,14 +18,14 @@ class GameRepository extends BaseRepository
 
     public function getListGameWithVote()
     {
-        $query = $this->model->with('votes');
+        $query = $this->model->with('votes')->where('status', '1');
 
         return $query->get();
     }
 
     public function listGameByCategory($category, $sort = null)
     {
-        $query = $this->model->with('votes');
+        $query = $this->model->with('votes')->where('status', '1');
         if (!empty($sort)) {
             if ($sort == 'popularity') {
                 $query = $query->orderBy('count_play', 'desc');
@@ -44,33 +44,33 @@ class GameRepository extends BaseRepository
 
     public function listGameByTag($tag)
     {
-        return $this->model->with('votes')->where('tag', 'like', '%' . $tag . '%')->get();
+        return $this->model->with('votes')->where('status', '1')->where('tag', 'like', '%' . $tag . '%')->get();
     }
 
     public function getFeatureGames()
     {
-        return $this->model->orderBy('created_at')->take(10)->get();
+        return $this->model->where('status', '1')->orderBy('created_at')->take(10)->get();
     }
 
     public function getGameByCategory($category)
     {
-        return $this->model->where('category', $category)->get();
+        return $this->model->where('status', '1')->where('category', $category)->get();
     }
 
     public function getListBySearch($filter)
     {
-        $query = $this->model->with('votes');
+        $query = $this->model->with('votes')->where('status', '1');
 
         if (isset($filter['q'])) {
-            $query = $query->where('name', 'like', '%' . $filter['q'] . '%');
+            $query = $query->where('status', '1')->where('name', 'like', '%' . $filter['q'] . '%');
         }
 
         if (isset($filter['category'])) {
-            $query = $query->where('category', $filter['category']);
+            $query = $query->where('status', '1')->where('category', $filter['category']);
         }
 
         if (isset($filter['tag'])) {
-            $query = $query->where('tag', 'like', '%' . $filter['tag'] . '%');
+            $query = $query->where('status', '1')->where('tag', 'like', '%' . $filter['tag'] . '%');
         }
 
         return $query->get();
@@ -78,22 +78,22 @@ class GameRepository extends BaseRepository
 
     public function getTags()
     {
-        return $this->model->select('tag')->get();
+        return $this->model->select('tag')->where('status', '1')->get();
     }
 
     public function getBestGame()
     {
-        return $this->model->with('votes')->orderBy('count_play', 'desc')->limit(100)->get();
+        return $this->model->with('votes')->where('status', '1')->orderBy('count_play', 'desc')->limit(100)->get();
     }
 
     public function getNewestGame()
     {
-        return $this->model->with('votes')->orderBy('created_at', 'desc')->limit(100)->get();
+        return $this->model->with('votes')->where('status', '1')->orderBy('created_at', 'desc')->limit(100)->get();
     }
 
     public function countGameByTag($tag)
     {
-        return $this->model->where('tag', 'like', '%' . $tag . '%')->count();
+        return $this->model->where('tag', 'like', '%' . $tag . '%')->where('status', '1')->count();
     }
 
     public function updateGameNameByThumbs($fileName, $url)
@@ -113,12 +113,12 @@ class GameRepository extends BaseRepository
 
     public function showGame($id)
     {
-        return $this->model->where('id',$id)->first();
+        return $this->model->where('id', $id)->first();
     }
 
     public function store($input)
     {
-        return $this->model->with( 'categories')->create($input);
+        return $this->model->with('categories')->create($input);
     }
 
     public function update($input, $id)
@@ -133,6 +133,16 @@ class GameRepository extends BaseRepository
 
     public function getCountByGame($gameName)
     {
-        return $this->model->select('count_play')->where('name', $gameName)->first();
+        return $this->model->select('count_play')->where('status', '1')->where('name', $gameName)->first();
+    }
+
+    public function updateLinkImageById($id, $data)
+    {
+        return $this->model->where('id', $id)->update($data);
+    }
+
+    public function updateStatusToHide()
+    {
+        return $this->model->query()->update(['status' => 0]);
     }
 }

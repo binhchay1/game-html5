@@ -24,7 +24,7 @@
             </div>
             <div class="text-col">
                 <h1 class="title header-5">
-                    {{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ ucfirst($category['name']) }}
+                    {{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ __(ucfirst($category['name'])) }}
                 </h1>
                 <h2 class="description text-regular">
                     {{ $category['title'] }}
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="collapse-tags-container col-md-12">
                         <h3 class="title">
-                            {{ __('Các thẻ liên quan tới') }} chiến thuật &amp; nhập vai
+                            {{ __('Các thẻ liên quan tới') }} {{ __(ucfirst($category['name'])) }}
                         </h3>
                         <div class="tags-container">
                             @foreach($listTag as $tag)
@@ -63,8 +63,8 @@
                     <div class="left">
                         <a class="active" title="{{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ $category }} - {{ env('APP_URL', 'Gamekafe.com') }}" href="/categories/strategy">
                             <h3>
-                                Tất cả
-                                {{ ucfirst($category['name']) }}
+                                {{ __('Tất cả') }}
+                                {{ __(ucfirst($category['name'])) }}
                                 <span>({{ count($games) }})</span>
                             </h3>
                         </a>

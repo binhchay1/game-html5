@@ -7199,6 +7199,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 @media (min-width: 800px) {
     .policy-validation .content {
+        display: flex;
+        align-items: center;
         padding: 0 5px;
     }
 }
@@ -7260,7 +7262,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 @media (min-width: 800px) {
     .policy-validation .actions .validate-policy {
         margin: 0;
-        width: auto;
+        width: fit-content;
     }
 }
 

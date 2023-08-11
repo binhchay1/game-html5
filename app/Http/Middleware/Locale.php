@@ -6,11 +6,19 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App;
+use App\Enums\Locale as EnumsLocale;
 use Config;
 use Session;
 
 class Locale
 {
+    private $locale;
+
+    public function __construct(EnumsLocale $locale)
+    {
+        $this->locale = $locale;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -20,10 +28,14 @@ class Locale
     {
         $currentLocale = Session::get('locale');
         if (empty($currentLocale)) {
-            $locale = Config::get('app.locale');
+            $enableLocale = env('ENABLE_LOCALE', 'en');
 
-            Session::put('locale', 'en');
-            App::setLocale($locale);
+            if (!in_array($enableLocale, $this->locale::LIST_LOCALE)) {
+                $enableLocale = 'en';
+            }
+
+            Session::put('locale', $enableLocale);
+            App::setLocale($enableLocale);
 
             return $next($request);
         }
