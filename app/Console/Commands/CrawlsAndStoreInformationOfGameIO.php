@@ -10,13 +10,14 @@ use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Storage;
 use App\Services\Crawls;
 
-class CrawlsAndStoreInformationOfGame extends Command
+class CrawlsAndStoreInformationOfGameIO extends Command
 {
-    protected $signature = 'app:crawls-and-store-information-of-game';
+    protected $signature = 'app:crawls-and-store-information-of-game-itchio';
     protected $description = 'Get information of game with link itch.io';
     private $linkGame;
     private $crawls;
     private $gameRepository;
+    private $categoryRepository;
 
     public function __construct(
         LinkGame $linkGame,

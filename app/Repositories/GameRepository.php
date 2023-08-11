@@ -78,7 +78,7 @@ class GameRepository extends BaseRepository
 
     public function getTags()
     {
-        return $this->model->select('tag')->where('status', '1')->get();
+        return $this->model->select('tag')->where('status', '1')->limit(500)->get();
     }
 
     public function getBestGame()
@@ -144,5 +144,10 @@ class GameRepository extends BaseRepository
     public function updateStatusToHide()
     {
         return $this->model->query()->update(['status' => 0]);
+    }
+
+    public function getTagsByListGame($listName)
+    {
+        return $this->model->select('tag')->whereIn('name', $listName)->get();
     }
 }
