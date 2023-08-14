@@ -120,7 +120,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-2 mt-5" style="display: flex; align-items: center;">
+        <div class="col-md-2 mt-5 d-flex align-items-center">
             <label class="form-label">Upload File</label>
             <button type="button" class="btn btn-primary ml-4" data-bs-toggle="modal" data-bs-target="#upload-file-modal">Upload</button>
         </div>
@@ -142,19 +142,20 @@
     var myDropzone = new Dropzone(".dropzone", {
         maxFilesize: 256,
         acceptedFiles: ".jpeg, .jpg, .png, .unityweb, .wasm, .html, .js, .css, .jsgz, .data, .json, .datagz, .mem, .mp3, .ogg, .fnt, .tff, .woff, .tff2, .txt",
-        uploadMultiple: true,
         autoProcessQueue: false,
         init: function() {
             this.on("addedfile", file => {
-                console.log(file);
-            });
-            this.on("sending", function(file, xhr, formData) {
-                formData.append("_token", CSRF_TOKEN);
-            });
-            this.on("success", function(file, response) {
-                if (response.success == 0) {
-                    alert(response.error);
-                }
+                var reader = new FileReader();
+                reader.readAsText(file);
+
+                const fileInput = document.querySelector('input[type="file"]');
+                const myFile = new File(reader, 'myFile.txt', {
+                    lastModified: new Date(),
+                });
+
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(myFile);
+                fileInput.files = dataTransfer.files;
             });
         }
     });

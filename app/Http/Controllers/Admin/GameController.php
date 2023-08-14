@@ -230,22 +230,6 @@ class GameController extends Controller
         return '-1';
     }
 
-    public function extractUploadedZip(Request $request)
-    {
-        $zip = new \ZipArchive();
-        dd($request->file());
-        $status = $zip->open($request->file("zip")->getRealPath());
-        if ($status !== true) {
-            throw new \Exception($status);
-        } else {
-            $storageDestinationPath = realpath(app_path('../public/games'));
-            $zip->extractTo($storageDestinationPath);
-            $zip->close();
-            return back()
-                ->with('success', 'You have successfully extracted zip.');
-        }
-    }
-
     public function uploadFileDropzone(Request $request) {
         dd($request);
     }

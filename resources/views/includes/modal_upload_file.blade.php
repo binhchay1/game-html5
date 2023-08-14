@@ -7,12 +7,12 @@
             </div>
             <div class="modal-body">
                 <div class='content'>
-                    <form action="{{ route('dropzone-upload') }}" class='dropzone'></form>
+                    <form action="{{ route('dropzone-upload') }}" class='dropzone' id="dropzone-form"></form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" onclick="submitForm()">Save changes</button>
             </div>
         </div>
     </div>
