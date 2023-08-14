@@ -148,6 +148,10 @@
             let value = content;
             let tagInput = document.getElementById('tag-search-input');
             let tagHeader = document.getElementById('tag-search-header');
+            if(content == null || content == '') {
+                content = "all-tags";
+            }
+
             if (content == 'all-tags') {
                 value = '';
                 content = "{{ __('Tất cả các nhãn') }}";
@@ -163,6 +167,10 @@
             let categoryTitle = document.getElementById('category-search-title');
             let categoryHeader = document.getElementById('category-search-header');
             let textContent = content.charAt(0).toUpperCase() + content.slice(1);
+            if(content == null || content == '') {
+                content = "all-categories";
+            }
+
             if (content == 'all-categories') {
                 textContent = "{{ __('Tất cả các nhãn') }}";
                 value = '';

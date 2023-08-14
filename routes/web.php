@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\GameController;
-use App\Http\Controllers\ImageZoneController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ProfileController;
@@ -72,7 +71,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::post('/store-game', [GameController::class, 'store'])->name('game.store');
             Route::get('/edit-game/{id}', [GameController::class, 'edit'])->name('game.edit');
             Route::post('/update-game/{id}', [GameController::class, 'update'])->name('game.update');
-            Route::post("/extract-zip",[GameController::class,"extractUploadedZip"]);
+            Route::post('/delete-game', [GameController::class, 'delete'])->name('game.delete');
+            Route::post("/extract-zip", [GameController::class, "extractUploadedZip"]);
 
             Route::get('/list-category', [CategoryController::class, 'index'])->name('category.index');
             Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');
@@ -82,6 +82,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
 
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
+            Route::post('/dropzone-upload', [GameController::class, 'uploadFileDropzone'])->name('dropzone-upload');
         }
     );
 });

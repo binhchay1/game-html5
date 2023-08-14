@@ -44,15 +44,15 @@
             <td>{{ $dataUser->age }}</td>
             <td>{{ $dataUser->sex == 1 ? "Nữ" : "Nam" }}</td>
             <td class="text_flow text-center">
-                <a href="{{route('user.showUser', $dataUser['id'])}}" class="btn btn-info">
+                <a href="{{ route('user.showUser', $dataUser['id']) }}" class="btn btn-info">
                     <i class="fas fa-info-circle"></i>
                 </a>
-                <a href=" {{route('user.editUser', $dataUser['id'])}}">
+                <a href=" {{ route('user.editUser', $dataUser['id']) }}">
                     <button type="button" class="btn btn-success">
                         <i class="fas fa-edit"></i>
                     </button>
                 </a>
-                <button type="button" class="btn btn-danger btn_delete" data-toggle="modal" data-target="#deleteArticle" data-id="" title="{{__('labels.2-L-33')}}">
+                <button type="button" class="btn btn-danger btn_delete" data-toggle="modal" data-target="#deleteArticle" data-id="" title="{{ __('labels.2-L-33') }}">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </td>

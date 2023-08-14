@@ -14,11 +14,11 @@
     <h3>Update User</h3>
 </div>
 <div class=" container ">
-    <form action="{{route('user.updateUser', $dataUser['id'])}}" method="POST" class="row g-3" enctype="multipart/form-data">
+    <form action="{{ route('user.updateUser', $dataUser['id']) }}" method="POST" class="row g-3" enctype="multipart/form-data">
         @csrf
         <div class="col-md-6">
             <label for="inputAddress" class="form-label">Name</label>
-            <input name="name" value="{{old('name', $dataUser->name)}}" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
+            <input name="name" value="{{ old('name', $dataUser->name) }}" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
             @error('name')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-6">
             <label for="inputAddress" class="form-label">Email</label>
-            <input name="email" value="{{old('email', $dataUser->email)}}" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="">
+            <input name="email" value="{{ old('email', $dataUser->email) }}" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="">
             @error('email')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
         </div>
         <div class="col-md-6">
             <label for="inputAddress" class="form-label">Phone Number</label>
-            <input name="phone" value="{{old('phone', $dataUser->phone)}}" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
+            <input name="phone" value="{{ old('phone', $dataUser->phone) }}" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
             @error('phone')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -65,7 +65,7 @@
 
         <div class="col-md-6">
             <label for="inputCity" class="form-label">Address</label>
-            <input name="address" type="text" value="{{old('address', $dataUser->address)}}" class="form-control @error('address') is-invalid @enderror" id="inputCity">
+            <input name="address" type="text" value="{{ old('address', $dataUser->address) }}" class="form-control @error('address') is-invalid @enderror" id="inputCity">
             @error('address')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -74,7 +74,7 @@
         </div>
         <div class="col-md-6">
             <label for="inputCity" class="form-label">Age</label>
-            <input name="age" type="date" value="{{old('age', $dataUser->age)}}" class="form-control @error('age') is-invalid @enderror" id="inputCity">
+            <input name="age" type="date" value="{{ old('age', $dataUser->age) }}" class="form-control @error('age') is-invalid @enderror" id="inputCity">
             @error('age')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>

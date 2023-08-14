@@ -184,9 +184,13 @@ class HomeController extends Controller
         }
 
         $listCategory = $this->categoryRepository->get();
-        $getTags = $this->gameRepository->getTags();
         $listGame = $this->gameRepository->getListBySearch($filter);
+        $listName = [];
+        foreach ($listGame as $game) {
+            $listName[] = $game['name'];
+        }
 
+        $getTags = $this->gameRepository->getTagsByListGame($listName);
         $listTag = [];
 
         foreach ($getTags as $record) {
