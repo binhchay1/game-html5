@@ -34,7 +34,7 @@
                     <li class="inactive {{ $category['name'] }} li-category">
                         <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
                             @if(session('locale') == 'vi')
-                            <span class="name">{{ \App\Enums\CategoryVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
+                            <span class="name">{{ \App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
                             @else
                             <span class="name">{{ __(ucfirst($category['name'])) }}</span>
                             @endif

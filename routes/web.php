@@ -44,6 +44,8 @@ Route::get('/reset-password', [HomeController::class, 'viewResetPassword'])->nam
 Route::get('/reset-password-success', [HomeController::class, 'viewResetPasswordSuccess'])->name('reset.password.success');
 Route::get('/register-retry', [HomeController::class, 'registerRetry'])->name('register.retry');
 
+Route::get('/test', [HomeController::class, 'viewTest']);
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
     Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
