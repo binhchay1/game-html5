@@ -23,11 +23,10 @@ class GameRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'link' =>'required|max:255',
             'category' => 'required',
-            'thumbs' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'icon' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'background' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'thumbs' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'icon' => 'image|mimes:jpeg,png,jpg',
+            'background' => 'image|mimes:jpeg,png,jpg',
         ];
     }
 
@@ -36,8 +35,6 @@ class GameRequest extends FormRequest
         return [
             'name.required' => __('validation.required'),
             'name.max' => __('validation.max'),
-            'link.required' => __('validation.required'),
-            'link.max' => __('validation.max'),
             'category.required' => __('validation.required'),
             'thumbs.digits_between' => __('validation.digits_between'),
             'thumbs.required' => __('validation.required'),

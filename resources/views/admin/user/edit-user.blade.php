@@ -7,8 +7,7 @@
 @section('js_sort_users')
 <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 @endsection
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-@vite('resources/js/user.js')
+
 @section('main_content')
 <div class="card-header mt-4">
     <h3>Update User</h3>
@@ -17,7 +16,7 @@
     <form action="{{ route('user.updateUser', $dataUser['id']) }}" method="POST" class="row g-3" enctype="multipart/form-data">
         @csrf
         <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Name</label>
+            <label class="form-label">Name</label>
             <input name="name" value="{{ old('name', $dataUser->name) }}" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
             @error('name')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
@@ -45,8 +44,8 @@
             </div>
         </div>
         <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Email</label>
-            <input name="email" value="{{ old('email', $dataUser->email) }}" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="">
+            <label class="form-label">Email</label>
+            <input name="email" value="{{ old('email', $dataUser->email) }}" type="email" class="form-control @error('email') is-invalid @enderror">
             @error('email')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -54,8 +53,8 @@
             @enderror
         </div>
         <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Phone Number</label>
-            <input name="phone" value="{{ old('phone', $dataUser->phone) }}" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
+            <label class="form-label">Phone Number</label>
+            <input name="phone" value="{{ old('phone', $dataUser->phone) }}" type="text" class="form-control @error('phone') is-invalid @enderror">
             @error('phone')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -64,8 +63,8 @@
         </div>
 
         <div class="col-md-6">
-            <label for="inputCity" class="form-label">Address</label>
-            <input name="address" type="text" value="{{ old('address', $dataUser->address) }}" class="form-control @error('address') is-invalid @enderror" id="inputCity">
+            <label class="form-label">Address</label>
+            <input name="address" type="text" value="{{ old('address', $dataUser->address) }}" class="form-control @error('address') is-invalid @enderror">
             @error('address')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -73,8 +72,8 @@
             @enderror
         </div>
         <div class="col-md-6">
-            <label for="inputCity" class="form-label">Age</label>
-            <input name="age" type="date" value="{{ old('age', $dataUser->age) }}" class="form-control @error('age') is-invalid @enderror" id="inputCity">
+            <label class="form-label">Age</label>
+            <input name="age" type="date" value="{{ old('age', $dataUser->age) }}" class="form-control @error('age') is-invalid @enderror">
             @error('age')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -82,8 +81,8 @@
             @enderror
         </div>
         <div class="col-md-6">
-            <label for="status">Gender</label>
-            <select class="form-select" aria-label="Default select example" name="sex" id="">
+            <label>Gender</label>
+            <select class="form-select" aria-label="Default select example" name="sex">
                 @foreach ($gender as $gender =>$value)
                 <option value="{{ $value }}" @if($dataUser->sex == $value) selected @endif>
                     {{$gender }}
@@ -96,4 +95,8 @@
         </div>
     </form>
 </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('js/admin/user.js') }}"></script>
 @endsection

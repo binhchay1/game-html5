@@ -134,30 +134,44 @@ class GameController extends Controller
     public function store(GameRequest $request)
     {
         $input = $request->all();
+        $idFolder = Hash::make('acwbe' . Auth::user()->id);
+        $data = [
+            'name' => $input['name'],
+            'category' => $input['category'],
+            'tag' => $input['tag'],
+            'count_play' => $input['count_play'],
+            'status' => $input['status'],
+            'color' => $input['color'],
+            'text_color' => $input['text_color'],
+        ];
+
         if (array_key_exists('thumbs', $input)) {
-            $idFolder = Hash::make('acwbe' . Auth::user()->id);
             $path = 'images/games/thumb' . $idFolder . '/' . $input['thumbs']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['thumbs']));
-            $input['thumbs'] = $url;
+            $data['thumbs'] = $url;
         }
 
         if (array_key_exists('icon', $input)) {
-            $idFolder = Hash::make('acwbe' . Auth::user()->id);
             $path = 'images/games/icon' . $idFolder . '/' . $input['icon']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['icon']));
-            $input['icon'] = $url;
+            $data['icon'] = $url;
         }
 
         if (array_key_exists('background', $input)) {
-            $idFolder = Hash::make('acwbe' . Auth::user()->id);
             $path = 'images/games/background' . $idFolder . '/' . $input['background']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['background']));
-            $input['background'] = $url;
+            $data['background'] = $url;
         }
 
-        $this->gameRepository->store($input);
+        if ($request->hasFile('source')) {
+            $data['source'] = $request->source;
+        }
 
-        return redirect('list-game');
+        $pathGame = $this->ultity->storeGameS3($data);
+        $data['link'] = $pathGame;
+        $this->gameRepository->store($data);
+
+        return redirect()->route('game.index');
     }
 
     public function edit($id)
@@ -165,6 +179,7 @@ class GameController extends Controller
         $status = config('game.status');
         $dataGame = $this->gameRepository->showGame($id);
         $dataCategory = $this->categoryRepository->listCategory();
+
         return view('admin.game.edit-game', [
             'dataGame' => $dataGame,
             'dataCategory' => $dataCategory,
@@ -175,23 +190,21 @@ class GameController extends Controller
     public function update(GameRequest $request, $id)
     {
         $input = $request->except(['_token']);
+        $idFolder = Hash::make('acwbe' . Auth::user()->id);
 
         if (array_key_exists('thumbs', $input)) {
-            $idFolder = Hash::make('acwbe' . Auth::user()->id);
             $path = 'images/user/' . $idFolder . '/' . $input['thumbs']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['thumbs']));
             $input['thumbs'] = $url;
         }
 
         if (array_key_exists('icon', $input)) {
-            $idFolder = Hash::make('acwbe' . Auth::user()->id);
             $path = 'images/user/' . $idFolder . '/' . $input['icon']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['icon']));
             $input['icon'] = $url;
         }
 
         if (array_key_exists('background', $input)) {
-            $idFolder = Hash::make('acwbe' . Auth::user()->id);
             $path = 'images/user/' . $idFolder . '/' . $input['background']->getClientOriginalName();
             $url = $this->ultity->saveImage($path, file_get_contents($input['background']));
             $input['background'] = $url;
@@ -228,25 +241,5 @@ class GameController extends Controller
         }
 
         return '-1';
-    }
-
-    public function extractUploadedZip(Request $request)
-    {
-        $zip = new \ZipArchive();
-        dd($request->file());
-        $status = $zip->open($request->file("zip")->getRealPath());
-        if ($status !== true) {
-            throw new \Exception($status);
-        } else {
-            $storageDestinationPath = realpath(app_path('../public/games'));
-            $zip->extractTo($storageDestinationPath);
-            $zip->close();
-            return back()
-                ->with('success', 'You have successfully extracted zip.');
-        }
-    }
-
-    public function uploadFileDropzone(Request $request) {
-        dd($request);
     }
 }

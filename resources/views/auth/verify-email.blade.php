@@ -29,8 +29,8 @@
                                     </form>
                                 </div>
 
-                                <p class="mt-3 mb-0 text-center"><small>Issues with the verification process or entered the wrong email?
-                                        <br>Please sign up with <a href="{{ route('register.retry') }}" style="text-decoration: underline; font-weight: 800;">another</a> email address.</small></p>
+                                <p class="mt-3 mb-0 text-center"><small>{{__('Các vấn đề với quá trình xác minh hoặc nhập sai email?')}}
+                                        <br>{{__('Vui lòng đăng ký với')}} <a href="{{ route('register.retry') }}" style="text-decoration: underline; font-weight: 800;">{{__('khác')}}</a> {{__('địa chỉ email')}}</small></p>
                             </div>
                         </div>
                     </div>
