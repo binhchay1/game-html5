@@ -12,8 +12,6 @@
         table {
             border-collapse: separate;
             table-layout: fixed;
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt
         }
 
         table td {
@@ -126,7 +124,7 @@
     <div class=t1 style="background-color:#0D0D0D;">
         <table role=presentation width=100% cellpadding=0 cellspacing=0 border=0 align=center>
             <tr>
-                <td class=t112 style="font-size:0;line-height:0;mso-line-height-rule:exactly;" valign=top align=center>
+                <td class=t112 style="font-size:0;line-height:0;" valign=top align=center>
                     <table role=presentation width=100% cellpadding=0 cellspacing=0 border=0 align=center>
                         <tr>
                             <td>
@@ -136,7 +134,7 @@
                                             <table role=presentation width=100% cellpadding=0 cellspacing=0>
                                                 <tr>
                                                     <td>
-                                                        <div class=t12 style="mso-line-height-rule:exactly;mso-line-height-alt:40px;line-height:40px;font-size:1px;display:block;">&nbsp;</div>
+                                                        <div class=t12 style="line-height:40px;font-size:1px;display:block;">&nbsp;</div>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -152,15 +150,15 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <div class=t13 style="mso-line-height-rule:exactly;mso-line-height-alt:40px;line-height:40px;font-size:1px;display:block;">&nbsp;</div>
+                                                        <div class=t13 style="line-height:40px;font-size:1px;display:block;">&nbsp;</div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
                                                         <table class=t24 role=presentation cellpadding=0 cellspacing=0 align=center>
                                                             <tr>
-                                                                <td class=t25 style="overflow:hidden;width:600px;border-radius:16px 16px 0 0;">
-                                                                    <div style="font-size:0px;"><img class=t31 style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width=500 height=340.65625 src="{{ asset('images/auth-image.png') }}" /></div>
+                                                                <td class=t25 style="overflow:hidden;width:550px;border-radius:16px 16px 0 0;">
+                                                                    <div style="font-size:0px;"><img class=t31 style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width=550 height=340.65625 src="{{ asset('images/auth-image.png') }}" /></div>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -184,9 +182,9 @@
                                                                                                             <tr>
                                                                                                                 <td class=t54 style="width:600px;">
                                                                                                                     @if($actionText == 'Reset Password')
-                                                                                                                    <h1 class=t60 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:41px;font-weight:800;font-style:normal;font-size:39px;text-decoration:none;text-transform:none;letter-spacing:-1.2px;direction:ltr;color:#291D3B;text-align:left;mso-line-height-rule:exactly;mso-text-raise:1px;">{{ __('Cài đặt lại mật khẩu') }}</h1>
+                                                                                                                    <h1 class=t60 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:41px;font-weight:800;font-style:normal;font-size:39px;text-decoration:none;text-transform:none;letter-spacing:-1.2px;direction:ltr;color:#291D3B;text-align:left;">{{ __('Cài đặt lại mật khẩu') }}</h1>
                                                                                                                     @else
-                                                                                                                    <h1 class=t60 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:41px;font-weight:800;font-style:normal;font-size:39px;text-decoration:none;text-transform:none;letter-spacing:-1.2px;direction:ltr;color:#291D3B;text-align:left;mso-line-height-rule:exactly;mso-text-raise:1px;">{{ __('Chúc mừng bạn đã đăng ký thành công') }}</h1>
+                                                                                                                    <h1 class=t60 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:41px;font-weight:800;font-style:normal;font-size:39px;text-decoration:none;text-transform:none;letter-spacing:-1.2px;direction:ltr;color:#291D3B;text-align:left;">{{ __('Chúc mừng bạn đã đăng ký thành công') }}</h1>
                                                                                                                     @endif
                                                                                                                 </td>
                                                                                                             </tr>
@@ -195,7 +193,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td>
-                                                                                                        <div class=t61 style="mso-line-height-rule:exactly;mso-line-height-alt:25px;line-height:25px;font-size:1px;display:block;">&nbsp;</div>
+                                                                                                        <div class=t61 style="line-height:25px;font-size:1px;display:block;">&nbsp;</div>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -204,9 +202,9 @@
                                                                                                             <tr>
                                                                                                                 <td class=t64 style="width:600px;">
                                                                                                                     @if($actionText == 'Reset Password')
-                                                                                                                    <p class=t70 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:14px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#291D3B;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">{{ __('Đừng lo lắng, chúng tôi luôn ở đây để hỗ trợ bạn. Hãy bấm nút bên dưới và theo yêu cầu để có thể cài đặt lại mật khẩu của bạn') }}</p>
+                                                                                                                    <p class=t70 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:14px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#291D3B;text-align:left;">{{ __('Đừng lo lắng, chúng tôi luôn ở đây để hỗ trợ bạn. Hãy bấm nút bên dưới và theo yêu cầu để có thể cài đặt lại mật khẩu của bạn') }}</p>
                                                                                                                     @else
-                                                                                                                    <p class=t70 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:14px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#291D3B;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">{{ __('Cám ơn bạn vì đã tham gia cùng với chúng tôi trong chuyến hành trình này. Chỉ còn 1 bước cuối cùng để hoàn tất công việc đăng ký, vui lòng hãy ấn vào nút bên dưới:') }}</p>
+                                                                                                                    <p class=t70 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:14px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#291D3B;text-align:left;">{{ __('Cám ơn bạn vì đã tham gia cùng với chúng tôi trong chuyến hành trình này. Chỉ còn 1 bước cuối cùng để hoàn tất công việc đăng ký, vui lòng hãy ấn vào nút bên dưới:') }}</p>
                                                                                                                     @endif
                                                                                                                 </td>
                                                                                                             </tr>
@@ -215,18 +213,18 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td>
-                                                                                                        <div class=t71 style="mso-line-height-rule:exactly;mso-line-height-alt:25px;line-height:25px;font-size:1px;display:block;">&nbsp;</div>
+                                                                                                        <div class=t71 style="line-height:25px;font-size:1px;display:block;">&nbsp;</div>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td style="display: flex;justify-content: center;">
+                                                                                                    <td>
                                                                                                         <table class=t73 role=presentation cellpadding=0 cellspacing=0 align=left>
                                                                                                             <tr>
-                                                                                                                <td class=t74 style="background-color:#291D3B;overflow:hidden;width:136px;text-align:center;line-height:40px;mso-line-height-rule:exactly;mso-text-raise:8px;border-radius:14px 14px 14px 14px;">
+                                                                                                                <td class=t74 style="background-color:#291D3B;overflow:hidden;width:136px;text-align:center;line-height:40px;border-radius:14px 14px 14px 14px;">
                                                                                                                     @if(session('locale') == 'vi')
-                                                                                                                    <a href="{{ $actionUrl }}" class=t80 style="display:block;margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:40px;font-weight:600;font-style:normal;font-size:15px;text-decoration:none;letter-spacing:-0.6px;direction:ltr;color:#FFFFFF;text-align:center;mso-line-height-rule:exactly;mso-text-raise:8px;" target=_blank>{{ \App\Enums\TransVietnamese::BUTTON_VIETNAMESE[$actionText] }}</a>
+                                                                                                                    <a href="{{ $actionUrl }}" class=t80 style="display:block;margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:40px;font-weight:600;font-style:normal;font-size:15px;text-decoration:none;letter-spacing:-0.6px;direction:ltr;color:#FFFFFF;text-align:center;" target=_blank>{{ \App\Enums\TransVietnamese::BUTTON_VIETNAMESE[$actionText] }}</a>
                                                                                                                     @else
-                                                                                                                    <a href="{{ $actionUrl }}" class=t80 style="display:block;margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:40px;font-weight:600;font-style:normal;font-size:15px;text-decoration:none;letter-spacing:-0.6px;direction:ltr;color:#FFFFFF;text-align:center;mso-line-height-rule:exactly;mso-text-raise:8px;" target=_blank>{{ __($actionText) }}</a>
+                                                                                                                    <a href="{{ $actionUrl }}" class=t80 style="display:block;margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:40px;font-weight:600;font-style:normal;font-size:15px;text-decoration:none;letter-spacing:-0.6px;direction:ltr;color:#FFFFFF;text-align:center;" target=_blank>{{ __($actionText) }}</a>
                                                                                                                     @endif
                                                                                                                 </td>
                                                                                                             </tr>
@@ -256,7 +254,7 @@
                                                                                 <table class=t104 role=presentation cellpadding=0 cellspacing=0 align=center>
                                                                                     <tr>
                                                                                         <td class=t105 style="width:600px;">
-                                                                                            <p class=t111 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:21px;font-weight:400;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#AAAAAA;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;">{{ env('APP_NAME', 'Gamekafe') }}. {{ __('Đã đăng ký Bản quyền') }}</p>
+                                                                                            <p class=t111 style="margin-bottom:0;Margin-bottom:0;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:21px;font-weight:400;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#AAAAAA;text-align:center;">{{ env('APP_NAME', 'Gamekafe') }}. {{ __('Đã đăng ký Bản quyền') }}</p>
                                                                                         </td>
                                                                                     </tr>
                                                                                 </table>
