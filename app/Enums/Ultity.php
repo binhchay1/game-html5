@@ -65,4 +65,17 @@ final class Ultity
     {
         return 'rgb(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ')';
     }
+
+    public function storeGameS3($data)
+    {
+        $path = 'games/' . $data['name'];
+        foreach ($data['source'] as $value) {
+            $result = Storage::disk('s3')->put($path, $value);
+            if ($value->getClientOriginalName() == 'index.html') {
+                $path = Storage::disk('s3')->url($result);
+            }
+        }
+
+        return $path;
+    }
 }

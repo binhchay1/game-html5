@@ -8,8 +8,6 @@
 <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 @endsection
 
-@vite('resources/js/user.js')
-
 @section('main_content')
 <div class="card-header mt-4">
     <h3>Create User</h3>
@@ -19,9 +17,9 @@
         @csrf
         <div class="col-md-6">
             <label for="inputAddress" class="form-label">Name</label>
-            <input name="name" value="{{ old('name') }}" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
+            <input name="name" value="{{ old('name') }}" type="text" class="form-control @error('name') is-invalid @enderror">
             @error('name')
-            <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
@@ -39,55 +37,54 @@
                     </div>
                 </div>
                 @error('image')
-                <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
         </div>
         <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Email</label>
-            <input name="email" type="email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror">
+            <label class="form-label">Email</label>
+            <input name="email" type="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror">
             @error('email')
-            <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
         </div>
         <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Phone Number</label>
+            <label class="form-label">Phone Number</label>
             <input name="phone" value="{{ old('phone') }}" type="text" class="form-control @error('phone') is-invalid @enderror">
             @error('phone')
-            <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
         </div>
 
         <div class="col-md-6">
-            <label for="inputCity" class="form-label">Address</label>
+            <label class="form-label">Address</label>
             <input name="address" type="text" value="{{ old('address') }}" class="form-control @error('address') is-invalid @enderror">
             @error('address')
-            <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
         </div>
         <div class="col-md-6">
-            <label for="inputCity" class="form-label">Age</label>
+            <label class="form-label">Age</label>
             <input name="age" type="date" value="{{ old('age') }}" class="form-control @error('age') is-invalid @enderror">
             @error('age')
-            <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
         </div>
         <div class="col-md-4">
-            <label for="inputCity" class="form-label">Gender</label>
-            <label for="status">{{ __('Giới tính') }}</label>
-            <select class="form-select" aria-label="Default select example" name="sex" id="">
+            <label class="form-label">Gender</label>
+            <select class="form-select" aria-label="Default select example" name="sex">
                 @foreach($gender as $gender => $value)
-                <option selected id="status" value="{{ $value }}">{{ $gender }}</option>
+                <option id="status" value="{{ $value }}">{{ $gender }}</option>
                 @endforeach
             </select>
         </div>
@@ -96,4 +93,8 @@
         </div>
     </form>
 </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('js/admin/user.js') }}"></script>
 @endsection

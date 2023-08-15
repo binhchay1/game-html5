@@ -5,53 +5,56 @@
 @endsection
 
 @section('js_sort_users')
-<link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ asset('css/admin/dropzone.css') }}">
+<style>
+    #list-store-game {
+        height: 350px;
+        width: 100%;
+        overflow: auto;
+        list-style: none;
+    }
+</style>
 @endsection
-
-@vite('resources/js/game-icon.js')
-@vite('resources/js/game-background.js')
-@vite('resources/js/game-thumb.js')
 
 @section('main_content')
 <div class="card-header mt-4">
     <h3>Create Game</h3>
 </div>
 <div class="container">
-    <form action="{{ route('game.store') }}" method="POST" class="row g-3" enctype="multipart/form-data">
+    <form action="{{ route('game.store') }}" method="POST" class="row g-3" enctype="multipart/form-data" id="form-store-game">
         @csrf
         <div class="col-md-6">
             <label for="inputAddress" class="form-label">Name</label>
-            <input name="name" value="{{ old('name') }}" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
+            <input name="name" value="{{ old('name') }}" type="text" class="form-control @error('name') is-invalid @enderror" id="name-store-game">
             @error('name')
-            <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
         </div>
         <div class="col-md-6">
             <label for="status">Category Game</label>
-            <select class="form-select form-control @error('category') is-invalid @enderror" aria-label="Default select example" name="category" id="">
+            <select class="form-select form-control @error('category') is-invalid @enderror" aria-label="Default select example" name="category">
                 @foreach ($dataCategory as $dataCategory)
                 <option value="{{ $dataCategory->name }}">
-                    {{ $dataCategory->name }}
+                    {{ ucfirst($dataCategory->name) }}
                 </option>
                 @endforeach
             </select>
         </div>
         <div class="col-md-4">
             <label for="inputCity" class="form-label">Tag</label>
-            <input type="text" name="tag" value="{{ old('tag') }}" class="form-control">
+            <input type="text" name="tag" value="[]" class="form-control">
         </div>
         <div class="col-md-2">
             <label for="inputCity" class="form-label">CountPlay</label>
-            <input type="text" name="count_play" value="{{ old('count_play') }}" class="form-control">
+            <input type="text" name="count_play" value="0" class="form-control">
         </div>
         <div class="col-md-2">
             <label for="status">Status</label>
             <select class="form-select" name="status">
                 @foreach($status as $status => $value)
-                <option selected id="status" value="{{ $value }}">{{ $status }}</option>
+                <option id="status" value="{{ $value }}">{{ $status }}</option>
                 @endforeach
             </select>
         </div>
@@ -66,17 +69,17 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="img">Thumbs</label>
-                <input value="thumbs" type="file" class="border-0 bg-light pl-0 @error('thumbs') is-invalid @enderror" name="thumbs" id="thumb" accept="image/png, image/gif, image/jpeg, image/jpg" hidden>
+                <input value="thumbs" type="file" class="border-0 bg-light pl-0 @error('thumbs') is-invalid @enderror" name="thumbs" id="thumb" accept="image/png, image/gif, image/jpeg, image/jpg, image/gif" hidden>
                 <div class=" choose-avatar">
                     <div id="btnimage">
-                        <img id="showImage-thumb" style="height: 150px; width: 150px" src="{{ asset('images/non-image.png') }}" alt="avatar">
+                        <img id="showImage-thumb" width="150" height="150" src="{{ asset('images/non-image.png') }}" alt="avatar">
                     </div>
                 </div>
                 <div id="button">
                     <i id="btn_thumb" class="fa fa-camera"></i>
                 </div>
                 @error('thumbs')
-                <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
@@ -85,17 +88,17 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="img">Icon</label>
-                <input value="icon" type="file" class="border-0 bg-light pl-0 @error('icon') is-invalid @enderror" name="icon" id="icon" accept="image/png, image/gif, image/jpeg, image/jpg" hidden>
+                <input value="icon" type="file" class="border-0 bg-light pl-0 @error('icon') is-invalid @enderror" name="icon" id="icon" accept="image/png, image/gif, image/jpeg, image/jpg, image/gif" hidden>
                 <div class=" choose-avatar">
                     <div id="btnimage">
-                        <img id="showImage-icon" style="height: 150px; width: 150px" src="{{ asset('images/non-image.png') }}" alt="avatar">
+                        <img id="showImage-icon" width="150" height="150" src="{{ asset('images/non-image.png') }}" alt="avatar">
                     </div>
                 </div>
                 <div id="button">
                     <i id="btn_icon" class="fa fa-camera"></i>
                 </div>
                 @error('icon')
-                <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
@@ -104,25 +107,28 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="img">Background</label>
-                <input value="background" type="file" class="border-0 bg-light pl-0 @error('background') is-invalid @enderror" name="background" id="background" accept="image/png, image/gif, image/jpeg, image/jpg" hidden>
+                <input value="background" type="file" class="border-0 bg-light pl-0 @error('background') is-invalid @enderror" name="background" id="background" accept="image/png, image/gif, image/jpeg, image/jpg, image/gif" hidden>
                 <div class=" choose-avatar">
                     <div id="btnimage">
-                        <img id="showImage-background" style="height: 150px; width: 150px" src="{{ asset('images/non-image.png') }}" alt="avatar">
+                        <img id="showImage-background" width="150" height="150" src="{{ asset('images/non-image.png') }}" alt="avatar">
                     </div>
                 </div>
                 <div id="button">
                     <i id="btn_background" class="fa fa-camera"></i>
                 </div>
                 @error('icon')
-                <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
         </div>
-        <div class="col-md-2 mt-5 d-flex align-items-center">
+        <div class="col-md-4 d-flex align-items-center">
             <label class="form-label">Upload File</label>
-            <button type="button" class="btn btn-primary ml-4" data-bs-toggle="modal" data-bs-target="#upload-file-modal">Upload</button>
+            <button type="button" class="btn btn-primary ml-4" data-bs-toggle="modal" data-bs-target="#upload-file-modal" id="button-upload-store-game">Upload</button>
+            <ul id="list-store-game" class="d-none">
+
+            </ul>
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-success">Create</button>
@@ -135,26 +141,44 @@
 
 @section('js')
 <script src="{{ asset('js/admin/dropzone.js') }}"></script>
-<script type="text/javascript">
-    var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
-
+<script src="{{ asset('js/admin/game.js') }}"></script>
+<script>
     Dropzone.autoDiscover = false;
-    var myDropzone = new Dropzone(".dropzone", {
+    let myDropzone = new Dropzone(".dropzone", {
         maxFilesize: 256,
-        acceptedFiles: ".jpeg, .jpg, .png, .unityweb, .wasm, .html, .js, .css, .jsgz, .data, .json, .datagz, .mem, .mp3, .ogg, .fnt, .tff, .woff, .tff2, .txt",
+        acceptedFiles: ".jpeg, .jpg, .png, .unityweb, .wasm, .html, .js, .css, .jsgz, .data, .json, .datagz, .mem, .mp3, .ogg, .fnt, .tff, .woff, .tff2, .txt, .gif",
         autoProcessQueue: false,
         init: function() {
             this.on("addedfile", file => {
-                var reader = new FileReader();
+                let reader = new FileReader();
+                let form = $("#form-store-game");
+                let elementName = $("#name-store-game");
+                let elementButton = $("#button-upload-store-game");
+                let elementList = $("#list-store-game");
+                let elementPath = "<input type='hidden' name='path[]' value='" + file.fullPath + "'>";
+                let elementSource = "<input type='file' class='d-none' name='source[]' id='" + file.name + "'>";
+                let elementItemList = "<li>" + file.name + "</li>";
+                let findString = file.fullPath.indexOf('/');
+                let gameName = file.fullPath.slice(0, findString);
+
+                if (elementButton.length > 0) {
+                    elementButton.remove();
+                    elementList.removeClass("d-none");
+                }
+
+                form.append(elementPath);
+                form.append(elementSource);
+                elementList.append(elementItemList)
+                elementName.val(gameName);
                 reader.readAsText(file);
 
-                const fileInput = document.querySelector('input[type="file"]');
-                const myFile = new File(reader, 'myFile.txt', {
+                let fileUpload = new File([reader], file.name, {
                     lastModified: new Date(),
                 });
+                let fileInput = document.querySelector("input[id='" + file.name + "']");
+                let dataTransfer = new DataTransfer();
 
-                const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(myFile);
+                dataTransfer.items.add(fileUpload);
                 fileInput.files = dataTransfer.files;
             });
         }

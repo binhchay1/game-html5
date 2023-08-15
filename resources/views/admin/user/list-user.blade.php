@@ -13,7 +13,7 @@
     <h3>List User</h3>
 </div>
 <div class="row justify-content-start m-1 mb-2 mt-4">
-    <a  href="{{route('user.create')}}" >
+    <a href="{{ route('user.create') }}">
         <button type="button" id="btn-add" class="btn btn-success">Add</button>
     </a>
 </div>
@@ -38,7 +38,7 @@
             <td>{{ $dataUser->id }}</td>
             <td>{{ $dataUser->name }}</th>
             <td>{{ $dataUser->email }}</td>
-            <td><img class="image" src="{{$dataUser->image}}" alt="avatar" width="100" height="50"></td>
+            <td><img class="image" src="{{ $dataUser->image }}" alt="avatar" width="100" height="50"></td>
             <td>{{ $dataUser->phone }}</td>
             <td>{{ $dataUser->address }}</td>
             <td>{{ $dataUser->age }}</td>
