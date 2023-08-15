@@ -112,9 +112,15 @@
                 </div>
                 @else
                 <div class="dropdown">
+                    @if(Auth::user()->image)
+                        <button class="dropbtn" style="background-color: #f1f1f1; color: #666; font-size: 13px; font-weight: 700;">
+                            <img id="dropbtn" src="{{ Auth::user()->image }}" >
+                        </button>
+                    @else
                     <button class="dropbtn" style="background-color: #f1f1f1; color: #666; font-size: 13px; font-weight: 700;"><i class="fa fa-user"></i>
                         {{ Auth::user()->name }}
                     </button>
+                    @endif
                     <div class="dropdown-content">
                         <a href="{{ route('user.setting') }}">{{ __('Cá nhân') }}</a>
                         <a href="{{ route('user.edit') }}">{{ __('Thông tin') }}</a>

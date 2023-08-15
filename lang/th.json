@@ -331,5 +331,9 @@
     "Đã đăng ký Bản quyền" : "ลิขสิทธิ์ที่ลงทะเบียน",
     "Cài đặt lại mật khẩu": "รีเซ็ตรหัสผ่าน",
     "Rest Password": "รีเซ็ตรหัสผ่าน",
-    "Verify Email Address": "ยืนยันที่อยู่อีเมล"
+    "Verify Email Address": "ยืนยันที่อยู่อีเมล",
+    "Các vấn đề với quá trình xác minh hoặc nhập sai email?": "มีปัญหากับขั้นตอนการยืนยันหรือป้อนอีเมลผิด?",
+    "Vui lòng đăng ký với": "กรุณาลงทะเบียนกับ",
+    "khác": "อื่น",
+    "địa chỉ email": "ที่อยู่อีเมล"
 }

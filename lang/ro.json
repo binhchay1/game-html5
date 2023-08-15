@@ -331,5 +331,9 @@
     "Đã đăng ký Bản quyền": "Drepturi de autor înregistrate",
     "Cài đặt lại mật khẩu": "Reseteaza parola",
     "Rest Password": "Reseteaza parola",
-    "Verify Email Address": "Verifica adresa de email"
+    "Verify Email Address": "Verifica adresa de email",
+    "Các vấn đề với quá trình xác minh hoặc nhập sai email?": "\nProbleme cu procesul de verificare sau ați introdus un e-mail greșit?",
+    "Vui lòng đăng ký với": "Vă rugăm să vă înscrieți cu",
+    "khác": "o alta",
+    "địa chỉ email": "Adresa de e-mail"
 }
