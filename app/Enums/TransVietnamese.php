@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-final class CategoryVietnamese
+final class TransVietnamese
 {
     const CATEGORY_VIETNAMESE = [
         'Other' => 'Khác',
@@ -16,5 +16,10 @@ final class CategoryVietnamese
         'Shooter' => 'Bắn súng',
         'Platformer' => 'Đi cảnh',
         'Sports' => 'Thể thao'
+    ];
+
+    const BUTTON_VIETNAMESE = [
+        'Rest Password' => 'Cài lại mật khẩu',
+        'Verify Email Address' => 'Xác nhận địa chỉ email'
     ];
 }

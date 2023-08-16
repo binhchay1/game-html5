@@ -73,6 +73,10 @@ class HomeController extends Controller
         return view('auth.reset-password-done');
     }
 
+    public function viewTest() {
+        return view('vendor.notifications.email');
+    }
+
     public function viewHome()
     {
         $listCategory = $this->categoryRepository->listCategoryWithCount();
@@ -266,7 +270,12 @@ class HomeController extends Controller
         $getGame = $this->gameRepository->getNewestGame();
         $listGame = $this->ultity->paginate($getGame, 30);
         $games = $this->ultity->renameAndCalculateVote($listGame);
-        $getTags = $this->gameRepository->getTags();
+        $listGameName = [];
+        foreach ($games as $game) {
+            $listGameName[] = $game['name'];
+        }
+
+        $getTags = $this->gameRepository->getTagsByListGame($listGameName);
         $listTag = [];
 
         foreach ($getTags as $record) {
@@ -286,7 +295,12 @@ class HomeController extends Controller
         $getGame = $this->gameRepository->getBestGame();
         $listGame = $this->ultity->paginate($getGame, 30);
         $games = $this->ultity->renameAndCalculateVote($listGame);
-        $getTags = $this->gameRepository->getTags();
+        $listGameName = [];
+        foreach ($games as $game) {
+            $listGameName[] = $game['name'];
+        }
+
+        $getTags = $this->gameRepository->getTagsByListGame($listGameName);
         $listTag = [];
 
         foreach ($getTags as $record) {

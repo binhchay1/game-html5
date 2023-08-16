@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-    <title>env('APP_NAME', 'Gamekafe')</title>
+    <title>{{ env('APP_NAME', 'Gamekafe') }}</title>
 @endsection
 
 @section('css')
@@ -43,9 +43,8 @@
                                 </div>
                             @endif
                             <div class="mb-3">
-                                <label for="oldPasswordInput" class="form-label">Old Password</label>
-                                <input name="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" id="oldPasswordInput"
-                                       placeholder="Old Password">
+                                <label for="oldPasswordInput" class="form-label">{{ __('Mật khẩu cũ') }}</label>
+                                <input name="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" id="oldPasswordInput">
                                 @error('old_password')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -56,17 +55,15 @@
                                 @endif
                             </div>
                             <div class="mb-3">
-                                <label for="newPasswordInput" class="form-label">New Password</label>
-                                <input name="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" id="newPasswordInput"
-                                       placeholder="New Password">
+                                <label for="newPasswordInput" class="form-label">{{ __('Mật khẩu mới') }}</label>
+                                <input name="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" id="newPasswordInput">
                                 @error('new_password')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="confirmNewPasswordInput" class="form-label">Confirm New Password</label>
-                                <input name="new_password_confirmation" type="password" class="form-control" id="confirmNewPasswordInput"
-                                       placeholder="Confirm New Password">
+                                <label for="confirmNewPasswordInput" class="form-label">{{ __('Nhập lại mật khẩu') }}</label>
+                                <input name="new_password_confirmation" type="password" class="form-control" id="confirmNewPasswordInput">
                             </div>
                         </div>
                         <div class="card-footer">

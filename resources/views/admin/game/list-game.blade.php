@@ -12,7 +12,7 @@
 <div class="card-header mt-4">
     <h3>List Game</h3>
 </div>
-<div class="row justify-content-start m-1 mb-2 mt-4">
+<div class="justify-content-start m-1 mb-2 mt-4">
     <a href="{{ route('game.create') }}">
         <button type="button" id="btn-add" class="btn btn-success">Add</button>
     </a>

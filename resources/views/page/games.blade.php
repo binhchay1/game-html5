@@ -45,7 +45,8 @@
 
     .vote {
         position: relative;
-        top: 20%;
+        top: 25%;
+        left: 15%;
         text-align: center;
     }
 
