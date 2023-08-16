@@ -3,7 +3,8 @@
 @section('title')
     <title>{{ env('APP_NAME', 'Gamekafe') }}</title>
 @endsection
-
+<link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 @section('css')
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -44,7 +45,8 @@
                             @endif
                             <div class="mb-3">
                                 <label for="oldPasswordInput" class="form-label">{{ __('Mật khẩu cũ') }}</label>
-                                <input name="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" id="oldPasswordInput">
+                                <input name="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" id="password-field">
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password-icon"></span>
                                 @error('old_password')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -74,4 +76,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="{{ asset('js/admin/user.js') }}"></script>
 @endsection

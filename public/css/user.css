@@ -41,3 +41,11 @@
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+.field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+}
