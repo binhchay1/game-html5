@@ -73,7 +73,8 @@ class HomeController extends Controller
         return view('auth.reset-password-done');
     }
 
-    public function viewTest() {
+    public function viewTest()
+    {
         return view('vendor.notifications.email');
     }
 
@@ -231,12 +232,29 @@ class HomeController extends Controller
         return view('page.tags', compact('games', 'tag'));
     }
 
-    public function viewListTags()
+    public function viewListTags(Request $request)
     {
+        $page = $request->get('page');
+        if (empty($page)) {
+            $page = 1;
+        } else {
+            if (is_numeric($page)) {
+                $page = intval($page);
+            } else {
+                abort(404);
+            }
+        }
+
         $getTags = $this->gameRepository->getTags();
+        $totalTags = count($getTags);
+        $perPage = 198;
+        $path = '/tags';
+        $pageName = 'page';
+        $listResult = $this->ultity->paginate($getTags, 100, $path, $pageName, $page);
+        $arrData = $listResult->toArray();
         $listTag = [];
 
-        foreach ($getTags as $record) {
+        foreach ($listResult as $record) {
             $arrTags = json_decode($record->tag);
             foreach ($arrTags as $tag) {
                 if (!in_array($tag, $listTag)) {
@@ -253,16 +271,14 @@ class HomeController extends Controller
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTagNew = explode(', ', $translate);
         $count = 0;
-        $newList = [];
 
         foreach ($listTag as $tag => $value) {
             $listTag[$tag]['trans'] = $listTagNew[$count];
-            $newList[$tag] = $listTag[$tag];
             $count++;
         }
-        $listTag = $newList;
+        $arrData['data'] = $listTag;
 
-        return view('page.list-tag', compact('listTag'));
+        return view('page.list-tag', compact('arrData', 'totalTags'));
     }
 
     public function viewNewGames()

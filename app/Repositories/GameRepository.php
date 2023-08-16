@@ -78,7 +78,7 @@ class GameRepository extends BaseRepository
 
     public function getTags()
     {
-        return $this->model->select('tag')->where('status', '1')->limit(500)->get();
+        return $this->model->select('tag')->where('status', '1')->get();
     }
 
     public function getBestGame()
