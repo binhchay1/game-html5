@@ -7,7 +7,7 @@
 @section('content')
 <div class="white-box-bg box body static" style="padding: 25px; text-align: justify;">
     <div class="title-container">
-        <h1 class="header-5">Privacy Policy</h1>
+        <h1 class="header-5">{{__('Chính sách bảo mật')}}</h1>
     </div>
     <p>
         <small>

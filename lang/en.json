@@ -323,5 +323,12 @@
     "Các vấn đề với quá trình xác minh hoặc nhập sai email?": "Issues with the verification process or entered the wrong email?",
     "Vui lòng đăng ký với": "Please sign up with",
     "khác": "another",
-    "địa chỉ email": "email address"
+    "địa chỉ email": "email address",
+    "Mật khẩu cũ": "Old password",
+    "Mật khẩu mới": "New password",
+    "Nhập lại mật khẩu": "Confirm new password",
+    "Nam": "Male",
+    "Nữ": "Female",
+    "Chính sách bảo mật": "Privacy Policy"
+
 }
