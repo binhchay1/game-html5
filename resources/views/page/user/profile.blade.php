@@ -41,7 +41,18 @@
         </div>
         @endif
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="name">{{ __('Tên') }}</label>
+                    <input type="text" value="{{ Auth::user()->name }}" name="name" class="form-control @error('name') is-invalid  @enderror" placeholder="name">
+                    @error('name')
+                    <span class="invalid-feedback" style="color: red" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-sm-6">
                 <div class="form-group">
                     <div>
                         <label for="img">{{ __('Ảnh đại diện') }}</label>
@@ -58,18 +69,8 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="name">{{ __('Tên') }}</label>
-                    <input type="text" value="{{ Auth::user()->name }}" name="name" class="form-control @error('name') is-invalid  @enderror" placeholder="name">
-                    @error('name')
-                    <span class="invalid-feedback" style="color: red" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-md-6">
+
+            <div class="col-sm-6">
                 <label for="name">{{ __('Hòm thư') }}</label>
                 <input type="text" value="{{ Auth::user()->email }}" name="email" class="form-control @error('email') is-invalid  @enderror" placeholder="name" disabled>
                 @error('email')
@@ -78,7 +79,7 @@
                 </span>
                 @enderror
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <label for="inputAddress" class="form-label">{{ __('Số điện thoại') }}</label>
                 <input name="phone" value="{{ old('phone', Auth::user()->phone) }}" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
                 @error('phone')
@@ -90,7 +91,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <label for="inputCity" class="form-label">{{ __('Địa chỉ') }}</label>
                 <input name="address" type="text" value="{{ old('address', Auth::user()->address) }}" class="form-control @error('address') is-invalid @enderror">
                 @error('address')
@@ -99,7 +100,7 @@
                 </span>
                 @enderror
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <label for="inputCity" class="form-label">{{ __('Tuổi') }}</label>
                 <input name="age" type="date" value="{{ old('age', Auth::user()->age) }}" class="form-control @error('age') is-invalid @enderror">
                 @error('age')
@@ -108,12 +109,12 @@
                 </span>
                 @enderror
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <label for="status">{{ __('Giới tính') }}</label>
                 <select class="form-select" aria-label="{{ __('Giới tính') }}" name="sex" id="">
                     @foreach ($gender as $gender =>$value)
                     <option value="{{ $value }}" @if(Auth::user()->sex == $value) selected @endif>
-                        {{$gender }}
+                        {{$gender == 'Nam' ? __('Tuổi')  : __('Nữ')}}
                     </option>
                     @endforeach
                 </select>
