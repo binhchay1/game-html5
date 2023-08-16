@@ -208,16 +208,13 @@
 
             var fullscreen = function(elem) {
                 var prefix;
-                // Mozilla and webkit intialise fullscreen slightly differently
                 for ( var i = -1, len = domPrefixes.length; ++i < len; ) {
                     prefix = domPrefixes[i].toLowerCase();
 
                     if ( elem[prefix + 'EnterFullScreen'] ) {
-                        // Webkit uses EnterFullScreen for video
                         return prefix + 'EnterFullScreen';
                         break;
                     } else if( elem[prefix + 'RequestFullScreen'] ) {
-                        // Mozilla uses RequestFullScreen for all elements and webkit uses it for non video elements
                         return prefix + 'RequestFullScreen';
                         break;
                     }
@@ -225,7 +222,6 @@
 
                 return false;
             };
-            // Webkit uses "requestFullScreen" for non video elements
             var fullscreenother = fullscreen(document.createElement("iframe"));
 
             if(!fullscreen) {
@@ -234,7 +230,6 @@
             }
 
             $("#fullscreeniframe").addEventListener("click", function(){
-                // iframe fullscreen and non video elements in webkit use request over enter
                 iframe[fullscreenother]();
             }, false);
         })(this, this.document);

@@ -1,7 +1,9 @@
 @extends('layouts.auth')
 
 @section('content')
-<section class="vh-100">
+    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <section class="vh-100">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
@@ -26,8 +28,10 @@
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="password">{{ __('Mật khẩu') }}</label>
-                                        <input type="password" id="password" class="form-control @if($errors->any()) is-invalid @endif" name="password" value="{{ old('password') }}" required autocomplete="current-password" autofocus/>
+                                        <label class="control-label">{{ __('Mật khẩu') }}</label>
+                                        <input name="password" value="{{ old('password') }}" type="password"  class="form-control
+                                        @if($errors->any()) is-invalid @endif password-field" id="password-field" required autocomplete="current-password" autofocus>
+                                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password-icon"></span>
                                     </div>
 
                                     @if($errors->any())
@@ -63,4 +67,7 @@
         </div>
     </div>
 </section>
+@endsection
+@section('js')
+    <script src="{{ asset('js/admin/user.js') }}"></script>
 @endsection
