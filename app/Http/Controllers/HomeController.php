@@ -246,15 +246,9 @@ class HomeController extends Controller
         }
 
         $getTags = $this->gameRepository->getTags();
-        $totalTags = count($getTags);
-        $perPage = 198;
-        $path = '/tags';
-        $pageName = 'page';
-        $listResult = $this->ultity->paginate($getTags, 100, $path, $pageName, $page);
-        $arrData = $listResult->toArray();
         $listTag = [];
 
-        foreach ($listResult as $record) {
+        foreach ($getTags as $record) {
             $arrTags = json_decode($record->tag);
             foreach ($arrTags as $tag) {
                 if (!in_array($tag, $listTag)) {
@@ -267,16 +261,22 @@ class HomeController extends Controller
             }
         }
 
-        $stringTrans = implode(', ', array_keys($listTag));
+        $perPage = 198;
+        $path = '/tags';
+        $pageName = 'page';
+        $listResult = $this->ultity->paginate($listTag, $perPage, $path, $pageName, $page);
+        $arrData = $listResult->toArray();
+        $stringTrans = implode(', ', array_keys($arrData['data']));
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTagNew = explode(', ', $translate);
         $count = 0;
 
-        foreach ($listTag as $tag => $value) {
-            $listTag[$tag]['trans'] = $listTagNew[$count];
+        foreach ($listResult as $tag => $value) {
+            $arrData['data'][$tag][] = ['trans' => $listTagNew[$count]];
             $count++;
         }
-        $arrData['data'] = $listTag;
+
+        $totalTags = count($listTag);
 
         return view('page.list-tag', compact('arrData', 'totalTags'));
     }

@@ -7158,6 +7158,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
     z-index: 100000;
 }
 
+.content a {
+    margin: 0 5px;
+}
+
 @media (min-width: 800px) and (max-width: 1023px) {
     .policy-validation {
         margin-left: -30%;
@@ -7175,7 +7179,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 @media (min-width: 1366px) {
     .policy-validation {
         margin-left: -25%;
-        width: 50%;
+        width: 53%;
     }
 }
 
