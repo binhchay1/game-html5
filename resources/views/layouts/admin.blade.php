@@ -67,6 +67,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('chart.index') }}" class="nav-link" id="list-chart">
+                                <i class="nav-icon fas fa-solid fa-user"></i>
+                                <p>
+                                    Statistical chart
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('user.index') }}" class="nav-link" id="list-user">
                                 <i class="nav-icon fas fa-solid fa-user"></i>
                                 <p>
