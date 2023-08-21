@@ -17,6 +17,7 @@ class UpdateLinkGame extends Command
         $this->gameRepository = $gameRepository;
         parent::__construct();
     }
+
     public function handle()
     {
         $depth = $this->option('depth');
@@ -36,7 +37,8 @@ class UpdateLinkGame extends Command
                 $gameName = $tmp[0];
             }
             $this->gameRepository->updateLinkGame($gameName, $gameDir);
-
         }
+
+        dump("---------Updated link game on sever---------");
     }
 }
