@@ -55,4 +55,31 @@ class UserRepository extends BaseRepository
     {
         return $this->model->where('facebook_id', $facebookID)->first();
     }
+
+    public function getChartByMonth()
+    {
+       return $this->model->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+           ->whereYear('created_at',date('Y'))
+           ->groupBy('month')
+           ->orderBy('month')
+           ->get();
+    }
+
+    public function getChartByQuarter()
+    {
+        return $this->model->selectRaw('QUARTER(created_at) as quarter, COUNT(*) as count' )
+            ->whereYear('created_at',date('Y'))
+            ->groupBy('quarter')
+            ->orderBy('quarter')
+            ->get();
+    }
+
+    public function getChartByYear()
+    {
+        return $this->model->selectRaw('Year(created_at) as year, COUNT(*) as count')
+            ->whereYear('created_at',date('Y'))
+            ->groupBy('year')
+            ->orderBy('year')
+            ->get();
+    }
 }
