@@ -245,14 +245,17 @@ class HomeController extends Controller
             }
         }
 
-        $getTags = $this->gameRepository->getTags();
+        $getTags = $this->gameRepository->getTags()->toArray();
         $listTag = [];
 
         foreach ($getTags as $record) {
-            $arrTags = json_decode($record->tag);
+            $arrTags = json_decode($record['tag']);
             foreach ($arrTags as $tag) {
                 if (!in_array($tag, $listTag)) {
                     $countGame = $this->gameRepository->countGameByTag($tag);
+                    if ($countGame <= 5) {
+                        continue;
+                    }
                     $listTag[$tag] = [
                         'count' => $countGame,
                         'numberIcon' => array_key_exists($tag, $this->iconGame::LIST_ICON) ? $this->iconGame::LIST_ICON[$tag] : 1200

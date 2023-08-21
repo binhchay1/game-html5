@@ -99,21 +99,20 @@ class UserController extends Controller
         $data = [];
         $colors = ["Red", "Yellow", "Green", "Purple", "Orange"];
 
-        for($i =1; $i <=12 ;$i++){
+        for ($i = 1; $i <= 12; $i++) {
 
-            $month = date('F', mktime(0,0,0,$i,1));
+            $month = date('F', mktime(0, 0, 0, $i, 1));
             $count = 0;
 
-            foreach ($users as $user)
-            {
-                if($user->month == $i){
+            foreach ($users as $user) {
+                if ($user->month == $i) {
                     $count = $user->count;
                     break;
                 }
             }
 
-            array_push($labels,$month);
-            array_push($data,$count);
+            array_push($labels, $month);
+            array_push($data, $count);
         }
 
         $dataset = [
@@ -132,20 +131,18 @@ class UserController extends Controller
         $labels = [];
         $data = [];
         $colors = ["Red", "Yellow", "Green", "Purple", "Orange"];
-        for($i =1; $i <=4 ;$i++){
-            $quarter =  date('n', mktime(0,0,0,$i,1));
+        for ($i = 1; $i <= 4; $i++) {
+            $quarter =  date('n', mktime(0, 0, 0, $i, 1));
             $count = 0;
-            foreach ($users as $user)
-            {
-                if($user->quarter == $i){
+            foreach ($users as $user) {
+                if ($user->quarter == $i) {
                     $count = $user->count;
                     break;
                 }
             }
 
-            array_push($labels,$quarter);
-            array_push($data,$count);
-
+            array_push($labels, $quarter);
+            array_push($data, $count);
         }
 
         $dataset = [
@@ -165,19 +162,19 @@ class UserController extends Controller
         $labels = [];
         $data = [];
         $colors = ["Red", "Yellow", "Green", "Purple", "Orange"];
-            $year = date('Y');
-            $count = 0;
+        $year = date('Y');
+        $count = 0;
 
-            foreach ($users as $user)
-            {
-                if($user->year == $year){
-                    $count = $user->count;
-                    break;
-                }
+        foreach ($users as $user) {
+            if ($user->year == $year) {
+                $count = $user->count;
+                break;
             }
+        }
 
-            array_push($labels,$year);
-            array_push($data,$count);
+        array_push($labels, $year);
+        array_push($data, $count);
+
         $dataset = [
             [
                 'label' => 'Users',
@@ -185,6 +182,7 @@ class UserController extends Controller
                 'background' => $colors
             ]
         ];
+
         return view('admin.statistical-chart.get-user-by-year', compact('dataset', 'labels'));
     }
 }
