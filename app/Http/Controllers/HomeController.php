@@ -300,6 +300,11 @@ class HomeController extends Controller
     public function viewNewGames()
     {
         $getGame = $this->gameRepository->getNewestGame();
+
+        if (empty($getGame)) {
+            abort(404);
+        }
+
         $listGame = $this->ultity->paginate($getGame, 30);
         $games = $this->ultity->renameAndCalculateVote($listGame);
         $listGameName = [];
@@ -325,6 +330,11 @@ class HomeController extends Controller
     public function viewBestGame()
     {
         $getGame = $this->gameRepository->getBestGame();
+
+        if (empty($getGame)) {
+            abort(404);
+        }
+
         $listGame = $this->ultity->paginate($getGame, 30);
         $games = $this->ultity->renameAndCalculateVote($listGame);
         $listGameName = [];
@@ -417,6 +427,10 @@ class HomeController extends Controller
         $gameName = $request->get('gameName');
         $userEmail = $request->get('email');
         $note = $request->get('note');
+
+        if (empty($userName) or empty($gameName) or empty($userEmail)) {
+            abort(404);
+        }
 
         $data = [
             'user_name' => $userName,

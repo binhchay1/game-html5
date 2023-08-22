@@ -62,7 +62,7 @@
                 </div>
                 <div class="logo">
                     <a class="no-event" aria-label="logo" href="{{ route('home') }}">
-                        <img width="50" height="50" alt="Gamekafe" src="{{ asset('images/black-logo-no-background.png') }}" />
+                        <img width="50" height="50" alt="{{ env('APP_NAME', 'Gamekafe') }}" src="{{ asset('images/black-logo-no-background.png') }}" />
                     </a>
                 </div>
                 <div class="mobile-search-user-container">
@@ -281,8 +281,8 @@
         </div>
     </div>
 
-    <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/page/main.js') }}"></script>
     @yield('js')
 </body>
