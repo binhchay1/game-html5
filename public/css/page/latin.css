@@ -1,11 +1,11 @@
 @font-face {
     font-family: "fontello";
-    src: url(/assets/fontello-c44383dfc54f1600fc6c1b0f09ce7df2bdc88f069506bc7854375a20e9a7a8c5.eot?40475919);
-    src: url(/assets/fontello-c44383dfc54f1600fc6c1b0f09ce7df2bdc88f069506bc7854375a20e9a7a8c5.eot?40475919#iefix) format("embedded-opentype"),
-        url(/assets/fontello-f0793174f1a3130aa67fb84262dee7bd057ce4c27ed1c371e8da6686447c1e2c.woff2?40475919) format("woff2"),
-        url(/assets/fontello-f0374c20351890ce4ba64f4d6fffdb93bfdabc18fcb822bed21ac4ac8e77b575.woff?40475919) format("woff"),
-        url(/assets/fontello-103cebf5c08f0a3a2a74353943ea4fbb715aec8b2ba7f8702352c43fdbd02b9f.ttf?40475919) format("truetype"),
-        url(/assets/fontello-747912fdf74955472835c45fc5bbac6584003e9c3fec3dffecc3cbd293e3ae4f.svg?40475919#fontello) format("svg");
+    src: url(/fonts/Fontello/fontello.eot?40475919);
+    src: url(/fonts/Fontello/fontello.eot?40475919#iefix) format("embedded-opentype"),
+        url(/fonts/Fontello/fontello.woff2?40475919) format("woff2"),
+        url(/fonts/Fontello/fontello.woff?40475919) format("woff"),
+        url(/fonts/Fontello/fontello.ttf?40475919) format("truetype"),
+        url(/fonts/Fontello/fontello.svg?40475919#fontello) format("svg");
     font-weight: normal;
 
     font-style: normal;
@@ -299,7 +299,7 @@
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/assets/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -308,7 +308,7 @@
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/assets/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -317,7 +317,7 @@
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/assets/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -326,7 +326,7 @@
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/assets/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -335,7 +335,7 @@
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/assets/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -344,7 +344,7 @@
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/assets/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -353,7 +353,7 @@
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/assets/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -692,7 +692,7 @@ label {
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/assets/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -701,7 +701,7 @@ label {
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/assets/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -710,7 +710,7 @@ label {
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/assets/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -719,7 +719,7 @@ label {
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/assets/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -728,7 +728,7 @@ label {
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/assets/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -737,7 +737,7 @@ label {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/assets/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -746,7 +746,7 @@ label {
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/assets/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -755,7 +755,7 @@ label {
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/assets/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -764,7 +764,7 @@ label {
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/assets/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -773,7 +773,7 @@ label {
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/assets/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -782,7 +782,7 @@ label {
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/assets/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -791,7 +791,7 @@ label {
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/assets/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -800,7 +800,7 @@ label {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/assets/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -809,7 +809,7 @@ label {
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/assets/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -1406,7 +1406,7 @@ html[dir="rtl"] .navbar .navbar-form .y-icon--search {
 }
 
 .navbar .navbar-form .close-search-form {
-    background: url(/assets/svg/search-close-0e507eae3185ec58af4cc23e80178438747eb1c4c46053bbef33b090ad6413bb.svg) center no-repeat;
+    background: url(/svg/search-close.svg) center no-repeat;
     display: none;
     height: 16px;
     position: absolute;
@@ -1709,17 +1709,17 @@ body.pages.not_found nav.navbar {
 }
 
 .footer .text-container .column.question-icon {
-    background: url(/assets/svg/question-03908a4998be284f9915d839fc1a0188d98f488d5b0e07aa5c6cf1f13881b5e6.svg) left top no-repeat;
+    background: url(/svg/question.svg) left top no-repeat;
     padding-top: 50px;
 }
 
 .footer .text-container .column.game-categories-icon {
-    background: url(/assets/svg/game_categories-c445b515a369af4ab52645de8acf90f9abbaec3f7cd6c66b30ad1ccdf3e2be73.svg) left top no-repeat;
+    background: url(/svg/game_categories.svg) left top no-repeat;
     padding-top: 50px;
 }
 
 .footer .text-container .column.technologies-icon {
-    background: url(/assets/svg/technologies-23217447ad05fc1e81068d08294135abf904086717394eeb1edba1cfa82ca0b7.svg) left top no-repeat;
+    background: url(/svg/technologies.svg) left top no-repeat;
     padding-top: 50px;
 }
 
@@ -3553,19 +3553,19 @@ html[dir="rtl"] .top-categories-mobile ul li a::after {
 }
 
 .navigator .head .arrow.previous::after {
-    background: url(/assets/svg/arrow-left-ec18cc685bdbc8a4174d74ae11f725c974853efacbc035bad5df6e8addad093a.svg) center center no-repeat;
+    background: url(/svg/arrow-left.svg) center center no-repeat;
 }
 
 html[dir="rtl"] .navigator .head .arrow.previous::after {
-    background: url(/assets/svg/arrow-right-306da5bc92f786ffefcb8580b96004ac7bca7c0b9fb4b90d76916e023504d87a.svg) center center no-repeat;
+    background: url(/svg/arrow-right.svg) center center no-repeat;
 }
 
 .navigator .head .arrow.next::after {
-    background: url(/assets/svg/arrow-right-306da5bc92f786ffefcb8580b96004ac7bca7c0b9fb4b90d76916e023504d87a.svg) center center no-repeat;
+    background: url(/svg/arrow-right.svg) center center no-repeat;
 }
 
 html[dir="rtl"] .navigator .head .arrow.next::after {
-    background: url(/assets/svg/arrow-left-ec18cc685bdbc8a4174d74ae11f725c974853efacbc035bad5df6e8addad093a.svg) center center no-repeat;
+    background: url(/svg/arrow-left.svg) center center no-repeat;
 }
 
 .navigator .head .arrow.opacity::after {
@@ -6050,7 +6050,7 @@ only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5) {
     .flag {
-        background: url(/assets/flags-24x18@2x-1e11973c815101125d073399963c634d40d77cb5ecb44f9234ff001087b23e83.png) no-repeat;
+        background: url(/assets/flags-24x18.png) no-repeat;
         background-size: 96px 198px;
     }
 }
@@ -7378,7 +7378,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 .promo-banner.promo-banner--forum {
-    background: url(/assets/svg/forum_promo_icon-8491509dd335f65314fb17d34c160df75457b1101c66fde453c712c7ae526811.svg) left 25px center no-repeat,
+    background: url(/svg/forum_promo_icon.svg) left 25px center no-repeat,
         linear-gradient(90deg, #c27afb 0%, #ff8eb0 100%);
 }
 
@@ -7387,7 +7387,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 .promo-banner.promo-banner--embed-game {
-    background: url(/assets/svg/add_embed_icon-ea54ed093a982dc95632986d9d6f428611d6f7abb83086270a7ac1300a73ae9d.svg) left 25px center no-repeat,
+    background: url(/svg/add_embed_icon.svg) left 25px center no-repeat,
         linear-gradient(90deg, #69a4fc 0%, #d17afa 100%);
 }
 
@@ -7396,7 +7396,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 .promo-banner.promo-banner--cryptoserval {
-    background: url(/assets/svg/cryptoserval_icon-80c76bb7d0a1bad35cde7ce8693094705de58747b4823df3e924dae307ecc4f3.svg) left 25px center no-repeat,
+    background: url(/svg/cryptoserval_icon.svg) left 25px center no-repeat,
         linear-gradient(90deg, #ffa15e 0%, #fa817a 100%);
 }
 
@@ -9687,7 +9687,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/assets/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9696,7 +9696,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/assets/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9705,7 +9705,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/assets/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9714,7 +9714,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/assets/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9723,7 +9723,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/assets/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9732,7 +9732,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/assets/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9741,7 +9741,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/assets/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -12307,7 +12307,7 @@ html[dir="rtl"] .country-chooser-modal .navbar-form .y-icon--remove {
 }
 
 .y8-navbar-right .browse-menu .sub-menu-footer .facebook-follow-button {
-    background: #0084f0 url(/assets/svg/facebook-white-0f61102a3dd203356404bcd8bcd89b17d07245516ee9722c9fe2fd7ab352d545.svg) left 10px center no-repeat;
+    background: #0084f0 url(/svg/facebook-white.svg) left 10px center no-repeat;
     background-size: 6px;
     padding: 0 10px 0 25px;
 }
@@ -12317,7 +12317,7 @@ html[dir="rtl"] .country-chooser-modal .navbar-form .y-icon--remove {
 }
 
 .y8-navbar-right .browse-menu .sub-menu-footer .twitter-follow-button {
-    background: #3ca2ff url(/assets/svg/twitter-white-19dc3a5c3f2f04d81eb7f5d579d34d156dfc37e66667c68b4d0d9aeca7feaed1.svg) left 10px center no-repeat;
+    background: #3ca2ff url(/svg/twitter-white.svg) left 10px center no-repeat;
     background-size: 17px;
     padding: 0 10px 0 35px;
 }
@@ -12327,7 +12327,7 @@ html[dir="rtl"] .country-chooser-modal .navbar-form .y-icon--remove {
 }
 
 .y8-navbar-right .browse-menu .sub-menu-footer .instagram-follow-button {
-    background: url(/assets/y8/instagram-dc22557a2b9c2b70f1e1fc4295ff614d2573ef5f178793bc6926f20624ba374b.png) center center no-repeat;
+    background: url(/svg/instagram-dc.png) center center no-repeat;
     height: 29px;
     width: 91px;
 }
@@ -13457,7 +13457,7 @@ html.touch body.recommended_items .box.search-trends-box {
 }
 
 .item.item--house-games .item__infos .item-embed-toggle {
-    background-image: url(/assets/y8/link-icon-3fdbdae63194bb4cf4ff4ffb5b332731977131c4282b50e3af89cf126be8fca9.svg);
+    background-image: url(/svg/link-icon.svg);
     background-position: left middle;
     background-repeat: no-repeat;
     background-size: 16px;
@@ -13650,7 +13650,7 @@ html.touch body.recommended_items .box.search-trends-box {
 }
 
 .item .video-loader div {
-    background: url(/assets/video-loader-d59f8334c49283b5b80d7927366ff04542dcb8b94999fd0fa8a125eb7c198eb4.gif) no-repeat center right;
+    background: url(/svg/video-loader.gif) no-repeat center right;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -13660,7 +13660,7 @@ html.touch body.recommended_items .box.search-trends-box {
 }
 
 .item .new-item-icon {
-    background-image: url(/assets/svg/new-68f6d0d9146b04b4d23a15f4c589623b760773a42abd6d036e3439be46beb8a1.svg);
+    background-image: url(/svg/new.svg);
     color: #fff;
     font-size: 0;
     height: 36px;
@@ -13782,7 +13782,7 @@ html[dir="rtl"] .item .item__infos .item__title {
 }
 
 .item .rereleased-item-icon {
-    background-image: url(/assets/svg/rereleased-dfc76e3a98e84b96c00a0b011003bb6f24e6d3022199337b3c03996e14389a4f.svg);
+    background-image: url(/svg/rereleased.svg);
     color: #fff;
     font-size: 0;
     height: 36px;
@@ -13811,7 +13811,7 @@ html[dir="rtl"] .item .item__infos .item__title {
 }
 
 .item .infinite-scroll-loading .item__thumbarea {
-    background: #fff url(/assets/y8/loading-f4fd4063fe7db90860e1b5a620709c7aeaece72b23abb6c8cbe3f4e89cb4d759.gif) center bottom no-repeat;
+    background: #fff url(/assets/y8/loading.gif) center bottom no-repeat;
     background-size: 32px;
 }
 
@@ -14005,7 +14005,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/assets/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14014,7 +14014,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/assets/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14023,7 +14023,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/assets/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14032,7 +14032,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/assets/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14041,7 +14041,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/assets/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14050,7 +14050,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/assets/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14059,7 +14059,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/assets/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14148,7 +14148,7 @@ html[dir="rtl"] .item .item__infos .item__title {
 
 .y8-browser-promo-game .close-btn,
 .promoted-mobile-game .close-btn {
-    background: url(/assets/svg/close-white-2cf61b0c6f583c91d694f8b957a2a6106732d3cdb43fa5f7c2ba23070502021d.svg) center center no-repeat;
+    background: url(/svg/close-white.svg) center center no-repeat;
     background-size: cover;
     cursor: pointer;
     height: 14px;
@@ -14289,7 +14289,7 @@ html[dir="rtl"] .item .item__infos .item__title {
 
 .y8-browser-promo-game .wrapper .bottom .flash-icon,
 .promoted-mobile-game .wrapper .bottom .flash-icon {
-    background: url(/assets/svg/flash2-227d82065676f2c52546b189fcd5fad8d87fb2b247cf070eb03a59e11bb1ed91.svg) center center no-repeat;
+    background: url(/svg/flash2.svg) center center no-repeat;
     background-size: cover;
     height: 60px;
     margin: 0 auto 20px;
@@ -21758,7 +21758,7 @@ only screen and (min-resolution: 144dpi) {
 }
 
 .tag-36x28 {
-    background-image: url(/assets/tags/spritesheet-tags-36x28-43c288fa5223317ab391c931a49c6a6a285d43565a097da776999d706a843b2e.png);
+    background-image: url(/images/spritesheet-tags-36x28.png);
     background-position: 0 0;
     background-repeat: no-repeat;
     display: inline-block;

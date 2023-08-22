@@ -38,6 +38,7 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
     Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
     Route::get('/verify-email', [HomeController::class, 'viewVerify'])->name('verify.email');
+    Route::get('/report-bug', [HomeController::class, 'reportBug'])->name('report.bug');
 });
 
 Route::get('/reset-password', [HomeController::class, 'viewResetPassword'])->name('reset.password');

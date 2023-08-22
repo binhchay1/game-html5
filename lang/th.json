@@ -326,9 +326,9 @@
     "Adventure": "การผจญภัย",
     "Platformer": "แพลตฟอร์ม",
     "Sports": "กีฬา",
-    "Cám ơn bạn vì đã tham gia cùng với chúng tôi trong chuyến hành trình này. Chỉ còn 1 bước cuối cùng để hoàn tất công việc đăng ký, vui lòng hãy ấn vào nút bên dưới:" : "ขอบคุณที่ร่วมเดินทางกับเรา เหลืออีกเพียง 1 ขั้นตอนสุดท้ายในการลงทะเบียน โปรดคลิกปุ่มด้านล่าง:",
-    "Chúc mừng bạn đã đăng ký thành công" : "ขอแสดงความยินดีที่คุณลงทะเบียนสำเร็จ",
-    "Đã đăng ký Bản quyền" : "ลิขสิทธิ์ที่ลงทะเบียน",
+    "Cám ơn bạn vì đã tham gia cùng với chúng tôi trong chuyến hành trình này. Chỉ còn 1 bước cuối cùng để hoàn tất công việc đăng ký, vui lòng hãy ấn vào nút bên dưới:": "ขอบคุณที่ร่วมเดินทางกับเรา เหลืออีกเพียง 1 ขั้นตอนสุดท้ายในการลงทะเบียน โปรดคลิกปุ่มด้านล่าง:",
+    "Chúc mừng bạn đã đăng ký thành công": "ขอแสดงความยินดีที่คุณลงทะเบียนสำเร็จ",
+    "Đã đăng ký Bản quyền": "ลิขสิทธิ์ที่ลงทะเบียน",
     "Cài đặt lại mật khẩu": "รีเซ็ตรหัสผ่าน",
     "Rest Password": "รีเซ็ตรหัสผ่าน",
     "Verify Email Address": "ยืนยันที่อยู่อีเมล",
@@ -341,6 +341,12 @@
     "Nhập lại mật khẩu": "ยืนยันรหัสผ่านใหม่",
     "Nam": "ชาย",
     "Nữ": "หญิง",
-    "Chính sách bảo mật": "นโยบายความเป็นส่วนตัว"
-
+    "Đóng": "ปิด",
+    "Gửi": "ส่ง",
+    "Ghi chú": "บันทึก",
+    "Báo lỗi": "ข้อผิดพลาด",
+    "Bạn đã đóng góp rồi": "คุณมีส่วนร่วมแล้ว",
+    "Chúng tôi đã tiếp nhận được đóng góp của bạn trước đây. Chúng tôi đang cố gắng kiểm tra và sẽ phản hồi sớm thông qua hòm thư của bạn như bên dưới :": "เราได้รับการสนับสนุนของคุณมาก่อน เรากำลังพยายามตรวจสอบและจะตอบกลับเร็วๆ นี้ผ่านทางกล่องจดหมายของคุณดังนี้ :",
+    "Chúng tôi đã tiếp nhận thông báo": "เราได้รับแจ้งแล้ว",
+    "Chúng tôi đã tiếp nhận được đóng góp của bạn. Chúng tôi sẽ phản hồi sớm thông qua hòm thư của bạn như bên dưới :": "เราได้รับผลงานของคุณแล้ว เราจะตอบกลับโดยเร็วที่สุดผ่านทางกล่องจดหมายของคุณดังนี้ :"
 }

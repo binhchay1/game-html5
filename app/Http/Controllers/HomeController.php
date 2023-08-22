@@ -10,6 +10,7 @@ use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
 use App\Repositories\SearchRepository;
 use App\Repositories\GameCollectionRepository;
+use App\Repositories\ReportBugRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Cookie;
@@ -27,6 +28,7 @@ class HomeController extends Controller
     private $ipUserRepository;
     private $gameCollectionRepository;
     private $guard;
+    private $reportBugRepository;
 
     public function __construct(
         GameRepository $gameRepository,
@@ -36,7 +38,8 @@ class HomeController extends Controller
         IconGame $iconGame,
         IpUserRepository $ipUserRepository,
         GameCollectionRepository $gameCollectionRepository,
-        StatefulGuard $guard
+        StatefulGuard $guard,
+        ReportBugRepository $reportBugRepository
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
@@ -46,6 +49,7 @@ class HomeController extends Controller
         $this->ipUserRepository = $ipUserRepository;
         $this->gameCollectionRepository = $gameCollectionRepository;
         $this->guard = $guard;
+        $this->reportBugRepository = $reportBugRepository;
     }
 
     public function viewCookiePolicy()
@@ -125,6 +129,13 @@ class HomeController extends Controller
 
         $getGames = $this->gameRepository->listGameByCategory($category, $sort);
         $getGames = $getGames->shuffle();
+
+        if ($sort == 'rating') {
+            $getGames = $getGames->sortBy([
+                ['rating', 'desc'],
+            ]);
+        }
+
         $games = $this->ultity->paginate($getGames, 30);
         $category = $this->categoryRepository->getByColumn($category, 'name');
 
@@ -136,7 +147,7 @@ class HomeController extends Controller
 
         foreach ($games as $game) {
             $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
-            if (($game->votes['like'] + $game->votes['un_like']) == 0) {
+            if (($game['like'] + $game['un_like']) == 0) {
                 $game['rating'] = 100;
             } else {
                 $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
@@ -247,13 +258,15 @@ class HomeController extends Controller
 
         $getTags = $this->gameRepository->getTags()->toArray();
         $listTag = [];
+        $listIgnore = [];
 
         foreach ($getTags as $record) {
             $arrTags = json_decode($record['tag']);
             foreach ($arrTags as $tag) {
-                if (!in_array($tag, $listTag)) {
+                if (!in_array($tag, $listTag) and !in_array($tag, $listIgnore)) {
                     $countGame = $this->gameRepository->countGameByTag($tag);
                     if ($countGame <= 5) {
+                        $listIgnore[] = $tag;
                         continue;
                     }
                     $listTag[$tag] = [
@@ -396,5 +409,33 @@ class HomeController extends Controller
         Cookie::queue(Cookie::forget(strtolower(str_replace(' ', '_', config('app.name'))) . '_session'));
 
         return redirect('/');
+    }
+
+    public function reportBug(Request $request)
+    {
+        $userName = $request->get('name');
+        $gameName = $request->get('gameName');
+        $userEmail = $request->get('email');
+        $note = $request->get('note');
+
+        $data = [
+            'user_name' => $userName,
+            'user_email' => $userEmail,
+            'note' => $note,
+            'game_name' => $gameName
+        ];
+
+        $query = $this->reportBugRepository->getReportBugByEmailAndGame($userEmail, $gameName);
+        $explode = explode('@', $userEmail);
+        $result['pre-email'] = $explode[0];
+        $result['last-email'] = $explode[1];
+        if (empty($query)) {
+            $this->reportBugRepository->create($data);
+            $result['text'] = 'success';
+        } else {
+            $result['text'] = 'fail';
+        }
+
+        return $result;
     }
 }

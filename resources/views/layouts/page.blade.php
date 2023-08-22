@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-touch" lang="vi" dir="ltr">
 <style>
-    #locate-dropdown ul{
+    #locate-dropdown ul {
         margin-top: 20px;
         width: 250px;
         margin-left: -100px;
@@ -9,16 +9,19 @@
         background: white;
         justify-content: space-between;
     }
-    #locate-dropdown ul li{
-        float:left;
-        height:50px;
-        width:30px;
+
+    #locate-dropdown ul li {
+        float: left;
+        height: 50px;
+        width: 30px;
         margin-top: 7px;
     }
-    #locate-dropdown li:nth-child(even){
-        margin-right:0;
+
+    #locate-dropdown li:nth-child(even) {
+        margin-right: 0;
     }
 </style>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, minimal-ui" />
@@ -53,8 +56,8 @@
             <div class="y8-navbar-left">
                 <div class="mobile-burger-menu">
                     <span class="burger-btn">
-                        <img width="20" height="17" class="hamburger-icon" alt="Menu" src="{{ asset('assets/svg/hamburger-c3fe8358b513e219aa93bfd93e7b3d57991bc5741038ed7db7e71d347db0c6ae.svg') }}" />
-                        <img width="16" height="16" class="hamburger-active-icon" alt="Menu" src="{{ asset('assets/svg/hamburger-active-03129c9dbc7bf62fc4cf3b24384c95eca4fafade56f0dfe54ce726cd8a718f2f.svg') }}" />
+                        <img width="20" height="17" class="hamburger-icon" alt="Menu" src="{{ asset('svg/hamburger.svg') }}" />
+                        <img width="16" height="16" class="hamburger-active-icon" alt="Menu" src="{{ asset('svg/hamburger-active.svg') }}" />
                     </span>
                 </div>
                 <div class="logo">
@@ -64,11 +67,11 @@
                 </div>
                 <div class="mobile-search-user-container">
                     <div class="search-btn">
-                        <img width="28" height="28" alt="{{ __('Tìm kiếm trò chơi') }}" src="{{ asset('assets/svg/search-9887eb433e2eff9a1fd0dda066ed7abf52897beecba0dce9ef152c2770dc9082.svg') }}" />
+                        <img width="28" height="28" alt="{{ __('Tìm kiếm trò chơi') }}" src="{{ asset('svg/search.svg') }}" />
                     </div>
                     <div class="profile-btn">
-                        <img class="profile-icon avatar" alt="Profile" src="{{ asset('assets/svg/profile-250b58e83592bb66fe437d6de217d30ee3dae674feee2ff962138996fdffde6e.svg') }}" />
-                        <img class="arrow-up-icon" alt="Profile" src="{{ asset('assets/svg/arrow-up-bec5455682ee6239b995f18944808d8a0c75d7776798386efce255166669e5cf.svg') }}" />
+                        <img class="profile-icon avatar" alt="Profile" src="{{ asset('svg/profile.svg') }}" />
+                        <img class="arrow-up-icon" alt="Profile" src="{{ asset('svg/arrow-up.svg') }}" />
                     </div>
                 </div>
             </div>
@@ -113,9 +116,9 @@
                 @else
                 <div class="dropdown">
                     @if(Auth::user()->image)
-                        <button class="dropbtn" style="background-color: #f1f1f1; color: #666; font-size: 13px; font-weight: 700;">
-                            <img id="dropbtn" src="{{ Auth::user()->image }}" >
-                        </button>
+                    <button class="dropbtn" style="background-color: #f1f1f1; color: #666; font-size: 13px; font-weight: 700;">
+                        <img id="dropbtn" src="{{ Auth::user()->image }}">
+                    </button>
                     @else
                     <button class="dropbtn" style="background-color: #f1f1f1; color: #666; font-size: 13px; font-weight: 700;"><i class="fa fa-user"></i>
                         {{ Auth::user()->name }}
@@ -188,7 +191,7 @@
     <div class="container">
         @yield('content')
     </div>
-    <footer class="footer" style=" margin-top: 15px;">
+    <footer class="footer" style="margin-top: 15px;">
         <div class="container">
             <div class="text-container">
                 <div class="column question-icon">
@@ -196,11 +199,11 @@
                     </div>
                     <h2 class="text">
                         <p>
-                            {{ __('Bạn có biết') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('đang cung cấp các game và câu đố trực tuyến từ năm 2006?') }}<br>
+                            {{ __('Bạn có biết') }} <a href="{{ env('APP_URL', 'Gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a> {{ __('đang cung cấp các game và câu đố trực tuyến từ năm 2006?') }}<br>
                             {{ __('Đã hơn 15 năm thú vị của') }} {{ env('APP_NAME', 'Gamekafe') }}! {{ __('Cảm ơn bạn đã là một phần của cộng đồng') }} {{ env('APP_NAME', 'Gamekafe') }}!<br>
-                            {{ env('APP_NAME', 'Gamekafe') }} {{ __('là một đơn vị phát hành và phát triển game') }}. {{ __('Nền tảng của') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('là mạng xã hội với 30 triệu người chơi và đang không ngừng phát triển.') }}
+                            <a href="{{ env('APP_URL', 'Gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a> {{ __('là một đơn vị phát hành và phát triển game') }}. {{ __('Nền tảng của') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('là mạng xã hội với 30 triệu người chơi và đang không ngừng phát triển.') }}
                             {{ __('Danh mục giải trí phát triển hàng ngày') }} <a href="{{ route('new-games') }}">{{ __('Trò chơi mới') }}</a>
-                            {{ __('được phát hành từng ngày.') }} {{ __('Vì') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('có một lịch sử lâu dài, chúng tôi đã ghi lại các hiện tượng xã hội trên các trình duyệt game. Nội dung này là một phương tiện nghệ thuật quan trọng và có thể có thể lý giải cái gì người ta thích trong những giai đoạn khác nhau.') }}
+                            {{ __('được phát hành từng ngày.') }} {{ __('Vì') }} <a href="{{ env('APP_URL', 'Gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a> {{ __('có một lịch sử lâu dài, chúng tôi đã ghi lại các hiện tượng xã hội trên các trình duyệt game. Nội dung này là một phương tiện nghệ thuật quan trọng và có thể có thể lý giải cái gì người ta thích trong những giai đoạn khác nhau.') }}
                         </p>
                     </h2>
                 </div>
@@ -209,7 +212,7 @@
                     </h3>
                     <h4 class="text">
                         <p>
-                            {{ __('Trước đây,') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('nổi tiếng với các dòng game như arcade và games cổ điển khi') }}. {{ __('Đáng chú ý là,') }} <a href="{{ route('tags', ['tag' => 'singleplayer']) }}">{{ __('một người chơi') }}</a>
+                            {{ __('Trước đây,') }} <a href="{{ env('APP_URL', 'Gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a> {{ __('nổi tiếng với các dòng game như arcade và games cổ điển khi') }}. {{ __('Đáng chú ý là,') }} <a href="{{ route('tags', ['tag' => 'singleplayer']) }}">{{ __('một người chơi') }}</a>
                             {{ __('đã trở thành game trình duyệt nổi tiếng cùng với') }} <a href="{{ route('tags', ['tag' => '2d']) }}">{{ __('trò chơi 2d') }}</a>
                             . {{ __('Một phần trò chơi quan trọng cuối cùng là') }} <a href="{{ route('tags', ['tag' => 'multiplayer']) }}">{{ __('nhiều người chơi') }}</a>
                             , {{ __('chơi danh mục mở rộng của game mạng xã hội hỗ trợ mạng') }}
@@ -221,7 +224,7 @@
                     </h3>
                     <h4 class="text">
                         <p>
-                            {{ env('APP_URL', 'Gamekafe.com') }} {{ __('là ngôi nhà cho mọi game thủ trên bất kỳ thiết bị nào.') }} {{ __('Chơi') }} <a href="{{ route('tags', ['tag' => 'pixel']) }}" rel="nofollow">{{ __('trò chơi dưới dạng điểm ảnh') }}</a>
+                            <a href="{{ env('APP_URL', 'Gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a> {{ __('là ngôi nhà cho mọi game thủ trên bất kỳ thiết bị nào.') }} {{ __('Chơi') }} <a href="{{ route('tags', ['tag' => 'pixel']) }}" rel="nofollow">{{ __('trò chơi dưới dạng điểm ảnh') }}</a>
                             {{ __('hoặc tải đồ họa 3D phong phú trên máy tính bằng cách chơi') }} <a href="{{ route('tags', ['tag' => 'web']) }}" rel="nofollow">{{ __('trò chơi cổ điển') }}</a>
                             . {{ __('Mặt khác, nếu bạn chỉ thích chơi game 2D thông thường, thì') }} <a href="{{ route('tags', ['tag' => 'html5']) }}" rel="nofollow">{{ __('trò chơi') }} HTML5</a>
                             {{ __('sẽ phù hợp với bạn. Nếu bạn muốn tiếp cận với công nghệ mới, hãy truy cập kho lưu trữ') }} <a href="{{ route('tags', ['tag' => '3d']) }}" rel="nofollow">{{ __('trò chơi') }} 3d</a>
@@ -261,7 +264,7 @@
                     </div>
                 </div>
                 <div class="footer-image">
-                    <img src="{{ asset('assets/footer_image1-422cedcbdbcd68bb2fbf253eafac355ee154ba97da9ad3c587d2e2052b8d7821.webp') }}" alt="footer image" class="lazy" />
+                    <img src="{{ asset('images/footer_image1.webp') }}" alt="footer image" class="lazy" />
                 </div>
             </div>
         </div>
