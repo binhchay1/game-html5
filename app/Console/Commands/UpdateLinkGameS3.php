@@ -56,6 +56,6 @@ class UpdateLinkGameS3 extends Command
             }
         }
 
-        dump("---------Updated link game---------");
+        dump("---------Updated link game on s3---------");
     }
 }

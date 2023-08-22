@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Models\IpUser;
 use DB;
 
-
 class IpUserRepository extends BaseRepository
 {
     public function model()
@@ -48,7 +47,6 @@ class IpUserRepository extends BaseRepository
                 ->orderBy('total', 'desc')
                 ->whereYear('created_at', $year)->whereMonth('created_at', $month)->limit(5)->get();
         }
-
 
         return $query;
     }

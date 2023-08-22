@@ -25,6 +25,7 @@ class AdminController extends Controller
         if (!empty($request->get('type'))) {
             $type = $request->get('type');
         }
+
         $chartCountPlay = (object) $this->chart->renderChartCountPlayers($type);
 
         return $chartCountPlay;

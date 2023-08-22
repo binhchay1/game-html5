@@ -18,59 +18,64 @@ class GameRepository extends BaseRepository
 
     public function getListGameWithVote()
     {
-        $query = $this->model->with('votes')->where('status', '1');
+        $query = $this->model->with('votes')->where('status', 1);
 
         return $query->get();
     }
 
     public function listGameByCategory($category, $sort = null)
     {
-        $query = $this->model->with('votes')->where('status', '1');
+        $query = $this->model->join('vote', 'games.name', '=', 'vote.game_name');
+
         if (!empty($sort)) {
             if ($sort == 'popularity') {
-                $query = $query->orderBy('count_play', 'desc');
+                $query = $query->orderBy('games.count_play', 'desc');
             }
 
             if ($sort == 'rating') {
-                $query = $query->selectRaw('(votes.like / (votes.un_like + votes.like)) * 100 AS rating')->orderByRaw('rating', 'desc');
+                $query = $query->selectRaw('(CASE WHEN (vote.un_like + vote.like) = 0
+                THEN 0 ELSE ((vote.like / (vote.un_like + vote.like)) * 100) END) AS rating, games.name, games.tag, games.thumbs, games.count_play, vote.like, vote.un_like');
             }
 
             if ($sort == 'date') {
-                $query = $query->orderBy('created_at', 'desc');
+                $query = $query->orderBy('games.created_at', 'desc');
             }
         }
-        return $query->where('category', $category)->get();
+
+        $query = $query->where('games.category', $category)->where('games.status', 1)->get();
+
+        return $query;
     }
 
     public function listGameByTag($tag)
     {
-        return $this->model->with('votes')->where('status', '1')->where('tag', 'like', '%' . $tag . '%')->get();
+        return $this->model->with('votes')->where('status', 1)->where('tag', 'like', '%' . $tag . '%')->get();
     }
 
     public function getFeatureGames()
     {
-        return $this->model->where('status', '1')->orderBy('created_at')->take(10)->get();
+        return $this->model->where('status', 1)->orderBy('created_at')->take(10)->get();
     }
 
     public function getGameByCategory($category)
     {
-        return $this->model->where('status', '1')->where('category', $category)->get();
+        return $this->model->where('status', 1)->where('category', $category)->get();
     }
 
     public function getListBySearch($filter)
     {
-        $query = $this->model->with('votes')->where('status', '1');
+        $query = $this->model->with('votes')->where('status', 1);
 
         if (isset($filter['q'])) {
-            $query = $query->where('status', '1')->where('name', 'like', '%' . $filter['q'] . '%');
+            $query = $query->where('status', 1)->where('name', 'like', '%' . $filter['q'] . '%');
         }
 
         if (isset($filter['category'])) {
-            $query = $query->where('status', '1')->where('category', $filter['category']);
+            $query = $query->where('status', 1)->where('category', $filter['category']);
         }
 
         if (isset($filter['tag'])) {
-            $query = $query->where('status', '1')->where('tag', 'like', '%' . $filter['tag'] . '%');
+            $query = $query->where('status', 1)->where('tag', 'like', '%' . $filter['tag'] . '%');
         }
 
         return $query->get();
@@ -78,22 +83,22 @@ class GameRepository extends BaseRepository
 
     public function getTags()
     {
-        return $this->model->select('tag')->where('status', '1')->get()->random(300);
+        return $this->model->select('tag')->where('status', 1)->get();
     }
 
     public function getBestGame()
     {
-        return $this->model->with('votes')->where('status', '1')->orderBy('count_play', 'desc')->limit(100)->get();
+        return $this->model->with('votes')->where('status', 1)->orderBy('count_play', 'desc')->limit(100)->get();
     }
 
     public function getNewestGame()
     {
-        return $this->model->with('votes')->where('status', '1')->orderBy('created_at', 'desc')->limit(100)->get();
+        return $this->model->with('votes')->where('status', 1)->orderBy('created_at', 'desc')->limit(100)->get();
     }
 
     public function countGameByTag($tag)
     {
-        return $this->model->where('tag', 'like', '%' . $tag . '%')->where('status', '1')->count();
+        return $this->model->select('tag')->where('tag', 'like', '%"' . $tag . '"%')->where('status', 1)->count();
     }
 
     public function updateGameNameByThumbs($fileName, $url)
@@ -133,7 +138,7 @@ class GameRepository extends BaseRepository
 
     public function getCountByGame($gameName)
     {
-        return $this->model->select('count_play')->where('status', '1')->where('name', $gameName)->first();
+        return $this->model->select('count_play')->where('status', 1)->where('name', $gameName)->first();
     }
 
     public function updateLinkImageById($id, $data)
@@ -153,6 +158,6 @@ class GameRepository extends BaseRepository
 
     public function updateLinkGame($gameName, $gameDir)
     {
-        return $this->model->where('name', $gameName)->update(['link'=> $gameDir, 'status'=> 1] );
+        return $this->model->where('name', $gameName)->update(['link' => $gameDir, 'status'=> 1] );
     }
 }
