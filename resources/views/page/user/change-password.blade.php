@@ -3,7 +3,7 @@
 @section('title')
     <title>{{ env('APP_NAME', 'Gamekafe') }}</title>
 @endsection
-<link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 @section('css')
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

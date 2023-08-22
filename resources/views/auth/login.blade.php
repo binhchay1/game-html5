@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <section class="vh-100">
     <div class="container py-5 h-100">
