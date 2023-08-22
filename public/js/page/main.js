@@ -86,5 +86,16 @@ function dropDownLocate() {
     } else {
         element.style.display = 'none';
     }
-
 }
+
+$(document).ready(function () {
+    var pathname = window.location.pathname;
+    if(pathname.indexOf('/search') != -1) {
+        $("#mobile-search-icon").css('display', 'none');
+    }
+});
+
+$("#mobile-search-icon").on("click", function () {
+    $(this).css('display', 'none');
+    $('nav').addClass('show-search-form hide-search-icon');
+});

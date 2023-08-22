@@ -51,7 +51,7 @@
 </head>
 
 <body class="items index games-active">
-    <nav class="navbar">
+    <nav class="navbar logged ">
         <div class="container">
             <div class="y8-navbar-left">
                 <div class="mobile-burger-menu">
@@ -66,7 +66,7 @@
                     </a>
                 </div>
                 <div class="mobile-search-user-container">
-                    <div class="search-btn">
+                    <div class="search-btn" id="mobile-search-icon">
                         <img width="28" height="28" alt="{{ __('Tìm kiếm trò chơi') }}" src="{{ asset('svg/search.svg') }}" />
                     </div>
                     <div class="profile-btn">
@@ -75,6 +75,7 @@
                     </div>
                 </div>
             </div>
+
             <form id="items-search-form" class="navbar-form" action="{{ route('search') }}" accept-charset="UTF-8" method="get">
                 <input type="text" name="q" id="q" placeholder="{{ __('Tìm kiếm trò chơi') }}" class="form-control query fake-button" required="required" />
                 <button type="submit" aria-label="Search">
@@ -82,6 +83,7 @@
                 </button>
                 <span class="close-search-form"></span>
             </form>
+
             <div class="y8-navbar-right">
                 <a style="text-decoration: none;" href="{{ route('new-games') }}">
                     <div class="fake-button js-top-menu two-lines btn-header-actions new-games">
@@ -100,6 +102,7 @@
                         <div class="with-notification"></div>
                     </div>
                 </a>
+
                 @if (!auth()->user())
                 <div class="waiting-idnet">
                     <div id="user_not_logged_in">
@@ -135,6 +138,7 @@
                     </a>
                 </div>
                 @endif
+
                 <div id="locale-selector-dropdown" class="locale-selector-dropdown fake-button">
                     <div id="button-flag" onclick="dropDownLocate()">
                         <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag">
@@ -173,6 +177,7 @@
                 </div>
             </div>
         </div>
+
         <div id="flash-messages-box" class="flash-messages-box">
             <div class="flash-notice">
                 <div class="container">
