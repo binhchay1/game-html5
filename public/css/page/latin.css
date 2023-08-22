@@ -8000,6 +8000,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
         top: 0;
         z-index: 10;
     }
+
+    .menu-games {
+        display: none;
+    }
 }
 
 @media (min-width: 600px) and (max-width: 799px) {

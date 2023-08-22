@@ -45,7 +45,7 @@
     <link rel="apple-touch-icon" href="{{ asset('images/black-logo-no-background.png') }}">
     <link rel="stylesheet" href="{{ asset('css/page/application.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/page/latin.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
     @yield('css')
 </head>
@@ -258,15 +258,6 @@
                             <a rel="nofollow" title="{{ env('APP_NAME', 'Gamekafe') }} -  {{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('best-games') }}">{{ __('Phổ biến nhất') }}</a>
                         </li>
                     </ul>
-                </div>
-                <div class="menu-updates">
-                    <div class="title">{{ __('Cập nhật') }}
-                    </div>
-                </div>
-
-                <div class="follow-us">
-                    <div class="title">{{ __('Theo dõi chúng tôi') }}
-                    </div>
                 </div>
                 <div class="footer-image">
                     <img src="{{ asset('images/footer_image1.webp') }}" alt="footer image" class="lazy" />
