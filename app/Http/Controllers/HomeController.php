@@ -294,7 +294,7 @@ class HomeController extends Controller
 
         $totalTags = count($listTag);
 
-        return view('page.list-tag', compact('arrData', 'totalTags'));
+        return view('page.list-tag', compact('arrData', 'totalTags', 'listTag'));
     }
 
     public function viewNewGames()
@@ -324,7 +324,7 @@ class HomeController extends Controller
 
         $count = count($listTag);
 
-        return view('page.best-game', compact('games', 'count'));
+        return view('page.best-game', compact('games', 'count', 'listTag'));
     }
 
     public function viewBestGame()
@@ -354,7 +354,7 @@ class HomeController extends Controller
 
         $count = count($listTag);
 
-        return view('page.best-game', compact('games', 'count'));
+        return view('page.best-game', compact('games', 'count', 'listTag'));
     }
 
     public function viewGame($game)
