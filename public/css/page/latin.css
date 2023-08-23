@@ -1292,7 +1292,7 @@ html[dir="rtl"] .navbar .locale-selector-dropdown .locales-container-container {
 }
 
 .navbar .waiting-idnet {
-    display: inline-block;
+    display: inline-flex;
     min-width: 44px;
 }
 

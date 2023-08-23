@@ -150,6 +150,11 @@ $(".hamburger-icon").on("click", function () {
 
     $('.y8-navbar-right').css('display', 'block');
     $('.more-tags').attr('style', 'display: inline-block !important');
+
+    if (!loginDefined) {
+        $('.waiting-idnet').css('display', 'block');
+        $('#user_not_logged_in').attr('style', 'display: none !important');
+    }
 });
 
 $(".hamburger-active-icon").on("click", function () {

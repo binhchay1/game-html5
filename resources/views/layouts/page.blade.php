@@ -70,7 +70,11 @@
                         <img width="28" height="28" alt="{{ __('Tìm kiếm trò chơi') }}" src="{{ asset('svg/search.svg') }}" />
                     </div>
                     <div class="profile-btn">
-                        <img class="profile-icon avatar" alt="Profile" src="{{ asset('images/default-avatar.png') }}" id="profile-icon-image" />
+                        @if(Auth::check())
+                        <img class="profile-icon avatar" alt="Profile" src="{{ Auth::user()->images ?  Auth::user()->images : asset('images/default-avatar.png') }}" id="profile-icon-image" />
+                        @else
+                        <img class="profile-icon avatar" alt="Profile" src="{{ asset('svg/profile.svg') }}" id="profile-icon-image" />
+                        @endif
                         <img class="arrow-up-icon" alt="Profile" src="{{ asset('svg/arrow-up.svg') }}" id="arrow-up-image" />
                     </div>
                 </div>
@@ -121,7 +125,7 @@
                             <img src="{{ asset('/images/default-avatar.png') }}" class="avatar" alt="avatar">
                         </div>
                         <div class="links-container-container">
-                            <div class="links-container sub-menu" style="display:none;">
+                            <div class="links-container sub-menu">
                                 <div class="sub-menu-header">
                                     <span class="username username_box">{{ Auth::user()->name }}</span>
                                 </div>
@@ -243,7 +247,6 @@
                                     <img src="{{ asset('svg/flag/ro.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </div>
