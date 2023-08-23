@@ -4,10 +4,6 @@
 <title>{{ env('APP_NAME', 'Gamekafe') }} - Game</title>
 @endsection
 
-@section('js_sort_users')
-<link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
-@endsection
-
 @section('main_content')
 <div class="card-header mt-4">
     <h3>List Game</h3>

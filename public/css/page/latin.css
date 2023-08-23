@@ -1302,7 +1302,6 @@ html[dir="rtl"] .navbar .locale-selector-dropdown .locales-container-container {
 }
 
 .navbar .waiting-idnet #user_logged_in .fake-button {
-    display: inline-block;
     margin: 0;
     padding: 0;
     width: 44px;
@@ -1322,7 +1321,7 @@ html[dir="rtl"] .navbar .locale-selector-dropdown .locales-container-container {
 }
 
 .navbar .waiting-idnet #user_logged_in .sub-menu-header .username {
-    color: #333;
+    color: #0014f5;
     display: block;
     font-size: 14px;
 }
@@ -7243,6 +7242,12 @@ only screen and (min-device-pixel-ratio: 1.5) {
     width: 90px;
 }
 
+@media (max-width: 890px) {
+    .policy-validation .actions {
+        width: auto;
+    }
+}
+
 @media (min-width: 800px) {
     .policy-validation .actions {
         display: table-cell;
@@ -7285,7 +7290,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         font-size: 15px;
         margin: 15px auto 0;
         padding: 10px 8px;
-        width: 100%;
+        width: fit-content;
     }
 }
 
@@ -7530,7 +7535,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
     nav.navbar .y8-navbar-right .fake-button.idnet-fast-login-link,
     nav.navbar .y8-navbar-right .fake-button.locale-selector-dropdown {
-        margin: 0 0 0 10px;
+        margin: 0 0 0 20px;
     }
 
     nav.navbar .games-videos-switch,
@@ -8465,11 +8470,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
 
     nav.navbar .y8-navbar-right .btn-header-actions.browse {
-        margin: 0 0 0 5px;
+        margin: 2px 0 0 5px;
     }
 
     nav.navbar .y8-navbar-right .fake-button.new-games {
-        margin: 0 0 0 15px;
+        margin: 2px 0 0 15px;
     }
 
     nav.navbar .y8-navbar-left {
@@ -21790,8 +21795,13 @@ only screen and (min-resolution: 144dpi) {
     padding: 8px;
 }
 
-@media (min-width: 1000px) {
-    .y8-navbar-right {
-        display: none;
+@media (max-width: 890px) {
+    nav.navbar.show-login-btns .y8-navbar-right .waiting-idnet #user_not_logged_in button {
+        width: 100%;
+    }
+
+    nav.navbar.show-login-btns .y8-navbar-right .waiting-idnet #user_not_logged_in {
+        display: flex;
+        justify-content: center;
     }
 }

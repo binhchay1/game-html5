@@ -4,10 +4,6 @@
 <title>{{ env('APP_NAME', 'Gamekafe') }} - User</title>
 @endsection
 
-@section('js_sort_users')
-<link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
-@endsection
-
 @section('main_content')
 <div class="card-header mt-4">
     <h3>Update User</h3>
@@ -17,7 +13,7 @@
         @csrf
         <div class="col-md-6">
             <label class="form-label">Name</label>
-            <input name="name" value="{{ old('name', $dataUser->name) }}" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="">
+            <input name="name" value="{{ old('name', $dataUser->name) }}" type="text" class="form-control @error('name') is-invalid @enderror">
             @error('name')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -35,7 +31,7 @@
                 @enderror
                 <div class=" choose-avatar">
                     <div id="btnimage">
-                        <img id="showImage" style="width: 150px" class="show-avatar" src="{{ $dataUser->image ?? asset('/images/user.jpg')}}" alt="avatar">
+                        <img id="showImage" style="width: 150px" class="show-avatar" src="{{ $dataUser->image ?? asset('/images/default-avatar.png')}}" alt="avatar">
                     </div>
                     <div id="button">
                         <i id="btn_chooseImg" class="fa fa-camera"></i>

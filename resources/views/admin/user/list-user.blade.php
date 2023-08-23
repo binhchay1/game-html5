@@ -4,10 +4,6 @@
 <title>{{ env('APP_NAME', 'Gamekafe') }} - User</title>
 @endsection
 
-@section('js_sort_users')
-<link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
-@endsection
-
 @section('main_content')
 <div class="card-header mt-4">
     <h3>List User</h3>
@@ -17,7 +13,7 @@
         <button type="button" id="btn-add" class="btn btn-success">Add</button>
     </a>
 </div>
-<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="customers">
+<table class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
         <tr class="design-text">
             <th scope="col">ID</th>
@@ -52,7 +48,7 @@
                         <i class="fas fa-edit"></i>
                     </button>
                 </a>
-                <button type="button" class="btn btn-danger btn_delete" data-toggle="modal" data-target="#deleteArticle" data-id="" title="{{ __('labels.2-L-33') }}">
+                <button type="button" class="btn btn-danger btn_delete" data-toggle="modal" data-target="#deleteArticle">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </td>

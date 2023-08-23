@@ -59,7 +59,7 @@
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
-                                <img id="showImage" style="width: 110px" class="show-avatar" src="{{Auth::user()->image ?? asset('/images/user.jpg')}}" alt="avatar">
+                                <img id="showImage" style="width: 110px" class="show-avatar" src="{{Auth::user()->image ?? asset('/images/default-avatar.png')}}" alt="avatar">
                             </div>
                             <div id="button" style="margin-top: 10px;">
                                 <i id="btn_chooseImg" class="fa fa-camera"></i>

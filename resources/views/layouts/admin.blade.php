@@ -99,6 +99,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('report.index') }}" class="nav-link" id="list-report">
+                                <i class="nav-icon fas fa-solid fa-bug"></i>
+                                <p>
+                                    Report bug
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

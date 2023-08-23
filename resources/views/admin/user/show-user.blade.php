@@ -4,10 +4,6 @@
 <title>{{ env('APP_NAME', 'Gamekafe') }} - User</title>
 @endsection
 
-@section('js_sort_users')
-<link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
-@endsection
-
 @section('main_content')
 <div class="card-header mt-4">
     <h3>User Information</h3>
@@ -31,7 +27,7 @@
             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
             <div class=" choose-avatar">
                 <div id="btnimage">
-                    <img id="showImage" width="150" height="150" src="{{ $dataUser->image ? $dataUser->image : asset('images/user.jpg') }}" alt="avatar">
+                    <img id="showImage" width="150" height="150" src="{{ $dataUser->image ? $dataUser->image : asset('images/default-avatar.png') }}" alt="avatar">
                 </div>
             </div>
         </div>

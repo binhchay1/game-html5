@@ -341,10 +341,14 @@ h1 {
     }
 
     .box_astronaut {
-        top: 70%;
+        top: 75%;
     }
 
     .central-body {
         padding-top: 25%;
+    }
+
+    .object_earth {
+        left: 50%;
     }
 }

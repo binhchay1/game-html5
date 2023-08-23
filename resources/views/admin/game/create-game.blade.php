@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - Game</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - Create Game</title>
 @endsection
 
 @section('js_sort_users')

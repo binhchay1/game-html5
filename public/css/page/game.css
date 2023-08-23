@@ -12027,10 +12027,10 @@ textarea.form-control {
         height: 670px;
         position: relative;
         display: block;
-        width: 50%;
+        width: 70%;
         padding: 0;
         overflow: hidden;
-        margin-left: 25%;
+        margin-left: 15%;
     }
 
     #fullscreeniframe {

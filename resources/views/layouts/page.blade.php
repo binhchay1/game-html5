@@ -31,7 +31,7 @@
     @yield('title')
 
     <meta name="description" content="{{ __('Chơi game miễn phí trên') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.') }}" />
-    <meta name="keywords" content="{{ __('chơi game miễn phí') }}, {{ __('chơi game trực tuyến') }}, chơi game, gamekafe, gamekafe, kafe, fake, gameka, chơi game bóng đá, chơi game android, chơi game đua xe, chơi game zombie, chơi candy crush, chơi game đua tốc độ, chơi game casino, chơi poker, chơi game bắn nhau, chơi game thời trang, chơi game nữ giới, chơi game nấu ăn, chơi game phiêu lưu, chơi game câu cá, chơi game halloween, chơi game tình yêu, chơi game đố vui, chơi game thể thao, chơi game chiến tranh, chơi game bóng đá" />
+    <meta name="keywords" content="{{ __('chơi game miễn phí') }}, {{ __('chơi game trực tuyến') }}, {{ __('chơi game, gamekafe, gamekafe, kafe, fake, gameka, chơi game bóng đá, chơi game android, chơi game đua xe, chơi game zombie, chơi candy crush, chơi game đua tốc độ, chơi game casino, chơi poker, chơi game bắn nhau, chơi game thời trang, chơi game nữ giới, chơi game nấu ăn, chơi game phiêu lưu, chơi game câu cá, chơi game halloween, chơi game tình yêu, chơi game đố vui, chơi game thể thao, chơi game chiến tranh, chơi game bóng đá') }}" />
     <meta property="og:title" content="{{ env('APP_NAME', 'Gamekafe') }} -  {{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ env('APP_URL', 'gamekafe.com') }}">
@@ -46,12 +46,12 @@
     <link rel="stylesheet" href="{{ asset('css/page/application.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/page/latin.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/plugins/fontawesome/all.min.css') }}" type='text/css'>
     @yield('css')
 </head>
 
 <body class="items index games-active">
-    <nav class="navbar logged ">
+    <nav class="navbar">
         <div class="container">
             <div class="y8-navbar-left">
                 <div class="mobile-burger-menu">
@@ -70,8 +70,8 @@
                         <img width="28" height="28" alt="{{ __('Tìm kiếm trò chơi') }}" src="{{ asset('svg/search.svg') }}" />
                     </div>
                     <div class="profile-btn">
-                        <img class="profile-icon avatar" alt="Profile" src="{{ asset('svg/profile.svg') }}" />
-                        <img class="arrow-up-icon" alt="Profile" src="{{ asset('svg/arrow-up.svg') }}" />
+                        <img class="profile-icon avatar" alt="Profile" src="{{ asset('images/default-avatar.png') }}" id="profile-icon-image" />
+                        <img class="arrow-up-icon" alt="Profile" src="{{ asset('svg/arrow-up.svg') }}" id="arrow-up-image" />
                     </div>
                 </div>
             </div>
@@ -103,8 +103,8 @@
                     </div>
                 </a>
 
-                @if (!auth()->user())
                 <div class="waiting-idnet">
+                    @if (!auth()->user())
                     <div id="user_not_logged_in">
                         <a href="{{ route('register') }}">
                             <button type="button" class="fake-button fake-button-red idnet-fast-register-link">{{ __('Đăng ký') }}
@@ -115,29 +115,101 @@
                             </button>
                         </a>
                     </div>
-                </div>
-                @else
-                <div class="dropdown">
-                    @if(Auth::user()->image)
-                    <button class="dropbtn" style="background-color: #f1f1f1; color: #666; font-size: 13px; font-weight: 700;">
-                        <img id="dropbtn" src="{{ Auth::user()->image }}">
-                    </button>
                     @else
-                    <button class="dropbtn" style="background-color: #f1f1f1; color: #666; font-size: 13px; font-weight: 700;"><i class="fa fa-user"></i>
-                        {{ Auth::user()->name }}
-                    </button>
-                    @endif
-                    <div class="dropdown-content">
-                        <a href="{{ route('user.setting') }}">{{ __('Cá nhân') }}</a>
-                        <a href="{{ route('user.edit') }}">{{ __('Thông tin') }}</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a onclick="this.closest('form').submit();return false;" style="color: #333 !important; cursor: pointer;">{{ __('Đăng xuất') }}</a>
-                        </form>
+                    <div id="user_logged_in">
+                        <div class="fake-button js-top-menu user-toggle" data-menu="account">
+                            <img src="{{ asset('/images/default-avatar.png') }}" class="avatar" alt="avatar">
+                        </div>
+                        <div class="links-container-container">
+                            <div class="links-container sub-menu" style="display:none;">
+                                <div class="sub-menu-header">
+                                    <span class="username username_box">{{ Auth::user()->name }}</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.edit') }}">{{ __('Hồ sơ') }}</a>
+                                    </li>
+                                    <li>
+                                        <a class="account-menu-link" id="account-menu-link-games" href="{{ route('user.setting') }}">
+                                            {{ __('Yêu thích') }}
+                                            (<span class="js-favorites-count">0</span>)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="account-menu-link" id="account-menu-link-visited" href="#">
+                                            {{ __('Trò đã chơi') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="sub-menu-footer">
+                                    <ul>
+                                        <li>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <a onclick="this.closest('form').submit();return false;" class="account-menu-link logout" style="margin:0;">{{ __('Đăng xuất') }}</a>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </a>
                 </div>
                 @endif
+
+                <div class="mobile-header-block">
+                    <div class="popular-newest-games-links">
+                        <a class="games-link new-game fake-button" title="{{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('new-games') }}">{{ __('Game Mới') }}</a>
+                        <a class="games-link pop-game fake-button" title="{{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('best-games') }}">{{ __('Game Phổ Biến') }}</a>
+                    </div>
+
+                    <div class="top-categories-mobile">
+                        <div class="title">
+                            {{ __('Các loại game') }}
+                        </div>
+                        <div class="row">
+                            <ul>
+                                @foreach($listCategory as $category)
+                                <li class="inactive {{ $category['name'] }} li-category">
+                                    <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
+                                        @if(session('locale') == 'vi')
+                                        <span class="name">{{ \App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
+                                        @else
+                                        <span class="name">{{ __(ucfirst($category['name'])) }}</span>
+                                        @endif
+                                        <span class="number">{{ $category['games_count'] }} game</span>
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="top-tags-mobile">
+                        <div class="title">
+                            {{ __('Thẻ') }}
+                        </div>
+                        <div class="top-tags-mobile__wrapper">
+                            <div class="row top-tags__height">
+                                <ul>
+                                    @foreach($listTag as $tag)
+                                    <li style="margin-top: 5px;">
+                                        <a class="tag" href="{{ route('tags', ['tag' => $tag]) }}">
+                                            <h4>
+                                                {{ $tag }}
+                                            </h4>
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                    <li class="more-tags">
+                                        <a class="tag all-tags top" href="{{ route('listTags') }}">{{ __('Tất cả các thẻ') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div id="locale-selector-dropdown" class="locale-selector-dropdown fake-button">
                     <div id="button-flag" onclick="dropDownLocate()">
@@ -283,6 +355,13 @@
 
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script>
+        <?php if (Auth::check()) { ?>
+            const loginDefined = true;
+        <?php } else { ?>
+            loginDefined = false;
+        <?php } ?>
+    </script>
     <script src="{{ asset('js/page/main.js') }}"></script>
     @yield('js')
 </body>
