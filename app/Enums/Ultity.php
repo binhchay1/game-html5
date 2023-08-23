@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 final class Ultity
 {
+    private $linkGame;
+    
     public function __construct(LinkGame $linkGame)
     {
         $this->linkGame = $linkGame;
