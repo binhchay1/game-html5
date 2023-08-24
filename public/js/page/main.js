@@ -152,6 +152,10 @@ $(".hamburger-icon").on("click", function () {
         $('nav').removeClass('show-search-form hide-search-icon');
     }
 
+    if ($('nav').hasClass('show-user-info')) {
+        $('nav').removeClass('show-user-info');
+    }
+
     if (!($('nav').hasClass('hide-user-icon show-login-btns show-mobile-header-block'))) {
         $('nav').addClass('hide-user-icon show-login-btns show-mobile-header-block');
         $('.burger-btn').addClass('open');

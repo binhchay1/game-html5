@@ -45,5 +45,7 @@ class UpdateLinkImage extends Command
 
             $this->gameRepository->updateLinkImageById($game['id'], $data);
         }
+
+        dump("---------Updated link images on database---------");
     }
 }

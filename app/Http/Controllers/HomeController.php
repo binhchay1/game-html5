@@ -323,18 +323,19 @@ class HomeController extends Controller
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTagNew = explode(', ', $translate);
         $count = 0;
+        $totalTags = count($listTag);
+        $listTag = [];
 
         foreach ($listResult as $tag => $value) {
             $arrData['data'][$tag][] = ['trans' => $listTagNew[$count]];
+            $listTag[] = $tag;
             $count++;
         }
-
-        $totalTags = count($listTag);
 
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
 
-            return view('page.list-tag', compact('arrData', 'totalTags', 'listCategory', 'listTag', ' countGameInCollection'));
+            return view('page.list-tag', compact('arrData', 'totalTags', 'listCategory', 'listTag', 'countGameInCollection'));
         }
 
         return view('page.list-tag', compact('arrData', 'totalTags', 'listCategory', 'listTag'));

@@ -80,13 +80,6 @@ input[type=submit] {
     float: right;
 }
 
-.btn {
-    background-color: #666;
-    color: white;
-    margin-top: 20px;
-    margin-left: 15px;
-}
-
 .container1 {
     border-radius: 5px;
     padding: 20px;
@@ -94,20 +87,12 @@ input[type=submit] {
     margin: 15px 0px;
 }
 
-/* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
 
-@media screen and (max-width: 800px) {
-    .btn {
-        margin-left: 15px;
-    }
-}
-
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
 
     .col-25,

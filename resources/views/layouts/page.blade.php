@@ -8,6 +8,7 @@
         display: flex;
         background: white;
         justify-content: space-between;
+        padding: 0 10px;
     }
 
     #locate-dropdown ul li {
@@ -25,6 +26,7 @@
         #locate-dropdown ul {
             margin: 0;
             margin-left: 15px;
+            padding: 0;
         }
 
         .image-flag {
@@ -95,7 +97,7 @@
                     </div>
                     <div class="profile-btn">
                         @if(Auth::check())
-                        <img class="profile-icon avatar" alt="Profile" src="{{ Auth::user()->images ?  Auth::user()->images : asset('images/default-avatar.png') }}" id="profile-icon-image" />
+                        <img class="profile-icon avatar" alt="Profile" src="{{ Auth::user()->image ?? asset('/images/default-avatar.png') }}" id="profile-icon-image" />
                         @else
                         <img class="profile-icon avatar" alt="Profile" src="{{ asset('svg/profile.svg') }}" id="profile-icon-image" />
                         @endif
@@ -146,7 +148,7 @@
                     @else
                     <div id="user_logged_in">
                         <div class="fake-button js-top-menu user-toggle" data-menu="account">
-                            <img src="{{ asset('/images/default-avatar.png') }}" class="avatar" alt="avatar">
+                            <img src="{{ Auth::user()->image ?? asset('/images/default-avatar.png') }}" class="avatar" alt="avatar">
                         </div>
                         <div class="links-container-container">
                             <div class="links-container sub-menu">

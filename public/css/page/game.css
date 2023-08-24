@@ -12019,7 +12019,7 @@ textarea.form-control {
 }
 
 .embed-responsive {
-    height: 670px;
+    height: calc(100% - 38%);
 }
 
 @media screen and (min-width: 992px) {
