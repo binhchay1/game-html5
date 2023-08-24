@@ -351,5 +351,21 @@
     "Chúng tôi đã tiếp nhận được đóng góp của bạn. Chúng tôi sẽ phản hồi sớm thông qua hòm thư của bạn như bên dưới :": "เราได้รับผลงานของคุณแล้ว เราจะตอบกลับโดยเร็วที่สุดผ่านทางกล่องจดหมายของคุณดังนี้ :",
     "chơi trò chơi, gamekafe, gamekafe, kafe, fake, gameka, chơi trò chơi bóng đá, chơi trò chơi android, chơi trò chơi đua xe, chơi trò chơi zombie, chơi candy crush, chơi trò chơi đua tốc độ, chơi trò chơi casino, chơi poker, chơi trò chơi bắn nhau, chơi trò chơi thời trang, chơi trò chơi nữ giới, chơi trò chơi nấu ăn, chơi trò chơi phiêu lưu, chơi trò chơi câu cá, chơi trò chơi halloween, chơi trò chơi tình yêu, chơi trò chơi đố vui, chơi trò chơi thể thao, chơi trò chơi chiến tranh, chơi trò chơi bóng đá": "เล่นเกม, gamekafe, gamekafe, Kafe, ปลอม, gameka, เล่นเกมฟุตบอล, เล่นเกม Android, เล่นเกมแข่งรถ, เล่นเกมซอมบี้, เล่นลูกกวาดบด, เล่นเกมแข่งรถความเร็ว, เล่นเกมคาสิโน, เล่นโป๊กเกอร์, เล่นเกมยิง, เกมส์แฟชั่น เกมส์สาวๆ เกมส์ทำอาหาร เกมส์ผจญภัย เกมส์ตกปลา เกมส์ฮาโลวีน เกมส์รัก เกมส์ตอบคำถาม เกมส์กีฬา เกมส์ต่อสู้ ระบายสี เล่นเกมส์ฟุตบอล",
     "Yêu thích": "ที่ชื่นชอบ",
-    "Trò đã chơi": "เล่นเกมแล้ว"
+    "Trò đã chơi": "เล่นเกมแล้ว",
+    "Không được phép": "ไม่ได้รับอนุญาต",
+    "Bạn không được cấp quyền để truy cập. Vui lòng ấn vào nút bên dưới để quay lại trang chủ": "คุณไม่ได้รับอนุญาตให้เข้าถึง กรุณาคลิกปุ่มด้านล่างเพื่อกลับไปยังหน้าแรก",
+    "Yêu cầu thanh toán": "คำขอชำระเงิน",
+    "Hình thức bạn yêu cầu cần thanh toán để tiếp tục trải nghiệm. Vui lòng thanh toán hoặc ấn vào nút bên dưới để quay lại trang chủ": "แบบฟอร์มที่คุณร้องขอต้องชำระเงินเพื่อดำเนินการต่อ กรุณาชำระเงินหรือคลิกปุ่มด้านล่างเพื่อกลับไปยังหน้าแรก",
+    "Cấm": "ต้องห้าม",
+    "Truy cập của bạn bị cấm do 1 số thông tin liên quan. Vui lòng liên hệ với bộ phận kĩ thuật hoặc ấn nút bên dưới để quay lại trang chủ": "การเข้าถึงของคุณถูกห้ามเนื่องจากข้อมูลที่เกี่ยวข้องบางอย่าง โปรดติดต่อฝ่ายเทคนิคหรือกดปุ่มด้านล่างเพื่อกลับสู่หน้าแรก",
+    "Không tìm thấy": "ไม่พบ",
+    "Địa chỉ đường dẫn của bạn không tồn tại hoặc không tìm thấy. Vui lòng ấn vào nút bên dưới để quay lại trang chủ": "URL ของคุณไม่มีอยู่หรือไม่พบ กรุณาคลิกปุ่มด้านล่างเพื่อกลับไปยังหน้าแรก",
+    "Trang đã hết hạn": "เพจหมดอายุแล้ว",
+    "Trang bạn truy cập đã hết hạn.Vui lòng thử đăng nhập lại hoặc ấn vào nút bên dưới để quay lại trang chủ": "หน้าเว็บที่คุณเยี่ยมชมหมดอายุแล้ว โปรดลองเข้าสู่ระบบอีกครั้งหรือคลิกปุ่มด้านล่างเพื่อกลับสู่หน้าแรก",
+    "Qúa nhiều yêu cầu": "คำขอมากเกินไป",
+    "Bạn đang cố gắng truy cập với quá nhiều yêu cầu. Vui lòng nghỉ ngơi 1 thời gian hoặc ấn vào nút bên dưới để quay lại trang chủ": "คุณกำลังพยายามเข้าถึงด้วยคำขอมากเกินไป โปรดพักสักครู่หรือคลิกปุ่มด้านล่างเพื่อกลับสู่หน้าแรก",
+    "Lỗi máy chủ": "เซิร์ฟเวอร์ผิดพลาด",
+    "Máy chủ đang gặp 1 vấn đề rất nghiêm trọng. Vui lòng quý khách quay trở lại sau 1 khoảng thời gian hoặc ấn vào nút bên dưới để quay lại trang chủ": "เซิร์ฟเวอร์กำลังประสบปัญหาร้ายแรงมาก โปรดกลับมาอีกครั้งในภายหลังหรือคลิกปุ่มด้านล่างเพื่อกลับสู่หน้าแรก",
+    "Dịch vụ không có sẵn": "ไม่มีบริการ",
+    "Hiện tại dịch vụ mà bạn đang yêu cầu không có sẵn. Vui lòng quay trở lại vào thời gian khác hoặc ấn nút bên dưới để quay lại trang chủ": "ขณะนี้บริการที่คุณร้องขอไม่สามารถใช้งานได้ กรุณากลับมาใหม่อีกครั้งหรือกดปุ่มด้านล่างเพื่อกลับสู่หน้าแรก"
 }

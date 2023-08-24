@@ -41,7 +41,7 @@
                                     <div class="pt-1 mb-4">
                                         <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Đăng nhập') }}</button>
                                     </div>
-                                    <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                                    <div class="d-flex flex-row">
                                         <p class="lead fw-normal mb-0 me-3">
                                             {{ __('Đăng nhập với') }}</p>
                                         <a href="{{ route('auth.facebook') }}" class="btn btn-primary btn-floating mx-1" style="width: 40px;">

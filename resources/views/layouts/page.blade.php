@@ -20,6 +20,30 @@
     #locate-dropdown li:nth-child(even) {
         margin-right: 0;
     }
+
+    @media screen and (max-width: 800px) {
+        #locate-dropdown ul {
+            margin: 0;
+            margin-left: 15px;
+        }
+
+        .image-flag {
+            width: 30px;
+            height: auto;
+        }
+
+        #locate-dropdown {
+            background: none !important;
+        }
+
+        #locale-selector-dropdown {
+            background: none;
+        }
+
+        #button-flag {
+            margin-top: 5px;
+        }
+    }
 </style>
 
 <head>

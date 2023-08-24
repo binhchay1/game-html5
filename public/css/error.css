@@ -143,6 +143,7 @@ body {
     background-position: left top;
     height: 100%;
     overflow: hidden;
+    width: 100%;
 }
 
 .custom-navbar {
@@ -240,7 +241,7 @@ li a:hover {
 
 .central-body {
     width: 100%;
-    padding: 17% 5% 10% 5%;
+    padding: 17% 5% 10% 0%;
     text-align: center;
 }
 
@@ -363,11 +364,18 @@ h1 {
     }
 
     .central-body {
-        padding-top: 25%;
+        padding-top: 55%;
+        padding-left: 0%;
     }
 
     .object_earth {
         left: 70%;
         top: 15%;
     }
+}
+
+.code-error {
+    font-size: 6em;
+    font-weight: bold;
+    margin: 0;
 }

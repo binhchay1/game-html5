@@ -121,7 +121,7 @@
             </div>
         </div>
         <div class="row mb-0">
-            <div class="col-md-8 offset-md-4">
+            <div class="col-md-8 offset-md-4" style="padding: 0;">
                 <button type="submit" class="btn btn-primary">
                     {{ __('Lưu') }}
                 </button>

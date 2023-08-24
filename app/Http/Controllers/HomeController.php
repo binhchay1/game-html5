@@ -86,7 +86,6 @@ class HomeController extends Controller
     public function viewHome()
     {
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
-
         $query = $this->gameRepository->getListGameWithVote();
         $query = $query->shuffle();
         $games = $this->ultity->paginate($query, 30);

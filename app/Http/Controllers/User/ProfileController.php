@@ -13,6 +13,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\GameCollectionRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
+use App\Repositories\SearchRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Stichoza\GoogleTranslate\GoogleTranslate;
@@ -26,6 +27,7 @@ class ProfileController extends Controller
     protected $gameRepository;
     protected $ipUserRepository;
     protected $categoryRepository;
+    protected $searchRepository;
 
     public function __construct(
         UserRepository $userRepository,
@@ -33,7 +35,8 @@ class ProfileController extends Controller
         GameCollectionRepository $gameCollectionRepository,
         GameRepository $gameRepository,
         IpUserRepository $ipUserRepository,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        SearchRepository $searchRepository
     ) {
         $this->userRepository = $userRepository;
         $this->ultity = $ultity;
@@ -41,6 +44,7 @@ class ProfileController extends Controller
         $this->gameRepository = $gameRepository;
         $this->ipUserRepository = $ipUserRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->searchRepository = $searchRepository;
     }
 
     public function show()
@@ -52,10 +56,41 @@ class ProfileController extends Controller
     {
         $gender = config('user.sex');
         $dataUser = $this->userRepository->showUser(Auth::user()->id);
-        return view('page.user.profile', [
-            'dataUser' => $dataUser,
-            'gender' => $gender
-        ]);
+        $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+        $query = $this->gameRepository->getListGameWithVote();
+        $query = $query->shuffle();
+        $games = $this->ultity->paginate($query, 30);
+        $countGame = count($query);
+        $search = $this->searchRepository->listOrderByCount();
+        $listTag = [];
+
+        foreach ($games as $game) {
+            $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
+
+            if (($game->votes['like'] + $game->votes['un_like']) == 0) {
+                $game['rating'] = 100;
+            } else {
+                $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
+            }
+
+            $listTagDecode = json_decode($game['tag']);
+            foreach ($listTagDecode as $decode) {
+                if (count($listTag) >= 13) {
+                    break;
+                }
+
+                if (!in_array($decode, $listTag)) {
+                    $listTag[] = $decode;
+                }
+            }
+        }
+
+        $stringTrans = implode(', ', $listTag);
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $listTag = explode(', ', $translate);
+
+        return view('page.user.profile', compact('dataUser', 'gender', 'listCategory', 'countGameInCollection', 'listTag'));
     }
 
     public function update(UserRequest $request)

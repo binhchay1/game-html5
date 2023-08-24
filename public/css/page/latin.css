@@ -7533,11 +7533,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
         height: 66px;
     }
 
-    nav.navbar .y8-navbar-right .fake-button.idnet-fast-login-link,
-    nav.navbar .y8-navbar-right .fake-button.locale-selector-dropdown {
-        margin: 0 0 0 20px;
-    }
-
     nav.navbar .games-videos-switch,
     nav.navbar .new-games,
     nav.navbar .browse,
@@ -7689,10 +7684,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
         line-height: 34px;
     }
 
-    nav.navbar .y8-navbar-right button:last-child {
-        margin: 0 0 0 10px;
-    }
-
     nav.navbar .y8-navbar-right #user_logged_in .sub-menu {
         -webkit-flex-direction: column;
         -moz-flex-direction: column;
@@ -7808,8 +7799,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
 
     nav.navbar.show-mobile-header-block .y8-navbar-right .fake-button.locale-selector-dropdown {
-        display: inline-block;
-        margin: 0 0 20px 74px;
+        display: flex;
+        margin-bottom: 20px;
     }
 
     html[dir="rtl"] nav.navbar.show-mobile-header-block .y8-navbar-right .fake-button.locale-selector-dropdown {
@@ -21792,12 +21783,12 @@ only screen and (min-resolution: 144dpi) {
 }
 
 #button-flag {
-    padding: 8px;
+    padding: 7px;
 }
 
 @media (max-width: 890px) {
     nav.navbar.show-login-btns .y8-navbar-right .waiting-idnet #user_not_logged_in button {
-        width: 100%;
+        width: 115px;
     }
 
     nav.navbar.show-login-btns .y8-navbar-right .waiting-idnet #user_not_logged_in {
