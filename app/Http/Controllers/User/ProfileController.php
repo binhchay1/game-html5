@@ -9,9 +9,14 @@ use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Repositories\CategoryRepository;
 use App\Repositories\GameCollectionRepository;
 use App\Repositories\GameRepository;
+use App\Repositories\IpUserRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Stichoza\GoogleTranslate\GoogleTranslate;
+use Session;
 
 class ProfileController extends Controller
 {
@@ -19,17 +24,23 @@ class ProfileController extends Controller
     protected $ultity;
     protected $gameCollectionRepository;
     protected $gameRepository;
+    protected $ipUserRepository;
+    protected $categoryRepository;
 
     public function __construct(
         UserRepository $userRepository,
         Ultity $ultity,
         GameCollectionRepository $gameCollectionRepository,
-        GameRepository $gameRepository
+        GameRepository $gameRepository,
+        IpUserRepository $ipUserRepository,
+        CategoryRepository $categoryRepository
     ) {
         $this->userRepository = $userRepository;
         $this->ultity = $ultity;
         $this->gameCollectionRepository = $gameCollectionRepository;
         $this->gameRepository = $gameRepository;
+        $this->ipUserRepository = $ipUserRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function show()
@@ -103,5 +114,42 @@ class ProfileController extends Controller
         $games = $this->ultity->renameAndCalculateVote($listGame);
 
         return view('page.setting', compact('games'));
+    }
+
+    public function gamePlayed()
+    {
+        $idUser = Auth::user()->id;
+        $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+        $query = $this->ipUserRepository->getGamePlayed($idUser);
+
+        foreach($query as $record) {
+            dd($record);
+        }
+        // $listGame = $this->ultity->paginate($getGame, 30);
+        // $games = $this->ultity->renameAndCalculateVote($listGame);
+
+        $listTag = [];
+
+        foreach ($games as $game) {
+            $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
+            if (($game['like'] + $game['un_like']) == 0) {
+                $game['rating'] = 100;
+            } else {
+                $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
+            }
+
+            $listTagDecode = json_decode($game['tag']);
+            foreach ($listTagDecode as $decode) {
+                if (!in_array($decode, $listTag)) {
+                    $listTag[] = $decode;
+                }
+            }
+        }
+
+        $stringTrans = implode(', ', $listTag);
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $listTag = explode(', ', $translate);
+
+        return view('page.game-played', compact('games', 'listCategory', 'listTag'));
     }
 }

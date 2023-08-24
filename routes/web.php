@@ -51,6 +51,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
     Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
     Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
     Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
+    Route::get('/game-played', [ProfileController::class, 'gamePlayed'])->name('game.played');
     Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/user-setting', [ProfileController::class, 'setting'])->name('user.setting');

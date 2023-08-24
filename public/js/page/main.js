@@ -165,5 +165,10 @@ $(".hamburger-active-icon").on("click", function () {
 
     $('.y8-navbar-right').css('display', 'none');
     $('.more-tags').attr('style', 'display: none !important');
+
+    if (!loginDefined) {
+        $('.waiting-idnet').css('display', 'block');
+        $('#user_not_logged_in').attr('style', 'display: flex !important');
+    }
 });
 
