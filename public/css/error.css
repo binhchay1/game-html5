@@ -5,28 +5,33 @@
         -moz-transform: translate(1200px, -600px);
     }
 }
+
 @-webkit-keyframes rocket-movement {
     100% {
         -webkit-transform: translate(1200px, -600px);
     }
 }
+
 @keyframes rocket-movement {
     100% {
         transform: translate(1200px, -600px);
     }
 }
+
 @-moz-keyframes spin-earth {
     100% {
         -moz-transform: rotate(-360deg);
         transition: transform 20s;
     }
 }
+
 @-webkit-keyframes spin-earth {
     100% {
         -webkit-transform: rotate(-360deg);
         transition: transform 20s;
     }
 }
+
 @keyframes spin-earth {
     100% {
         -webkit-transform: rotate(-360deg);
@@ -40,27 +45,32 @@
         -moz-transform: translate(-160px, -160px);
     }
 }
+
 @-webkit-keyframes move-astronaut {
     100% {
         -webkit-transform: translate(-160px, -160px);
     }
 }
+
 @keyframes move-astronaut {
     100% {
         -webkit-transform: translate(-160px, -160px);
         transform: translate(-160px, -160px);
     }
 }
+
 @-moz-keyframes rotate-astronaut {
     100% {
         -moz-transform: rotate(-720deg);
     }
 }
+
 @-webkit-keyframes rotate-astronaut {
     100% {
         -webkit-transform: rotate(-720deg);
     }
 }
+
 @keyframes rotate-astronaut {
     100% {
         -webkit-transform: rotate(-720deg);
@@ -72,27 +82,32 @@
     40% {
         -moz-opacity: 0.3;
     }
+
     90%,
     100% {
         -moz-opacity: 1;
         -moz-transform: scale(1.2);
     }
 }
+
 @-webkit-keyframes glow-star {
     40% {
         -webkit-opacity: 0.3;
     }
+
     90%,
     100% {
         -webkit-opacity: 1;
         -webkit-transform: scale(1.2);
     }
 }
+
 @keyframes glow-star {
     40% {
         -webkit-opacity: 0.3;
         opacity: 0.3;
     }
+
     90%,
     100% {
         -webkit-opacity: 1;
@@ -115,10 +130,10 @@ body {
     height: 100%;
     font-family: "Dosis", sans-serif;
     font-weight: 300;
-    -webkit-user-select: none; /* Safari 3.1+ */
-    -moz-user-select: none; /* Firefox 2+ */
-    -ms-user-select: none; /* IE 10+ */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .bg-purple {
@@ -150,7 +165,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    /*    overflow: hidden;*/
+    overflow: hidden;
     display: flex;
     align-items: center;
 }
@@ -224,7 +239,7 @@ li a:hover {
 }
 
 .central-body {
-    /*    width: 100%;*/
+    width: 100%;
     padding: 17% 5% 10% 5%;
     text-align: center;
 }
@@ -248,17 +263,16 @@ li a:hover {
     top: 20%;
     left: 15%;
     z-index: 90;
-    /*    animation: spin-earth 100s infinite linear both;*/
+    animation: spin-earth 100s infinite linear both;
 }
 
 .object_moon {
     position: absolute;
-    top: 12%;
-    left: 25%;
-    /*
+    top: 20%;
+    left: 55%;
     transform: rotate(0deg);
     transition: transform ease-in 99999999999s;
-*/
+
 }
 
 .object_astronaut {
@@ -302,21 +316,25 @@ li a:hover {
     left: 25%;
     animation: glow-star 2s infinite ease-in-out alternate 1s;
 }
+
 .glowing_stars .star:nth-child(2) {
     top: 20%;
     left: 40%;
     animation: glow-star 2s infinite ease-in-out alternate 3s;
 }
+
 .glowing_stars .star:nth-child(3) {
     top: 25%;
     left: 25%;
     animation: glow-star 2s infinite ease-in-out alternate 5s;
 }
+
 .glowing_stars .star:nth-child(4) {
     top: 75%;
     left: 80%;
     animation: glow-star 2s infinite ease-in-out alternate 7s;
 }
+
 .glowing_stars .star:nth-child(5) {
     top: 90%;
     left: 50%;
@@ -349,6 +367,7 @@ h1 {
     }
 
     .object_earth {
-        left: 50%;
+        left: 70%;
+        top: 15%;
     }
 }

@@ -108,6 +108,11 @@ $("#mobile-search-icon").on("click", function () {
 });
 
 $("#profile-icon-image").on("click", function () {
+    if (($('nav').hasClass('show-search-form hide-search-icon'))) {
+        $('nav').removeClass('show-search-form hide-search-icon');
+        $('#mobile-search-icon').css('display', 'block');
+    }
+
     if (loginDefined) {
         if (!($('nav').hasClass('show-user-info'))) {
             $('nav').addClass('show-user-info');
@@ -143,12 +148,17 @@ $(".avatar").on("click", function () {
 });
 
 $(".hamburger-icon").on("click", function () {
+    if (($('nav').hasClass('show-search-form hide-search-icon'))) {
+        $('nav').removeClass('show-search-form hide-search-icon');
+    }
+
     if (!($('nav').hasClass('hide-user-icon show-login-btns show-mobile-header-block'))) {
         $('nav').addClass('hide-user-icon show-login-btns show-mobile-header-block');
         $('.burger-btn').addClass('open');
     }
 
     $('.y8-navbar-right').css('display', 'block');
+    $('#mobile-search-icon').css('display', 'none');
     $('.more-tags').attr('style', 'display: inline-block !important');
 
     if (!loginDefined) {
@@ -161,6 +171,7 @@ $(".hamburger-active-icon").on("click", function () {
     if (($('nav').hasClass('hide-user-icon show-login-btns show-mobile-header-block'))) {
         $('nav').removeClass('hide-user-icon show-login-btns show-mobile-header-block');
         $('.burger-btn').removeClass('open');
+        $('#mobile-search-icon').css('display', 'block');
     }
 
     $('.y8-navbar-right').css('display', 'none');
