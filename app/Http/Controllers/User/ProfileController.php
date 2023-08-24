@@ -103,32 +103,44 @@ class ProfileController extends Controller
     public function setting()
     {
         $listGameName = $this->gameCollectionRepository->getCollectionByUser(Auth::user()->id);
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+        $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->get();
         $listGame = [];
+        $listTag = [];
+
         foreach ($listGameName as $game) {
             $getGame = $this->gameRepository->getGameByName($game['game_name']);
             $listGame[] = $getGame;
+            $listName[] = $game['game_name'];
+        }
+
+        $getTags = $this->gameRepository->getTagsByListGame($listName);
+
+        foreach ($getTags as $record) {
+            $arrTags = json_decode($record->tag);
+            foreach ($arrTags as $tag) {
+                if (!in_array($tag, $listTag)) {
+                    $listTag[] = $tag;
+                }
+            }
         }
 
         $listGame = $this->ultity->paginate($listGame, 30);
-
         $games = $this->ultity->renameAndCalculateVote($listGame);
 
-        return view('page.setting', compact('games'));
+        return view('page.setting', compact('games', 'listTag', 'countGameInCollection', 'listCategory'));
     }
 
     public function gamePlayed()
     {
         $idUser = Auth::user()->id;
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
-        $query = $this->ipUserRepository->getGamePlayed($idUser);
-
-        foreach($query as $record) {
-            dd($record);
-        }
-        // $listGame = $this->ultity->paginate($getGame, 30);
-        // $games = $this->ultity->renameAndCalculateVote($listGame);
-
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+        $queryIpUser = $this->ipUserRepository->getGamePlayed($idUser)->toArray();
         $listTag = [];
+
+        $queryGame = $this->gameRepository->getGameByListName($queryIpUser);
+        $games = $this->ultity->paginate($queryGame, 30);
 
         foreach ($games as $game) {
             $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
@@ -150,6 +162,6 @@ class ProfileController extends Controller
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTag = explode(', ', $translate);
 
-        return view('page.game-played', compact('games', 'listCategory', 'listTag'));
+        return view('page.game-played', compact('games', 'listCategory', 'listTag', 'countGameInCollection'));
     }
 }

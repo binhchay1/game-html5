@@ -21,4 +21,9 @@ class GameCollectionRepository extends BaseRepository
     {
         return $this->model->select('game_name')->where('users_id', $userId)->get();
     }
+
+    public function countGameInCollection($userId)
+    {
+        return $this->model->select('game_name')->where('users_id', $userId)->count();
+    }
 }

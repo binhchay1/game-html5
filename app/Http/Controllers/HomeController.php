@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Cookie;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Config;
 use Session;
+use Cache;
 
 class HomeController extends Controller
 {
@@ -85,6 +86,7 @@ class HomeController extends Controller
     public function viewHome()
     {
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
         $query = $this->gameRepository->getListGameWithVote();
         $query = $query->shuffle();
         $games = $this->ultity->paginate($query, 30);
@@ -117,13 +119,15 @@ class HomeController extends Controller
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTag = explode(', ', $translate);
 
-        return view('page.homepage', compact('listCategory', 'games', 'countGame', 'listTag', 'search'));
+        return view('page.homepage', compact('listCategory', 'games', 'countGame', 'listTag', 'search', 'countGameInCollection'));
     }
 
     public function viewCategory($category, Request $request)
     {
         $sort = null;
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+
         if ($request->get('sort') != null) {
             $sort = $request->get('sort');
         }
@@ -166,7 +170,7 @@ class HomeController extends Controller
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTag = explode(', ', $translate);
 
-        return view('page.category', compact('games', 'category', 'listTag', 'listCategory'));
+        return view('page.category', compact('games', 'category', 'listTag', 'listCategory', 'countGameInCollection'));
     }
 
     public function viewSearch(Request $request)
@@ -201,6 +205,7 @@ class HomeController extends Controller
         }
 
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->get();
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
         $listGame = $this->gameRepository->getListBySearch($filter);
         $listName = [];
         foreach ($listGame as $game) {
@@ -227,13 +232,14 @@ class HomeController extends Controller
         $games = $this->ultity->paginate($getGames, 30);
         $games = $this->ultity->renameAndCalculateVote($games);
 
-        return view('page.search', compact('listCategory', 'games', 'listTag'));
+        return view('page.search', compact('listCategory', 'games', 'listTag', 'countGameInCollection'));
     }
 
     public function viewTags($tag)
     {
         $query = $this->gameRepository->listGameByTag($tag);
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
         $listTag = [];
 
         foreach ($getTags as $record) {
@@ -250,12 +256,13 @@ class HomeController extends Controller
         $listGame = $this->ultity->paginate($query, 10);
         $games = $this->ultity->renameAndCalculateVote($listGame);
 
-        return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag'));
+        return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag', 'countGameInCollection'));
     }
 
     public function viewListTags(Request $request)
     {
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
         $page = $request->get('page');
         if (empty($page)) {
             $page = 1;
@@ -305,13 +312,14 @@ class HomeController extends Controller
 
         $totalTags = count($listTag);
 
-        return view('page.list-tag', compact('arrData', 'totalTags', 'listCategory', 'listTag'));
+        return view('page.list-tag', compact('arrData', 'totalTags', 'listCategory', 'listTag', ' countGameInCollection'));
     }
 
     public function viewNewGames()
     {
         $getGame = $this->gameRepository->getNewestGame();
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
 
         if (empty($getGame)) {
             abort(404);
@@ -336,13 +344,14 @@ class HomeController extends Controller
 
         $count = count($listTag);
 
-        return view('page.best-game', compact('games', 'count', 'listCategory', 'listTag'));
+        return view('page.best-game', compact('games', 'count', 'listCategory', 'listTag', 'countGameInCollection'));
     }
 
     public function viewBestGame()
     {
         $getGame = $this->gameRepository->getBestGame();
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
 
         if (empty($getGame)) {
             abort(404);
@@ -367,7 +376,7 @@ class HomeController extends Controller
 
         $count = count($listTag);
 
-        return view('page.best-game', compact('games', 'count', 'listTag'));
+        return view('page.best-game', compact('games', 'count', 'listTag', 'listCategory', 'countGameInCollection'));
     }
 
     public function viewGame($game)

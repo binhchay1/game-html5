@@ -136,7 +136,7 @@
                                     <li>
                                         <a class="account-menu-link" id="account-menu-link-games" href="{{ route('user.setting') }}">
                                             {{ __('Yêu thích') }}
-                                            (<span class="js-favorites-count">0</span>)
+                                            (<span class="js-favorites-count">{{ $countGameInCollection }}</span>)
                                         </a>
                                     </li>
                                     <li>
