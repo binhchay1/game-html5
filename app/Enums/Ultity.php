@@ -18,19 +18,28 @@ final class Ultity
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
-    public function saveImage($fileName, $content, $prefix_path = null)
+    public function saveImage($input)
     {
-        if ($prefix_path != null) {
-            $fileName =  $prefix_path . '/' . $fileName;
+        if ($input['image']) {
+            $file = $input['image'];
+
+            $typeFile = $file->getClientOriginalExtension();
+            if ($typeFile == 'png' || $typeFile == 'jpg' || $typeFile == 'jpeg' ) {
+                $fileSize = $file->getSize();
+                if ($fileSize <= 1024000) {
+                    $fileName = $file->getClientOriginalName();
+                    $file->move('images/games/user', $fileName);
+                    return $fileName;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
         }
-
-        if (!Storage::disk('s3')->has($fileName)) {
-            Storage::disk('s3')->put($fileName, $content);
-        }
-
-        $url = Storage::disk('s3')->url($fileName);
-
-        return $url;
     }
 
     public function downloadFile($url, $filename)

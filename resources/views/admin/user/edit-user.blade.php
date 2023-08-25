@@ -31,7 +31,7 @@
                 @enderror
                 <div class=" choose-avatar">
                     <div id="btnimage">
-                        <img id="showImage" style="width: 150px" class="show-avatar" src="{{ $dataUser->image ?? asset('/images/default-avatar.png')}}" alt="avatar">
+                        <img id="showImage" style="width: 150px" class="show-avatar" src="/{{ $dataUser->image ?? asset('/images/default-avatar.png')}}" alt="avatar">
                     </div>
                     <div id="button">
                         <i id="btn_chooseImg" class="fa fa-camera"></i>
