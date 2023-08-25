@@ -113,7 +113,13 @@
                 <select class="form-select" aria-label="{{ __('Giới tính') }}" name="sex" id="">
                     @foreach ($gender as $gender =>$value)
                     <option value="{{ $value }}" @if(Auth::user()->sex == $value) selected @endif>
-                        {{$gender == 'Nam' ? __('Tuổi')  : __('Nữ')}}
+                        @if($gender =='Nam')
+                            {{ __('Nam') }}
+                        @elseif($gender =='Nữ')
+                            {{ __('Nữ') }}
+                        @else
+                            {{ __('Giới tính khác') }}
+                        @endif
                     </option>
                     @endforeach
                 </select>
