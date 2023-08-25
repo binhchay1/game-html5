@@ -46,11 +46,12 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $input = $request->all();
-        if (array_key_exists('image', $input)) {
-            $idFolder = Hash::make('acwbe' . Auth::user()->id);
-            $path = 'images/user/' . $idFolder . '/' . $input['image']->getClientOriginalName();
-            $url = $this->ultity->saveImage($path, file_get_contents($input['image']));
-            $input['image'] = $url;
+        if(isset($input['image'])) {
+            $img = $this->ultity->saveImage($input);
+            if ($img) {
+                $fileName = 'images/games/user/' . $img;
+                $input['image'] = $fileName;
+            }
         }
 
         $input['role'] = \App\Enums\Role::USER;
@@ -75,12 +76,12 @@ class UserController extends Controller
     public function updateUser(UpdateUserRequest $request, $id)
     {
         $input = $request->except(['_token']);
-
-        if (array_key_exists('image', $input)) {
-            $idFolder = Hash::make(Auth::user()->name . Auth::user()->id);
-            $path = 'images/user/' . $idFolder . '/' . $input['image']->getClientOriginalName();
-            $url = $this->ultity->saveImage($path, file_get_contents($input['image']));
-            $input['image'] = $url;
+        if(isset($input['image'])) {
+            $img = $this->ultity->saveImage($input);
+            if ($img) {
+                $fileName = 'images/games/user/' . $img;
+                $input['image'] = $fileName;
+            }
         }
 
         $this->userRepository->update($input, $id);
