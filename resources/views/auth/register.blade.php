@@ -3,7 +3,7 @@
 @section('content')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
     <section class="vh-100">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">

@@ -158,6 +158,11 @@ class GameRepository extends BaseRepository
 
     public function updateLinkGame($gameName, $gameDir)
     {
-        return $this->model->where('name', $gameName)->update(['link' => $gameDir, 'status'=> 1] );
+        return $this->model->where('name', $gameName)->update(['link' => $gameDir, 'status' => 1]);
+    }
+
+    public function getGameByListName($listName)
+    {
+        return $this->model->whereIn('name', $listName)->get();
     }
 }

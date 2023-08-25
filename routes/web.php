@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\GameController;
+use App\Http\Controllers\Admin\ReportBugController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ProfileController;
@@ -50,6 +51,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
     Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
     Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
     Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
+    Route::get('/game-played', [ProfileController::class, 'gamePlayed'])->name('game.played');
     Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/user-setting', [ProfileController::class, 'setting'])->name('user.setting');
@@ -84,6 +86,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::post('/store-category', [CategoryController::class, 'store'])->name('category.store');
             Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
             Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
+
+            Route::get('/list-report', [ReportBugController::class, 'index'])->name('report.index');
+            Route::get('/report-info/{id}', [ReportBugController::class, 'showReport'])->name('report.showReport');
 
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
             Route::post('/dropzone-upload', [GameController::class, 'uploadFileDropzone'])->name('dropzone-upload');

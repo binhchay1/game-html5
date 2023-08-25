@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.body.className = 'categories show games-active';
     }
 
+    if (path.indexOf('/search') != -1) {
+        $("#mobile-search-icon").css('display', 'none');
+    }
+
     checkSessions();
 
     window.addEventListener('click', function (e) {
@@ -18,6 +22,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
             element.style.display = 'none';
         }
     });
+
+    if (loginDefined) {
+        if (!($('nav').hasClass('logged'))) {
+            $('nav').addClass('logged');
+        }
+    } else {
+        if ($('nav').hasClass('logged')) {
+            $('nav').removeClass('logged');
+        }
+    }
 });
 
 function writeCookie(name, value, days) {
@@ -86,5 +100,90 @@ function dropDownLocate() {
     } else {
         element.style.display = 'none';
     }
-
 }
+
+$("#mobile-search-icon").on("click", function () {
+    $(this).css('display', 'none');
+    $('nav').addClass('show-search-form hide-search-icon');
+});
+
+$("#profile-icon-image").on("click", function () {
+    if (($('nav').hasClass('show-search-form hide-search-icon'))) {
+        $('nav').removeClass('show-search-form hide-search-icon');
+        $('#mobile-search-icon').css('display', 'block');
+    }
+
+    if (loginDefined) {
+        if (!($('nav').hasClass('show-user-info'))) {
+            $('nav').addClass('show-user-info');
+        } else {
+            $('nav').removeClass('show-user-info');
+        }
+
+    } else {
+        if (!($('nav').hasClass('show-login-btns'))) {
+            $('nav').addClass('show-login-btns');
+        }
+    }
+
+    $('.y8-navbar-right').css('display', 'block');
+});
+
+$("#arrow-up-image").on("click", function () {
+    if (!loginDefined) {
+        if ($('nav').hasClass('show-login-btns')) {
+            $('nav').removeClass('show-login-btns');
+        }
+    }
+    $('.y8-navbar-right').css('display', 'none');
+});
+
+$(".avatar").on("click", function () {
+    if ($('.links-container').css('display') == 'none') {
+        $('.links-container').css('display', 'block');
+    }
+    else {
+        $('.links-container').css('display', 'none');
+    }
+});
+
+$(".hamburger-icon").on("click", function () {
+    if (($('nav').hasClass('show-search-form hide-search-icon'))) {
+        $('nav').removeClass('show-search-form hide-search-icon');
+    }
+
+    if ($('nav').hasClass('show-user-info')) {
+        $('nav').removeClass('show-user-info');
+    }
+
+    if (!($('nav').hasClass('hide-user-icon show-login-btns show-mobile-header-block'))) {
+        $('nav').addClass('hide-user-icon show-login-btns show-mobile-header-block');
+        $('.burger-btn').addClass('open');
+    }
+
+    $('.y8-navbar-right').css('display', 'block');
+    $('#mobile-search-icon').css('display', 'none');
+    $('.more-tags').attr('style', 'display: inline-block !important');
+
+    if (!loginDefined) {
+        $('.waiting-idnet').css('display', 'block');
+        $('#user_not_logged_in').attr('style', 'display: none !important');
+    }
+});
+
+$(".hamburger-active-icon").on("click", function () {
+    if (($('nav').hasClass('hide-user-icon show-login-btns show-mobile-header-block'))) {
+        $('nav').removeClass('hide-user-icon show-login-btns show-mobile-header-block');
+        $('.burger-btn').removeClass('open');
+        $('#mobile-search-icon').css('display', 'block');
+    }
+
+    $('.y8-navbar-right').css('display', 'none');
+    $('.more-tags').attr('style', 'display: none !important');
+
+    if (!loginDefined) {
+        $('.waiting-idnet').css('display', 'block');
+        $('#user_not_logged_in').attr('style', 'display: flex !important');
+    }
+});
+

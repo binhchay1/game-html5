@@ -4,10 +4,6 @@
 <title>{{ env('APP_NAME', 'Gamekafe') }} - User</title>
 @endsection
 
-@section('js_sort_users')
-<link rel="stylesheet" href="{{ asset('css/user.css') }}" />
-@endsection
-
 @section('main_content')
 <div class="card-header mt-4">
     <h3>Create User</h3>
@@ -30,7 +26,7 @@
                 <input value="image" type="file" class=" form-control @error('image') is-invalid @enderror border-0 bg-light pl-0" name="image" id="image" hidden>
                 <div class=" choose-avatar">
                     <div id="btnimage">
-                        <img id="showImage" style="width: 150px" class="show-avatar" src="{{ url('/images/user.jpg') }}" alt="avatar">
+                        <img id="showImage" style="width: 150px" class="show-avatar" src="{{ url('/images/default-avatar.png') }}" alt="avatar">
                     </div>
                     <div id="button">
                         <i id="btn_chooseImg" class="fa fa-camera"></i>

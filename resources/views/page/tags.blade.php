@@ -23,7 +23,7 @@
                         {{ __('Game trực tuyến miễn phí hàng đầu được gắn thẻ') }} {{ $tag }}
                     </h1>
                     <h2 class="text-regular">
-                        {{ __('Xem tất cả thẻ gắn') }} {{ __('Chơi game') }} {{ $tag }} {{ __('trên') }} {{ env('APP_URL', 'Gamekafe.com') }}.
+                        {{ __('Xem tất cả thẻ gắn') }} {{ __('Chơi trò chơi') }} {{ $tag }} {{ __('trên') }} {{ env('APP_URL', 'Gamekafe.com') }}.
                     </h2>
                 </div>
                 <div class="sub-title">

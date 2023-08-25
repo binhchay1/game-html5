@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 final class Ultity
 {
-    public function __construct(LinkGame $linkGame)
-    {
-        $this->linkGame = $linkGame;
-    }
-
     public function paginate($items, $perPage = 15, $path = null, $pageName = 'page', $page = null, $options = [])
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);

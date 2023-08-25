@@ -138,11 +138,11 @@ function reportBug() {
             prefix = domPrefixes[i].toLowerCase();
 
             if (elem[prefix + 'EnterFullScreen']) {
+
                 return prefix + 'EnterFullScreen';
-                break;
             } else if (elem[prefix + 'RequestFullScreen']) {
+
                 return prefix + 'RequestFullScreen';
-                break;
             }
         }
 

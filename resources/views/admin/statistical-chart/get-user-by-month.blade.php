@@ -4,7 +4,7 @@
     <title>{{ env('APP_NAME', 'Gamekafe') }} - Category</title>
 @endsection
 @section('js_sort_users')
-    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
 @endsection
 @section('main_content')
     <h1>User Register By Month</h1>

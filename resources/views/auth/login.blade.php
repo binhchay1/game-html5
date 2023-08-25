@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <section class="vh-100">
     <div class="container py-5 h-100">
@@ -41,7 +41,7 @@
                                     <div class="pt-1 mb-4">
                                         <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Đăng nhập') }}</button>
                                     </div>
-                                    <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                                    <div class="d-flex flex-row">
                                         <p class="lead fw-normal mb-0 me-3">
                                             {{ __('Đăng nhập với') }}</p>
                                         <a href="{{ route('auth.facebook') }}" class="btn btn-primary btn-floating mx-1" style="width: 40px;">

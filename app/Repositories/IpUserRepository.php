@@ -50,4 +50,9 @@ class IpUserRepository extends BaseRepository
 
         return $query;
     }
+
+    public function getGamePlayed($idUser)
+    {
+        return $this->model->select('game_name')->where('user_id', $idUser)->get();
+    }
 }

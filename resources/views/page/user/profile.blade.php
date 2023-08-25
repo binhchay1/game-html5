@@ -9,8 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <link rel="manifest" href="{{ asset('json/manifest.json') }}" crossorigin="use-credentials">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-@vite('resources/js/user.js')
-@vite('resources/sass/user.css')
+
 <style type="text/css">
     .disable-link {
         cursor: not-allowed;
@@ -59,7 +58,7 @@
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
-                                <img id="showImage" style="width: 110px" class="show-avatar" src="{{Auth::user()->image ?? asset('/images/user.jpg')}}" alt="avatar">
+                                <img id="showImage" style="width: 110px" class="show-avatar" src="{{ Auth::user()->image ?? asset('/images/default-avatar.png') }}" alt="avatar">
                             </div>
                             <div id="button" style="margin-top: 10px;">
                                 <i id="btn_chooseImg" class="fa fa-camera"></i>
@@ -114,14 +113,20 @@
                 <select class="form-select" aria-label="{{ __('Giới tính') }}" name="sex" id="">
                     @foreach ($gender as $gender =>$value)
                     <option value="{{ $value }}" @if(Auth::user()->sex == $value) selected @endif>
-                        {{$gender == 'Nam' ? __('Tuổi')  : __('Nữ')}}
+                        @if($gender =='Nam')
+                            {{ __('Nam') }}
+                        @elseif($gender =='Nữ')
+                            {{ __('Nữ') }}
+                        @else
+                            {{ __('Giới tính khác') }}
+                        @endif
                     </option>
                     @endforeach
                 </select>
             </div>
         </div>
         <div class="row mb-0">
-            <div class="col-md-8 offset-md-4">
+            <div class="col-md-8 offset-md-4" style="padding: 0;margin-top: 15px;margin-left: 15px;">
                 <button type="submit" class="btn btn-primary">
                     {{ __('Lưu') }}
                 </button>

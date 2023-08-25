@@ -10,9 +10,9 @@ class CategoryController extends Controller
 {
 
     protected $categoryRepository;
-    public function __construct(
-        CategoryRepository $categoryRepository
-    ) {
+
+    public function __construct(CategoryRepository $categoryRepository)
+    {
         $this->categoryRepository = $categoryRepository;
     }
 
@@ -26,18 +26,19 @@ class CategoryController extends Controller
     public function showCategory($id)
     {
         $dataCategory = $this->categoryRepository->showCategory($id);
+
         return view('admin.category.show-category', ['dataCategory' => $dataCategory]);
     }
 
     public function create()
     {
-        return view ('admin.category.create-category');
+        return view('admin.category.create-category');
     }
 
     public function store(StoreCategoryRequest $request)
     {
         $input = $request->all();
-        $dataCat = $this->categoryRepository->store($input);
+        $this->categoryRepository->store($input);
 
         return redirect('list-category');
     }
@@ -45,13 +46,14 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $dataCategory = $this->categoryRepository->showCategory($id);
+
         return view('admin.category.edit-category', ['dataCategory' => $dataCategory]);
     }
 
     public function update(StoreCategoryRequest $request, $id)
     {
         $input = $request->except(['_token']);
-        $dataCat = $this->categoryRepository->update($input, $id);
+        $this->categoryRepository->update($input, $id);
 
         return redirect('list-category');
     }

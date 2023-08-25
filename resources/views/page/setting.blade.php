@@ -21,7 +21,7 @@
                     <div class="left">
                         <a class="active" rel="nofollow" title="{{ __('Bộ sưu tập trò chơi của bạn') }} - {{ env('APP_URL', 'Gamekafe.com') }}">
                             <h3>
-                                {{ __('Tất cả các game trong bộ sự tập của bạn ') }}
+                                {{ __('Tất cả các trò chơi trong bộ sự tập của bạn ') }}
                                 <span>({{ count($games) }})</span>
                             </h3>
                         </a>

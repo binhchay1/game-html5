@@ -8,8 +8,8 @@ use Symfony\Component\Finder\Finder;
 
 class UpdateLinkGame extends Command
 {
-    protected $signature = 'test {--depth=0}';
-    protected $description = 'Command description';
+    protected $signature = 'app:update-link-game-sever {--depth=0}';
+    protected $description = 'Update link of game with dir in sever';
     private $gameRepository;
 
     public function __construct(GameRepository $gameRepository)

@@ -299,7 +299,7 @@
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -308,7 +308,7 @@
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -317,7 +317,7 @@
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -326,7 +326,7 @@
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -335,7 +335,7 @@
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -344,7 +344,7 @@
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -353,7 +353,7 @@
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -692,7 +692,7 @@ label {
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -701,7 +701,7 @@ label {
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -710,7 +710,7 @@ label {
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -719,7 +719,7 @@ label {
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -728,7 +728,7 @@ label {
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -737,7 +737,7 @@ label {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -746,7 +746,7 @@ label {
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -755,7 +755,7 @@ label {
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -764,7 +764,7 @@ label {
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -773,7 +773,7 @@ label {
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -782,7 +782,7 @@ label {
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -791,7 +791,7 @@ label {
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -800,7 +800,7 @@ label {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -809,7 +809,7 @@ label {
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -1292,7 +1292,7 @@ html[dir="rtl"] .navbar .locale-selector-dropdown .locales-container-container {
 }
 
 .navbar .waiting-idnet {
-    display: inline-block;
+    display: inline-flex;
     min-width: 44px;
 }
 
@@ -1302,7 +1302,6 @@ html[dir="rtl"] .navbar .locale-selector-dropdown .locales-container-container {
 }
 
 .navbar .waiting-idnet #user_logged_in .fake-button {
-    display: inline-block;
     margin: 0;
     padding: 0;
     width: 44px;
@@ -1322,7 +1321,7 @@ html[dir="rtl"] .navbar .locale-selector-dropdown .locales-container-container {
 }
 
 .navbar .waiting-idnet #user_logged_in .sub-menu-header .username {
-    color: #333;
+    color: #f50000;
     display: block;
     font-size: 14px;
 }
@@ -7243,6 +7242,12 @@ only screen and (min-device-pixel-ratio: 1.5) {
     width: 90px;
 }
 
+@media (max-width: 890px) {
+    .policy-validation .actions {
+        width: auto;
+    }
+}
+
 @media (min-width: 800px) {
     .policy-validation .actions {
         display: table-cell;
@@ -7283,9 +7288,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
 @media (max-width: 768px) {
     .policy-validation .actions .validate-policy {
         font-size: 15px;
-        margin: 15px auto 0;
+        margin: 40px auto 0;
         padding: 10px 8px;
-        width: 100%;
+        width: fit-content;
     }
 }
 
@@ -7528,11 +7533,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
         height: 66px;
     }
 
-    nav.navbar .y8-navbar-right .fake-button.idnet-fast-login-link,
-    nav.navbar .y8-navbar-right .fake-button.locale-selector-dropdown {
-        margin: 0 0 0 10px;
-    }
-
     nav.navbar .games-videos-switch,
     nav.navbar .new-games,
     nav.navbar .browse,
@@ -7649,8 +7649,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
 
     nav.navbar .y8-navbar-right {
-        order: 3;
-        position: relative;
+        display: none;
     }
 
     .fake-button nav.navbar .y8-navbar-right.idnet-fast-login-link {
@@ -7683,10 +7682,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
     nav.navbar .y8-navbar-right button {
         height: 36px;
         line-height: 34px;
-    }
-
-    nav.navbar .y8-navbar-right button:last-child {
-        margin: 0 0 0 10px;
     }
 
     nav.navbar .y8-navbar-right #user_logged_in .sub-menu {
@@ -7804,8 +7799,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
 
     nav.navbar.show-mobile-header-block .y8-navbar-right .fake-button.locale-selector-dropdown {
-        display: inline-block;
-        margin: 0 0 20px 74px;
+        display: flex;
+        margin-bottom: 20px;
     }
 
     html[dir="rtl"] nav.navbar.show-mobile-header-block .y8-navbar-right .fake-button.locale-selector-dropdown {
@@ -8000,6 +7995,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
         right: 0;
         top: 0;
         z-index: 10;
+    }
+
+    .menu-games {
+        display: none;
     }
 }
 
@@ -8462,11 +8461,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
 
     nav.navbar .y8-navbar-right .btn-header-actions.browse {
-        margin: 0 0 0 5px;
+        margin: 2px 0 0 5px;
     }
 
     nav.navbar .y8-navbar-right .fake-button.new-games {
-        margin: 0 0 0 15px;
+        margin: 2px 0 0 15px;
     }
 
     nav.navbar .y8-navbar-left {
@@ -9133,7 +9132,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/assets/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9142,7 +9141,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/assets/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9151,7 +9150,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/assets/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9160,7 +9159,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/assets/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9169,7 +9168,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/assets/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9178,7 +9177,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/assets/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9687,7 +9686,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9696,7 +9695,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9705,7 +9704,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9714,7 +9713,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9723,7 +9722,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9732,7 +9731,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -9741,7 +9740,7 @@ fieldset[disabled] .btn-link:focus {
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14005,7 +14004,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: italic;
     font-weight: 400;
     src: local("Roboto Italic"), local("Roboto-Italic"),
-        url(/fonts/Roboto/Roboto-Italic-f4406f4e9a0a200111282001c1497f689ba1f0d5b81b4fd10f5572f03fdd4d49.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Italic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14014,7 +14013,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: italic;
     font-weight: 500;
     src: local("Roboto Medium Italic"), local("Roboto-MediumItalic"),
-        url(/fonts/Roboto/Roboto-MediumItalic-0fb11e7366f0690646840198aed9e0c21902f2a9c4ed4985b7cab2214c51a699.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-MediumItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14023,7 +14022,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: italic;
     font-weight: 700;
     src: local("Roboto Bold Italic"), local("Roboto-BoldItalic"),
-        url(/fonts/Roboto/Roboto-BoldItalic-a8ed0afd748c4eac7d9b092dffc18dc4e032946f6693dcad9c5a340cf27504f5.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-BoldItalic.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14032,7 +14031,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: normal;
     font-weight: 400;
     src: local("Roboto"), local("Roboto-Regular"),
-        url(/fonts/Roboto/Roboto-Regular-20000d75440612ea9275ebd2723e3fa8730d6bbfd445ed31bad745bec6164d8b.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Regular.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14041,7 +14040,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: normal;
     font-weight: 500;
     src: local("Roboto Medium"), local("Roboto-Medium"),
-        url(/fonts/Roboto/Roboto-Medium-6dd38ee27a77b8ce1172b15c8fa10ea0e588a54505741f5d397ebf466c199fa6.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Medium.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14050,7 +14049,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Bold"), local("Roboto-Bold"),
-        url(/fonts/Roboto/Roboto-Bold-b0786970a4e751b8f1794254733040ecbfaa7cc2ef8fa7f4eab4769bc98303e9.ttf) format("truetype");
+        url(/fonts/Roboto/Roboto-Bold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -14059,7 +14058,7 @@ html[dir="rtl"] .item .item__infos .item__title {
     font-style: normal;
     font-weight: 800;
     src: local("Nunito ExtraBold"), local("Nunito-ExtraBold"),
-        url(/fonts/Nunito/Nunito-ExtraBold-95ef4351032628b527d588444a03797cd009bb9532c5f90ca40edca7c24d5fd7.ttf) format("truetype");
+        url(/fonts/Nunito/Nunito-ExtraBold.ttf) format("truetype");
     font-display: swap;
 }
 
@@ -21784,5 +21783,16 @@ only screen and (min-resolution: 144dpi) {
 }
 
 #button-flag {
-    padding: 8px;
+    padding: 7px;
+}
+
+@media (max-width: 890px) {
+    nav.navbar.show-login-btns .y8-navbar-right .waiting-idnet #user_not_logged_in button {
+        width: 115px;
+    }
+
+    nav.navbar.show-login-btns .y8-navbar-right .waiting-idnet #user_not_logged_in {
+        display: flex;
+        justify-content: center;
+    }
 }
