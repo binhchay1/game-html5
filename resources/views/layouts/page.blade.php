@@ -392,6 +392,7 @@
         <?php } ?>
     </script>
     <script src="{{ asset('js/page/main.js') }}"></script>
+    <script src="{{ asset('js/admin/user.js') }}"></script>
     @yield('js')
 </body>
 
