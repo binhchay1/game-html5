@@ -32,9 +32,8 @@
 </head>
 
 <body>
-    <div class="embed-responsive embed-responsive-1by1">
-        <iframe class="embed-responsive-item" src="{{ $getGame['link'] }}" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true"></iframe>
-    </div>
+    <iframe src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
+    </iframe>
     <div class="set-button">
         <button id="fullscreeniframe" title="view in full screen" class="button btn btn-warning rounded-0"><i class="fas fa-expand"></i></button>
     </div>

@@ -355,5 +355,6 @@
     "Lỗi máy chủ": "Server error",
     "Máy chủ đang gặp 1 vấn đề rất nghiêm trọng. Vui lòng quý khách quay trở lại sau 1 khoảng thời gian hoặc ấn vào nút bên dưới để quay lại trang chủ": "The server is having a very serious problem. Please come back after a while or click the button below to return to the homepage",
     "Dịch vụ không có sẵn": "Service unavailable",
-    "Hiện tại dịch vụ mà bạn đang yêu cầu không có sẵn. Vui lòng quay trở lại vào thời gian khác hoặc ấn nút bên dưới để quay lại trang chủ": "Currently the service you are requesting is not available. Please come back another time or press the button below to return to the homepage"
+    "Hiện tại dịch vụ mà bạn đang yêu cầu không có sẵn. Vui lòng quay trở lại vào thời gian khác hoặc ấn nút bên dưới để quay lại trang chủ": "Currently the service you are requesting is not available. Please come back another time or press the button below to return to the homepage",
+    "Về trang chủ" : "Back to homepage"
 }

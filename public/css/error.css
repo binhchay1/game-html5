@@ -213,17 +213,17 @@ li a:hover {
     position: relative;
     z-index: 200;
     margin: 15px auto;
-    width: 100px;
+    width: 140px;
     padding: 10px 15px;
     border: 1px solid #ffcb39;
     border-radius: 100px;
-    font-weight: 400;
+    font-weight: 600;
     display: block;
     color: white;
     text-align: center;
     text-decoration: none;
     letter-spacing: 2px;
-    font-size: 11px;
+    font-size: 14px;
 
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
@@ -344,6 +344,7 @@ li a:hover {
 
 h1 {
     color: #fff;
+    padding: 0 15px;
 }
 
 @media only screen and (max-width: 600px) {

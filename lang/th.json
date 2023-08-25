@@ -367,5 +367,6 @@
     "Lỗi máy chủ": "เซิร์ฟเวอร์ผิดพลาด",
     "Máy chủ đang gặp 1 vấn đề rất nghiêm trọng. Vui lòng quý khách quay trở lại sau 1 khoảng thời gian hoặc ấn vào nút bên dưới để quay lại trang chủ": "เซิร์ฟเวอร์กำลังประสบปัญหาร้ายแรงมาก โปรดกลับมาอีกครั้งในภายหลังหรือคลิกปุ่มด้านล่างเพื่อกลับสู่หน้าแรก",
     "Dịch vụ không có sẵn": "ไม่มีบริการ",
-    "Hiện tại dịch vụ mà bạn đang yêu cầu không có sẵn. Vui lòng quay trở lại vào thời gian khác hoặc ấn nút bên dưới để quay lại trang chủ": "ขณะนี้บริการที่คุณร้องขอไม่สามารถใช้งานได้ กรุณากลับมาใหม่อีกครั้งหรือกดปุ่มด้านล่างเพื่อกลับสู่หน้าแรก"
+    "Hiện tại dịch vụ mà bạn đang yêu cầu không có sẵn. Vui lòng quay trở lại vào thời gian khác hoặc ấn nút bên dưới để quay lại trang chủ": "ขณะนี้บริการที่คุณร้องขอไม่สามารถใช้งานได้ กรุณากลับมาใหม่อีกครั้งหรือกดปุ่มด้านล่างเพื่อกลับสู่หน้าแรก",
+    "Về trang chủ" : "กลับสู่หน้าแรก"
 }

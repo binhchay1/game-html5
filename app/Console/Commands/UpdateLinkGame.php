@@ -25,7 +25,7 @@ class UpdateLinkGame extends Command
         $finder = new Finder();
 
         $finder->directories()->depth($depth)->in(public_path('games'));
-        $prefixDir = "/games";
+        $prefixDir = "/storages/games";
         foreach ($finder as $dir)
         {
             $absoluteFilePath = $dir->getRealPath();

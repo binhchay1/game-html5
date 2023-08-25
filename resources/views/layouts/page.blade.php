@@ -1,52 +1,5 @@
 <!DOCTYPE html>
 <html class="no-touch" lang="vi" dir="ltr">
-<style>
-    #locate-dropdown ul {
-        margin-top: 20px;
-        width: 250px;
-        margin-left: -100px;
-        display: flex;
-        background: white;
-        justify-content: space-between;
-        padding: 0 10px;
-    }
-
-    #locate-dropdown ul li {
-        float: left;
-        height: 50px;
-        width: 30px;
-        margin-top: 7px;
-    }
-
-    #locate-dropdown li:nth-child(even) {
-        margin-right: 0;
-    }
-
-    @media screen and (max-width: 800px) {
-        #locate-dropdown ul {
-            margin: 0;
-            margin-left: 15px;
-            padding: 0;
-        }
-
-        .image-flag {
-            width: 30px;
-            height: auto;
-        }
-
-        #locate-dropdown {
-            background: none !important;
-        }
-
-        #locale-selector-dropdown {
-            background: none;
-        }
-
-        #button-flag {
-            margin-top: 5px;
-        }
-    }
-</style>
 
 <head>
     <meta charset="utf-8">
@@ -73,6 +26,55 @@
     <link rel="stylesheet" href="{{ asset('css/page/latin.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/plugins/fontawesome/all.min.css') }}" type='text/css'>
+
+    <style>
+        #locate-dropdown ul {
+            margin-top: 20px;
+            width: 250px;
+            margin-left: -100px;
+            display: flex;
+            background: white;
+            justify-content: space-between;
+            padding: 0 10px;
+            border-radius: 10px;
+        }
+
+        #locate-dropdown ul li {
+            float: left;
+            height: 50px;
+            width: 30px;
+            margin-top: 7px;
+        }
+
+        #locate-dropdown li:nth-child(even) {
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 800px) {
+            #locate-dropdown ul {
+                margin: 0;
+                margin-left: 15px;
+                padding: 0;
+            }
+
+            .image-flag {
+                width: 30px;
+                height: auto;
+            }
+
+            #locate-dropdown {
+                background: none !important;
+            }
+
+            #locale-selector-dropdown {
+                background: none;
+            }
+
+            #button-flag {
+                margin-top: 5px;
+            }
+        }
+    </style>
     @yield('css')
 </head>
 

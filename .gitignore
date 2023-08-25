@@ -22,4 +22,5 @@ yarn-error.log
 /public/images/games/*
 /public/img/*
 /public/process/*
-
+/public/source-games/*
+/public/source-games
