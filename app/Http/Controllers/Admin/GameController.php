@@ -145,29 +145,29 @@ class GameController extends Controller
             'text_color' => $input['text_color'],
         ];
 
-        if (array_key_exists('thumbs', $input)) {
-            $path = 'images/games/thumb' . $idFolder . '/' . $input['thumbs']->getClientOriginalName();
-            $url = $this->ultity->saveImage($path, file_get_contents($input['thumbs']));
-            $data['thumbs'] = $url;
-        }
+        // if (array_key_exists('thumbs', $input)) {
+        //     $path = 'images/games/thumb' . $idFolder . '/' . $input['thumbs']->getClientOriginalName();
+        //     $url = $this->ultity->saveImage($path, file_get_contents($input['thumbs']));
+        //     $data['thumbs'] = $url;
+        // }
 
-        if (array_key_exists('icon', $input)) {
-            $path = 'images/games/icon' . $idFolder . '/' . $input['icon']->getClientOriginalName();
-            $url = $this->ultity->saveImage($path, file_get_contents($input['icon']));
-            $data['icon'] = $url;
-        }
+        // if (array_key_exists('icon', $input)) {
+        //     $path = 'images/games/icon' . $idFolder . '/' . $input['icon']->getClientOriginalName();
+        //     $url = $this->ultity->saveImage($path, file_get_contents($input['icon']));
+        //     $data['icon'] = $url;
+        // }
 
-        if (array_key_exists('background', $input)) {
-            $path = 'images/games/background' . $idFolder . '/' . $input['background']->getClientOriginalName();
-            $url = $this->ultity->saveImage($path, file_get_contents($input['background']));
-            $data['background'] = $url;
-        }
+        // if (array_key_exists('background', $input)) {
+        //     $path = 'images/games/background' . $idFolder . '/' . $input['background']->getClientOriginalName();
+        //     $url = $this->ultity->saveImage($path, file_get_contents($input['background']));
+        //     $data['background'] = $url;
+        // }
 
         if ($request->hasFile('source')) {
             $data['source'] = $request->source;
         }
 
-        $pathGame = $this->ultity->storeGameS3($data);
+        $pathGame = $this->ultity->storeGame($data);
         $data['link'] = $pathGame;
         $this->gameRepository->store($data);
 

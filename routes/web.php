@@ -33,6 +33,7 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
     Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('playGames');
     Route::get('/count-play', [HomeController::class, 'countPlay'])->name('countPlay');
+    Route::get('/store-player', [HomeController::class, 'storePlayer'])->name('storePlayer');
     Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
     Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');

@@ -1,8 +1,44 @@
-var all = document.getElementsByTagName("*");
+(function (window, document) {
+    var $ = function (selector, context) {
+        return (context || document).querySelector(selector)
+    };
 
-for (var i = 0, max = all.length; i < max; i++) {
-    all[i].style.color = invertColor(themeColor);
-}
+    var iframe = $("iframe"),
+        domPrefixes = 'Webkit Moz O ms Khtml'.split(' ');
+
+    var fullscreen = function (elem) {
+        var prefix;
+        for (var i = -1, len = domPrefixes.length; ++i < len;) {
+            prefix = domPrefixes[i].toLowerCase();
+
+            if (elem[prefix + 'EnterFullScreen']) {
+
+                return prefix + 'EnterFullScreen';
+            } else if (elem[prefix + 'RequestFullScreen']) {
+
+                return prefix + 'RequestFullScreen';
+            }
+        }
+
+        return false;
+    };
+    var fullscreenother = fullscreen(document.createElement("iframe"));
+
+    if (!fullscreen) {
+        alert("Fullscreen won't work, please make sure you're using a browser that supports it and you have enabled the feature");
+        return;
+    }
+
+    $("#fullscreeniframe").addEventListener("click", function () {
+        iframe[fullscreenother]();
+    }, false);
+
+    var all = document.getElementsByTagName("*");
+
+    for (var i = 0, max = all.length; i < max; i++) {
+        all[i].style.color = invertColor(themeColor);
+    }
+})(this, this.document);
 
 $('#vote-like').on('click', function () {
     $.ajax({
@@ -44,7 +80,7 @@ function countPlay() {
     $.getJSON("https://api.ipify.org?format=json", function (data) {
         let ip = data.ip;
         $.ajax({
-            url: '/count-play',
+            url: '/store-player',
             type: 'GET',
             data: {
                 ip: ip,
@@ -123,39 +159,3 @@ function reportBug() {
         }
     });
 }
-
-(function (window, document) {
-    var $ = function (selector, context) {
-        return (context || document).querySelector(selector)
-    };
-
-    var iframe = $("iframe"),
-        domPrefixes = 'Webkit Moz O ms Khtml'.split(' ');
-
-    var fullscreen = function (elem) {
-        var prefix;
-        for (var i = -1, len = domPrefixes.length; ++i < len;) {
-            prefix = domPrefixes[i].toLowerCase();
-
-            if (elem[prefix + 'EnterFullScreen']) {
-
-                return prefix + 'EnterFullScreen';
-            } else if (elem[prefix + 'RequestFullScreen']) {
-
-                return prefix + 'RequestFullScreen';
-            }
-        }
-
-        return false;
-    };
-    var fullscreenother = fullscreen(document.createElement("iframe"));
-
-    if (!fullscreen) {
-        alert("Fullscreen won't work, please make sure you're using a browser that supports it and you have enabled the feature");
-        return;
-    }
-
-    $("#fullscreeniframe").addEventListener("click", function () {
-        iframe[fullscreenother]();
-    }, false);
-})(this, this.document);

@@ -32,6 +32,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
             $('nav').removeClass('logged');
         }
     }
+
+    var idLocale = '#locale-' + locale;
+    var idFlagLocale = '#locale-' + locale + ' .image-flag';
+    $(idLocale).prepend("<span class='tick-green-choice'></span>");
+    $(idLocale).addClass("is-disabled");
+    $(idFlagLocale).addClass("image-picked");
 });
 
 function writeCookie(name, value, days) {

@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 final class Ultity
 {
@@ -61,11 +62,12 @@ final class Ultity
         return 'rgb(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ')';
     }
 
-    public function storeGameS3($data)
+    public function storeGame($data)
     {
-        $path = 'games/' . $data['name'];
         foreach ($data['source'] as $value) {
-            $result = Storage::disk('s3')->put($path, $value);
+            $storePath = public_path() . $data['name'];
+            $result = $value->store($storePath);
+            dd($result);
             if ($value->getClientOriginalName() == 'index.html') {
                 $path = Storage::disk('s3')->url($result);
             }

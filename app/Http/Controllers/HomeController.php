@@ -438,28 +438,6 @@ class HomeController extends Controller
         return view('page.games', compact('getGame', 'status'));
     }
 
-    public function countPlay(Request $request)
-    {
-        $ip = $request->get('ip');
-        $gameName = $request->get('gameName');
-
-        $queryIP = $this->ipUserRepository->getIpByUser($ip, $gameName);
-
-        if (empty($queryIP)) {
-            $dataIpUser = [
-                'ip_address' => $ip,
-                'game_name' => $gameName
-            ];
-            $this->ipUserRepository->create($dataIpUser);
-            $getCount = $this->gameRepository->getCountByGame($gameName);
-            $count = (int) ($getCount['count_play']) + 1;
-
-            $this->gameRepository->updateCountPlay($gameName, $count);
-        }
-
-        return 'success';
-    }
-
     public function changeLocate($locale)
     {
         if (in_array($locale, Config::get('app.locales'))) {
@@ -509,5 +487,32 @@ class HomeController extends Controller
         }
 
         return $result;
+    }
+
+    public function storePlayer()
+    {
+        $ip = $request->get('ip');
+        $gameName = $request->get('gameName');
+        $queryIP = $this->ipUserRepository->getIpByUser($ip, $gameName);
+
+        if (empty($queryIP)) {
+            $dataIpUser = [
+                'ip_address' => $ip,
+                'game_name' => $gameName
+            ];
+
+            if (Auth::check) {
+                $dataIpUser['user_id'] = Auth::user()->id;
+            }
+
+            $this->ipUserRepository->create($dataIpUser);
+        }
+
+        return 'success';
+    }
+
+    public function countPlay(Request $request)
+    {
+
     }
 }

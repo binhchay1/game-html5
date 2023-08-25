@@ -251,27 +251,27 @@
                     <div id="locate-dropdown">
                         <ul>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}" id="locale-vi">
                                     <img src="{{ asset('svg/flag/vn.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'en']) }}" id="locale-en">
                                     <img src="{{ asset('svg/flag/gb.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'hr']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'hr']) }}" id="locale-hr">
                                     <img src="{{ asset('svg/flag/hr.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'th']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'th']) }}" id="locale-th">
                                     <img src="{{ asset('svg/flag/th.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'ro']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'ro']) }}" id="locale-ro">
                                     <img src="{{ asset('svg/flag/ro.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
@@ -392,6 +392,9 @@
         <?php } else { ?>
             loginDefined = false;
         <?php } ?>
+
+        const locale = '<?php echo Session::get('locale') ?>';
+    </script>
     </script>
     <script src="{{ asset('js/page/main.js') }}"></script>
     @yield('js')
