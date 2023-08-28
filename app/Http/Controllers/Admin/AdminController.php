@@ -30,4 +30,15 @@ class AdminController extends Controller
 
         return $chartCountPlay;
     }
+
+    public function getChartUserRegister(Request $request)
+    {
+        if (!empty($request->get('type'))) {
+            $type = $request->get('type');
+        }
+
+        $chartCountUser = (object) $this->chart->renderChartCountUser($type);
+
+        return $chartCountUser;
+    }
 }

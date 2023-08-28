@@ -91,6 +91,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::get('/report-info/{id}', [ReportBugController::class, 'showReport'])->name('report.showReport');
 
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
+            Route::get('/get-chart-user', [AdminController::class, 'getChartUserRegister']);
             Route::post('/dropzone-upload', [GameController::class, 'uploadFileDropzone'])->name('dropzone-upload');
         }
     );
