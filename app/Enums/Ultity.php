@@ -6,7 +6,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 
 final class Ultity
 {
@@ -31,7 +30,7 @@ final class Ultity
 
     public function saveImageUser($input)
     {
-        if ($path and $content and $type) {
+        if ($input) {
             $status = Storage::disk('public-user-avatar')->put($input['image']->getClientOriginalName(), $input['image']->get());
 
             return $status;
