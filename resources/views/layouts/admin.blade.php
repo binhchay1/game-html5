@@ -20,6 +20,16 @@
         body a {
             text-decoration: none;
         }
+
+        .alert-fixed {
+            position: fixed !important;
+            top: 57px;
+            left: 85.4%;
+            width: 270px;
+            z-index: 9999;
+            border-radius: 0px;
+            margin: 0;
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -115,12 +125,17 @@
         <div class="content-wrapper">
             <section class="content">
                 <div class="container-fluid">
+                    @if(Session::has('alert'))
+                    <div class="alert {{ strpos(Session::get('alert'), 'Failed') == false ?  print_r('alert-danger') : print_r('alert-success') }} alert-fixed" role="alert" id="alert-admin">
+                        {{ Session::get('alert') }}
+                    </div>
+                    @endif
                     @yield('main_content')
                 </div>
             </section>
         </div>
         <footer class="main-footer">
-            <strong>Copyright &copy; 2023 <a href="https://gamekafe.com">Gamekafe</a>.</strong>
+            <strong>Copyright &copy; 2023 <a href="{{ route('admin') }}">Gamekafe</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0

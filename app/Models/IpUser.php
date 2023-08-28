@@ -14,6 +14,7 @@ class IpUser extends Model
     protected $fillable = [
         'ip_address',
         'game_name',
+        'user_id'
     ];
 
     public $timestamps = true;

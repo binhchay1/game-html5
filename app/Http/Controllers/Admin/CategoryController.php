@@ -38,23 +38,41 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $input = $request->all();
-        $this->categoryRepository->store($input);
+        $result = $this->categoryRepository->store($input);
 
-        return redirect('list-category');
+        if($result) {
+            $alert = 'Successfully edit';
+        } else {
+            $alert = 'Failed to edit';
+        }
+
+        return redirect('list-category')->with('alert', $alert);
     }
 
     public function edit($id)
     {
         $dataCategory = $this->categoryRepository->showCategory($id);
 
-        return view('admin.category.edit-category', ['dataCategory' => $dataCategory]);
+        if($dataCategory) {
+            $alert = 'Successfully edit';
+        } else {
+            $alert = 'Failed to edit';
+        }
+
+        return view('admin.category.edit-category', ['dataCategory' => $dataCategory])->with('alert', $alert);
     }
 
     public function update(StoreCategoryRequest $request, $id)
     {
         $input = $request->except(['_token']);
-        $this->categoryRepository->update($input, $id);
+        $result = $this->categoryRepository->update($input, $id);
 
-        return redirect('list-category');
+        if($result) {
+            $alert = 'Successfully edit';
+        } else {
+            $alert = 'Failed to edit';
+        }
+
+        return redirect('list-category')->with('alert', $alert);
     }
 }

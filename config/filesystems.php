@@ -88,6 +88,14 @@ return [
             'throw' => false,
         ],
 
+        'public-user-avatar' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/users/avatar',
+            'url' => env('APP_URL') . '/images/users/avatar',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*

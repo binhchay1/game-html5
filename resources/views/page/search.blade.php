@@ -80,7 +80,6 @@
                         <img class="thumb playable" alt="{{ $game['name'] }} - {{ ucfirst($game['category']) }} - Gamekafe" src="{{ $game['thumbs'] }}">
                     </div>
                 </div>
-
                 <div class="item__infos">
                     <h4 class="item__title ltr">{{ $game['name'] }}</h4>
                     <div class="item__technology">
@@ -88,6 +87,9 @@
                             {{ ucfirst($game['category']) }}
                         </p>
                     </div>
+                    @if(!empty($game['author']))
+                    <p class="item__title ltr">{{ $game['author'] }}</p>
+                    @endif
                     <p class="item__rating">
                         @if($game['rating'] > 50)
                         <span class="item__success">
@@ -148,7 +150,7 @@
             let value = content;
             let tagInput = document.getElementById('tag-search-input');
             let tagHeader = document.getElementById('tag-search-header');
-            if(content == null || content == '') {
+            if (content == null || content == '') {
                 content = "all-tags";
             }
 
@@ -167,7 +169,7 @@
             let categoryTitle = document.getElementById('category-search-title');
             let categoryHeader = document.getElementById('category-search-header');
             let textContent = content.charAt(0).toUpperCase() + content.slice(1);
-            if(content == null || content == '') {
+            if (content == null || content == '') {
                 content = "all-categories";
             }
 

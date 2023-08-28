@@ -7,8 +7,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -45,12 +43,12 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $input = $request->all();
-        if(isset($input['image'])) {
-            $img = $this->ultity->saveImage($input);
+        $input = $request->except(['_token']);
+        if (isset($input['image'])) {
+            $img = $this->ultity->saveImageUser($input);
             if ($img) {
-                $fileName = 'images/games/user/' . $img;
-                $input['image'] = $fileName;
+                $path = 'images/user/avatar/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
             }
         }
 
@@ -76,11 +74,11 @@ class UserController extends Controller
     public function updateUser(UpdateUserRequest $request, $id)
     {
         $input = $request->except(['_token']);
-        if(isset($input['image'])) {
-            $img = $this->ultity->saveImage($input);
+        if (isset($input['image'])) {
+            $img = $this->ultity->saveImageUser($input);
             if ($img) {
-                $fileName = 'images/games/user/' . $img;
-                $input['image'] = $fileName;
+                $path = 'images/user/avatar/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
             }
         }
 

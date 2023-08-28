@@ -12042,4 +12042,6 @@ textarea.form-control {
     color: rgb(255, 255, 255);
     display: block;
     margin: auto;
+    width: 100%;
+    height: 80%;
 }

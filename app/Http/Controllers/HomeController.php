@@ -90,7 +90,8 @@ class HomeController extends Controller
         $query = $query->shuffle();
         $games = $this->ultity->paginate($query, 30);
         $countGame = count($query);
-        $search = $this->searchRepository->listOrderByCount();
+        $locale = Session::get('locale');
+        $search = $this->searchRepository->listOrderWithLimitByLocale($locale);
         $listTag = [];
 
         foreach ($games as $game) {
@@ -188,12 +189,14 @@ class HomeController extends Controller
         $filter = [];
         if ($request->get('q') != null) {
             $filter['q'] = $request->get('q');
+            $locale = env('ENABLE_LOCALE', 'en');
             if (preg_match("/[^\w]/", $request->get('q')) == 0) {
-                $querySearch = $this->searchRepository->getByColumn($filter['q'], 'keyword');
+                $querySearch = $this->searchRepository->getSearchByKeyWordAndLocale($filter['q'], $locale);
                 if (empty($querySearch)) {
                     $dataSearch = [
                         'keyword' => $filter['q'],
-                        'count' => 0
+                        'count' => 0,
+                        'locale' => $locale,
                     ];
                     $this->searchRepository->create($dataSearch);
                 } else {
@@ -221,7 +224,11 @@ class HomeController extends Controller
             $listName[] = $game['name'];
         }
 
-        $getTags = $this->gameRepository->getTagsByListGame($listName);
+        if(count($listGame) == 0) {
+            $getTags = $this->gameRepository->getRandomTagWithLimit();
+        } else {
+            $getTags = $this->gameRepository->getTagsByListGame($listName);
+        }
         $listTag = [];
 
         foreach ($getTags as $record) {
@@ -238,12 +245,11 @@ class HomeController extends Controller
         $listTag = explode(', ', $translate);
 
         $getGames = $listGame->shuffle();
-        $games = $this->ultity->paginate($getGames, 30);
-        $games = $this->ultity->renameAndCalculateVote($games);
+        $paginate = $this->ultity->paginate($getGames, 30);
+        $games = $this->ultity->renameAndCalculateVote($paginate);
 
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
-
             return view('page.search', compact('listCategory', 'games', 'listTag', 'countGameInCollection'));
         }
 
@@ -513,6 +519,5 @@ class HomeController extends Controller
 
     public function countPlay(Request $request)
     {
-
     }
 }

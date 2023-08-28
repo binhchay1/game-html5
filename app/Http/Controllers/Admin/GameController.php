@@ -12,7 +12,6 @@ use App\Repositories\GameRepository;
 use App\Repositories\VoteByUserRepository;
 use App\Repositories\VoteRepository;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class GameController extends Controller
 {
@@ -128,13 +127,18 @@ class GameController extends Controller
     {
         $status = config('game.status');
         $dataCategory = $this->categoryRepository->listCategory();
-        return view('admin.game.create-game', ['dataCategory' => $dataCategory, 'status' => $status]);
+        if ($dataCategory) {
+            $alert = 'Successfully created';
+        } else {
+            $alert = 'Failed to create';
+        }
+
+        return view('admin.game.create-game', ['dataCategory' => $dataCategory, 'status' => $status])->with('alert', $alert);
     }
 
     public function store(GameRequest $request)
     {
         $input = $request->all();
-        $idFolder = Hash::make('acwbe' . Auth::user()->id);
         $data = [
             'name' => $input['name'],
             'category' => $input['category'],
@@ -145,33 +149,42 @@ class GameController extends Controller
             'text_color' => $input['text_color'],
         ];
 
-        // if (array_key_exists('thumbs', $input)) {
-        //     $path = 'images/games/thumb' . $idFolder . '/' . $input['thumbs']->getClientOriginalName();
-        //     $url = $this->ultity->saveImage($path, file_get_contents($input['thumbs']));
-        //     $data['thumbs'] = $url;
-        // }
+        if (array_key_exists('thumbs', $input)) {
+            $path = $input['thumbs']->getClientOriginalName();
+            $url = $this->ultity->saveImageGame($path, file_get_contents($input['thumbs']), 'thumb');
+            $data['thumbs'] = $url;
+        }
 
-        // if (array_key_exists('icon', $input)) {
-        //     $path = 'images/games/icon' . $idFolder . '/' . $input['icon']->getClientOriginalName();
-        //     $url = $this->ultity->saveImage($path, file_get_contents($input['icon']));
-        //     $data['icon'] = $url;
-        // }
+        if (array_key_exists('icon', $input)) {
+            $path = $input['icon']->getClientOriginalName();
+            $url = $this->ultity->saveImageGame($path, file_get_contents($input['icon']), 'icon');
+            $data['icon'] = $url;
+        }
 
-        // if (array_key_exists('background', $input)) {
-        //     $path = 'images/games/background' . $idFolder . '/' . $input['background']->getClientOriginalName();
-        //     $url = $this->ultity->saveImage($path, file_get_contents($input['background']));
-        //     $data['background'] = $url;
-        // }
+        if (array_key_exists('background', $input)) {
+            $path = $input['background']->getClientOriginalName();
+            $url = $this->ultity->saveImageGame($path, file_get_contents($input['background']), 'background');
+            $data['background'] = $url;
+        }
 
         if ($request->hasFile('source')) {
             $data['source'] = $request->source;
         }
 
-        $pathGame = $this->ultity->storeGame($data);
-        $data['link'] = $pathGame;
-        $this->gameRepository->store($data);
+        $result = $this->ultity->storeGame($data);
+        if ($result['status']) {
+            $data['link'] = $result['index'];
+            $queryResult = $this->gameRepository->store($data);
+            if ($queryResult) {
+                $alert = 'Successfully stored';
+            } else {
+                $alert = 'Failed to store';
+            }
+        } else {
+            $alert = 'Failed to store';
+        }
 
-        return redirect()->route('game.index');
+        return redirect()->route('game.index')->with('alert', $alert);
     }
 
     public function edit($id)
@@ -179,47 +192,56 @@ class GameController extends Controller
         $status = config('game.status');
         $dataGame = $this->gameRepository->showGame($id);
         $dataCategory = $this->categoryRepository->listCategory();
+        if ($dataGame and $dataCategory) {
+            $alert = 'Successfully';
+        } else {
+            $alert = 'Failed to edit';
+        }
 
         return view('admin.game.edit-game', [
             'dataGame' => $dataGame,
             'dataCategory' => $dataCategory,
             'status' => $status
-        ]);
+        ])->with('alert', $alert);
     }
 
     public function update(GameRequest $request, $id)
     {
         $input = $request->except(['_token']);
-        $idFolder = Hash::make('acwbe' . Auth::user()->id);
 
         if (array_key_exists('thumbs', $input)) {
-            $path = 'images/user/' . $idFolder . '/' . $input['thumbs']->getClientOriginalName();
-            $url = $this->ultity->saveImage($path, file_get_contents($input['thumbs']));
+            $path = $input['thumbs']->getClientOriginalName();
+            $url = $this->ultity->saveImageGame($path, file_get_contents($input['thumbs']), 'thumb');
             $input['thumbs'] = $url;
         }
 
         if (array_key_exists('icon', $input)) {
-            $path = 'images/user/' . $idFolder . '/' . $input['icon']->getClientOriginalName();
-            $url = $this->ultity->saveImage($path, file_get_contents($input['icon']));
+            $path = $input['icon']->getClientOriginalName();
+            $url = $this->ultity->saveImageGame($path, file_get_contents($input['icon']), 'icon');
             $input['icon'] = $url;
         }
 
         if (array_key_exists('background', $input)) {
-            $path = 'images/user/' . $idFolder . '/' . $input['background']->getClientOriginalName();
-            $url = $this->ultity->saveImage($path, file_get_contents($input['background']));
+            $path = $input['background']->getClientOriginalName();
+            $url = $this->ultity->saveImageGame($path, file_get_contents($input['background']), 'background');
             $input['background'] = $url;
         }
 
-        $this->gameRepository->update($input, $id);
+        $result = $this->gameRepository->update($input, $id);
+        if ($result) {
+            $alert = 'Successfully updated';
+        } else {
+            $alert = 'Failed to update';
+        }
 
-        return redirect()->route('game.index');
+        return redirect()->route('game.index')->with('alert', $alert);
     }
 
     public function delete(Request $request)
     {
         $this->gameRepository->deleteById($request->get('id-game'));
 
-        return redirect()->route('game.index')->with('success', 'Delete successfully!');
+        return redirect()->route('game.index')->with('alert', 'Delete successfully!');
     }
 
     public function saveCollection(Request $request)

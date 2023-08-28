@@ -280,21 +280,6 @@
                 </div>
             </div>
         </div>
-
-        <div id="flash-messages-box" class="flash-messages-box">
-            <div class="flash-notice">
-                <div class="container">
-                    <div id="flash-notice" class="flash"></div>
-                    <div class="close">&#215;</div>
-                </div>
-            </div>
-            <div class="flash-alert">
-                <div class="container">
-                    <div id="flash-alert" class="flash flash-alert"></div>
-                    <div class="close">&#215;</div>
-                </div>
-            </div>
-        </div>
     </nav>
     <div class="container">
         @yield('content')

@@ -14,6 +14,7 @@ class Search extends Model
     protected $fillable = [
         'keyword',
         'count',
+        'locale',
     ];
 
     public $timestamps = true;

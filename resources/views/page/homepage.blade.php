@@ -71,6 +71,9 @@
         <div class="row single-line">
             <div class="search-trends-container col-md-12">
                 <p class='h5'>{{ __('Tìm kiếm hàng đầu') }}</p>
+                <div class="open-modal-btn">
+                    <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag image-flag-top-search">
+                </div>
                 <div class="search-trends">
                     <ul>
                         @foreach($search as $keyword)
@@ -121,6 +124,9 @@
                         <div class="item__technology">
                             <p class="{{ $game['category'] }}">{{ ucfirst($game['category']) }}</p>
                         </div>
+                        @if(!empty($game['author']))
+                        <p class="item__title ltr">{{ $game['author'] }}</p>
+                        @endif
                         <p class="item__rating">
                             @if($game['rating'] > 50)
                             <span class="item__success">

@@ -3365,6 +3365,7 @@ html[dir="rtl"] .top-categories-mobile ul li a::after {
 .js-search-trends .search-trends-box .open-modal-btn:hover {
     background-color: #efefef;
     text-decoration: none;
+    cursor: auto;
 }
 
 .js-search-trends .search-trends-box .open-modal-btn:hover .shevron::after {
@@ -21817,4 +21818,9 @@ only screen and (min-resolution: 144dpi) {
     cursor: not-allowed;
     opacity: 0.5;
     text-decoration: none;
+}
+
+.image-flag-top-search {
+    width: 25px;
+    margin-left: 5px;
 }

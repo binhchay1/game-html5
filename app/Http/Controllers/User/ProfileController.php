@@ -96,11 +96,11 @@ class ProfileController extends Controller
     public function update(UserRequest $request)
     {
         $input = $request->except(['_token']);
-        if(isset($input['image'])) {
-            $img = $this->ultity->saveImage($input);
+        if (isset($input['image'])) {
+            $img = $this->ultity->saveImageUser($input);
             if ($img) {
-                $fileName = 'images/games/user/' . $img;
-                $input['image'] = $fileName;
+                $path = 'images/user/avatar/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
             }
         }
 

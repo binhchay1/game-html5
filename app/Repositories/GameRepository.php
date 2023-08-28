@@ -165,4 +165,9 @@ class GameRepository extends BaseRepository
     {
         return $this->model->whereIn('name', $listName)->get();
     }
+
+    public function getRandomTagWithLimit()
+    {
+        return $this->model->select('tag')->limit(10)->get();
+    }
 }
