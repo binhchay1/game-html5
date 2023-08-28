@@ -43,7 +43,7 @@ class CreateNewUser implements CreatesNewUsers
             'status' => 1,
             'user_id' => $user->id
         ];
-        $this->subscribleRepository->create($input);
+        $this->subscribleRepository->create($dataSub);
 
         return $user;
     }

@@ -38,6 +38,9 @@
     for (var i = 0, max = all.length; i < max; i++) {
         all[i].style.color = invertColor(themeColor);
     }
+
+    document.getElementById("game-iframe").width = iframe.contentWindow.outerWidth;
+    document.getElementById("game-iframe").height = iframe.contentWindow.outerHeight;
 })(this, this.document);
 
 $('#vote-like').on('click', function () {

@@ -62,7 +62,8 @@ class ProfileController extends Controller
         $query = $query->shuffle();
         $games = $this->ultity->paginate($query, 30);
         $countGame = count($query);
-        $search = $this->searchRepository->listOrderByCount();
+        $locale = env('ENABLE_LOCALE', 'en');
+        $search = $this->searchRepository->listOrderWithLimitByLocale($locale);
         $listTag = [];
 
         foreach ($games as $game) {

@@ -224,11 +224,7 @@ class HomeController extends Controller
             $listName[] = $game['name'];
         }
 
-        if(count($listGame) == 0) {
-            $getTags = $this->gameRepository->getRandomTagWithLimit();
-        } else {
-            $getTags = $this->gameRepository->getTagsByListGame($listName);
-        }
+        $getTags = $this->gameRepository->getTagsByListGame($listName);
         $listTag = [];
 
         foreach ($getTags as $record) {
@@ -240,9 +236,23 @@ class HomeController extends Controller
             }
         }
 
+        if (empty($listTag)) {
+            $getTags = Cache::get('listTag');
+
+            foreach ($getTags as $record) {
+                $arrTags = json_decode($record->tag);
+                foreach ($arrTags as $tag) {
+                    if (!in_array($tag, $listTag)) {
+                        $listTag[] = $tag;
+                    }
+                }
+            }
+        }
+
         $stringTrans = implode(', ', $listTag);
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTag = explode(', ', $translate);
+
 
         $getGames = $listGame->shuffle();
         $paginate = $this->ultity->paginate($getGames, 30);
