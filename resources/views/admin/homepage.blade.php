@@ -12,10 +12,12 @@
                 <h1 class="m-0 text-dark">Dashboard</h1>
             </div>
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
+                <div>
+                    Please select your preferred Chart:<br/>
+                    <input type="radio" name="chart" id="chart1" value="Chart1" checked>Month<br>
+                    <input type="radio" name="chart" id="chart2" value="Chart2">Quarter<br>
+                    <input type="radio" name="chart" id="chart3" value="Chart3">Year<br>
+                </div>
             </div>
         </div>
     </div>
@@ -26,6 +28,9 @@
         <div class="row">
             <div class="col-6">
                 <canvas id="chart-count-play"></canvas>
+            </div>
+            <div class="col-6">
+                <canvas id="chart-count"></canvas>
             </div>
         </div>
     </div>

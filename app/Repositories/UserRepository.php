@@ -82,4 +82,34 @@ class UserRepository extends BaseRepository
             ->orderBy('year')
             ->get();
     }
+
+    public function getChartUser($type = 'month')
+    {
+        $query = $this->model;
+
+        if ($type == 'month') {
+            $query = $query->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+                ->whereYear('created_at',date('Y'))
+                ->groupBy('month')
+                ->orderBy('month')
+                ->get();
+        }
+        if($type == 'quarter') {
+            $query = $query->selectRaw('QUARTER(created_at) as quarter, COUNT(*) as count' )
+                ->whereYear('created_at',date('Y'))
+                ->groupBy('quarter')
+                ->orderBy('quarter')
+                ->get();
+        }
+
+        if($type == 'year') {
+            $query = $query->selectRaw('Year(created_at) as year, COUNT(*) as count')
+                ->whereYear('created_at',date('Y'))
+                ->groupBy('year')
+                ->orderBy('year')
+                ->get();
+        }
+
+        return $query;
+    }
 }
