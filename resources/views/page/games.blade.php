@@ -5,8 +5,8 @@
     <meta content="#000000" name="theme-color">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="image/png" href="{{ $getGame['icon'] }}" rel="icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/plugins/fontawesome/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/page/game.css') }}">
     <link rel="stylesheet" href="{{ asset('css/page/ionicons.min.css') }}">
     <title>{{ $getGame['title-game'] }}</title>

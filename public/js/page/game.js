@@ -39,9 +39,11 @@
         all[i].style.color = invertColor(themeColor);
     }
 
-    document.getElementById("game-iframe").width = iframe.contentWindow.outerWidth;
-    document.getElementById("game-iframe").height = iframe.contentWindow.outerHeight;
 })(this, this.document);
+
+var scriptTag = "<script>alert(1)<\/script>";
+$("iframe").contents().find("body").append(scriptTag);
+
 
 $('#vote-like').on('click', function () {
     $.ajax({
