@@ -124,6 +124,15 @@
                     @endforeach
                 </select>
             </div>
+            <div class="col-sm-6">
+                <label for="status">{{ __('Quốc gia') }}</label>
+                <select class="form-select" aria-label="Default select example" name="country">
+                    @foreach($country as $country => $value)
+                        <option id="status" value="{{ $value }}">{{ $country }}</option>
+                    @endforeach
+                </select>
+
+            </div>
         </div>
         <div class="row mb-0">
             <div class="col-md-8 offset-md-4" style="padding: 0;margin-top: 15px;margin-left: 15px;">
