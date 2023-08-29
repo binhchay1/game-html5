@@ -27,54 +27,6 @@
     <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/plugins/fontawesome/all.min.css') }}" type='text/css'>
 
-    <style>
-        #locate-dropdown ul {
-            margin-top: 20px;
-            width: 250px;
-            margin-left: -100px;
-            display: flex;
-            background: white;
-            justify-content: space-between;
-            padding: 0 10px;
-            border-radius: 10px;
-        }
-
-        #locate-dropdown ul li {
-            float: left;
-            height: 50px;
-            width: 30px;
-            margin-top: 7px;
-        }
-
-        #locate-dropdown li:nth-child(even) {
-            margin-right: 0;
-        }
-
-        @media screen and (max-width: 800px) {
-            #locate-dropdown ul {
-                margin: 0;
-                margin-left: 15px;
-                padding: 0;
-            }
-
-            .image-flag {
-                width: 30px;
-                height: auto;
-            }
-
-            #locate-dropdown {
-                background: none !important;
-            }
-
-            #locale-selector-dropdown {
-                background: none;
-            }
-
-            #button-flag {
-                margin-top: 5px;
-            }
-        }
-    </style>
     @yield('css')
 </head>
 
@@ -178,7 +130,7 @@
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf
-                                                <a onclick="this.closest('form').submit();return false;" class="account-menu-link logout" style="margin:0;">{{ __('Đăng xuất') }}</a>
+                                                <a onclick="this.closest('form').submit();return false;" class="account-menu-link logout">{{ __('Đăng xuất') }}</a>
                                             </form>
                                         </li>
                                     </ul>
@@ -379,7 +331,6 @@
         <?php } ?>
 
         const locale = '<?php echo Session::get('locale') ?>';
-    </script>
     </script>
     <script src="{{ asset('js/page/main.js') }}"></script>
     <script src="{{ asset('js/admin/user.js') }}"></script>

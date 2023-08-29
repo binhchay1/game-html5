@@ -6,6 +6,7 @@ use App\Enums\IconGame;
 use App\Enums\Ultity;
 use Illuminate\Http\Request;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CommentRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
 use App\Repositories\SearchRepository;
@@ -30,6 +31,7 @@ class HomeController extends Controller
     private $gameCollectionRepository;
     private $guard;
     private $reportBugRepository;
+    private $commentRepository;
 
     public function __construct(
         GameRepository $gameRepository,
@@ -40,7 +42,8 @@ class HomeController extends Controller
         IpUserRepository $ipUserRepository,
         GameCollectionRepository $gameCollectionRepository,
         StatefulGuard $guard,
-        ReportBugRepository $reportBugRepository
+        ReportBugRepository $reportBugRepository,
+        CommentRepository $commentRepository
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
@@ -51,6 +54,7 @@ class HomeController extends Controller
         $this->gameCollectionRepository = $gameCollectionRepository;
         $this->guard = $guard;
         $this->reportBugRepository = $reportBugRepository;
+        $this->commentRepository = $commentRepository;
     }
 
     public function viewCookiePolicy()
@@ -434,7 +438,9 @@ class HomeController extends Controller
 
     public function viewGame($game)
     {
+        $locale = Session::get('locale');
         $getGame = $this->gameRepository->getGameByName($game);
+        $comments = $this->commentRepository->getCommentByGameAndLocale($game, $locale);
 
         if (empty($getGame)) {
             abort(404);
@@ -452,7 +458,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.games', compact('getGame', 'status'));
+        return view('page.games', compact('getGame', 'status', 'comments'));
     }
 
     public function changeLocate($locale)

@@ -1,26 +1,26 @@
-const ctx = document.getElementById('chart-count-play');
-const getchart = document.getElementById('chart-count');
+const chartCountPlay = document.getElementById('chart-count-play');
+const chartCountRegister = document.getElementById('chart-count-register');
 
 $(document).ready(function () {
     setChartCountPlay('month');
-
+    setChartCountRegister('month');
 });
 
-$(document).on('click', '#chart1', function() {
+$(document).on('click', '#chart1', function () {
     if ($(this).val() === 'Chart1') {
-        setChartCountMonth('month');
+        setChartCountRegister('month');
     }
 });
 
-$(document).on('click', '#chart2', function() {
+$(document).on('click', '#chart2', function () {
     if ($(this).val() === 'Chart2') {
-        setChartCountMonth('quarter');
+        setChartCountRegister('quarter');
     }
 });
 
-$(document).on('click', '#chart3', function() {
+$(document).on('click', '#chart3', function () {
     if ($(this).val() === 'Chart3') {
-        setChartCountMonth('year');
+        setChartCountRegister('year');
     }
 });
 
@@ -32,7 +32,7 @@ function setChartCountPlay(type) {
             'type': type
         }
     }).done(function (result) {
-        new Chart(ctx, {
+        new Chart(chartCountPlay, {
             type: 'doughnut',
             data: result,
             options: {
@@ -44,13 +44,12 @@ function setChartCountPlay(type) {
             }
         });
 
-        ctx.style.width = '500px';
-        ctx.style.height = '500px';
+        chartCountPlay.style.width = '500px';
+        chartCountPlay.style.height = '500px';
     });
 }
 
-function setChartCountMonth(type) {
-
+function setChartCountRegister(type) {
     $.ajax({
         url: '/get-chart-user',
         type: 'GET',
@@ -59,7 +58,7 @@ function setChartCountMonth(type) {
         }
 
     }).done(function (result) {
-        new Chart(getchart, {
+        new Chart(chartCountRegister, {
             type: 'bar',
             data: result,
             options: {
@@ -70,57 +69,8 @@ function setChartCountMonth(type) {
                 }
             }
         });
-        getchart.style.height = '500px';
+        chartCountRegister.style.height = '500px';
     });
 }
-
-// function setChartCountYear(type) {
-//     $.ajax({
-//         url: '/get-chart-user',
-//         type: 'GET',
-//         data: {
-//             'type': type
-//         }
-//
-//     }).done(function (result) {
-//         new Chart(getchart, {
-//             type: 'bar',
-//             data: result,
-//             options: {
-//                 scales: {
-//                     y: {
-//                         beginAtZero: true
-//                     }
-//                 }
-//             }
-//         });
-//         getchart.style.height = '500px';
-//
-//     });
-// }
-//
-// function setChartCountQuarter(type) {
-//     $.ajax({
-//         url: '/get-chart-user',
-//         type: 'GET',
-//         data: {
-//             'type': type
-//         }
-//
-//     }).done(function (result) {
-//         new Chart(getchart, {
-//             type: 'bar',
-//             data: result,
-//             options: {
-//                 scales: {
-//                     y: {
-//                         beginAtZero: true
-//                     }
-//                 }
-//             }
-//         });
-//         getchart.style.height = '500px';
-//     });
-// }
 
 

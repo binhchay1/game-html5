@@ -30,7 +30,7 @@
                 <canvas id="chart-count-play"></canvas>
             </div>
             <div class="col-6">
-                <canvas id="chart-count"></canvas>
+                <canvas id="chart-count-register"></canvas>
             </div>
         </div>
     </div>
