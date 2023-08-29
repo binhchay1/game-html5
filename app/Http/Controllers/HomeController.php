@@ -271,6 +271,7 @@ class HomeController extends Controller
         $query = $this->gameRepository->listGameByTag($tag);
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
         $listTag = [];
+        $getTags = Cache::get('listTag');
 
         foreach ($getTags as $record) {
             $arrTags = json_decode($record->tag);
@@ -505,7 +506,7 @@ class HomeController extends Controller
         return $result;
     }
 
-    public function storePlayer()
+    public function storePlayer(Request $request)
     {
         $ip = $request->get('ip');
         $gameName = $request->get('gameName');
