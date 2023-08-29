@@ -475,7 +475,7 @@ class HomeController extends Controller
         $request->session()->regenerateToken();
         Cookie::queue(Cookie::forget(strtolower(str_replace(' ', '_', config('app.name'))) . '_session'));
 
-        return redirect('/');
+        return redirect()->route('home');
     }
 
     public function reportBug(Request $request)
