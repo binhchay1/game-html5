@@ -168,7 +168,7 @@ class GameController extends Controller
         }
 
         if ($request->hasFile('source')) {
-            $data['source'] = $request->source;
+            $data['source'] = $input['source'];
         }
 
         $result = $this->ultity->storeGame($data);

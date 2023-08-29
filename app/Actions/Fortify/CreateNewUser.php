@@ -45,6 +45,6 @@ class CreateNewUser implements CreatesNewUsers
         ];
         $this->subscribleRepository->create($dataSub);
 
-        return $user;
+        return User::where('id', $user->id)->first();
     }
 }

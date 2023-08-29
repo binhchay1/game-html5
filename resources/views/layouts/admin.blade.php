@@ -40,7 +40,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            @vite(['resources/sass/app.scss', 'resources/js/app.js'])
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="font-weight: 700;color: #292424">
@@ -62,7 +61,7 @@
 
         @php $route = Route::currentRouteName(); @endphp
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="" class="brand-link">
+            <a href="{{ route('admin') }}" class="brand-link">
                 <img src="{{ asset('/images/color-logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Gamekafe') }} Logo" class="brand-image img-circle elevation-3">
                 <span class="brand-text font-weight-light">{{ env('APP_NAME', 'Gamekafe') }}</span>
             </a>

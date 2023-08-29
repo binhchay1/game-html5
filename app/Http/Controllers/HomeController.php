@@ -257,7 +257,6 @@ class HomeController extends Controller
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTag = explode(', ', $translate);
 
-
         $getGames = $listGame->shuffle();
         $paginate = $this->ultity->paginate($getGames, 30);
         $games = $this->ultity->renameAndCalculateVote($paginate);
@@ -321,21 +320,20 @@ class HomeController extends Controller
         foreach ($getTags as $record) {
             $arrTags = json_decode($record['tag']);
             foreach ($arrTags as $tag) {
-                if (!in_array($tag, $listTag) and !in_array($tag, $listIgnore)) {
-                    $countGame = $this->gameRepository->countGameByTag($tag);
-                    if ($countGame <= 5) {
-                        $listIgnore[] = $tag;
-                        continue;
+                if (!in_array($tag, $listIgnore)) {
+                    if (array_key_exists($tag, $listTag)) {
+                        $listTag[$tag]['count'] += 1;
+                    } else {
+                        $listTag[$tag] = [
+                            'count' => 1,
+                            'numberIcon' => array_key_exists($tag, $this->iconGame::LIST_ICON) ? $this->iconGame::LIST_ICON[$tag] : 1200
+                        ];
                     }
-                    $listTag[$tag] = [
-                        'count' => $countGame,
-                        'numberIcon' => array_key_exists($tag, $this->iconGame::LIST_ICON) ? $this->iconGame::LIST_ICON[$tag] : 1200
-                    ];
                 }
             }
         }
 
-        $perPage = 198;
+        $perPage = 100;
         $path = '/tags';
         $pageName = 'page';
         $listResult = $this->ultity->paginate($listTag, $perPage, $path, $pageName, $page);
@@ -534,10 +532,6 @@ class HomeController extends Controller
         return 'success';
     }
 
-    public function countPlay(Request $request)
-    {
-    }
-
     public function storeComments(Request $request)
     {
         $content = $request->get('content');
@@ -568,5 +562,9 @@ class HomeController extends Controller
         $result['content'] = __('Cám ơn các bạn đã bình luận. Chúng tôi sẽ thông báo sớm đến bạn qua hòm thư sau khi được kiểm duyệt!');
 
         return $result;
+    }
+
+    public function countPlay(Request $request)
+    {
     }
 }

@@ -119,7 +119,7 @@ abstract class BaseRepository
      *
      * @return int
      */
-    public function count() : int
+    public function count(): int
     {
         return $this->get()->count();
     }
@@ -180,7 +180,7 @@ abstract class BaseRepository
      * @return bool|null
      * @throws \Exception
      */
-    public function deleteById($id) : bool
+    public function deleteById($id): bool
     {
         $this->unsetClauses();
 
@@ -194,7 +194,7 @@ abstract class BaseRepository
      *
      * @return int
      */
-    public function deleteMultipleById(array $ids) : int
+    public function deleteMultipleById(array $ids): int
     {
         return $this->model->destroy($ids);
     }
@@ -272,7 +272,7 @@ abstract class BaseRepository
      * @param int    $limit
      * @param array  $columns
      * @param string $pageName
-     * @param null   $page
+     * @param        $page
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
@@ -452,7 +452,7 @@ abstract class BaseRepository
             $this->query->orderBy($orders['column'], $orders['direction']);
         }
 
-        if (isset($this->take) and ! is_null($this->take)) {
+        if (isset($this->take) and !is_null($this->take)) {
             $this->query->take($this->take);
         }
 

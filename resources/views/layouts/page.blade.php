@@ -114,7 +114,7 @@
                                         <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.edit') }}">{{ __('Hồ sơ') }}</a>
                                     </li>
                                     <li>
-                                        <a class="account-menu-link" id="account-menu-link-games" href="{{ route('user.setting') }}">
+                                        <a class="account-menu-link" id="account-menu-link-games" href="{{ route('user.favorite') }}">
                                             {{ __('Yêu thích') }}
                                             (<span class="js-favorites-count">{{ $countGameInCollection }}</span>)
                                         </a>
