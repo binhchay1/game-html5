@@ -55,6 +55,7 @@ class ProfileController extends Controller
     public function edit()
     {
         $gender = config('user.sex');
+        $country = config('user.country');
         $dataUser = $this->userRepository->showUser(Auth::user()->id);
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
         $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
@@ -91,7 +92,7 @@ class ProfileController extends Controller
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTag = explode(', ', $translate);
 
-        return view('page.user.profile', compact('dataUser', 'gender', 'listCategory', 'countGameInCollection', 'listTag'));
+        return view('page.user.profile', compact('dataUser', 'gender', 'listCategory', 'countGameInCollection', 'listTag', 'country'));
     }
 
     public function update(UserRequest $request)
