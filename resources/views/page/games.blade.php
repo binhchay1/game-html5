@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <iframe src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
+    <iframe src="" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
     </iframe>
     <div class="set-button">
         <button id="fullscreeniframe" title="view in full screen" class="button btn btn-warning rounded-0"><i class="fas fa-expand"></i></button>
@@ -58,6 +58,50 @@
             🛠 Report bug in game
         </p>
     </div>
+
+    <div class="comment-area">
+        <h2>Comments</h2>
+        @if(Auth::check())
+        <div class="form-comment">
+            <form action="{{ route('store.comments') }}" method="POST">
+                <input class="comment-input" type="text" placeholder="{{ __('Viết bình luận của bạn') }}">
+            </form>
+        </div>
+        @else
+        <div class="form-comment">
+            <p>{{ __('Vui lòng đăng nhập để có thể để lại bình luận của bạn.') }}</p>
+            <a class="btn" href="{{ route('login') }}" id="button-login">{{ __('Đăng nhập') }}</a>
+        </div>
+        @endif
+        <div class="post-area">
+            @foreach($comments as $comment)
+            <div class="post-item">
+                <div class="post-header">
+                    <span class="post-avatar">
+                        <a href="">
+                            <img width="25" height="25" src="{{ $comment->users->image ?? asset('/images/default-avatar.png') }}">
+                        </a>
+                    </span>
+                    <span class="post-author">
+                        <a class="author-name" href="">{{ $comment->users->name }}</a>
+                    </span>
+                    <span class="post-date" title="{{ $comment->created_at }}">
+                        3 hours ago
+                    </span>
+                </div>
+                <div class="post-content">
+                    <div class="post_body user_formatted">
+                        {{ $comment['content'] }}
+                    </div>
+                    <div class="post_footer">
+                        <a href="https://itch.io/post/8496625/reply" class="post_action reply_btn">Reply</a>
+                        <a href="#" class="post_action report_btn">Report</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
     @endif
 
     @include('includes.modal_report_bug')
@@ -72,7 +116,9 @@
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('js/plugins/bootstrap/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('js/plugins/popper/popper.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('js/page/game.js') }}"></script>
+
 </body>
 
 </html>

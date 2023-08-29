@@ -1,14 +1,14 @@
 (function (window, document) {
-    var $ = function (selector, context) {
+    let $ = function (selector, context) {
         return (context || document).querySelector(selector)
     };
 
-    var iframe = $("iframe"),
+    let iframe = $("iframe"),
         domPrefixes = 'Webkit Moz O ms Khtml'.split(' ');
 
-    var fullscreen = function (elem) {
-        var prefix;
-        for (var i = -1, len = domPrefixes.length; ++i < len;) {
+    let fullscreen = function (elem) {
+        let prefix;
+        for (let i = -1, len = domPrefixes.length; ++i < len;) {
             prefix = domPrefixes[i].toLowerCase();
 
             if (elem[prefix + 'EnterFullScreen']) {
@@ -22,7 +22,7 @@
 
         return false;
     };
-    var fullscreenother = fullscreen(document.createElement("iframe"));
+    let fullscreenother = fullscreen(document.createElement("iframe"));
 
     if (!fullscreen) {
         alert("Fullscreen won't work, please make sure you're using a browser that supports it and you have enabled the feature");
@@ -33,16 +33,36 @@
         iframe[fullscreenother]();
     }, false);
 
-    var all = document.getElementsByTagName("*");
+    let listChangeColor = ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'i', 'a'];
+    for (let i = 0; i < listChangeColor.length; i++) {
+        let all = document.getElementsByTagName(listChangeColor[i]);
 
-    for (var i = 0, max = all.length; i < max; i++) {
-        all[i].style.color = invertColor(themeColor);
+        for (let i = 0, max = all.length; i < max; i++) {
+            all[i].style.color = invertColor(themeColor);
+        }
     }
 
 })(this, this.document);
 
-var scriptTag = "<script>alert(1)<\/script>";
-$("iframe").contents().find("body").append(scriptTag);
+
+
+
+$(document).ready(function () {
+    // let scriptTag = "<script>alert(1)<\/script>";
+    // $("iframe").contents().find("body").append(scriptTag);
+
+    let cssBorderButtonLogin = '{border: 1px solid ' + invertColor(themeColor) + ' !important}';
+    $('#button-login').css(cssBorderButtonLogin);
+
+    $('.post-area').each(function (i) {
+        console.log($(this)[i]);
+
+    });
+
+    moment("20111031", "YYYYMMDD").fromNow();
+});
+
+
 
 
 $('#vote-like').on('click', function () {
@@ -74,8 +94,8 @@ $('#vote-unlike').on('click', function () {
 });
 
 $('#report-bug-modal').on('shown.bs.modal', function (e) {
-    var name = $(e.relatedTarget).data('name');
-    var email = $(e.relatedTarget).data('email');
+    let name = $(e.relatedTarget).data('name');
+    let email = $(e.relatedTarget).data('email');
 
     $(".modal-body #report-bug-name").val(name);
     $(".modal-body #report-bug-email").val(email);
@@ -108,7 +128,7 @@ function invertColor(hex) {
         throw new Error('Invalid HEX color.');
     }
 
-    var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
+    let r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
         g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
         b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
 
@@ -117,7 +137,7 @@ function invertColor(hex) {
 
 function padZero(str, len) {
     len = len || 2;
-    var zeros = new Array(len).join('0');
+    let zeros = new Array(len).join('0');
     return (zeros + str).slice(-len);
 }
 
@@ -138,9 +158,9 @@ function saveCollection() {
 }
 
 function reportBug() {
-    var name = $('#report-bug-name').val();
-    var email = $('#report-bug-email').val();
-    var note = $('#report-bug-note').val();
+    let name = $('#report-bug-name').val();
+    let email = $('#report-bug-email').val();
+    let note = $('#report-bug-note').val();
 
     $.ajax({
         url: '/report-bug',
