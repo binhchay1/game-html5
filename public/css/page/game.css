@@ -84,9 +84,29 @@
 
 .post-header {
     display: flex;
-    justify-content: center;
 }
 
 .post-header a {
     text-decoration: none;
+}
+
+.author-name {
+    font-weight: bold;
+}
+
+.post-content p {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.post-author {
+    margin-left: 5px;
+}
+
+.post-date {
+    margin-left: 5px;
+}
+
+.post-area {
+    margin-left: 5px;
 }

@@ -524,7 +524,7 @@ class HomeController extends Controller
                 'game_name' => $gameName
             ];
 
-            if (Auth::check) {
+            if (Auth::check()) {
                 $dataIpUser['user_id'] = Auth::user()->id;
             }
 
@@ -536,5 +536,37 @@ class HomeController extends Controller
 
     public function countPlay(Request $request)
     {
+    }
+
+    public function storeComments(Request $request)
+    {
+        $content = $request->get('content');
+        $locale = Session::get('locale');
+        $gameName = $request->get('gameName');
+        $result = [
+            'status' => false
+        ];
+
+        if (empty($content) or $content != strip_tags($content)) {
+            return $result;
+        }
+
+        $data = [
+            'user_id' => Auth::user()->id,
+            'game_name' => $gameName,
+            'locale' => $locale,
+            'content' => $content
+        ];
+
+        $query = $this->commentRepository->create($data);
+
+        if (!$query) {
+            return $result;
+        }
+
+        $result['status'] = true;
+        $result['content'] = __('Cám ơn các bạn đã bình luận. Chúng tôi sẽ thông báo sớm đến bạn qua hòm thư sau khi được kiểm duyệt!');
+
+        return $result;
     }
 }

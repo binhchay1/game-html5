@@ -33,6 +33,12 @@
         iframe[fullscreenother]();
     }, false);
 
+})(this, this.document);
+
+$(document).ready(function () {
+    // let scriptTag = "<script>alert(1)<\/script>";
+    // $("iframe").contents().find("body").append(scriptTag);
+
     let listChangeColor = ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'i', 'a'];
     for (let i = 0; i < listChangeColor.length; i++) {
         let all = document.getElementsByTagName(listChangeColor[i]);
@@ -42,28 +48,41 @@
         }
     }
 
-})(this, this.document);
-
-
-
-
-$(document).ready(function () {
-    // let scriptTag = "<script>alert(1)<\/script>";
-    // $("iframe").contents().find("body").append(scriptTag);
-
     let cssBorderButtonLogin = '{border: 1px solid ' + invertColor(themeColor) + ' !important}';
     $('#button-login').css(cssBorderButtonLogin);
 
-    $('.post-area').each(function (i) {
-        console.log($(this)[i]);
+    let listPost = document.getElementById("post-area").getElementsByClassName("post-date");
+    for (let i = 0; i < listPost.length; i++) {
+        let time = listPost[i].getElementsByTagName('p')[0].getAttribute('title');
+        let calTime = moment(time, "YYYY-MM-DD H-i-s").fromNow();
+        listPost[i].getElementsByTagName('p')[0].innerHTML = calTime;
+    }
 
-    });
-
-    moment("20111031", "YYYYMMDD").fromNow();
 });
 
-
-
+$('#btn-submit-comment').on("click", function (e) {
+    e.preventDefault();
+    let content = $('.comment-input').val();
+    if (content.length == 0 || content.length > 255) {
+        return false;
+    } else {
+        $.ajax({
+            url: '/store-comments',
+            type: 'get',
+            data: {
+                content: content,
+                gameName: gameName
+            }
+        }).done(function (result) {
+            if (result.status == true) {
+                console.log(result.status);
+                let contentAppend = "<p style='color: " + invertColor(themeColor) + "'>" + result.content + "</p>";
+                $('.form-comment').empty();
+                $('.form-comment').append(contentAppend);
+            }
+        });
+    }
+});
 
 $('#vote-like').on('click', function () {
     $.ajax({

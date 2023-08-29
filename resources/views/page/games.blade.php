@@ -63,8 +63,9 @@
         <h2>Comments</h2>
         @if(Auth::check())
         <div class="form-comment">
-            <form action="{{ route('store.comments') }}" method="POST">
-                <input class="comment-input" type="text" placeholder="{{ __('Viết bình luận của bạn') }}">
+            <form class="d-flex">
+                <input class="comment-input" maxlength="255" type="text" placeholder="{{ __('Viết bình luận của bạn') }}">
+                <button type="button" class="ml-2" id="btn-submit-comment">{{ __('Đăng') }}</button>
             </form>
         </div>
         @else
@@ -73,34 +74,31 @@
             <a class="btn" href="{{ route('login') }}" id="button-login">{{ __('Đăng nhập') }}</a>
         </div>
         @endif
-        <div class="post-area">
-            @foreach($comments as $comment)
-            <div class="post-item">
-                <div class="post-header">
-                    <span class="post-avatar">
-                        <a href="">
-                            <img width="25" height="25" src="{{ $comment->users->image ?? asset('/images/default-avatar.png') }}">
-                        </a>
-                    </span>
-                    <span class="post-author">
-                        <a class="author-name" href="">{{ $comment->users->name }}</a>
-                    </span>
-                    <span class="post-date" title="{{ $comment->created_at }}">
-                        3 hours ago
-                    </span>
-                </div>
-                <div class="post-content">
-                    <div class="post_body user_formatted">
-                        {{ $comment['content'] }}
+        <div class="container-fluid">
+            <div class="post-area row" id="post-area">
+                @foreach($comments as $comment)
+                <div class="post-item mt-4 col-lg-2 col-sm-3">
+                    <div class="post-header">
+                        <span class="post-avatar">
+                            <a href="">
+                                <img width="25" height="25" src="{{ $comment->users->image ?? asset('/images/default-avatar.png') }}">
+                            </a>
+                        </span>
+                        <span class="post-author">
+                            <a class="author-name" href="">{{ $comment->users->name }}</a>
+                        </span>
+                        <span class="post-date">
+                            <p title="{{ $comment->created_at }}">3 hours ago</p>
+                        </span>
                     </div>
-                    <div class="post_footer">
-                        <a href="https://itch.io/post/8496625/reply" class="post_action reply_btn">Reply</a>
-                        <a href="#" class="post_action report_btn">Report</a>
+                    <div class="post-content">
+                        <p>{{ $comment['content'] }}</p>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
+
     </div>
     @endif
 
