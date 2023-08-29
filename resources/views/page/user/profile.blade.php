@@ -80,7 +80,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="inputAddress" class="form-label">{{ __('Số điện thoại') }}</label>
-                <input name="phone" value="{{ old('phone', Auth::user()->phone) }}" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="">
+                <input name="phone" value="{{ old('phone', Auth::user()->phone) }}" type="text" class="form-control @error('phone') is-invalid @enderror">
                 @error('phone')
 
                 <span class="invalid-feedback" style="font-size: 100%; color: red" role="alert">

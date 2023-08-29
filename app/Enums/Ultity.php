@@ -18,27 +18,22 @@ final class Ultity
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
-    public function saveImage($input)
+    public function saveImageGame($path, $content, $type)
     {
-        if ($input['image']) {
-            $file = $input['image'];
+        if ($path and $content and $type) {
+            $disk = 'public-images-game-' . $type;
+            $status = Storage::disk($disk)->put($path, $content);
 
-            $typeFile = $file->getClientOriginalExtension();
-            if ($typeFile == 'png' || $typeFile == 'jpg' || $typeFile == 'jpeg' ) {
-                $fileSize = $file->getSize();
-                if ($fileSize <= 1024000) {
-                    $fileName = $file->getClientOriginalName();
-                    $file->move('images/games/user', $fileName);
-                    return $fileName;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+            return $status;
+        }
+    }
 
-        } else {
-            return false;
+    public function saveImageUser($input)
+    {
+        if ($input) {
+            $status = Storage::disk('public-user-avatar')->put($input['image']->getClientOriginalName(), $input['image']->get());
+
+            return $status;
         }
     }
 
@@ -70,16 +65,21 @@ final class Ultity
         return 'rgb(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ')';
     }
 
-    public function storeGameS3($data)
+    public function storeGame($data)
     {
-        $path = 'games/' . $data['name'];
-        foreach ($data['source'] as $value) {
-            $result = Storage::disk('s3')->put($path, $value);
-            if ($value->getClientOriginalName() == 'index.html') {
-                $path = Storage::disk('s3')->url($result);
+        foreach ($data['source'] as $path => $file) {
+            $result = Storage::disk('public-source-game')->put($path, $file->get());
+            $return = [];
+            if ($result) {
+                $return['status'] = true;
+                if ($file->getClientOriginalName() == 'index.html') {
+                    $return['index'] = $path;
+                }
+            } else {
+                $return['status'] = false;
             }
         }
 
-        return $path;
+        return $return;
     }
 }

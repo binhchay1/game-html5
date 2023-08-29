@@ -21,6 +21,7 @@ class Game extends Model
         'icon',
         'background',
         'color',
+        'author'
     ];
 
     public $timestamps = true;

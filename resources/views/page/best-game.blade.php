@@ -29,6 +29,9 @@
                     <div class="item__technology">
                         <p class="{{ $game['category'] }}">{{ ucfirst($game['category']) }}</p>
                     </div>
+                    @if(!empty($game['author']))
+                    <p class="item__title ltr">{{ $game['author'] }}</p>
+                    @endif
                     <p class="item__rating">
                         @if($game['rating'] > 50)
                         <span class="item__success">

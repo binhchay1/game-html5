@@ -1,52 +1,5 @@
 <!DOCTYPE html>
 <html class="no-touch" lang="vi" dir="ltr">
-<style>
-    #locate-dropdown ul {
-        margin-top: 20px;
-        width: 250px;
-        margin-left: -100px;
-        display: flex;
-        background: white;
-        justify-content: space-between;
-        padding: 0 10px;
-    }
-
-    #locate-dropdown ul li {
-        float: left;
-        height: 50px;
-        width: 30px;
-        margin-top: 7px;
-    }
-
-    #locate-dropdown li:nth-child(even) {
-        margin-right: 0;
-    }
-
-    @media screen and (max-width: 800px) {
-        #locate-dropdown ul {
-            margin: 0;
-            margin-left: 15px;
-            padding: 0;
-        }
-
-        .image-flag {
-            width: 30px;
-            height: auto;
-        }
-
-        #locate-dropdown {
-            background: none !important;
-        }
-
-        #locale-selector-dropdown {
-            background: none;
-        }
-
-        #button-flag {
-            margin-top: 5px;
-        }
-    }
-</style>
 
 <head>
     <meta charset="utf-8">
@@ -73,6 +26,55 @@
     <link rel="stylesheet" href="{{ asset('css/page/latin.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/plugins/fontawesome/all.min.css') }}" type='text/css'>
+
+    <style>
+        #locate-dropdown ul {
+            margin-top: 20px;
+            width: 250px;
+            margin-left: -100px;
+            display: flex;
+            background: white;
+            justify-content: space-between;
+            padding: 0 10px;
+            border-radius: 10px;
+        }
+
+        #locate-dropdown ul li {
+            float: left;
+            height: 50px;
+            width: 30px;
+            margin-top: 7px;
+        }
+
+        #locate-dropdown li:nth-child(even) {
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 800px) {
+            #locate-dropdown ul {
+                margin: 0;
+                margin-left: 15px;
+                padding: 0;
+            }
+
+            .image-flag {
+                width: 30px;
+                height: auto;
+            }
+
+            #locate-dropdown {
+                background: none !important;
+            }
+
+            #locale-selector-dropdown {
+                background: none;
+            }
+
+            #button-flag {
+                margin-top: 5px;
+            }
+        }
+    </style>
     @yield('css')
 </head>
 
@@ -249,47 +251,32 @@
                     <div id="locate-dropdown">
                         <ul>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}" id="locale-vi">
                                     <img src="{{ asset('svg/flag/vn.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'en']) }}" id="locale-en">
                                     <img src="{{ asset('svg/flag/gb.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'hr']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'hr']) }}" id="locale-hr">
                                     <img src="{{ asset('svg/flag/hr.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'th']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'th']) }}" id="locale-th">
                                     <img src="{{ asset('svg/flag/th.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
                             <li>
-                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'ro']) }}">
+                                <a aria-label="{{ __('Lựa chọn ngôn ngữ') }}" href="{{ route('app.setLocale', ['locale' => 'ro']) }}" id="locale-ro">
                                     <img src="{{ asset('svg/flag/ro.svg') }}" class="image-flag mt-3">
                                 </a>
                             </li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="flash-messages-box" class="flash-messages-box">
-            <div class="flash-notice">
-                <div class="container">
-                    <div id="flash-notice" class="flash"></div>
-                    <div class="close">&#215;</div>
-                </div>
-            </div>
-            <div class="flash-alert">
-                <div class="container">
-                    <div id="flash-alert" class="flash flash-alert"></div>
-                    <div class="close">&#215;</div>
                 </div>
             </div>
         </div>
@@ -390,6 +377,9 @@
         <?php } else { ?>
             loginDefined = false;
         <?php } ?>
+
+        const locale = '<?php echo Session::get('locale') ?>';
+    </script>
     </script>
     <script src="{{ asset('js/page/main.js') }}"></script>
     <script src="{{ asset('js/admin/user.js') }}"></script>

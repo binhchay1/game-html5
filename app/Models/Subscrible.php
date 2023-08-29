@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IpUser extends Model
+class Subscrible extends Model
 {
     use HasFactory;
 
-    protected $table = 'ip_user';
+    protected $table = 'subscrible';
 
     protected $fillable = [
-        'ip_address',
-        'game_name',
+        'email',
+        'status',
         'user_id'
     ];
 

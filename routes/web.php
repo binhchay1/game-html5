@@ -33,6 +33,7 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
     Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('playGames');
     Route::get('/count-play', [HomeController::class, 'countPlay'])->name('countPlay');
+    Route::get('/store-player', [HomeController::class, 'storePlayer'])->name('storePlayer');
     Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
     Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
@@ -67,10 +68,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::post('/store-user', [UserController::class, 'store'])->name('user.store');
             Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('user.editUser');
             Route::post('/update-user/{id}', [UserController::class, 'updateUser'])->name('user.updateUser');
-            Route::get('/chart', [UserController::class, 'chartUser'])->name('chart.index');
-            Route::get('/chart-by-month', [UserController::class, 'getUserByMonth'])->name('chart.month');
-            Route::get('/chart-by-quarter', [UserController::class, 'getUserByQuarter'])->name('chart.quarter');
-            Route::get('/chart-by-year', [UserController::class, 'getUserByYear'])->name('chart.year');
 
             Route::get('/list-game', [GameController::class, 'index'])->name('game.index');
             Route::get('/game-info/{id}', [GameController::class, 'showGame'])->name('game.showGame');

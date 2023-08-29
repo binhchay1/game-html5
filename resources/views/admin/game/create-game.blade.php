@@ -155,8 +155,7 @@
                 let elementName = $("#name-store-game");
                 let elementButton = $("#button-upload-store-game");
                 let elementList = $("#list-store-game");
-                let elementPath = "<input type='hidden' name='path[]' value='" + file.fullPath + "'>";
-                let elementSource = "<input type='file' class='d-none' name='source[]' id='" + file.name + "'>";
+                let elementSource = "<input type='file' class='d-none' name='source[" + file.fullPath + "]' id='" + file.name + "'>";
                 let elementItemList = "<li>" + file.name + "</li>";
                 let findString = file.fullPath.indexOf('/');
                 let gameName = file.fullPath.slice(0, findString);
@@ -166,20 +165,22 @@
                     elementList.removeClass("d-none");
                 }
 
-                form.append(elementPath);
                 form.append(elementSource);
                 elementList.append(elementItemList)
                 elementName.val(gameName);
                 reader.readAsText(file);
+                reader.addEventListener("loadend", function(event) {
+                    var dataRender = event.target.result;
+                    let fileUpload = new File([dataRender], file.name, {
+                        lastModified: new Date(),
+                    });
 
-                let fileUpload = new File([reader], file.name, {
-                    lastModified: new Date(),
+                    let fileInput = document.querySelector("input[id='" + file.name + "']");
+                    let dataTransfer = new DataTransfer();
+
+                    dataTransfer.items.add(fileUpload);
+                    fileInput.files = dataTransfer.files;
                 });
-                let fileInput = document.querySelector("input[id='" + file.name + "']");
-                let dataTransfer = new DataTransfer();
-
-                dataTransfer.items.add(fileUpload);
-                fileInput.files = dataTransfer.files;
             });
         }
     });

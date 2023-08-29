@@ -15,7 +15,7 @@
         <div class="central-body">
             <h1 class="code-error">@yield('code')</h1>
             <h1>@yield('message')</h1>
-            <a href="{{ route('home') }}" class="btn-go-home" target="_blank">{{ __('Về trang chủ') }}</a>
+            <a href="{{ route('home') }}" class="btn-go-home">{{ __('Về trang chủ') }}</a>
         </div>
         <div class="objects">
             <img class="object_rocket" src="{{ asset('svg/rocket.svg') }}" width="40px">

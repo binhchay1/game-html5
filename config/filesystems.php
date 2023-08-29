@@ -39,7 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -76,6 +76,22 @@ return [
             'driver' => 'local',
             'root' => public_path() . '/images/games/background',
             'url' => env('APP_URL') . '/images/games/background',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'public-source-game' => [
+            'driver' => 'local',
+            'root' => public_path() . '/source-game/',
+            'url' => env('APP_URL') . '/source-game/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'public-user-avatar' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/users/avatar',
+            'url' => env('APP_URL') . '/images/users/avatar',
             'visibility' => 'public',
             'throw' => false,
         ],

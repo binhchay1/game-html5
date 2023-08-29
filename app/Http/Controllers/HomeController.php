@@ -90,7 +90,8 @@ class HomeController extends Controller
         $query = $query->shuffle();
         $games = $this->ultity->paginate($query, 30);
         $countGame = count($query);
-        $search = $this->searchRepository->listOrderByCount();
+        $locale = Session::get('locale');
+        $search = $this->searchRepository->listOrderWithLimitByLocale($locale);
         $listTag = [];
 
         foreach ($games as $game) {
@@ -188,12 +189,14 @@ class HomeController extends Controller
         $filter = [];
         if ($request->get('q') != null) {
             $filter['q'] = $request->get('q');
+            $locale = env('ENABLE_LOCALE', 'en');
             if (preg_match("/[^\w]/", $request->get('q')) == 0) {
-                $querySearch = $this->searchRepository->getByColumn($filter['q'], 'keyword');
+                $querySearch = $this->searchRepository->getSearchByKeyWordAndLocale($filter['q'], $locale);
                 if (empty($querySearch)) {
                     $dataSearch = [
                         'keyword' => $filter['q'],
-                        'count' => 0
+                        'count' => 0,
+                        'locale' => $locale,
                     ];
                     $this->searchRepository->create($dataSearch);
                 } else {
@@ -233,17 +236,30 @@ class HomeController extends Controller
             }
         }
 
+        if (empty($listTag)) {
+            $getTags = Cache::get('listTag');
+
+            foreach ($getTags as $record) {
+                $arrTags = json_decode($record->tag);
+                foreach ($arrTags as $tag) {
+                    if (!in_array($tag, $listTag)) {
+                        $listTag[] = $tag;
+                    }
+                }
+            }
+        }
+
         $stringTrans = implode(', ', $listTag);
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTag = explode(', ', $translate);
 
+
         $getGames = $listGame->shuffle();
-        $games = $this->ultity->paginate($getGames, 30);
-        $games = $this->ultity->renameAndCalculateVote($games);
+        $paginate = $this->ultity->paginate($getGames, 30);
+        $games = $this->ultity->renameAndCalculateVote($paginate);
 
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
-
             return view('page.search', compact('listCategory', 'games', 'listTag', 'countGameInCollection'));
         }
 
@@ -255,6 +271,7 @@ class HomeController extends Controller
         $query = $this->gameRepository->listGameByTag($tag);
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
         $listTag = [];
+        $getTags = Cache::get('listTag');
 
         foreach ($getTags as $record) {
             $arrTags = json_decode($record->tag);
@@ -438,28 +455,6 @@ class HomeController extends Controller
         return view('page.games', compact('getGame', 'status'));
     }
 
-    public function countPlay(Request $request)
-    {
-        $ip = $request->get('ip');
-        $gameName = $request->get('gameName');
-
-        $queryIP = $this->ipUserRepository->getIpByUser($ip, $gameName);
-
-        if (empty($queryIP)) {
-            $dataIpUser = [
-                'ip_address' => $ip,
-                'game_name' => $gameName
-            ];
-            $this->ipUserRepository->create($dataIpUser);
-            $getCount = $this->gameRepository->getCountByGame($gameName);
-            $count = (int) ($getCount['count_play']) + 1;
-
-            $this->gameRepository->updateCountPlay($gameName, $count);
-        }
-
-        return 'success';
-    }
-
     public function changeLocate($locale)
     {
         if (in_array($locale, Config::get('app.locales'))) {
@@ -509,5 +504,31 @@ class HomeController extends Controller
         }
 
         return $result;
+    }
+
+    public function storePlayer(Request $request)
+    {
+        $ip = $request->get('ip');
+        $gameName = $request->get('gameName');
+        $queryIP = $this->ipUserRepository->getIpByUser($ip, $gameName);
+
+        if (empty($queryIP)) {
+            $dataIpUser = [
+                'ip_address' => $ip,
+                'game_name' => $gameName
+            ];
+
+            if (Auth::check) {
+                $dataIpUser['user_id'] = Auth::user()->id;
+            }
+
+            $this->ipUserRepository->create($dataIpUser);
+        }
+
+        return 'success';
+    }
+
+    public function countPlay(Request $request)
+    {
     }
 }

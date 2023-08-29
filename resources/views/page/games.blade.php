@@ -5,8 +5,8 @@
     <meta content="#000000" name="theme-color">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="image/png" href="{{ $getGame['icon'] }}" rel="icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/plugins/fontawesome/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/page/game.css') }}">
     <link rel="stylesheet" href="{{ asset('css/page/ionicons.min.css') }}">
     <title>{{ $getGame['title-game'] }}</title>
@@ -32,9 +32,8 @@
 </head>
 
 <body>
-    <div class="embed-responsive embed-responsive-1by1">
-        <iframe class="embed-responsive-item" src="{{ $getGame['link'] }}" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true"></iframe>
-    </div>
+    <iframe src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
+    </iframe>
     <div class="set-button">
         <button id="fullscreeniframe" title="view in full screen" class="button btn btn-warning rounded-0"><i class="fas fa-expand"></i></button>
     </div>
@@ -47,7 +46,6 @@
     </div>
     <div class="top-conner text-center">
         @if(!$status)
-
         <p onclick="saveCollection()" id="button-add-collection">
             ❤ Add to collection
         </p>
@@ -72,10 +70,9 @@
     </script>
 
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/plugins/bootstrap/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('js/plugins/popper/popper.min.js') }}"></script>
     <script src="{{ asset('js/page/game.js') }}"></script>
-
 </body>
 
 </html>

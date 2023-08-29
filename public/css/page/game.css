@@ -12037,3 +12037,9 @@ textarea.form-control {
         margin-right: 25%;
     }
 }
+
+#game-iframe {
+    color: rgb(255, 255, 255);
+    display: block;
+    margin: auto;
+}
