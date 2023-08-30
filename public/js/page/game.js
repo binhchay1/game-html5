@@ -68,10 +68,13 @@ $(document).ready(function () {
 
     let bttLogin = document.getElementById("btn-login");
 
-    if(bttLogin != null) {
+    if (bttLogin != null) {
         bttLogin.style.border = '1px solid ' + invertColor(themeColor);
         bttLogin.style.marginLeft = '10px';
     }
+
+    let iframe = document.getElementById("game-iframe");
+    iframe.classList.add("pre-play-game");
 
 });
 

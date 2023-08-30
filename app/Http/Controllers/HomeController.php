@@ -555,7 +555,8 @@ class HomeController extends Controller
             'user_id' => Auth::user()->id,
             'game_name' => $gameName,
             'locale' => $locale,
-            'content' => $content
+            'content' => $content,
+            'status' => 0
         ];
 
         $query = $this->commentRepository->create($data);

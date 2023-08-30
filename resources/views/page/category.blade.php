@@ -158,7 +158,7 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
 <script>
     $(document).ready(function() {
         $('.view-all-link').hover(function() {

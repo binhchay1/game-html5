@@ -32,15 +32,23 @@
 </head>
 
 <body>
-    <iframe src="" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
-    </iframe>
+    <div class="iframe-area">
+        <iframe src="" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
+        </iframe>
+
+        <div class="btn-play-area">
+            <button class="btn" id="btn-play">Play</button>
+        </div>
+    </div>
+
+
     <div class="set-button">
         <button id="fullscreeniframe" title="view in full screen" class="button btn btn-warning rounded-0"><i class="fas fa-expand"></i></button>
     </div>
 
     @if(Auth::check())
     <div class="vote text-center">
-        <a id="vote-like" style="margin-right: 20px;"><i class="fa fa-thumbs-up"></i></a>
+        <a id="vote-like"><i class="fa fa-thumbs-up"></i></a>
         <a id="vote-unlike"><i class="fa fa-thumbs-down"></i></a>
         <h1>Vote if you like it!</h1>
     </div>
@@ -73,7 +81,7 @@
         @else
         <div class="form-comment">
             <p class="btn-login-title">{{ __('Vui lòng đăng nhập để có thể để lại bình luận của bạn.') }}</p>
-            <a class="btn" href="{{ route('login') }}" id="btn-login">{{ __('Đăng nhập') }}</a>
+            <a class="btn" href="{{ route('login') }}?return_url={{ env('APP_URL', 'gamekafe.com') . 'games/' . $getGame['name'] }}" id="btn-login">{{ __('Đăng nhập') }}</a>
         </div>
         @endif
         @else

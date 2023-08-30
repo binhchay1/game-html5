@@ -13,7 +13,7 @@ class CommentRepository extends BaseRepository
 
     public function getCommentByGameAndLocale($gameName, $locale)
     {
-        return $this->model->with('users')->where('game_name', $gameName)->where('locale', $locale)->get();
+        return $this->model->with('users')->where('game_name', $gameName)->where('locale', $locale)->where('status', 1)->get();
     }
 
     public function listComment()
