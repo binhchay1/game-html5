@@ -116,7 +116,7 @@
             {{ __('hệ điều hành bạn sử dụng') }}
         </li>
         <li>
-            {{ __('if You are logged in to') }} {{ ('env('APP_NAME', 'Gamekafe')') }} {{ __('Account, Your User ID.') }}
+            {{ __('if You are logged in to') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('Account, Your User ID.') }}
         </li>
     </ul>
 
@@ -198,7 +198,7 @@
         {{ __('(b) Đăng nhập vào một trang web khác bằng cách sử dụng') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('Tài khoản') }}
     </h4>
     <p>
-        {{ __('Trong một số trường hợp, Bạn có thể đăng nhập vào các trang web của bên thứ ba bằng cách sử dụng danh tính Tài khoản') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Điều này có nghĩa là Bạn có khả năng sử dụng danh tính Tài khoản') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('mặc định hoặc tạo danh tính mới để đăng nhập vào trang web của bên thứ ba. Bạn có thể xác định bạn muốn truy cập các trang web của bên thứ ba dưới danh tính nào. Khi Bạn đăng nhập bằng Tài khoản') }} {{ env('APP_NAME', 'Gamekafe')}}, {{ __('thông tin tài khoản của Bạn sẽ không bao giờ được chuyển sang trang web của bên thứ ba mà không có sự đồng ý của Bạn (Mục II (c)). Để các trang web bên thứ ba nhận dạng duy nhất tài khoản của Bạn trong số các tài khoản khác, Chúng tôi gửi một mã định danh duy nhất có tên là 'PID' (nhận dạng cá nhân). PID của bạn khác nhau đối với mỗi trang web của bên thứ ba để bảo vệ tính ẩn danh của bạn.')}}
+        {{ __('Trong một số trường hợp, Bạn có thể đăng nhập vào các trang web của bên thứ ba bằng cách sử dụng danh tính Tài khoản') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Điều này có nghĩa là Bạn có khả năng sử dụng danh tính Tài khoản') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('mặc định hoặc tạo danh tính mới để đăng nhập vào trang web của bên thứ ba. Bạn có thể xác định bạn muốn truy cập các trang web của bên thứ ba dưới danh tính nào. Khi Bạn đăng nhập bằng Tài khoản') }} {{ env('APP_NAME', 'Gamekafe')}}, {{ __('thông tin tài khoản của Bạn sẽ không bao giờ được chuyển sang trang web của bên thứ ba mà không có sự đồng ý của Bạn (Mục II (c)). Để các trang web bên thứ ba nhận dạng duy nhất tài khoản của Bạn trong số các tài khoản khác, Chúng tôi gửi một mã định danh duy nhất có tên là PID (nhận dạng cá nhân). PID của bạn khác nhau đối với mỗi trang web của bên thứ ba để bảo vệ tính ẩn danh của bạn.')}}
     </p>
     <p>
         {{ __('Xin lưu ý rằng có khả năng các trang web, trò chơi hoặc dịch vụ của bên thứ ba có thể yêu cầu Bạn cung cấp thông tin khác với thông tin trong các trường bạn đã chọn để điền vào.') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('Nhận dạng tài khoản. Chẳng hạn, Bạn đã điền tên và quốc gia của mình nhưng trang web của bên thứ ba yêu cầu Bạn cung cấp cả biệt danh của Bạn. Thông tin bổ sung được yêu cầu có thể khác nhau tùy theo trang web, trò chơi hoặc dịch vụ của bên thứ ba này sang trang web, trò chơi hoặc dịch vụ khác. Sau khi bạn làm như vậy, thông tin bổ sung được cung cấp sẽ tự động được thêm vào danh tính mà bạn đã truy cập trang web đó. Do đó, tất cả các trang web được liên kết với danh tính đó cũng sẽ được hưởng lợi từ thông tin bổ sung đó. Tuy nhiên, Bạn có thể xem trang web của bên thứ ba nào có quyền truy cập vào thông tin nào mà Bạn đã cung cấp bằng cách vào phần “Trang web” của Trang web của bạn.') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('Tài khoản') }}.

@@ -66,7 +66,7 @@
             <div class="search-trends-container col-md-12">
                 <p class='h5'>{{ __('Tìm kiếm hàng đầu') }}</p>
                 <div class="open-modal-btn">
-                    <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag image-flag-top-search">
+                    <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag image-flag-top-search" alt="{{ __('Ngôn ngữ mặc định') }}">
                 </div>
                 <div class="search-trends">
                     <ul>

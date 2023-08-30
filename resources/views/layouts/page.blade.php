@@ -198,7 +198,7 @@
 
                 <div id="locale-selector-dropdown" class="locale-selector-dropdown fake-button">
                     <div id="button-flag" onclick="dropDownLocate()">
-                        <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag">
+                        <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag" alt="{{ __('Ngôn ngữ mặc định') }}">
                     </div>
 
                     <div id="locate-dropdown">

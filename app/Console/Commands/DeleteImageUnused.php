@@ -26,8 +26,6 @@ class DeleteImageUnused extends Command
                 continue;
             }
 
-
-
         }
     }
 }
