@@ -3,21 +3,18 @@
 namespace App\Services;
 
 use App\Enums\Ultity;
-use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
 use App\Repositories\UserRepository;
 use stdClass;
 
 class Chart
 {
-    private $gameRepository;
     protected $userRepository;
     private $ipUserRepository;
     private $ultity;
 
-    public function __construct(GameRepository $gameRepository, IpUserRepository $ipUserRepository, Ultity $ultity, UserRepository $userRepository)
+    public function __construct(IpUserRepository $ipUserRepository, Ultity $ultity, UserRepository $userRepository)
     {
-        $this->gameRepository = $gameRepository;
         $this->ipUserRepository = $ipUserRepository;
         $this->ultity = $ultity;
         $this->userRepository = $userRepository;
@@ -62,10 +59,10 @@ class Chart
                     }
                 }
 
-                $getData = array_push($data, $count);
-
+                array_push($data, $count);
                 $result['labels'][] = $month;
             }
+
             $dataSet->label = 'User by ' . $type;
             $dataSet->data = $data;
             $result['datasets'] = [$dataSet];
@@ -88,15 +85,16 @@ class Chart
                     }
                 }
 
-                $getData = array_push($data, $count);
-
+                array_push($data, $count);
                 $result['labels'][] = $quarter;
             }
+
             $dataSet->label = 'User by ' . $type;
             $dataSet->data = $data;
             $result['datasets'] = [$dataSet];
             $dataSet->backgroundColor[] = $this->ultity->rndRGBColorCode();
         }
+
         if ($type === 'year') {
             $result = [];
             $data = [];
@@ -109,8 +107,9 @@ class Chart
                     break;
                 }
             }
-                $getData = array_push($data, $count);
-                $result['labels'][] = $year;
+
+            array_push($data, $count);
+            $result['labels'][] = $year;
 
             $dataSet->label = 'User by ' . $type;
             $dataSet->data = $data;

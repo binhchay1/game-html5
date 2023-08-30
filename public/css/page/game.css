@@ -110,3 +110,8 @@
 .post-area {
     margin-left: 5px;
 }
+
+.btn-login-title {
+    margin: 0 !important;
+    margin-top: 5px !important;
+}

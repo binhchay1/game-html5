@@ -17,7 +17,7 @@
 @endsection
 
 @section('main_content')
-<div class="card-header mt-4">
+<div class="card-header">
     <h3>Create Game</h3>
 </div>
 <div class="container">

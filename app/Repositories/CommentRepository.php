@@ -15,4 +15,24 @@ class CommentRepository extends BaseRepository
     {
         return $this->model->with('users')->where('game_name', $gameName)->where('locale', $locale)->get();
     }
+
+    public function listComment()
+    {
+        return $this->model->orderBy('created_at', 'desc')->get();
+    }
+
+    public function showComment($id)
+    {
+        return $this->model->where('id', $id)->first();
+    }
+
+    public function updateStatusComment($id, $data)
+    {
+        return $this->model->where('id', $id)->update($data);
+    }
+
+    public function getCommentByUserAndGame($game_name, $user_id)
+    {
+        return $this->model->where('user_id', $user_id)->where('game_name', $game_name)->first();
+    }
 }

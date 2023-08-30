@@ -11,14 +11,6 @@
             <div class="col-sm-6">
                 <h1 class="m-0 text-dark">Dashboard</h1>
             </div>
-            <div class="col-sm-6">
-                <div>
-                    Please select your preferred Chart:<br/>
-                    <input type="radio" name="chart" id="chart1" value="Chart1" checked>Month<br>
-                    <input type="radio" name="chart" id="chart2" value="Chart2">Quarter<br>
-                    <input type="radio" name="chart" id="chart3" value="Chart3">Year<br>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -30,6 +22,13 @@
                 <canvas id="chart-count-play"></canvas>
             </div>
             <div class="col-6">
+                <div class="col-sm-6">
+                    <div class="d-flex">
+                        <input type="radio" name="chart" id="chart1" value="Chart1" checked>&nbsp;Month
+                        <input type="radio" name="chart" id="chart2" value="Chart2" class="ml-3">&nbsp;Quarter
+                        <input type="radio" name="chart" id="chart3" value="Chart3" class="ml-3">&nbsp;Year
+                    </div>
+                </div>
                 <canvas id="chart-count-register"></canvas>
             </div>
         </div>
@@ -38,6 +37,6 @@
 @endsection
 
 @section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="{{ asset('js/plugins/chart/chart.js') }}"></script>
 <script src="{{ asset('js/admin/dashboard.js') }}"></script>
 @endsection

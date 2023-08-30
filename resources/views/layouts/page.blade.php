@@ -19,6 +19,7 @@
     <meta property="og:image:height" content="500">
     <meta property="og:site_name" content="{{ env('APP_NAME', 'Gamekafe') }}">
     <meta property="og:description" content="{{ __('Chơi trò chơi miễn phí trên') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi.') }} {{ env('APP_NAME', 'Gamekafe') }} cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.">
+    <link rel="canonical" href="{{ env('APP_URL', 'https://gamekafe.com') }}" />
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/black-logo-no-background.png') }}" />
     <link rel="icon" sizes="192x192" href="{{ asset('images/black-logo-no-background.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/black-logo-no-background.png') }}">
@@ -322,7 +323,6 @@
     </div>
 
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script>
         <?php if (Auth::check()) { ?>
             const loginDefined = true;

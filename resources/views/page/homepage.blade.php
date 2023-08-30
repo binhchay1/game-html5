@@ -7,12 +7,6 @@
 @section('css')
 <link rel="manifest" href="{{ asset('json/manifest.json') }}" crossorigin="use-credentials">
 <style type="text/css">
-    .disable-link {
-        cursor: not-allowed;
-        pointer-events: none;
-        opacity: 0.5;
-    }
-
     .top-tags ul li {
         list-style-type: none;
     }

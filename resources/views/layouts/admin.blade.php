@@ -8,13 +8,13 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/plugins/fontawesome/all.min.css') }}">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('css/plugins/ionicons/ionicons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/plugins/daterangepicker/daterangepicker.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="{{ asset('css/plugins/datatables/jquery.dataTables.css') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/black-logo-no-background.png') }}" />
     <style>
         body a {
@@ -32,7 +32,6 @@
         }
     </style>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     @yield('js_sort_users')
 
 </head>
@@ -42,7 +41,7 @@
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="font-weight: 700;color: #292424">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="font-weight: 700;color: #292424">
                         {{ Auth::user()->name }}
                     </a>
 
@@ -108,6 +107,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('comment.index') }}" class="nav-link" id="list-comment">
+                                <i class="nav-icon fas fa-solid fa-comments"></i>
+                                <p>
+                                    Comment
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -145,7 +152,7 @@
     <script src="{{ asset('js/plugins/daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('js/admin/adminlte.js') }}"></script>
     <script src="{{ asset('js/admin/admin.js') }}"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="{{ asset('js/plugins/datatables/jquery.dataTables.js') }}"></script>
     @yield('js')
 </body>
 

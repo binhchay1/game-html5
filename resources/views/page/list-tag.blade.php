@@ -30,36 +30,36 @@
         </div>
 
         <div class="navigator short">
-                <div class="head">
-                    <a aria-label="arrow previous" class="arrow previous {{ $arrData['current_page'] == 1 ? 'disable-link' : '' }}" href="{{ $arrData['prev_page_url'] }}"></a>
-                    <ul>
-                        @if($arrData['current_page'] != 1)
-                        <li>
-                            <a href="{{ $arrData['prev_page_url'] }}">{{ $arrData['current_page'] - 1 }}</a>
-                        </li>
-                        @endif
-                        <li class='current'>
-                            <span>{{ $arrData['current_page'] }}</span>
-                        </li>
-                        @if($arrData['current_page'] != $arrData['last_page'])
-                        <li>
-                            <a href="{{ $arrData['next_page_url'] }}">{{ $arrData['current_page'] + 1 }}</a>
-                        </li>
-                        @endif
-                        @if($arrData['last_page'] > $arrData['current_page'] + 2)
-                        <li class="separator">
-                            <span>...</span>
-                        </li>
-                        @endif
-                        @if($arrData['last_page'] > $arrData['current_page'] + 1)
-                        <li>
-                            <a href="?page={{ $arrData['last_page'] }}">{{ $arrData['last_page'] }}</a>
-                        </li>
-                        @endif
-                    </ul>
-                    <a aria-label="arrow next" class="arrow next {{ $arrData['current_page'] == $arrData['last_page'] ? 'disable-link' : '' }}" href="{{ $arrData['next_page_url'] }}"></a>
-                </div>
+            <div class="head">
+                <a aria-label="arrow previous" class="arrow previous {{ $arrData['current_page'] == 1 ? 'disable-link' : '' }}" href="{{ empty($arrData['prev_page_url']) ? 'javascript:void(0)' : $arrData['prev_page_url'] }}"></a>
+                <ul>
+                    @if($arrData['current_page'] != 1)
+                    <li>
+                        <a href="{{ $arrData['prev_page_url'] }}">{{ $arrData['current_page'] - 1 }}</a>
+                    </li>
+                    @endif
+                    <li class='current'>
+                        <span>{{ $arrData['current_page'] }}</span>
+                    </li>
+                    @if($arrData['current_page'] != $arrData['last_page'])
+                    <li>
+                        <a href="{{ $arrData['next_page_url'] }}">{{ $arrData['current_page'] + 1 }}</a>
+                    </li>
+                    @endif
+                    @if($arrData['last_page'] > $arrData['current_page'] + 2)
+                    <li class="separator">
+                        <span>...</span>
+                    </li>
+                    @endif
+                    @if($arrData['last_page'] > $arrData['current_page'] + 1)
+                    <li>
+                        <a href="?page={{ $arrData['last_page'] }}">{{ $arrData['last_page'] }}</a>
+                    </li>
+                    @endif
+                </ul>
+                <a aria-label="arrow next" class="arrow next {{ $arrData['current_page'] == $arrData['last_page'] ? 'disable-link' : '' }}" href="{{ $arrData['next_page_url'] }}"></a>
             </div>
+        </div>
     </div>
 </div>
 @endsection

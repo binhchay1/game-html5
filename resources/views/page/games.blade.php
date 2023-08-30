@@ -58,20 +58,27 @@
             🛠 Report bug in game
         </p>
     </div>
+    @endif
 
     <div class="comment-area">
         <h2>Comments</h2>
+        @if($statusComment == 0)
         @if(Auth::check())
         <div class="form-comment">
             <form class="d-flex">
                 <input class="comment-input" maxlength="255" type="text" placeholder="{{ __('Viết bình luận của bạn') }}">
-                <button type="button" class="ml-2" id="btn-submit-comment">{{ __('Đăng') }}</button>
+                <button id="btn-submit-comment">{{ __('Đăng') }}</button>
             </form>
         </div>
         @else
         <div class="form-comment">
-            <p>{{ __('Vui lòng đăng nhập để có thể để lại bình luận của bạn.') }}</p>
-            <a class="btn" href="{{ route('login') }}" id="button-login">{{ __('Đăng nhập') }}</a>
+            <p class="btn-login-title">{{ __('Vui lòng đăng nhập để có thể để lại bình luận của bạn.') }}</p>
+            <a class="btn" href="{{ route('login') }}" id="btn-login">{{ __('Đăng nhập') }}</a>
+        </div>
+        @endif
+        @else
+        <div class="form-comment">
+            <p>{{ __('Cám ơn bạn đã để lại bình luận. Nếu bạn chưa thấy bình luận của bạn, có thể bình luận vẫn đang trong quá trình kiểm duyệt hoặc hãy liên hệ cho bộ phận hỗ trợ!') }}</p>
         </div>
         @endif
         <div class="container-fluid">
@@ -88,7 +95,7 @@
                             <a class="author-name" href="">{{ $comment->users->name }}</a>
                         </span>
                         <span class="post-date">
-                            <p title="{{ $comment->created_at }}">3 hours ago</p>
+                            <p title="{{ $comment->created_at }}"></p>
                         </span>
                     </div>
                     <div class="post-content">
@@ -98,9 +105,7 @@
                 @endforeach
             </div>
         </div>
-
     </div>
-    @endif
 
     @include('includes.modal_report_bug')
     @include('includes.modal_thank_report')

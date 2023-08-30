@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\ReportBugController;
 use App\Http\Controllers\SocialLoginController;
@@ -86,11 +87,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
 
             Route::get('/list-report', [ReportBugController::class, 'index'])->name('report.index');
-            Route::get('/report-info/{id}', [ReportBugController::class, 'showReport'])->name('report.showReport');
+            Route::get('/report-info/{id}', [ReportBugController::class, 'showReport'])->name('report.show');
+
+            Route::get('/list-comment', [CommentController::class, 'index'])->name('comment.index');
+            Route::get('/comment-info/{id}', [CommentController::class, 'showComment'])->name('comment.show');
+            Route::get('/change-comment-status', [CommentController::class, 'changeStatusComment'])->name('change.status.comment');
 
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
             Route::get('/get-chart-user', [AdminController::class, 'getChartUserRegister']);
-            Route::post('/dropzone-upload', [GameController::class, 'uploadFileDropzone'])->name('dropzone-upload');
         }
     );
 });

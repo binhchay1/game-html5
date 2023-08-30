@@ -48,14 +48,29 @@ $(document).ready(function () {
         }
     }
 
-    let cssBorderButtonLogin = '{border: 1px solid ' + invertColor(themeColor) + ' !important}';
-    $('#button-login').css(cssBorderButtonLogin);
+    let elementPostArea = document.getElementById("post-area");
+    if (elementPostArea.getElementsByClassName("post-date") != null) {
+        let listPost = elementPostArea.getElementsByClassName("post-date");
+        for (let i = 0; i < listPost.length; i++) {
+            let time = listPost[i].getElementsByTagName('p')[0].getAttribute('title');
+            let calTime = moment(time, "YYYY-MM-DD H-i-s").fromNow();
+            listPost[i].getElementsByTagName('p')[0].innerHTML = calTime;
+        }
+    }
 
-    let listPost = document.getElementById("post-area").getElementsByClassName("post-date");
-    for (let i = 0; i < listPost.length; i++) {
-        let time = listPost[i].getElementsByTagName('p')[0].getAttribute('title');
-        let calTime = moment(time, "YYYY-MM-DD H-i-s").fromNow();
-        listPost[i].getElementsByTagName('p')[0].innerHTML = calTime;
+    let bttSubmitComment = document.getElementById("btn-submit-comment");
+    if (bttSubmitComment != null) {
+        bttSubmitComment.style.border = '1px solid ' + invertColor(themeColor);
+        bttSubmitComment.style.background = 'none';
+        bttSubmitComment.style.color = invertColor(themeColor);
+        bttSubmitComment.style.marginLeft = '10px';
+    }
+
+    let bttLogin = document.getElementById("btn-login");
+
+    if(bttLogin != null) {
+        bttLogin.style.border = '1px solid ' + invertColor(themeColor);
+        bttLogin.style.marginLeft = '10px';
     }
 
 });
@@ -75,7 +90,6 @@ $('#btn-submit-comment').on("click", function (e) {
             }
         }).done(function (result) {
             if (result.status == true) {
-                console.log(result.status);
                 let contentAppend = "<p style='color: " + invertColor(themeColor) + "'>" + result.content + "</p>";
                 $('.form-comment').empty();
                 $('.form-comment').append(contentAppend);
@@ -92,7 +106,7 @@ $('#vote-like').on('click', function () {
             vote: 'like',
             gameName: gameName
         }
-    }).done(function (result) {
+    }).done(function () {
         $('#vote-unlike').css('opacity', '0.3');
         $('#vote-like').css('opacity', '1');
     });
@@ -106,7 +120,7 @@ $('#vote-unlike').on('click', function () {
             vote: 'unlike',
             gameName: gameName
         }
-    }).done(function (result) {
+    }).done(function () {
         $('#vote-like').css('opacity', '0.3');
         $('#vote-unlike').css('opacity', '1');
     });
@@ -167,7 +181,7 @@ function saveCollection() {
         data: {
             gameName: gameName
         }
-    }).done(function (result) {
+    }).done(function () {
         $('#button-add-collection').css('cursor', 'auto');
         $('#button-add-collection p').html('Game in your collection!');
         $('#button-add-collection').each(function () {

@@ -263,6 +263,7 @@ class HomeController extends Controller
 
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+
             return view('page.search', compact('listCategory', 'games', 'listTag', 'countGameInCollection'));
         }
 
@@ -315,25 +316,22 @@ class HomeController extends Controller
 
         $getTags = $this->gameRepository->getTags()->toArray();
         $listTag = [];
-        $listIgnore = [];
 
         foreach ($getTags as $record) {
             $arrTags = json_decode($record['tag']);
             foreach ($arrTags as $tag) {
-                if (!in_array($tag, $listIgnore)) {
-                    if (array_key_exists($tag, $listTag)) {
-                        $listTag[$tag]['count'] += 1;
-                    } else {
-                        $listTag[$tag] = [
-                            'count' => 1,
-                            'numberIcon' => array_key_exists($tag, $this->iconGame::LIST_ICON) ? $this->iconGame::LIST_ICON[$tag] : 1200
-                        ];
-                    }
+                if (array_key_exists($tag, $listTag)) {
+                    $listTag[$tag]['count'] += 1;
+                } else {
+                    $listTag[$tag] = [
+                        'count' => 1,
+                        'numberIcon' => array_key_exists($tag, $this->iconGame::LIST_ICON) ? $this->iconGame::LIST_ICON[$tag] : 1200
+                    ];
                 }
             }
         }
 
-        $perPage = 100;
+        $perPage = 120;
         $path = '/tags';
         $pageName = 'page';
         $listResult = $this->ultity->paginate($listTag, $perPage, $path, $pageName, $page);
@@ -439,6 +437,7 @@ class HomeController extends Controller
         $locale = Session::get('locale');
         $getGame = $this->gameRepository->getGameByName($game);
         $comments = $this->commentRepository->getCommentByGameAndLocale($game, $locale);
+        $statusComment = 0;
 
         if (empty($getGame)) {
             abort(404);
@@ -448,7 +447,14 @@ class HomeController extends Controller
         $status = null;
 
         if (Auth::check()) {
+            $user = Auth::user()->id;
+            $getComment = $this->commentRepository->getCommentByUserAndGame($game, $user);
             $query = $this->gameCollectionRepository->getByGameNameAndUserId($game, Auth::user()->id);
+
+            if (!empty($getComment)) {
+                $statusComment = 1;
+            }
+
             if (empty($query)) {
                 $status = false;
             } else {
@@ -456,7 +462,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.games', compact('getGame', 'status', 'comments'));
+        return view('page.games', compact('getGame', 'status', 'comments', 'statusComment'));
     }
 
     public function changeLocate($locale)
