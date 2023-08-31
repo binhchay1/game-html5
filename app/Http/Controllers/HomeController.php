@@ -573,5 +573,17 @@ class HomeController extends Controller
 
     public function countPlay(Request $request)
     {
+        $gameName = $request->get('gameName');
+        $getGame = $this->gameRepository->getGameByName($gameName);
+        if (empty($gameName) or empty($getGame)) {
+            return -1;
+        }
+
+        $data = [
+            'count_play' => $getGame->count_play++
+        ];
+        $this->gameRepository->update($data, $getGame->id);
+
+        return 'success';
     }
 }

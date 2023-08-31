@@ -33,14 +33,18 @@
 
 <body>
     <div class="iframe-area">
-        <iframe src="" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
+        <iframe data-src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
         </iframe>
 
-        <div class="btn-play-area">
+        <div class="btn-play-area d-flex flex-column">
+            @if($getGame['icon'])
+            <img src="{{ $getGame['icon'] }}" id="game-icon-play" />
+            @else
+            <span class="text-white">{{ ucfirst(str_replace("-", " ", $getGame['name'])) }}</span>
+            @endif
             <button class="btn" id="btn-play">Play</button>
         </div>
     </div>
-
 
     <div class="set-button">
         <button id="fullscreeniframe" title="view in full screen" class="button btn btn-warning rounded-0"><i class="fas fa-expand"></i></button>

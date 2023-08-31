@@ -58,24 +58,51 @@ $(document).ready(function () {
         }
     }
 
-    let bttSubmitComment = document.getElementById("btn-submit-comment");
-    if (bttSubmitComment != null) {
-        bttSubmitComment.style.border = '1px solid ' + invertColor(themeColor);
-        bttSubmitComment.style.background = 'none';
-        bttSubmitComment.style.color = invertColor(themeColor);
-        bttSubmitComment.style.marginLeft = '10px';
+    let btnSubmitComment = document.getElementById("btn-submit-comment");
+    if (btnSubmitComment != null) {
+        btnSubmitComment.style.border = '1px solid ' + invertColor(themeColor);
+        btnSubmitComment.style.background = 'none';
+        btnSubmitComment.style.color = invertColor(themeColor);
+        btnSubmitComment.style.marginLeft = '10px';
     }
 
-    let bttLogin = document.getElementById("btn-login");
+    let btnLogin = document.getElementById("btn-login");
 
-    if (bttLogin != null) {
-        bttLogin.style.border = '1px solid ' + invertColor(themeColor);
-        bttLogin.style.marginLeft = '10px';
+    if (btnLogin != null) {
+        btnLogin.style.border = '1px solid ' + invertColor(themeColor);
+        btnLogin.style.marginLeft = '10px';
     }
 
     let iframe = document.getElementById("game-iframe");
     iframe.classList.add("pre-play-game");
 
+    let details = navigator.userAgent;
+    let regexp = /android|iphone|kindle|ipad/i;
+    let isMobileDevice = regexp.test(details);
+
+    if (isMobileDevice) {
+        window.addEventListener('load', function (e) {
+            setTimeout(function () { window.scrollTo(0, 1); }, 1);
+        }, false);
+    }
+});
+
+$("#btn-play").click(function () {
+    let iframe = $("#game-iframe");
+    let areaBtn = $(".btn-play-area");
+    iframe.attr("src", iframe.data("src"));
+    areaBtn.addClass('hide-important');
+    iframe.removeClass('pre-play-game');
+
+    $.ajax({
+        url: '/count-play',
+        type: 'get',
+        data: {
+            gameName: gameName
+        }
+    }).done(function () {
+
+    });
 });
 
 $('#btn-submit-comment').on("click", function (e) {

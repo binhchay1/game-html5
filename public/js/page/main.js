@@ -33,10 +33,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
     }
 
-    var idLocale = '#locale-' + locale;
-    var idFlagLocale = '#locale-' + locale + ' .image-flag';
+    let idLocale = '#locale-' + locale;
+    let idFlagLocale = '#locale-' + locale + ' .image-flag';
     $(idLocale).prepend("<span class='tick-green-choice'></span>");
     $(idLocale).addClass("is-disabled");
+    $(idLocale).removeAttr("href");
     $(idFlagLocale).addClass("image-picked");
 });
 

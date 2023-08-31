@@ -31,7 +31,11 @@
 
         <div class="navigator short">
             <div class="head">
-                <a aria-label="arrow previous" class="arrow previous {{ $arrData['current_page'] == 1 ? 'disable-link' : '' }}" href="{{ empty($arrData['prev_page_url']) ? 'javascript:void(0)' : $arrData['prev_page_url'] }}"></a>
+                @if(empty($arrData['prev_page_url']))
+                <a aria-label="arrow previous" class="arrow previous disable-link"></a>
+                @else
+                <a aria-label="arrow previous" class="arrow previous" href="{{ $arrData['prev_page_url'] }}"></a>
+                @endif
                 <ul>
                     @if($arrData['current_page'] != 1)
                     <li>
