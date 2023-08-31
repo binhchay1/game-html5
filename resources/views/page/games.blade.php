@@ -40,13 +40,13 @@
             @if($getGame['icon'])
             <img src="{{ $getGame['icon'] }}" id="game-icon-play" />
             @else
-            <span class="text-white">{{ ucfirst(str_replace("-", " ", $getGame['name'])) }}</span>
+            <span class="text-white">{{ ucwords(str_replace("-", " ", $getGame['name'])) }}</span>
             @endif
             <button class="btn" id="btn-play">Play</button>
         </div>
     </div>
 
-    <div class="set-button">
+    <div class="set-button d-none" id="btn-fullscreen-area">
         <button id="fullscreeniframe" title="view in full screen" class="button btn btn-warning rounded-0"><i class="fas fa-expand"></i></button>
     </div>
 

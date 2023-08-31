@@ -90,9 +90,11 @@ $(document).ready(function () {
 $("#btn-play").click(function () {
     let iframe = $("#game-iframe");
     let areaBtn = $(".btn-play-area");
+    let areaFullScreen = $("#btn-fullscreen-area");
     iframe.attr("src", iframe.data("src"));
     areaBtn.addClass('hide-important');
     iframe.removeClass('pre-play-game');
+    areaFullScreen.removeClass('d-none');
 
     $.ajax({
         url: '/count-play',
