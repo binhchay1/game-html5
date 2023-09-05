@@ -90,8 +90,8 @@ class HomeController extends Controller
     public function viewHome()
     {
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
-        $query = $this->gameRepository->getListGameWithVote();
-        $query = $query->shuffle();
+        $getListGame = $this->gameRepository->getListGameWithVote();
+        $query = $getListGame->shuffle();
         $games = $this->ultity->paginate($query, 30);
         $countGame = count($query);
         $locale = Session::get('locale');
@@ -522,6 +522,10 @@ class HomeController extends Controller
         $gameName = $request->get('gameName');
         $queryIP = $this->ipUserRepository->getIpByUser($ip, $gameName);
 
+        if (empty($gameName)) {
+            abort(404);
+        }
+
         if (empty($queryIP)) {
             $dataIpUser = [
                 'ip_address' => $ip,
@@ -543,6 +547,11 @@ class HomeController extends Controller
         $content = $request->get('content');
         $locale = Session::get('locale');
         $gameName = $request->get('gameName');
+
+        if (empty($gameName) or empty($locale) or empty($content)) {
+            abort(404);
+        }
+
         $result = [
             'status' => false
         ];
@@ -576,7 +585,7 @@ class HomeController extends Controller
         $gameName = $request->get('gameName');
         $getGame = $this->gameRepository->getGameByName($gameName);
         if (empty($gameName) or empty($getGame)) {
-            return -1;
+            abort(404);
         }
 
         $data = [

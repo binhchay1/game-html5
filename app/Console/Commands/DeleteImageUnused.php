@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Repositories\GameRepository;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 
 class DeleteImageUnused extends Command
 {
