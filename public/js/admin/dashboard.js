@@ -78,7 +78,6 @@ function setChartCountRegister(type, status = false) {
                 }
             }
         }
-        console.log(chartCountRegister, options);
         new Chart(chartCountRegister, options);
 
         chartCountRegister.style.height = '500px';
