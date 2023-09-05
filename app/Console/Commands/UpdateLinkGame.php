@@ -34,8 +34,8 @@ class UpdateLinkGame extends Command
             if (is_file($fileIndex)) {
                 $tmp = explode(DIRECTORY_SEPARATOR, $dir->getRelativePathname());
                 $gameName = $tmp[0];
+                $this->gameRepository->updateLinkGame($gameName, $gameDir);
             }
-            $this->gameRepository->updateLinkGame($gameName, $gameDir);
         }
 
         dump("---------Updated link game on sever---------");
