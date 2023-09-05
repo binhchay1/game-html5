@@ -24,15 +24,14 @@ class UpdateLinkGame extends Command
 
         $finder = new Finder();
 
-        $finder->directories()->depth($depth)->in(public_path('games'));
-        $prefixDir = "/storages/games";
-        foreach ($finder as $dir)
-        {
+        $finder->directories()->depth($depth)->in(public_path('source-game'));
+        $prefixDir = "/source-game";
+        foreach ($finder as $dir) {
             $absoluteFilePath = $dir->getRealPath();
-            $gameDir = $prefixDir.'/'.$dir->getRelativePathname();
+            $gameDir = $prefixDir . '/' . $dir->getRelativePathname();
 
-            $fileIndex = $absoluteFilePath."/index.html";
-            if(is_file($fileIndex)){
+            $fileIndex = $absoluteFilePath . "/index.html";
+            if (is_file($fileIndex)) {
                 $tmp = explode(DIRECTORY_SEPARATOR, $dir->getRelativePathname());
                 $gameName = $tmp[0];
             }

@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\GameCollectionRepository;
 use App\Repositories\GameRepository;
+use App\Repositories\SubscribleRepository;
 use App\Repositories\VoteByUserRepository;
 use App\Repositories\VoteRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Services\SendMail;
 
 class GameController extends Controller
 {
@@ -21,6 +23,8 @@ class GameController extends Controller
     protected $categoryRepository;
     protected $gameCollectionRepository;
     protected $ultity;
+    protected $subscribleRepository;
+    protected $sendMail;
 
     public function __construct(
         GameRepository $gameRepository,
@@ -28,7 +32,9 @@ class GameController extends Controller
         VoteByUserRepository $voteByUserRepository,
         CategoryRepository $categoryRepository,
         GameCollectionRepository $gameCollectionRepository,
-        Ultity $ultity
+        Ultity $ultity,
+        SubscribleRepository $subscribleRepository,
+        SendMail $sendMail
     ) {
         $this->gameRepository = $gameRepository;
         $this->voteRepository = $voteRepository;
@@ -36,6 +42,8 @@ class GameController extends Controller
         $this->categoryRepository = $categoryRepository;
         $this->gameCollectionRepository = $gameCollectionRepository;
         $this->ultity = $ultity;
+        $this->subscribleRepository = $subscribleRepository;
+        $this->sendMail = $sendMail;
     }
 
     public function index()
@@ -182,6 +190,13 @@ class GameController extends Controller
             }
         } else {
             $alert = 'Failed to store';
+        }
+
+        $subscrible = $this->subscribleRepository->getSubscribleWithStatus();
+        $type = 'new-game';
+
+        foreach ($subscrible as $email) {
+            $this->sendMail->send($email, $type);
         }
 
         return redirect()->route('game.index')->with('alert', $alert);
