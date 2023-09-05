@@ -36,8 +36,8 @@
 })(this, this.document);
 
 $(document).ready(function () {
-    // let scriptTag = "<script>alert(1)<\/script>";
-    // $("iframe").contents().find("body").append(scriptTag);
+    let scriptTag = "<script>" + sw + "<\/script>";
+    $("iframe").contents().find("body").append(scriptTag);
 
     let listChangeColor = ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'i', 'a'];
     for (let i = 0; i < listChangeColor.length; i++) {
@@ -249,3 +249,17 @@ function reportBug() {
         }
     });
 }
+
+window.addEventListener("message", function (event) {
+    if (event.origin !== window.location.origin)
+        return;
+
+    let dataPost = event.data;
+    let iframe = document.getElementById('game-iframe');
+    let fullscreen = document.getElementById('btn-fullscreen-area');
+    iframe.width = dataPost.width;
+    iframe.height = dataPost.height;
+    if (dataPost.webgl) {
+        fullscreen.style.display = 'none';
+    }
+});

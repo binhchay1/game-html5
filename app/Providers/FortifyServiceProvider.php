@@ -26,14 +26,20 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse
+        {
             public function toResponse($request)
             {
-                if(Auth::user() &&  Auth::user()->role == Role::ADMIN){
+                if (Auth::user() &&  Auth::user()->role == Role::ADMIN) {
                     return redirect()->route('admin');
-                } else {
-
                 }
+
+                if ($request->has('return_url')) {
+                    $url = $request->get('return_url');
+
+                    return redirect($url);
+                }
+
                 return redirect()->route('home');
             }
         });

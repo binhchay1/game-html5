@@ -1,9 +1,9 @@
 @extends('layouts.auth')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <section class="vh-100">
+<link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<section class="vh-100">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
@@ -29,7 +29,7 @@
 
                                     <div class="form-outline mb-4">
                                         <label class="control-label">{{ __('Mật khẩu') }}</label>
-                                        <input name="password" value="{{ old('password') }}" type="password"  class="form-control
+                                        <input name="password" value="{{ old('password') }}" type="password" class="form-control
                                         @if($errors->any()) is-invalid @endif password-field" id="password-field" required autocomplete="current-password" autofocus>
                                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password-icon"></span>
                                     </div>
@@ -43,7 +43,8 @@
                                     </div>
                                     <div class="d-flex flex-row">
                                         <p class="lead fw-normal mb-0 me-3">
-                                            {{ __('Đăng nhập với') }}</p>
+                                            {{ __('Đăng nhập với') }}
+                                        </p>
                                         <a href="{{ route('auth.facebook') }}" class="btn btn-primary btn-floating mx-1" style="width: 40px;">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
@@ -52,6 +53,11 @@
                                             <i class="fab fa-google"></i>
                                         </a>
                                     </div>
+
+                                    @if(Request::exists('return_url'))
+                                    <input type="hidden" name="return_url" value="{{ Request::get('return_url') }}">
+                                    @endif
+
                                     @if (Route::has('password.request'))
                                     <a class="small text-muted" href="{{ route('password.request') }}">{{ __('Quên mật khẩu') }}</a>
                                     @endif
@@ -69,5 +75,5 @@
 </section>
 @endsection
 @section('js')
-    <script src="{{ asset('js/admin/user.js') }}"></script>
+<script src="{{ asset('js/admin/user.js') }}"></script>
 @endsection

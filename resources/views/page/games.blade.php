@@ -126,12 +126,14 @@
     <script>
         const gameName = '<?php echo $getGame['name']; ?>';
         const themeColor = '<?php echo $getGame['color']; ?>';
+        const urlMain = window.location.href;
     </script>
 
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('js/plugins/bootstrap/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('js/plugins/popper/popper.min.js') }}"></script>
     <script src="{{ asset('js/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('js/sdk/sw.js') }}"></script>
     <script src="{{ asset('js/page/game.js') }}"></script>
 
 </body>
