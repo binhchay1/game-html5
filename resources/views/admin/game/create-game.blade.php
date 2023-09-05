@@ -126,7 +126,7 @@
         <div class="col-md-4 d-flex align-items-center">
             <label class="form-label">Upload File</label>
             <button type="button" class="btn btn-primary ml-4" data-toggle="modal" data-target="#upload-file-modal" id="button-upload-store-game">Upload</button>
-            <ul id="list-store-game" class="d-none">
+            <ul id="list-store-game" class="d-none mt-5">
 
             </ul>
         </div>

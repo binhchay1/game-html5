@@ -8,19 +8,19 @@ $(document).ready(function () {
 
 $(document).on('click', '#chart1', function () {
     if ($(this).val() === 'Chart1') {
-        setChartCountRegister('month');
+        setChartCountRegister('month', true);
     }
 });
 
 $(document).on('click', '#chart2', function () {
     if ($(this).val() === 'Chart2') {
-        setChartCountRegister('quarter');
+        setChartCountRegister('quarter', true);
     }
 });
 
 $(document).on('click', '#chart3', function () {
     if ($(this).val() === 'Chart3') {
-        setChartCountRegister('year');
+        setChartCountRegister('year', true);
     }
 });
 
@@ -49,7 +49,7 @@ function setChartCountPlay(type) {
     });
 }
 
-function setChartCountRegister(type) {
+function setChartCountRegister(type, status = false) {
     $.ajax({
         url: '/get-chart-user',
         type: 'GET',
@@ -58,7 +58,16 @@ function setChartCountRegister(type) {
         }
 
     }).done(function (result) {
-        new Chart(chartCountRegister, {
+        if ($('#area-chart-count-register').has(".chartjs-hidden-iframe")) {
+            $('#area-chart-count-register .chartjs-hidden-iframe').remove();
+            if (status) {
+
+                $('#chart-count-register').remove();
+                $('#area-chart-count-register').append('<canvas id="chart-count-register"></canvas>');
+            }
+        }
+
+        let options = {
             type: 'bar',
             data: result,
             options: {
@@ -68,7 +77,10 @@ function setChartCountRegister(type) {
                     }
                 }
             }
-        });
+        }
+        console.log(chartCountRegister, options);
+        new Chart(chartCountRegister, options);
+
         chartCountRegister.style.height = '500px';
     });
 }

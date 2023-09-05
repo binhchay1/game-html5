@@ -52,7 +52,9 @@ class GameController extends Controller
 
         foreach ($dataGame as $game) {
             $tags = json_decode($game['tag']);
-            $game['tag'] = implode(', ', $tags);
+            if (!empty($tags)) {
+                $game['tag'] = implode(', ', $tags);
+            }
         }
 
         return view('admin.game.list-game', ['dataGame' => $dataGame]);
@@ -147,6 +149,13 @@ class GameController extends Controller
     public function store(GameRequest $request)
     {
         $input = $request->all();
+        $getGame = $this->gameRepository->getGameByName($input['name']);
+        if ($getGame) {
+            $alert = 'Failed! Game exist.';
+
+            return redirect()->route('game.index')->with('alert', $alert);
+        }
+
         $data = [
             'name' => $input['name'],
             'category' => $input['category'],
@@ -155,6 +164,8 @@ class GameController extends Controller
             'status' => $input['status'],
             'color' => $input['color'],
             'text_color' => $input['text_color'],
+            'author' => array_key_exists('author', $input) ? $input['author'] : 'unknown',
+            'status' => 1
         ];
 
         if (array_key_exists('thumbs', $input)) {
@@ -180,6 +191,7 @@ class GameController extends Controller
         }
 
         $result = $this->ultity->storeGame($data);
+
         if ($result['status']) {
             $data['link'] = $result['index'];
             $queryResult = $this->gameRepository->store($data);

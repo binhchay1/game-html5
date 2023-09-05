@@ -18,10 +18,10 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-6">
+            <div class="col-6" id="area-chart-count-play">
                 <canvas id="chart-count-play"></canvas>
             </div>
-            <div class="col-6">
+            <div class="col-6" id="area-chart-count-register">
                 <div class="col-sm-6">
                     <div class="d-flex">
                         <input type="radio" name="chart" id="chart1" value="Chart1" checked>&nbsp;Month

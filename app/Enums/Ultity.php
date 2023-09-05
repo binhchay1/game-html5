@@ -70,14 +70,19 @@ final class Ultity
         foreach ($data['source'] as $path => $file) {
             $result = Storage::disk('public-source-game')->put($path, $file->get());
             $return = [];
+            $preFix = '/source-game//';
             if ($result) {
                 $return['status'] = true;
                 if ($file->getClientOriginalName() == 'index.html') {
-                    $return['index'] = $path;
+                    $index = $preFix . $path;
                 }
             } else {
                 $return['status'] = false;
             }
+        }
+
+        if (isset($index)) {
+            $return['index'] = $index;
         }
 
         return $return;
