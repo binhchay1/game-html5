@@ -17,7 +17,7 @@
 @endsection
 
 @section('main_content')
-<div class="card-header mt-4">
+<div class="card-header">
     <h3>Create Game</h3>
 </div>
 <div class="container">
@@ -33,7 +33,7 @@
             @enderror
         </div>
         <div class="col-md-6">
-            <label for="status">Category Game</label>
+            <label for="category">Category Game</label>
             <select class="form-select form-control @error('category') is-invalid @enderror" aria-label="Default select example" name="category">
                 @foreach ($dataCategory as $dataCategory)
                 <option value="{{ $dataCategory->name }}">
@@ -43,16 +43,16 @@
             </select>
         </div>
         <div class="col-md-4">
-            <label for="inputCity" class="form-label">Tag</label>
+            <label for="tag" class="form-label">Tag</label>
             <input type="text" name="tag" value="[]" class="form-control">
         </div>
         <div class="col-md-2">
-            <label for="inputCity" class="form-label">CountPlay</label>
+            <label for="count_play" class="form-label">CountPlay</label>
             <input type="text" name="count_play" value="0" class="form-control">
         </div>
         <div class="col-md-2">
             <label for="status">Status</label>
-            <select class="form-select" name="status">
+            <select class="form-control" name="status">
                 @foreach($status as $status => $value)
                 <option id="status" value="{{ $value }}">{{ $status }}</option>
                 @endforeach
@@ -125,7 +125,7 @@
         </div>
         <div class="col-md-4 d-flex align-items-center">
             <label class="form-label">Upload File</label>
-            <button type="button" class="btn btn-primary ml-4" data-bs-toggle="modal" data-bs-target="#upload-file-modal" id="button-upload-store-game">Upload</button>
+            <button type="button" class="btn btn-primary ml-4" data-toggle="modal" data-target="#upload-file-modal" id="button-upload-store-game">Upload</button>
             <ul id="list-store-game" class="d-none">
 
             </ul>
@@ -140,6 +140,7 @@
 @endsection
 
 @section('js')
+
 <script src="{{ asset('js/admin/dropzone.js') }}"></script>
 <script src="{{ asset('js/admin/game.js') }}"></script>
 <script>

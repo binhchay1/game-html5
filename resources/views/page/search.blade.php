@@ -11,7 +11,7 @@
 @section('content')
 <div class="box search-container">
     <form id="items-search-form" class="search-form" action="{{ route('search') }}" accept-charset="UTF-8" method="get">
-        <input type="text" name="q" id="q" value="{{ app('request')->input('q') }}" placeholder="Tìm kiếm trò chơi" class="form-control query fake-button" />
+        <input type="text" name="q" id="q" value="{{ app('request')->input('q') }}" placeholder="{{ __('Tìm kiếm trò chơi') }}" class="form-control query fake-button" />
         <input type="hidden" name="category" id="category-search-input">
         <input type="hidden" name="tag" id="tag-search-input">
         <i class="y-icon y-icon--search y-icon--big"></i>

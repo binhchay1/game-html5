@@ -5,7 +5,7 @@
 @endsection
 
 @section('main_content')
-<div class="card-header mt-4">
+<div class="card-header">
     <h3>List Game</h3>
 </div>
 <div class="justify-content-start m-1 mb-2 mt-4">
@@ -17,11 +17,11 @@
     <thead>
         <tr class="design-text">
             <th scope="col">ID</th>
-            <th scope="col">Name</th>
+            <th scope="col" style="width: 15%;">Name</th>
             <th scope="col">Link</th>
             <th scope="col">Category</th>
             <th scope="col">Thumbs</th>
-            <th style="width: 15%" scope="col">Tag</th>
+            <th scope="col">Tag</th>
             <th scope="col">CountPlay</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
@@ -32,7 +32,7 @@
         <tr class="design-text">
             <td>{{ $game->id }}</td>
             <td>{{ $game->name }}</td>
-            <td>{{ Str::limit($game->link,10) }}</td>
+            <td>{{ Str::limit($game->link, 20) }}</td>
             <td>{{ $game->categories->name ?? "" }}</td>
             <td><img class="image" src="{{ $game->thumbs }}" alt="avatar" width="100" height="50"></td>
             <td>{{ Str::limit($game->tag, 30) }}</td>

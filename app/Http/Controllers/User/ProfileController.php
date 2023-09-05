@@ -133,7 +133,7 @@ class ProfileController extends Controller
         return back()->with("status", "Password changed successfully!");
     }
 
-    public function setting()
+    public function favoriteGame()
     {
         $listGameName = $this->gameCollectionRepository->getCollectionByUser(Auth::user()->id);
         $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);

@@ -33,6 +33,12 @@
         iframe[fullscreenother]();
     }, false);
 
+})(this, this.document);
+
+$(document).ready(function () {
+    let scriptTag = "<script>" + sw + "<\/script>";
+    $("iframe").contents().find("body").append(scriptTag);
+
     let listChangeColor = ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'i', 'a'];
     for (let i = 0; i < listChangeColor.length; i++) {
         let all = document.getElementsByTagName(listChangeColor[i]);
@@ -42,28 +48,87 @@
         }
     }
 
-})(this, this.document);
+    let elementPostArea = document.getElementById("post-area");
+    if (elementPostArea.getElementsByClassName("post-date") != null) {
+        let listPost = elementPostArea.getElementsByClassName("post-date");
+        for (let i = 0; i < listPost.length; i++) {
+            let time = listPost[i].getElementsByTagName('p')[0].getAttribute('title');
+            let calTime = moment(time, "YYYY-MM-DD H-i-s").fromNow();
+            listPost[i].getElementsByTagName('p')[0].innerHTML = calTime;
+        }
+    }
 
+    let btnSubmitComment = document.getElementById("btn-submit-comment");
+    if (btnSubmitComment != null) {
+        btnSubmitComment.style.border = '1px solid ' + invertColor(themeColor);
+        btnSubmitComment.style.background = 'none';
+        btnSubmitComment.style.color = invertColor(themeColor);
+        btnSubmitComment.style.marginLeft = '10px';
+    }
 
+    let btnLogin = document.getElementById("btn-login");
 
+    if (btnLogin != null) {
+        btnLogin.style.border = '1px solid ' + invertColor(themeColor);
+        btnLogin.style.marginLeft = '10px';
+    }
 
-$(document).ready(function () {
-    // let scriptTag = "<script>alert(1)<\/script>";
-    // $("iframe").contents().find("body").append(scriptTag);
+    let iframe = document.getElementById("game-iframe");
+    iframe.classList.add("pre-play-game");
 
-    let cssBorderButtonLogin = '{border: 1px solid ' + invertColor(themeColor) + ' !important}';
-    $('#button-login').css(cssBorderButtonLogin);
+    let details = navigator.userAgent;
+    let regexp = /android|iphone|kindle|ipad/i;
+    let isMobileDevice = regexp.test(details);
 
-    $('.post-area').each(function (i) {
-        console.log($(this)[i]);
-
-    });
-
-    moment("20111031", "YYYYMMDD").fromNow();
+    if (isMobileDevice) {
+        window.addEventListener('load', function (e) {
+            setTimeout(function () { window.scrollTo(0, 1); }, 1);
+        }, false);
+    }
 });
 
+$("#btn-play").click(function () {
+    let iframe = $("#game-iframe");
+    let areaBtn = $(".btn-play-area");
+    let areaFullScreen = $("#btn-fullscreen-area");
+    iframe.attr("src", iframe.data("src"));
+    areaBtn.addClass('hide-important');
+    iframe.removeClass('pre-play-game');
+    areaFullScreen.removeClass('d-none');
 
+    $.ajax({
+        url: '/count-play',
+        type: 'get',
+        data: {
+            gameName: gameName
+        }
+    }).done(function () {
 
+    });
+});
+
+$('#btn-submit-comment').on("click", function (e) {
+    e.preventDefault();
+    let content = $('.comment-input').val();
+    if (content.length == 0 || content.length > 255) {
+        return false;
+    } else {
+        $.ajax({
+            url: '/store-comments',
+            type: 'get',
+            data: {
+                content: content,
+                gameName: gameName
+            }
+        }).done(function (result) {
+            if (result.status == true) {
+                let contentAppend = "<p style='color: " + invertColor(themeColor) + "'>" + result.content + "</p>";
+                $('.form-comment').empty();
+                $('.form-comment').append(contentAppend);
+            }
+        });
+    }
+});
 
 $('#vote-like').on('click', function () {
     $.ajax({
@@ -73,7 +138,7 @@ $('#vote-like').on('click', function () {
             vote: 'like',
             gameName: gameName
         }
-    }).done(function (result) {
+    }).done(function () {
         $('#vote-unlike').css('opacity', '0.3');
         $('#vote-like').css('opacity', '1');
     });
@@ -87,7 +152,7 @@ $('#vote-unlike').on('click', function () {
             vote: 'unlike',
             gameName: gameName
         }
-    }).done(function (result) {
+    }).done(function () {
         $('#vote-like').css('opacity', '0.3');
         $('#vote-unlike').css('opacity', '1');
     });
@@ -148,7 +213,7 @@ function saveCollection() {
         data: {
             gameName: gameName
         }
-    }).done(function (result) {
+    }).done(function () {
         $('#button-add-collection').css('cursor', 'auto');
         $('#button-add-collection p').html('Game in your collection!');
         $('#button-add-collection').each(function () {
@@ -184,3 +249,17 @@ function reportBug() {
         }
     });
 }
+
+window.addEventListener("message", function (event) {
+    if (event.origin !== window.location.origin)
+        return;
+
+    let dataPost = event.data;
+    let iframe = document.getElementById('game-iframe');
+    let fullscreen = document.getElementById('btn-fullscreen-area');
+    iframe.width = dataPost.width;
+    iframe.height = dataPost.height;
+    if (dataPost.webgl) {
+        fullscreen.style.display = 'none';
+    }
+});

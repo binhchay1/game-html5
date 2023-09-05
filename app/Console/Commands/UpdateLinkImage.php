@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 class UpdateLinkImage extends Command
 {
     protected $signature = 'app:update-link-image';
-    protected $description = 'Command description';
+    protected $description = 'Change path image in database';
     private $gameRepository;
 
     public function __construct(GameRepository $gameRepository)

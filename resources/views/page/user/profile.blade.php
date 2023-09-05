@@ -149,3 +149,7 @@
     </form>
 </div>
 @endsection
+
+@section('js')
+<script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+@endsection

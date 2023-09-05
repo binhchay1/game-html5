@@ -128,7 +128,7 @@ class GameRepository extends BaseRepository
 
     public function update($input, $id)
     {
-        return $this->model->with('categories')->where('id', $id)->update($input);
+        return $this->model->where('id', $id)->update($input);
     }
 
     public function updateCountPlay($gameName, $count)

@@ -13,12 +13,16 @@ class SendNewGameEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private $mail;
+    private $data;
+
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct($mail, $data)
     {
-        //
+        $this->mail = $mail;
+        $this->data = $data;
     }
 
     /**
@@ -26,6 +30,7 @@ class SendNewGameEmail implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        dd($this->data);
+        Mail::to($this->mail)->send(new NewGameMail($this->data));
     }
 }

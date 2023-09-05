@@ -15,7 +15,8 @@ class Comment extends Model
         'user_id',
         'game_name',
         'locale',
-        'content'
+        'content',
+        'status'
     ];
 
     public $timestamps = true;

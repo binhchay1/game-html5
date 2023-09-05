@@ -5,7 +5,7 @@
 @endsection
 
 @section('main_content')
-<div class="card-header mt-4">
+<div class="card-header">
     <h3>List Report Bug</h3>
 </div>
 
@@ -29,7 +29,7 @@
             <td>{{ $report->game_name }}</th>
             <td>{{ $report->note }}</th>
             <td class="text_flow text-center">
-                <a href="{{ route('report.showReport', $report['id']) }}" class="btn btn-info">
+                <a href="{{ route('report.show', $report['id']) }}" class="btn btn-info">
                     <i class="fas fa-info-circle"></i>
                 </a>
             </td>

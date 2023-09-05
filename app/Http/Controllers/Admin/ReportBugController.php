@@ -25,6 +25,6 @@ class ReportBugController extends Controller
     {
         $dataReport = $this->reportBugRepository->showReport($id);
 
-        return view('admin.report.show-report', ['dataReport' => $dataReport]);
+        return view('admin.report.show-report', compact('dataReport'));
     }
 }

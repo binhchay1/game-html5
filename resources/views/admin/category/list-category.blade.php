@@ -5,7 +5,7 @@
 @endsection
 
 @section('main_content')
-<div class="card-header mt-4">
+<div class="card-header">
     <h3>List Category</h3>
 </div>
 <div class="justify-content-start m-1 mb-2 mt-4">

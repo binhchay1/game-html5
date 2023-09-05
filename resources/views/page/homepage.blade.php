@@ -7,12 +7,6 @@
 @section('css')
 <link rel="manifest" href="{{ asset('json/manifest.json') }}" crossorigin="use-credentials">
 <style type="text/css">
-    .disable-link {
-        cursor: not-allowed;
-        pointer-events: none;
-        opacity: 0.5;
-    }
-
     .top-tags ul li {
         list-style-type: none;
     }
@@ -72,7 +66,7 @@
             <div class="search-trends-container col-md-12">
                 <p class='h5'>{{ __('Tìm kiếm hàng đầu') }}</p>
                 <div class="open-modal-btn">
-                    <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag image-flag-top-search">
+                    <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag image-flag-top-search" alt="{{ __('Ngôn ngữ mặc định') }}">
                 </div>
                 <div class="search-trends">
                     <ul>
@@ -147,7 +141,11 @@
         </div>
         <div class="navigator mobile">
             <div class="head">
-                <a aria-label="arrow previous" class="arrow previous {{ $games->currentPage() == 1 ? 'disable-link' : '' }}" href="{{ $games->previousPageUrl() }}"></a>
+                @if(empty($games->previousPageUrl()))
+                <a aria-label="arrow previous" class="arrow previous disable-link"></a>
+                @else
+                <a aria-label="arrow previous" class="arrow previous" href="{{ $games->previousPageUrl() }}"></a>
+                @endif
                 <ul>
                     @if($games->currentPage() != 1)
                     <li>

@@ -90,8 +90,8 @@ class HomeController extends Controller
     public function viewHome()
     {
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
-        $query = $this->gameRepository->getListGameWithVote();
-        $query = $query->shuffle();
+        $getListGame = $this->gameRepository->getListGameWithVote();
+        $query = $getListGame->shuffle();
         $games = $this->ultity->paginate($query, 30);
         $countGame = count($query);
         $locale = Session::get('locale');
@@ -192,7 +192,7 @@ class HomeController extends Controller
     {
         $filter = [];
         if ($request->get('q') != null) {
-            $filter['q'] = $request->get('q');
+            $filter['q'] = str_replace(' ', '-', $request->get('q'));
             $locale = env('ENABLE_LOCALE', 'en');
             if (preg_match("/[^\w]/", $request->get('q')) == 0) {
                 $querySearch = $this->searchRepository->getSearchByKeyWordAndLocale($filter['q'], $locale);
@@ -257,13 +257,13 @@ class HomeController extends Controller
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTag = explode(', ', $translate);
 
-
         $getGames = $listGame->shuffle();
         $paginate = $this->ultity->paginate($getGames, 30);
         $games = $this->ultity->renameAndCalculateVote($paginate);
 
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+
             return view('page.search', compact('listCategory', 'games', 'listTag', 'countGameInCollection'));
         }
 
@@ -316,26 +316,22 @@ class HomeController extends Controller
 
         $getTags = $this->gameRepository->getTags()->toArray();
         $listTag = [];
-        $listIgnore = [];
 
         foreach ($getTags as $record) {
             $arrTags = json_decode($record['tag']);
             foreach ($arrTags as $tag) {
-                if (!in_array($tag, $listTag) and !in_array($tag, $listIgnore)) {
-                    $countGame = $this->gameRepository->countGameByTag($tag);
-                    if ($countGame <= 5) {
-                        $listIgnore[] = $tag;
-                        continue;
-                    }
+                if (array_key_exists($tag, $listTag)) {
+                    $listTag[$tag]['count'] += 1;
+                } else {
                     $listTag[$tag] = [
-                        'count' => $countGame,
+                        'count' => 1,
                         'numberIcon' => array_key_exists($tag, $this->iconGame::LIST_ICON) ? $this->iconGame::LIST_ICON[$tag] : 1200
                     ];
                 }
             }
         }
 
-        $perPage = 198;
+        $perPage = 120;
         $path = '/tags';
         $pageName = 'page';
         $listResult = $this->ultity->paginate($listTag, $perPage, $path, $pageName, $page);
@@ -441,6 +437,7 @@ class HomeController extends Controller
         $locale = Session::get('locale');
         $getGame = $this->gameRepository->getGameByName($game);
         $comments = $this->commentRepository->getCommentByGameAndLocale($game, $locale);
+        $statusComment = 0;
 
         if (empty($getGame)) {
             abort(404);
@@ -450,7 +447,14 @@ class HomeController extends Controller
         $status = null;
 
         if (Auth::check()) {
+            $user = Auth::user()->id;
+            $getComment = $this->commentRepository->getCommentByUserAndGame($game, $user);
             $query = $this->gameCollectionRepository->getByGameNameAndUserId($game, Auth::user()->id);
+
+            if (!empty($getComment)) {
+                $statusComment = 1;
+            }
+
             if (empty($query)) {
                 $status = false;
             } else {
@@ -458,7 +462,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.games', compact('getGame', 'status', 'comments'));
+        return view('page.games', compact('getGame', 'status', 'comments', 'statusComment'));
     }
 
     public function changeLocate($locale)
@@ -477,7 +481,7 @@ class HomeController extends Controller
         $request->session()->regenerateToken();
         Cookie::queue(Cookie::forget(strtolower(str_replace(' ', '_', config('app.name'))) . '_session'));
 
-        return redirect('/');
+        return redirect()->route('home');
     }
 
     public function reportBug(Request $request)
@@ -518,13 +522,17 @@ class HomeController extends Controller
         $gameName = $request->get('gameName');
         $queryIP = $this->ipUserRepository->getIpByUser($ip, $gameName);
 
+        if (empty($gameName)) {
+            abort(404);
+        }
+
         if (empty($queryIP)) {
             $dataIpUser = [
                 'ip_address' => $ip,
                 'game_name' => $gameName
             ];
 
-            if (Auth::check) {
+            if (Auth::check()) {
                 $dataIpUser['user_id'] = Auth::user()->id;
             }
 
@@ -534,7 +542,57 @@ class HomeController extends Controller
         return 'success';
     }
 
+    public function storeComments(Request $request)
+    {
+        $content = $request->get('content');
+        $locale = Session::get('locale');
+        $gameName = $request->get('gameName');
+
+        if (empty($gameName) or empty($locale) or empty($content)) {
+            abort(404);
+        }
+
+        $result = [
+            'status' => false
+        ];
+
+        if (empty($content) or $content != strip_tags($content)) {
+            return $result;
+        }
+
+        $data = [
+            'user_id' => Auth::user()->id,
+            'game_name' => $gameName,
+            'locale' => $locale,
+            'content' => $content,
+            'status' => 0
+        ];
+
+        $query = $this->commentRepository->create($data);
+
+        if (!$query) {
+            return $result;
+        }
+
+        $result['status'] = true;
+        $result['content'] = __('Cám ơn các bạn đã bình luận. Chúng tôi sẽ thông báo sớm đến bạn qua hòm thư sau khi được kiểm duyệt!');
+
+        return $result;
+    }
+
     public function countPlay(Request $request)
     {
+        $gameName = $request->get('gameName');
+        $getGame = $this->gameRepository->getGameByName($gameName);
+        if (empty($gameName) or empty($getGame)) {
+            abort(404);
+        }
+
+        $data = [
+            'count_play' => $getGame->count_play++
+        ];
+        $this->gameRepository->update($data, $getGame->id);
+
+        return 'success';
     }
 }

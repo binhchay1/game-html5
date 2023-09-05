@@ -9,7 +9,7 @@
 
     @yield('title')
 
-    <meta name="description" content="{{ __('Chơi trò chơi miễn phí trên') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi. Gamekafe cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.') }}" />
+    <meta name="description" content="{{ __('Chơi trò chơi miễn phí trên') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi.') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('và gia nhập với cộng đồng người chơi ngay.') }}" />
     <meta name="keywords" content="{{ __('chơi trò chơi miễn phí') }}, {{ __('chơi trò chơi trực tuyến') }}, {{ __('chơi trò chơi, gamekafe, gamekafe, kafe, fake, gameka, chơi trò chơi bóng đá, chơi trò chơi android, chơi trò chơi đua xe, chơi trò chơi zombie, chơi candy crush, chơi trò chơi đua tốc độ, chơi trò chơi casino, chơi poker, chơi trò chơi bắn nhau, chơi trò chơi thời trang, chơi trò chơi nữ giới, chơi trò chơi nấu ăn, chơi trò chơi phiêu lưu, chơi trò chơi câu cá, chơi trò chơi halloween, chơi trò chơi tình yêu, chơi trò chơi đố vui, chơi trò chơi thể thao, chơi trò chơi chiến tranh, chơi trò chơi bóng đá') }}" />
     <meta property="og:title" content="{{ env('APP_NAME', 'Gamekafe') }} -  {{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}">
     <meta property="og:type" content="website">
@@ -18,7 +18,10 @@
     <meta property="og:image:width" content="500">
     <meta property="og:image:height" content="500">
     <meta property="og:site_name" content="{{ env('APP_NAME', 'Gamekafe') }}">
-    <meta property="og:description" content="{{ __('Chơi trò chơi miễn phí trên') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi.') }} {{ env('APP_NAME', 'Gamekafe') }} cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm Gamekafe và gia nhập với cộng đồng người chơi ngay.">
+    <meta property="og:description" content="{{ __('Chơi trò chơi miễn phí trên') }} {{ env('APP_NAME', 'Gamekafe') }}. {{ __('Các game hai người chơi và game trang điểm hàng đầu. Tuy nhiên, game mô phỏng và game nấu ăn cũng rất phổ biến trong các người chơi.') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('cũng hoạt động trên các thiết bị di động và có nhiều game cảm ứng cho điện thoại. Ghé thăm') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('và gia nhập với cộng đồng người chơi ngay.') }}">
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="canonical" href="{{ env('APP_URL', 'https://gamekafe.com') }}" />
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/black-logo-no-background.png') }}" />
     <link rel="icon" sizes="192x192" href="{{ asset('images/black-logo-no-background.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/black-logo-no-background.png') }}">
@@ -114,7 +117,7 @@
                                         <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.edit') }}">{{ __('Hồ sơ') }}</a>
                                     </li>
                                     <li>
-                                        <a class="account-menu-link" id="account-menu-link-games" href="{{ route('user.setting') }}">
+                                        <a class="account-menu-link" id="account-menu-link-games" href="{{ route('user.favorite') }}">
                                             {{ __('Yêu thích') }}
                                             (<span class="js-favorites-count">{{ $countGameInCollection }}</span>)
                                         </a>
@@ -197,7 +200,7 @@
 
                 <div id="locale-selector-dropdown" class="locale-selector-dropdown fake-button">
                     <div id="button-flag" onclick="dropDownLocate()">
-                        <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag">
+                        <img src="{{ asset(\App\Enums\Locale::LIST_FLAG[Session::get('locale')]) }}" class="image-flag" alt="{{ __('Ngôn ngữ mặc định') }}">
                     </div>
 
                     <div id="locate-dropdown">
@@ -322,7 +325,6 @@
     </div>
 
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script>
         <?php if (Auth::check()) { ?>
             const loginDefined = true;

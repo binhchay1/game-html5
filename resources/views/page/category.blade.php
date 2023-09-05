@@ -123,7 +123,11 @@
 
         <div class="navigator short">
             <div class="head">
-                <a aria-label="arrow previous" class="arrow previous {{ $games->currentPage() == 1 ? 'disable-link' : '' }}" href="{{ $games->previousPageUrl() }}"></a>
+                @if(empty($games->previousPageUrl()))
+                <a aria-label="arrow previous" class="arrow previous disable-link"></a>
+                @else
+                <a aria-label="arrow previous" class="arrow previous" href="{{ $games->previousPageUrl() }}"></a>
+                @endif
                 <ul>
                     @if($games->currentPage() != 1)
                     <li>
@@ -158,7 +162,7 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
 <script>
     $(document).ready(function() {
         $('.view-all-link').hover(function() {
