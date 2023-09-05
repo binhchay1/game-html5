@@ -192,7 +192,7 @@ class HomeController extends Controller
     {
         $filter = [];
         if ($request->get('q') != null) {
-            $filter['q'] = $request->get('q');
+            $filter['q'] = $journalName = str_replace(' ', '-', $request->get('q'));
             $locale = env('ENABLE_LOCALE', 'en');
             if (preg_match("/[^\w]/", $request->get('q')) == 0) {
                 $querySearch = $this->searchRepository->getSearchByKeyWordAndLocale($filter['q'], $locale);
