@@ -16,9 +16,10 @@ class UserRepository extends BaseRepository
         return $this->model->orderBy('created_at', 'desc')->get();
     }
 
-    public function showUser($userId)
+    public function showUser($userName)
     {
-        return $this->model->where('id', $userId)->get();
+
+        return $this->model->where('name', $userName)->first();
     }
 
     public function update($input, $id)

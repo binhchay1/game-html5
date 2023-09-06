@@ -114,7 +114,10 @@
                                 </div>
                                 <ul>
                                     <li>
-                                        <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.edit') }}">{{ __('Hồ sơ') }}</a>
+                                        <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.show',Auth::user()->name ) }}">{{ __('Hồ sơ') }}</a>
+                                    </li>
+                                    <li>
+                                        <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.edit') }}">{{ __('Thay đổi hồ sơ') }}</a>
                                     </li>
                                     <li>
                                         <a class="account-menu-link" id="account-menu-link-games" href="{{ route('user.favorite') }}">
