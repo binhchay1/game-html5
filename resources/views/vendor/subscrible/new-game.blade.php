@@ -354,24 +354,20 @@
 </head>
 
 <body>
-    <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+    <span class="preheader">{{ __('Bạn đã sẵn sàng cho những thử thách mới chưa ?') }}</span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
         <tr>
             <td>&nbsp;</td>
             <td class="container">
                 <div class="content">
-
-                    <!-- START CENTERED WHITE CONTAINER -->
                     <table role="presentation" class="main">
-
-                        <!-- START MAIN CONTENT AREA -->
                         <tr>
                             <td class="wrapper">
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td>
-                                            <p>Hi there,</p>
-                                            <p>Sometimes you just want to send a simple HTML email with a simple design and clear call to action. This is it.</p>
+                                            <p>{{ __('Chào bạn') }},</p>
+                                            <p>{{ __('Chúng tôi mới cập nhật thêm tựa game mới:') }} {{ $data['game_name'] }}</p>
                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                                                 <tbody>
                                                     <tr>
@@ -379,7 +375,7 @@
                                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td> <a href="http://htmlemail.io" target="_blank">Call To Action</a> </td>
+                                                                        <td> <a href="{{ route('new-games') }}" target="_blank">{{ __('Tham gia ngay') }}</a> </td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -387,36 +383,27 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <p>This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.</p>
-                                            <p>Good luck! Hope it works.</p>
+                                            <img src="{{ $data['game_thumb'] }}" alt="thumbs" />
                                         </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
-
-                        <!-- END MAIN CONTENT AREA -->
                     </table>
-                    <!-- END CENTERED WHITE CONTAINER -->
-
-                    <!-- START FOOTER -->
                     <div class="footer">
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td class="content-block">
-                                    <span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
-                                    <br> Don't like these emails? <a href="http://i.imgur.com/CScmqnj.gif">Unsubscribe</a>.
+                                    <br> {{ __('Bạn không thích những email này?') }} <a href="{{ route('unsubscribe') }}">{{ __('Hủy đăng ký')}}</a>.
                                 </td>
                             </tr>
                             <tr>
                                 <td class="content-block powered-by">
-                                    Powered by <a href="http://htmlemail.io">HTMLemail</a>.
+                                    {{ __('Được cung cấp bởi') }} <a href="{{ env('APP_URL', 'gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a>.
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <!-- END FOOTER -->
-
                 </div>
             </td>
             <td>&nbsp;</td>

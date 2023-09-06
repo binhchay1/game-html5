@@ -11,6 +11,7 @@ use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
 use App\Repositories\SearchRepository;
 use App\Repositories\GameCollectionRepository;
+use App\Repositories\SubscribleRepository;
 use App\Repositories\ReportBugRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\StatefulGuard;
@@ -32,6 +33,7 @@ class HomeController extends Controller
     private $guard;
     private $reportBugRepository;
     private $commentRepository;
+    private $subscribleRepository;
 
     public function __construct(
         GameRepository $gameRepository,
@@ -43,7 +45,8 @@ class HomeController extends Controller
         GameCollectionRepository $gameCollectionRepository,
         StatefulGuard $guard,
         ReportBugRepository $reportBugRepository,
-        CommentRepository $commentRepository
+        CommentRepository $commentRepository,
+        SubscribleRepository $subscribleRepository
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
@@ -55,6 +58,7 @@ class HomeController extends Controller
         $this->guard = $guard;
         $this->reportBugRepository = $reportBugRepository;
         $this->commentRepository = $commentRepository;
+        $this->subscribleRepository = $subscribleRepository;
     }
 
     public function viewCookiePolicy()
@@ -594,5 +598,29 @@ class HomeController extends Controller
         $this->gameRepository->update($data, $getGame->id);
 
         return 'success';
+    }
+
+    public function unsubscribe(Request $request)
+    {
+        $email = $request->get('e');
+        $token = $request->get('t');
+
+        if (empty($email) or empty($token)) {
+            abort(404);
+        }
+
+        $subscrible = $this->subscribleRepository->getSubscribleByEmailAndToken($email, $token);
+
+        if (empty($subscrible)) {
+            return '-1';
+        }
+
+        $data = [
+            'status' => 0
+        ];
+
+        $this->subscribleRepository->updateById($subscrible, $data);
+
+        return view('page.unsubscribe');
     }
 }

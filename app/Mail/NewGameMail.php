@@ -28,7 +28,7 @@ class NewGameMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Game Mail',
+            subject: 'New Game incoming',
         );
     }
 

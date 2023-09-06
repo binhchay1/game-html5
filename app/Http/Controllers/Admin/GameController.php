@@ -161,7 +161,6 @@ class GameController extends Controller
             'category' => $input['category'],
             'tag' => $input['tag'],
             'count_play' => $input['count_play'],
-            'status' => $input['status'],
             'color' => $input['color'],
             'text_color' => $input['text_color'],
             'author' => array_key_exists('author', $input) ? $input['author'] : 'unknown',
@@ -191,22 +190,33 @@ class GameController extends Controller
         }
 
         $result = $this->ultity->storeGame($data);
-        $alert = 1;
 
-        // if ($result['status']) {
-        //     $data['link'] = $result['index'];
-        // $queryResult = $this->gameRepository->store($data);
-        //     if ($queryResult) {
-        //         $alert = 'Successfully stored';
-        //     } else {
-        //         $alert = 'Failed to store';
-        //     }
-        // } else {
-        //     $alert = 'Failed to store';
-        // }
+        if ($result['status']) {
+            $data['link'] = $result['index'];
+            $queryResult = $this->gameRepository->store($data);
+            if ($queryResult) {
+                $alert = 'Successfully stored';
+            } else {
+                $alert = 'Failed to store';
+            }
+        } else {
+            $alert = 'Failed to store';
+        }
 
         $subscrible = $this->subscribleRepository->getSubscribleWithStatus();
         $type = 'new-game';
+        $dataSendMail = [
+            'game_name' => $data['name'],
+            'link' => $data['link'],
+        ];
+
+        if (!empty($data['author'])) {
+            $dataSendMail['author'] = $data['author'];
+        }
+
+        if (!empty($data['thumbs'])) {
+            $dataSendMail['game_thumb'] = $data['thumbs'];
+        }
 
         foreach ($subscrible as $email) {
             $this->sendMail->send($email['email'], $type);
