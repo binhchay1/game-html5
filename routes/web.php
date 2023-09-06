@@ -51,7 +51,7 @@ Route::get('/register-retry', [HomeController::class, 'registerRetry'])->name('r
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
-    Route::get('/user-info', [ProfileController::class, 'show'])->name('user.show');
+    Route::get('/user-info/{name}', [ProfileController::class, 'show'])->name('user.show');
     Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
     Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
     Route::get('/game-played', [ProfileController::class, 'gamePlayed'])->name('game.played');
