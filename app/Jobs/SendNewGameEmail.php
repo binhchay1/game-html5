@@ -31,6 +31,11 @@ class SendNewGameEmail implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->mail)->send(new NewGameMail($this->data));
+        try {
+            Mail::to($this->mail)->send(new NewGameMail($this->data));
+            $this->fail();
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
     }
 }

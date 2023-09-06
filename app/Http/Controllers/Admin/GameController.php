@@ -191,24 +191,25 @@ class GameController extends Controller
         }
 
         $result = $this->ultity->storeGame($data);
+        $alert = 1;
 
-        if ($result['status']) {
-            $data['link'] = $result['index'];
-            $queryResult = $this->gameRepository->store($data);
-            if ($queryResult) {
-                $alert = 'Successfully stored';
-            } else {
-                $alert = 'Failed to store';
-            }
-        } else {
-            $alert = 'Failed to store';
-        }
+        // if ($result['status']) {
+        //     $data['link'] = $result['index'];
+        // $queryResult = $this->gameRepository->store($data);
+        //     if ($queryResult) {
+        //         $alert = 'Successfully stored';
+        //     } else {
+        //         $alert = 'Failed to store';
+        //     }
+        // } else {
+        //     $alert = 'Failed to store';
+        // }
 
         $subscrible = $this->subscribleRepository->getSubscribleWithStatus();
         $type = 'new-game';
 
         foreach ($subscrible as $email) {
-            $this->sendMail->send($email, $type);
+            $this->sendMail->send($email['email'], $type);
         }
 
         return redirect()->route('game.index')->with('alert', $alert);
