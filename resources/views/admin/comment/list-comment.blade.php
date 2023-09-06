@@ -5,7 +5,7 @@
 @endsection
 
 @section('main_content')
-<div class="card-header mt-4">
+<div class="card-header">
     <h3>List Comment Game</h3>
 </div>
 

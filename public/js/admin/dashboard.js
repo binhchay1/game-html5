@@ -1,5 +1,17 @@
 const chartCountPlay = document.getElementById('chart-count-play');
 const chartCountRegister = document.getElementById('chart-count-register');
+chartCountRegister.style.height = '500px';
+const ctx = new Chart(chartCountRegister, {
+    type: 'bar',
+    data: [],
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 
 $(document).ready(function () {
     setChartCountPlay('month');
@@ -8,19 +20,19 @@ $(document).ready(function () {
 
 $(document).on('click', '#chart1', function () {
     if ($(this).val() === 'Chart1') {
-        setChartCountRegister('month', true);
+        setChartCountRegister('month');
     }
 });
 
 $(document).on('click', '#chart2', function () {
     if ($(this).val() === 'Chart2') {
-        setChartCountRegister('quarter', true);
+        setChartCountRegister('quarter');
     }
 });
 
 $(document).on('click', '#chart3', function () {
     if ($(this).val() === 'Chart3') {
-        setChartCountRegister('year', true);
+        setChartCountRegister('year');
     }
 });
 
@@ -49,7 +61,7 @@ function setChartCountPlay(type) {
     });
 }
 
-function setChartCountRegister(type, status = false) {
+function setChartCountRegister(type) {
     $.ajax({
         url: '/get-chart-user',
         type: 'GET',
@@ -58,30 +70,8 @@ function setChartCountRegister(type, status = false) {
         }
 
     }).done(function (result) {
-        if ($('#area-chart-count-register').has(".chartjs-hidden-iframe")) {
-            $('#area-chart-count-register .chartjs-hidden-iframe').remove();
-            if (status) {
-
-                $('#chart-count-register').remove();
-                $('#area-chart-count-register').append('<canvas id="chart-count-register"></canvas>');
-            }
-        }
-
-        let options = {
-            type: 'bar',
-            data: result,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        }
-        new Chart(chartCountRegister, options);
-
-        chartCountRegister.style.height = '500px';
+        ctx.data.datasets = result.datasets;
+        ctx.data.labels = result.labels;
+        ctx.update();
     });
 }
-
-
