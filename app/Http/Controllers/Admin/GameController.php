@@ -277,7 +277,31 @@ class GameController extends Controller
 
     public function delete(Request $request)
     {
-        $this->gameRepository->deleteById($request->get('id-game'));
+        $idGame = $request->get('id-game');
+        $game = $this->gameRepository->getById($idGame);
+
+        if (!empty($game['icon'])) {
+            $pathIcon = public_path() . $game['icon'];
+            if (file_exists($pathIcon)) {
+                unlink($pathIcon);
+            }
+        }
+
+        if (!empty($game['background'])) {
+            $pathBackground = public_path() . $game['background'];
+            if (file_exists($pathBackground)) {
+                unlink($pathBackground);
+            }
+        }
+
+        if (!empty($game['thumbs'])) {
+            $pathThumb = public_path() . $game['thumbs'];
+            if (file_exists($pathThumb)) {
+                unlink($pathThumb);
+            }
+        }
+
+        $this->gameRepository->deleteById($idGame);
 
         return redirect()->route('game.index')->with('alert', 'Delete successfully!');
     }
