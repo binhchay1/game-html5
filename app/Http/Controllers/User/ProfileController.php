@@ -47,9 +47,45 @@ class ProfileController extends Controller
         $this->searchRepository = $searchRepository;
     }
 
-    public function show()
+    public function show($userName)
     {
-        $this->userRepository->showUser(Auth::user()->id);
+        $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+        $query = $this->gameRepository->getListGameWithVote();
+        $query = $query->shuffle();
+        $games = $this->ultity->paginate($query, 30);
+        $countGame = count($query);
+        $locale = env('ENABLE_LOCALE', 'en');
+        $search = $this->searchRepository->listOrderWithLimitByLocale($locale);
+        $listTag = [];
+
+        foreach ($games as $game) {
+            $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
+
+            if (($game->votes['like'] + $game->votes['un_like']) == 0) {
+                $game['rating'] = 100;
+            } else {
+                $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
+            }
+
+            $listTagDecode = json_decode($game['tag']);
+            foreach ($listTagDecode as $decode) {
+                if (count($listTag) >= 13) {
+                    break;
+                }
+
+                if (!in_array($decode, $listTag)) {
+                    $listTag[] = $decode;
+                }
+            }
+        }
+
+        $stringTrans = implode(', ', $listTag);
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $listTag = explode(', ', $translate);
+
+        $dataUser = $this->userRepository->showUser($userName);
+        return view('page.user.profile', compact('dataUser',  'listCategory', 'countGameInCollection', 'listTag'));
     }
 
     public function edit()
@@ -92,7 +128,7 @@ class ProfileController extends Controller
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
         $listTag = explode(', ', $translate);
 
-        return view('page.user.profile', compact('dataUser', 'gender', 'listCategory', 'countGameInCollection', 'listTag', 'country'));
+        return view('page.user.change-profile', compact('dataUser', 'gender', 'listCategory', 'countGameInCollection', 'listTag', 'country'));
     }
 
     public function update(UserRequest $request)
