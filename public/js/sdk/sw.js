@@ -8,7 +8,7 @@ const sw = ! function (e, t) {
         t(e)
 }("undefined" != typeof window ? window : this, function (C, e, f) {
     "use strict";
-    let b = $("body");
+    let b = $("#game-iframe");
     let o = {};
     let u = urlMain;
     let h = C.document.body.clientHeight;

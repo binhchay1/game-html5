@@ -8,7 +8,11 @@
 <div class="card-header">
     <h3>List Achievement</h3>
 </div>
-
+<div class="justify-content-start m-1 mb-2 mt-4">
+    <a href="{{ route('achievement.create') }}">
+        <button type="button" id="btn-add" class="btn btn-success">Add</button>
+    </a>
+</div>
 <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="customers">
     <thead>
         <tr class="design-text">

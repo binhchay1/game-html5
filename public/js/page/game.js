@@ -37,7 +37,9 @@
 
 $(document).ready(function () {
     let scriptTag = "<script>" + sw + "<\/script>";
-    $("iframe").contents().find("body").append(scriptTag);
+    document.getElementById("game-iframe").onload = function () {
+        $("iframe").contents().find("body").append(scriptTag);
+    };
 
     let listChangeColor = ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'i', 'a'];
     for (let i = 0; i < listChangeColor.length; i++) {
