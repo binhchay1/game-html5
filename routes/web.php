@@ -52,7 +52,7 @@ Route::get('/unsubscribe', [HomeController::class, 'unsubscribe'])->name('unsubs
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
-    Route::get('/user-info/{name}', [ProfileController::class, 'show'])->name('user.show');
+    Route::get('/user-info/{user_name}', [ProfileController::class, 'show'])->name('user.show');
     Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
     Route::post('/user-profile', [ProfileController::class, 'update'])->name('user.update');
     Route::get('/game-played', [ProfileController::class, 'gamePlayed'])->name('game.played');
@@ -64,7 +64,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
 
     Route::middleware(['admin'])->group(
         function () {
-            Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+            Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
             Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
             Route::get('/user/{id}', [UserController::class, 'showUser'])->name('user.showUser');
             Route::get('/create-user', [UserController::class, 'create'])->name('user.create');

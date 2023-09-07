@@ -47,7 +47,7 @@
                         <i class="fas fa-edit"></i>
                     </button>
                 </a>
-                <button type="button" class="btn btn-danger btn_delete" data-bs-toggle="modal" data-id="{{ $game['id'] }}" data-bs-target="#delete-games-modal">
+                <button type="button" class="btn btn-danger btn_delete" data-toggle="modal" data-id="{{ $game['id'] }}" data-target="#delete-games-modal">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </td>

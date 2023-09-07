@@ -78,7 +78,7 @@ class IconGame
         'adofai' => 256,
         'heaven' => 150,
         'music' => 181,
-        'one' => 1200,
+        'one' => 10,
         'sandbox' => 373,
         'virtual' => 808,
         'ludum' => 166,
@@ -121,7 +121,7 @@ class IconGame
         'gdscript' => 703,
         'godot' => 283,
         'learn' => 249,
-        'sourcecode' => 1200,
+        'sourcecode' => 755,
         'cartoon' => 365,
         'friends' => 260,
         'myk' => 368,
@@ -550,6 +550,8 @@ class IconGame
         'stars' => 212,
         'number' => 235,
         'cakes' => 305,
-        'betting' => 291
+        'betting' => 291,
+        'chess' => 36,
+        'bunny' => 253
     ];
 }

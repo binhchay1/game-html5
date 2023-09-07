@@ -60,7 +60,7 @@
 
         @php $route = Route::currentRouteName(); @endphp
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="{{ route('admin') }}" class="brand-link">
+            <a href="{{ route('dashboard') }}" class="brand-link">
                 <img src="{{ asset('/images/color-logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Gamekafe') }} Logo" class="brand-image img-circle elevation-3">
                 <span class="brand-text font-weight-light">{{ env('APP_NAME', 'Gamekafe') }}</span>
             </a>
@@ -68,7 +68,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('admin')}}" class="nav-link" id="admin">
+                            <a href="{{ route('dashboard')}}" class="nav-link" id="admin">
                                 <i class="nav-icon fas fa-solid fa-chart-line"></i>
                                 <p>
                                     Dashboard
@@ -133,7 +133,7 @@
             </section>
         </div>
         <footer class="main-footer">
-            <strong>Copyright &copy; 2023 <a href="{{ route('admin') }}">Gamekafe</a>.</strong>
+            <strong>Copyright &copy; 2023 <a href="{{ route('dashboard') }}">Gamekafe</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0

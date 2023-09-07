@@ -14,6 +14,7 @@ use App\Repositories\VoteByUserRepository;
 use App\Repositories\VoteRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Services\SendMail;
+use Illuminate\Support\Facades\File;
 
 class GameController extends Controller
 {
@@ -301,9 +302,18 @@ class GameController extends Controller
             }
         }
 
-        $this->gameRepository->deleteById($idGame);
+        $pathGame = public_path()  . '/source-game//' . $game['name'];
 
-        return redirect()->route('game.index')->with('alert', 'Delete successfully!');
+        $statusDelFile = File::deleteDirectory($pathGame);
+        $statusDelDB = $this->gameRepository->deleteById($idGame);
+
+        if ($statusDelFile == 1 and $statusDelDB) {
+            $alert = 'Delete successfully!';
+        } else {
+            $alert = 'Failed delete game!';
+        }
+
+        return redirect()->route('game.index')->with('alert', $alert);
     }
 
     public function saveCollection(Request $request)

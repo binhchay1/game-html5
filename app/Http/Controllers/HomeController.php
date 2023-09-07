@@ -111,14 +111,14 @@ class HomeController extends Controller
                 $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
             }
 
-            $listTagDecode = json_decode($game['tag']);
-            foreach ($listTagDecode as $decode) {
+            $tagDecode = json_decode($game['tag']);
+            foreach ($tagDecode as $tag) {
                 if (count($listTag) >= 13) {
                     break;
                 }
 
-                if (!in_array($decode, $listTag)) {
-                    $listTag[] = $decode;
+                if (!in_array($tag, $listTag)) {
+                    $listTag[] = $tag;
                 }
             }
         }
@@ -171,10 +171,10 @@ class HomeController extends Controller
                 $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
             }
 
-            $listTagDecode = json_decode($game['tag']);
-            foreach ($listTagDecode as $decode) {
-                if (!in_array($decode, $listTag)) {
-                    $listTag[] = $decode;
+            $tagDecode = json_decode($game['tag']);
+            foreach ($tagDecode as $tag) {
+                if (!in_array($tag, $listTag)) {
+                    $listTag[] = $tag;
                 }
             }
         }
