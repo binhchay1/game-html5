@@ -68,7 +68,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('dashboard')}}" class="nav-link" id="admin">
+                            <a href="{{ route('dashboard')}}" class="nav-link" id="dashboard">
                                 <i class="nav-icon fas fa-solid fa-chart-line"></i>
                                 <p>
                                     Dashboard
@@ -112,6 +112,14 @@
                                 <i class="nav-icon fas fa-solid fa-comments"></i>
                                 <p>
                                     Comment
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('achievement.index') }}" class="nav-link" id="list-achievement">
+                                <i class="nav-icon fas fa-solid fa-trophy"></i>
+                                <p>
+                                    Achievements
                                 </p>
                             </a>
                         </li>

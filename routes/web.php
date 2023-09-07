@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AchievementController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -93,6 +94,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::get('/list-comment', [CommentController::class, 'index'])->name('comment.index');
             Route::get('/comment-info/{id}', [CommentController::class, 'showComment'])->name('comment.show');
             Route::get('/change-comment-status', [CommentController::class, 'changeStatusComment'])->name('change.status.comment');
+
+            Route::get('/list-achievement', [AchievementController::class, 'index'])->name('achievement.index');
+            Route::get('/achievement-info/{id}', [AchievementController::class, 'showAchievement'])->name('achievement.show');
+            Route::get('/create-achievement', [AchievementController::class, 'create'])->name('achievement.create');
+            Route::post('/store-achievement', [AchievementController::class, 'store'])->name('achievement.store');
+            Route::get('/edit-achievement/{id}', [AchievementController::class, 'edit'])->name('achievement.edit');
+            Route::post('/update-achievement/{id}', [AchievementController::class, 'update'])->name('achievement.update');
+            Route::post('/delete-achievement', [AchievementController::class, 'delete'])->name('achievement.delete');
 
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
             Route::get('/get-chart-user', [AdminController::class, 'getChartUserRegister']);

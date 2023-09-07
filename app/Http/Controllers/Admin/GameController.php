@@ -139,9 +139,9 @@ class GameController extends Controller
         $status = config('game.status');
         $dataCategory = $this->categoryRepository->listCategory();
         if ($dataCategory) {
-            $alert = 'Successfully created';
+            $alert = 'Successfully to create!';
         } else {
-            $alert = 'Failed to create';
+            $alert = 'Failed to create!';
         }
 
         return view('admin.game.create-game', ['dataCategory' => $dataCategory, 'status' => $status])->with('alert', $alert);
@@ -196,12 +196,12 @@ class GameController extends Controller
             $data['link'] = $result['index'];
             $queryResult = $this->gameRepository->store($data);
             if ($queryResult) {
-                $alert = 'Successfully stored';
+                $alert = 'Successfully to store!';
             } else {
-                $alert = 'Failed to store';
+                $alert = 'Failed to store!';
             }
         } else {
-            $alert = 'Failed to store';
+            $alert = 'Failed to store!';
         }
 
         $subscrible = $this->subscribleRepository->getSubscribleWithStatus();
@@ -232,9 +232,9 @@ class GameController extends Controller
         $dataGame = $this->gameRepository->showGame($id);
         $dataCategory = $this->categoryRepository->listCategory();
         if ($dataGame and $dataCategory) {
-            $alert = 'Successfully';
+            $alert = 'Successfully to edit!';
         } else {
-            $alert = 'Failed to edit';
+            $alert = 'Failed to edit!';
         }
 
         return view('admin.game.edit-game', [
@@ -268,9 +268,9 @@ class GameController extends Controller
 
         $result = $this->gameRepository->update($input, $id);
         if ($result) {
-            $alert = 'Successfully updated';
+            $alert = 'Successfully to update!';
         } else {
-            $alert = 'Failed to update';
+            $alert = 'Failed to update!';
         }
 
         return redirect()->route('game.index')->with('alert', $alert);
@@ -308,9 +308,9 @@ class GameController extends Controller
         $statusDelDB = $this->gameRepository->deleteById($idGame);
 
         if ($statusDelFile == 1 and $statusDelDB) {
-            $alert = 'Delete successfully!';
+            $alert = 'Successfully to delete!';
         } else {
-            $alert = 'Failed delete game!';
+            $alert = 'Failed to delete!';
         }
 
         return redirect()->route('game.index')->with('alert', $alert);
