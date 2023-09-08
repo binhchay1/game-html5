@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Repositories\CategoryRepository;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Session;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ProfileController extends Controller
 {
@@ -47,7 +49,7 @@ class ProfileController extends Controller
         $this->searchRepository = $searchRepository;
     }
 
-    public function show($userName)
+    public function show($userIdHash)
     {
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
         $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
@@ -78,15 +80,15 @@ class ProfileController extends Controller
             $count++;
         }
 
-        $dataUser = $this->userRepository->showUser($userName);
+        $dataUser = $this->userRepository->showUser($userIdHash);
         return view('page.user.profile', compact('dataUser',  'listCategory', 'countGameInCollection', 'listTag'));
     }
 
-    public function edit()
+    public function edit($userIdHash)
     {
         $gender = config('user.sex');
         $country = config('user.country');
-        $dataUser = $this->userRepository->showUser(Auth::user()->id);
+        $dataUser = $this->userRepository->showUser($userIdHash);
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
         $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
         $query = $this->gameRepository->getListGameWithVote();
@@ -119,7 +121,7 @@ class ProfileController extends Controller
         return view('page.user.change-profile', compact('dataUser', 'gender', 'listCategory', 'countGameInCollection', 'listTag', 'country'));
     }
 
-    public function update(UserRequest $request)
+    public function update(UserRequest $request, $userIdHash)
     {
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
@@ -130,7 +132,7 @@ class ProfileController extends Controller
             }
         }
 
-        $this->userRepository->update($input, Auth::user()->id);
+        $this->userRepository->update($input, $userIdHash);
         return back()->with('success', 'Updated successfully.');
     }
 

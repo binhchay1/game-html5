@@ -40,7 +40,6 @@
     <div class="main">
         <div class="categories-tags-block box">
             <div class="top-categories">
-                @dd($dataUser->image)
                 <div class="row single-line">
                     <div class="col-md-1">
                         <div class="form-group">

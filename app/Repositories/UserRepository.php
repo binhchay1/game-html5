@@ -16,15 +16,14 @@ class UserRepository extends BaseRepository
         return $this->model->orderBy('created_at', 'desc')->get();
     }
 
-    public function showUser($userName)
+    public function showUser($dataIdHash)
     {
-
-        return $this->model->where('name', $userName)->first();
+        return $this->model->where(\DB::raw('md5(id)'), $dataIdHash)->first();
     }
 
     public function update($input, $id)
     {
-        return $this->model->where('id', $id)->update($input);
+        return $this->model->where(\DB::raw('md5(id)'), $id)->update($input);
     }
 
     public function userInfo($userId)
