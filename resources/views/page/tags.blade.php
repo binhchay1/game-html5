@@ -32,7 +32,7 @@
                             <h3>
                                 {{ __('Tất cả') }}
                                 {{ __('Game trực tuyến miễn phí hàng đầu được gắn thẻ') }} {{ $tag }}
-                                <span>({{ count($games) }})</span>
+                                <span>({{ $totalGame }})</span>
                             </h3>
                         </a>
                     </div>

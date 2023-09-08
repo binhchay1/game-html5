@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Enums\ListCacheKey;
+use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
 use Closure;
@@ -15,12 +16,14 @@ class CacheDefined
     private $listCacheKey;
     private $categoryRepository;
     private $gameRepository;
+    private $ultity;
 
-    public function __construct(ListCacheKey $listCacheKey, CategoryRepository $categoryRepository, GameRepository $gameRepository)
+    public function __construct(ListCacheKey $listCacheKey, CategoryRepository $categoryRepository, GameRepository $gameRepository, Ultity $ultity)
     {
         $this->listCacheKey = $listCacheKey;
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
+        $this->ultity = $ultity;
     }
 
     /**
@@ -37,7 +40,30 @@ class CacheDefined
                 }
 
                 if ($key == 'listTag') {
-                    $value = $this->gameRepository->getRandomTagWithLimit();
+                    $listGame = $this->gameRepository->getRandomTagWithLimit();
+                    $getTags = $this->gameRepository->getTags()->toArray();
+                    $value = [];
+                    foreach ($listGame as $game) {
+                        $arrTags = json_decode($game->tag);
+                        foreach ($arrTags as $tag) {
+                            if (!array_key_exists($tag, $value)) {
+                                $value[$tag]['tag'] = $tag;
+                                $value[$tag]['count'] = 0;
+                                $value[$tag]['color'] = $this->ultity->rndRGBColorCode();
+                            }
+                        }
+                    }
+
+                    foreach ($getTags as $record) {
+                        $arrTags = json_decode($record['tag']);
+                        foreach ($arrTags as $tags) {
+                            if (!array_key_exists($tags, $value)) {
+                                continue;
+                            } else {
+                                $value[$tags]['count'] += 1;
+                            }
+                        }
+                    }
                 }
 
                 Cache::store('redis')->put($key, $value, 6000);

@@ -37,9 +37,6 @@
                         <i class="fas fa-edit"></i>
                     </button>
                 </a>
-                <button type="button" class="btn btn-danger btn_delete" data-toggle="modal" data-target="#deleteArticle">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
             </td>
         </tr>
         @endforeach

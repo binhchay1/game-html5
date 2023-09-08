@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header text-center p-3 h-auto">
                 <h4 class="modal-title w-100 font-weight-bold text-dark" id="report-bug-modal-label">{{ __('Báo lỗi') }}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

@@ -42,16 +42,17 @@
         <div class="top-tags">
             <div class="row single-line">
                 <ul>
-                    @foreach($listTag as $tag)
+                    @foreach($listTag as $tag => $value)
                     <li style="margin-top: 5px;">
                         <a class="tag" href="{{ route('tags', ['tag' => $tag]) }}">
-                            <h4>
-                                {{ $tag }}
-                            </h4>
+                            <div class="tag_slug">
+                                <span style="color: <?php echo ($value['color']) ?>; font-weight: bold;">{{ $value['trans'] }}</span>
+                                <span style="font-size:13px;">{{ $value['count'] }}</span>
+                            </div>
                         </a>
                     </li>
                     @endforeach
-                    <li class="more-tags">
+                    <li class="more-tags" style="display: flex; align-items: center; margin-top: 5px;">
                         <a class="tag all-tags top" href="{{ route('listTags') }}">{{ __('Tất cả các thẻ') }}
                         </a>
                     </li>

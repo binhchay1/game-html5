@@ -168,6 +168,6 @@ class GameRepository extends BaseRepository
 
     public function getRandomTagWithLimit()
     {
-        return $this->model->select('tag')->limit(10)->get();
+        return $this->model->select('tag')->limit(2)->get();
     }
 }

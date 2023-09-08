@@ -182,12 +182,13 @@
                         <div class="top-tags-mobile__wrapper">
                             <div class="row top-tags__height">
                                 <ul>
-                                    @foreach($listTag as $tag)
+                                    @foreach($listTag as $tag => $value)
                                     <li style="margin-top: 5px;">
                                         <a class="tag" href="{{ route('tags', ['tag' => $tag]) }}">
-                                            <h4>
-                                                {{ $tag }}
-                                            </h4>
+                                            <div class="tag_slug">
+                                                <span style="color: <?php echo ($value['color']) ?>; font-weight: bold;">{{ $value['trans'] }}</span>
+                                                <span style="font-size:13px;">{{ $value['count'] }}</span>
+                                            </div>
                                         </a>
                                     </li>
                                     @endforeach

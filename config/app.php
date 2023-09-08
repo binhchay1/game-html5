@@ -174,6 +174,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
+        Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class
     ])->toArray(),
 
     /*

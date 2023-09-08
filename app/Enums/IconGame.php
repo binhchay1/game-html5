@@ -5,7 +5,7 @@ namespace App\Enums;
 class IconGame
 {
     const LIST_ICON = [
-        'interactive' => 1200,
+        'interactive' => 24,
         'anime' => 358,
         'cute' => 364,
         'gore' => 49,
@@ -78,7 +78,7 @@ class IconGame
         'adofai' => 256,
         'heaven' => 150,
         'music' => 181,
-        'one' => 1200,
+        'one' => 10,
         'sandbox' => 373,
         'virtual' => 808,
         'ludum' => 166,
@@ -107,9 +107,9 @@ class IconGame
         'space' => 64,
         'multiple' => 331,
         'rpgmaker' => 887,
-        'third' => 1200,
+        'third' => 331,
         '8' => 1200,
-        'action' => 372,
+        'action' => 117,
         'local' => 195,
         'free' => 216,
         'gb' => 1200,
@@ -121,7 +121,7 @@ class IconGame
         'gdscript' => 703,
         'godot' => 283,
         'learn' => 249,
-        'sourcecode' => 1200,
+        'sourcecode' => 755,
         'cartoon' => 365,
         'friends' => 260,
         'myk' => 368,
@@ -550,6 +550,8 @@ class IconGame
         'stars' => 212,
         'number' => 235,
         'cakes' => 305,
-        'betting' => 291
+        'betting' => 291,
+        'chess' => 36,
+        'bunny' => 253
     ];
 }

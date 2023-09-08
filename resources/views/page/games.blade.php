@@ -33,7 +33,7 @@
 
 <body>
     <div class="iframe-area">
-        <iframe data-src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
+        <iframe loading="lazy" data-src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
         </iframe>
 
         <div class="btn-play-area d-flex flex-column">
@@ -44,6 +44,12 @@
             @endif
             <button class="btn" id="btn-play">Play</button>
         </div>
+
+        <div id="pre-load" class="d-none">
+            <image src="{{ asset('images/color-logo-no-background.png') }}" width="150"></image>
+            <p style="color:white !important">Loading...</p>
+        </div>
+        <div id="error-load" class="d-none" style="color:white !important">{{ __('Chân thành xin lỗi game hiện tại đang lỗi! Vui lòng thông báo cho ban quản trị và quay lại vào thời gian khác!') }}</div>
     </div>
 
     <div class="set-button d-none" id="btn-fullscreen-area">
@@ -99,12 +105,12 @@
                 <div class="post-item mt-4 col-lg-2 col-sm-3">
                     <div class="post-header">
                         <span class="post-avatar">
-                            <a href="">
+                            <a href="{{ route('user.show', ['name' => $comment->users->nick_name]) }}">
                                 <img width="25" height="25" src="{{ $comment->users->image ?? asset('/images/default-avatar.png') }}">
                             </a>
                         </span>
                         <span class="post-author">
-                            <a class="author-name" href="">{{ $comment->users->name }}</a>
+                            <a class="author-name" href="{{ route('user.show', ['name' => $comment->users->nick_name]) }}">{{ $comment->users->name }}</a>
                         </span>
                         <span class="post-date">
                             <p title="{{ $comment->created_at }}"></p>
@@ -127,6 +133,7 @@
         const gameName = '<?php echo $getGame['name']; ?>';
         const themeColor = '<?php echo $getGame['color']; ?>';
         const urlMain = window.location.href;
+        const jquery = '<?php echo asset('js/plugins/jquery/jquery.min.js'); ?>'
     </script>
 
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>

@@ -143,6 +143,26 @@
     margin-top: 20px;
 }
 
+.modal-header {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab) 0 0/300% 300%;
+    animation: pluto-gradient 60s ease 0s infinite normal none running;
+}
+
+#pre-load {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#error-load {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 @media screen and (min-width: 992px) {
     .embed-responsive {
         height: 670px;

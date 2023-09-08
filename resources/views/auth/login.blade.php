@@ -27,7 +27,7 @@
                                         <input type="email" id="email" class="form-control @if($errors->any()) is-invalid @endif" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                                     </div>
 
-                                    <div class="form-outline mb-4">
+                                    <div class="form-outline">
                                         <label class="control-label">{{ __('Mật khẩu') }}</label>
                                         <input name="password" value="{{ old('password') }}" type="password" class="form-control
                                         @if($errors->any()) is-invalid @endif password-field" id="password-field" required autocomplete="current-password" autofocus>
@@ -38,9 +38,15 @@
                                     <div class="text-danger mb-3" style="font-weight: bolder;">{{ implode('', $errors->all(':message')) }}</div>
                                     @endif
 
+                                    <div class="pt-1">
+                                        <input type="checkbox" name="remember" />
+                                        <label class="control-label">{{ __('Lưu thông tin') }}
+                                    </div>
+
                                     <div class="pt-1 mb-4">
                                         <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Đăng nhập') }}</button>
                                     </div>
+
                                     <div class="d-flex flex-row">
                                         <p class="lead fw-normal mb-0 me-3">
                                             {{ __('Đăng nhập với') }}

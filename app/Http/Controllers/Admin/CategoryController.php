@@ -41,9 +41,9 @@ class CategoryController extends Controller
         $result = $this->categoryRepository->store($input);
 
         if($result) {
-            $alert = 'Successfully edit';
+            $alert = 'Successfully to store!';
         } else {
-            $alert = 'Failed to edit';
+            $alert = 'Failed to edit!';
         }
 
         return redirect('list-category')->with('alert', $alert);
@@ -54,9 +54,9 @@ class CategoryController extends Controller
         $dataCategory = $this->categoryRepository->showCategory($id);
 
         if($dataCategory) {
-            $alert = 'Successfully edit';
+            $alert = 'Successfully to edit!';
         } else {
-            $alert = 'Failed to edit';
+            $alert = 'Failed to edit!';
         }
 
         return view('admin.category.edit-category', ['dataCategory' => $dataCategory])->with('alert', $alert);
@@ -68,9 +68,9 @@ class CategoryController extends Controller
         $result = $this->categoryRepository->update($input, $id);
 
         if($result) {
-            $alert = 'Successfully edit';
+            $alert = 'Successfully to update!';
         } else {
-            $alert = 'Failed to edit';
+            $alert = 'Failed to update!';
         }
 
         return redirect('list-category')->with('alert', $alert);

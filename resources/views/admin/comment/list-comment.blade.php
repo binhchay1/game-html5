@@ -6,7 +6,7 @@
 
 @section('main_content')
 <div class="card-header">
-    <h3>List Comment Game</h3>
+    <h3>List Comment</h3>
 </div>
 
 <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="customers">
