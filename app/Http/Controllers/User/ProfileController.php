@@ -57,7 +57,7 @@ class ProfileController extends Controller
         $countGame = count($query);
         $locale = env('ENABLE_LOCALE', 'en');
         $search = $this->searchRepository->listOrderWithLimitByLocale($locale);
-        $listTag = [];
+        $listTag = Cache::get('listTag') ? Cache::get('listTag') : [];
 
         foreach ($games as $game) {
             $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
@@ -67,22 +67,16 @@ class ProfileController extends Controller
             } else {
                 $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
             }
-
-            $listTagDecode = json_decode($game['tag']);
-            foreach ($listTagDecode as $decode) {
-                if (count($listTag) >= 13) {
-                    break;
-                }
-
-                if (!in_array($decode, $listTag)) {
-                    $listTag[] = $decode;
-                }
-            }
         }
 
-        $stringTrans = implode(', ', $listTag);
+        $stringTrans = implode(', ', array_keys($listTag));
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
-        $listTag = explode(', ', $translate);
+        $arrTrans = explode(', ', $translate);
+        $count = 0;
+        foreach ($listTag as $tag => $val) {
+            $listTag[$tag]['trans'] = $arrTrans[$count];
+            $count++;
+        }
 
         $dataUser = $this->userRepository->showUser($userName);
         return view('page.user.profile', compact('dataUser',  'listCategory', 'countGameInCollection', 'listTag'));
@@ -101,7 +95,7 @@ class ProfileController extends Controller
         $countGame = count($query);
         $locale = env('ENABLE_LOCALE', 'en');
         $search = $this->searchRepository->listOrderWithLimitByLocale($locale);
-        $listTag = [];
+        $listTag = Cache::get('listTag') ? Cache::get('listTag') : [];
 
         foreach ($games as $game) {
             $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
@@ -111,22 +105,16 @@ class ProfileController extends Controller
             } else {
                 $game['rating'] = ($game->votes['like'] / ($game->votes['like'] + $game->votes['un_like'])) * 100;
             }
-
-            $listTagDecode = json_decode($game['tag']);
-            foreach ($listTagDecode as $decode) {
-                if (count($listTag) >= 13) {
-                    break;
-                }
-
-                if (!in_array($decode, $listTag)) {
-                    $listTag[] = $decode;
-                }
-            }
         }
 
-        $stringTrans = implode(', ', $listTag);
+        $stringTrans = implode(', ', array_keys($listTag));
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
-        $listTag = explode(', ', $translate);
+        $arrTrans = explode(', ', $translate);
+        $count = 0;
+        foreach ($listTag as $tag => $val) {
+            $listTag[$tag]['trans'] = $arrTrans[$count];
+            $count++;
+        }
 
         return view('page.user.change-profile', compact('dataUser', 'gender', 'listCategory', 'countGameInCollection', 'listTag', 'country'));
     }
@@ -175,7 +163,7 @@ class ProfileController extends Controller
         $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->get();
         $listGame = [];
-        $listTag = [];
+        $listTag = Cache::get('listTag') ? Cache::get('listTag') : [];
 
         foreach ($listGameName as $game) {
             $getGame = $this->gameRepository->getGameByName($game['game_name']);
@@ -183,15 +171,13 @@ class ProfileController extends Controller
             $listName[] = $game['game_name'];
         }
 
-        $getTags = $this->gameRepository->getTagsByListGame($listName);
-
-        foreach ($getTags as $record) {
-            $arrTags = json_decode($record->tag);
-            foreach ($arrTags as $tag) {
-                if (!in_array($tag, $listTag)) {
-                    $listTag[] = $tag;
-                }
-            }
+        $stringTrans = implode(', ', array_keys($listTag));
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $arrTrans = explode(', ', $translate);
+        $count = 0;
+        foreach ($listTag as $tag => $val) {
+            $listTag[$tag]['trans'] = $arrTrans[$count];
+            $count++;
         }
 
         $listGame = $this->ultity->paginate($listGame, 30);
@@ -206,7 +192,7 @@ class ProfileController extends Controller
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
         $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
         $queryIpUser = $this->ipUserRepository->getGamePlayed($idUser)->toArray();
-        $listTag = [];
+        $listTag = Cache::get('listTag') ? Cache::get('listTag') : [];
 
         $queryGame = $this->gameRepository->getGameByListName($queryIpUser);
         $games = $this->ultity->paginate($queryGame, 30);
@@ -227,9 +213,14 @@ class ProfileController extends Controller
             }
         }
 
-        $stringTrans = implode(', ', $listTag);
+        $stringTrans = implode(', ', array_keys($listTag));
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
-        $listTag = explode(', ', $translate);
+        $arrTrans = explode(', ', $translate);
+        $count = 0;
+        foreach ($listTag as $tag => $val) {
+            $listTag[$tag]['trans'] = $arrTrans[$count];
+            $count++;
+        }
 
         return view('page.game-played', compact('games', 'listCategory', 'listTag', 'countGameInCollection'));
     }

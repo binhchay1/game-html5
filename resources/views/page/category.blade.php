@@ -39,9 +39,9 @@
                             {{ __('Các thẻ liên quan tới') }} {{ __(ucfirst($category['name'])) }}
                         </h3>
                         <div class="tags-container">
-                            @foreach($listTag as $tag)
+                            @foreach($listTag as $tag => $value)
                             <a class="tag cat-strategy" title="{{ __('Tham gia chiến game cùng với ') }} {{ $tag }}" href="{{ route('tags', ['tag' => $tag]) }}">
-                                <h4><span>{{ $tag }}</span></h4>
+                                <h4><span>{{ $value['trans'] }}</span></h4>
                             </a>
                             @endforeach
                         </div>

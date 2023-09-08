@@ -33,7 +33,7 @@
 
 <body>
     <div class="iframe-area">
-        <iframe data-src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
+        <iframe loading="lazy" data-src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
         </iframe>
 
         <div class="btn-play-area d-flex flex-column">
@@ -44,6 +44,12 @@
             @endif
             <button class="btn" id="btn-play">Play</button>
         </div>
+
+        <div id="pre-load" class="d-none">
+            <image src="{{ asset('images/color-logo-no-background.png') }}" width="150"></image>
+            <p style="color:white !important">Loading...</p>
+        </div>
+        <div id="error-load" class="d-none" style="color:white !important">{{ __('Chân thành xin lỗi game hiện tại đang lỗi! Vui lòng thông báo cho ban quản trị và quay lại vào thời gian khác!') }}</div>
     </div>
 
     <div class="set-button d-none" id="btn-fullscreen-area">
@@ -127,6 +133,7 @@
         const gameName = '<?php echo $getGame['name']; ?>';
         const themeColor = '<?php echo $getGame['color']; ?>';
         const urlMain = window.location.href;
+        const jquery = '<?php echo asset('js/plugins/jquery/jquery.min.js'); ?>'
     </script>
 
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>

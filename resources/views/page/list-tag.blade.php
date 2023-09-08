@@ -20,8 +20,8 @@
                 <ul class="tag">
                     @foreach($arrData['data'] as $tag => $item)
                     <li>
-                        <a class="tag" title="{{ __('Game Trực Tuyến Miễn Phí Hàng đầu được Gắn Thẻ') }} {{ $item[0]['trans'] }} - {{ env('APP_URL', 'Gamekafe') }}" href="{{ route('tags', ['tag' => $tag]) }}">
-                            <h4><i id="{{ $tag }}" class="tag-36x28 tag-36x28-listTag tag-36x28-{{ $item['numberIcon'] }}"></i>{{ $item[0]['trans'] }}<span style="font-size:13px;">{{ $item['count'] }}</span></h4>
+                        <a class="tag" title="{{ __('Game Trực Tuyến Miễn Phí Hàng đầu được Gắn Thẻ') }} {{ $item['trans'] }} - {{ env('APP_URL', 'Gamekafe') }}" href="{{ route('tags', ['tag' => $tag]) }}">
+                            <h4><i id="{{ $tag }}" class="tag-36x28 tag-36x28-listTag tag-36x28-{{ $item['numberIcon'] }}"></i>{{ $item['trans'] }}<span style="font-size:13px;">{{ $item['count'] }}</span></h4>
                         </a>
                     </li>
                     @endforeach

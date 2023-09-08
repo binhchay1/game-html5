@@ -5,7 +5,7 @@ namespace App\Enums;
 class IconGame
 {
     const LIST_ICON = [
-        'interactive' => 1200,
+        'interactive' => 24,
         'anime' => 358,
         'cute' => 364,
         'gore' => 49,
@@ -107,9 +107,9 @@ class IconGame
         'space' => 64,
         'multiple' => 331,
         'rpgmaker' => 887,
-        'third' => 1200,
+        'third' => 331,
         '8' => 1200,
-        'action' => 372,
+        'action' => 117,
         'local' => 195,
         'free' => 216,
         'gb' => 1200,

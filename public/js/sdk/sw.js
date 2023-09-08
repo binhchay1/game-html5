@@ -1,23 +1,14 @@
-const sw = ! function (e, t) {
-    "use strict";
-    "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function (e) {
-        if (!e.module)
-            throw new Error("Module required");
-        return t(e)
-    } :
-        t(e)
-}("undefined" != typeof window ? window : this, function (C, e, f) {
-    "use strict";
-    let b = $("#game-iframe");
+(function(C, e, f) {
+    'use strict';
+    let urlMain = window.location.href;
+    let b = document.querySelector('body');
     let o = {};
     let u = urlMain;
-    let h = C.document.body.clientHeight;
-    let w = C.document.body.clientWidth;
-
-    b.find('webgl-content') ? f = true : f = false;
+    let h = window.document.body.clientHeight;
+    let w = window.document.body.clientWidth;
+    b.classList.contains('webgl-content') ? f = true : f = false;
     o['webgl'] = f;
     o['width'] = w;
     o['height'] = h;
-
     top.postMessage(o, u);
-})
+})()

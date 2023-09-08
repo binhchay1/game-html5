@@ -36,9 +36,40 @@
 })(this, this.document);
 
 $(document).ready(function () {
-    let scriptTag = "<script>" + sw + "<\/script>";
+    let swUrl = "/js/sdk/sw.js";
     document.getElementById("game-iframe").onload = function () {
-        $("iframe").contents().find("body").append(scriptTag);
+        if (window.Promise) {
+            var promise = new Promise(function (resolve, reject) {
+                var request = new XMLHttpRequest();
+
+                request.open('GET', swUrl);
+                request.onload = function () {
+                    if (request.status == 200) {
+                        resolve(request.response);
+                    } else {
+                        $('#pre-load').addClass('d-none');
+                        $('#error-load').removeClass('d-none');
+                    }
+                };
+
+                request.onerror = function () {
+                    $('#pre-load').addClass('d-none');
+                    $('#error-load').removeClass('d-none');
+                };
+                request.send();
+            });
+
+            promise.then(function (data) {
+                let scriptTag = "<script>" + data + "<\/script>";
+                $("iframe").contents().find("body").append(scriptTag);
+            }, function (error) {
+                $('#pre-load').addClass('d-none');
+                $('#error-load').removeClass('d-none');
+            });
+        } else {
+            $('#pre-load').addClass('d-none');
+            $('#error-load').removeClass('d-none');
+        }
     };
 
     let listChangeColor = ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'i', 'a'];
@@ -93,10 +124,12 @@ $("#btn-play").click(function () {
     let iframe = $("#game-iframe");
     let areaBtn = $(".btn-play-area");
     let areaFullScreen = $("#btn-fullscreen-area");
+    let preLoad = $("#pre-load");
     iframe.attr("src", iframe.data("src"));
     areaBtn.addClass('hide-important');
     iframe.removeClass('pre-play-game');
     areaFullScreen.removeClass('d-none');
+    preLoad.removeClass('d-none');
 
     $.ajax({
         url: '/count-play',
@@ -256,6 +289,7 @@ window.addEventListener("message", function (event) {
     if (event.origin !== window.location.origin)
         return;
 
+    $('#pre-load').addClass('d-none');
     let dataPost = event.data;
     let iframe = document.getElementById('game-iframe');
     let fullscreen = document.getElementById('btn-fullscreen-area');
