@@ -1,5 +1,17 @@
 const chartCountPlay = document.getElementById('chart-count-play');
 const chartCountRegister = document.getElementById('chart-count-register');
+chartCountRegister.style.height = '500px';
+const ctx = new Chart(chartCountRegister, {
+    type: 'bar',
+    data: [],
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 
 $(document).ready(function () {
     setChartCountPlay('month');
@@ -58,19 +70,8 @@ function setChartCountRegister(type) {
         }
 
     }).done(function (result) {
-        new Chart(chartCountRegister, {
-            type: 'bar',
-            data: result,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        chartCountRegister.style.height = '500px';
+        ctx.data.datasets = result.datasets;
+        ctx.data.labels = result.labels;
+        ctx.update();
     });
 }
-
-

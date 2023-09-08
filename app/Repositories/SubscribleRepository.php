@@ -15,4 +15,9 @@ class SubscribleRepository extends BaseRepository
     {
         return $this->model->select('email')->where('status', 1)->get();
     }
+
+    public function getSubscribleByEmailAndToken($email, $token)
+    {
+        return $this->model->where('email', $email)->where('token', $token)->first();
+    }
 }

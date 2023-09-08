@@ -124,7 +124,7 @@
             <section class="content">
                 <div class="container-fluid">
                     @if(Session::has('alert'))
-                    <div class="alert {{ strpos(Session::get('alert'), 'Failed') == false ?  print_r('alert-danger') : print_r('alert-success') }} alert-fixed" role="alert" id="alert-admin">
+                    <div class="alert {{ strpos(Session::get('alert'), 'Failed') == false ?  'alert-danger' : 'alert-success' }} alert-fixed" role="alert" id="alert-admin" style="width: fit-content !important;">
                         {{ Session::get('alert') }}
                     </div>
                     @endif

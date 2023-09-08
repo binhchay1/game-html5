@@ -2,9 +2,7 @@
 
 namespace App\Mail;
 
-use App\Repositories\UserRepository;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -30,7 +28,7 @@ class NewGameMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Game Mail',
+            subject: 'New Game incoming',
         );
     }
 
@@ -40,7 +38,7 @@ class NewGameMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'subscrible.new-game',
+            view: 'vendor.subscrible.new-game',
             with: ['data' => $this->data],
         );
     }

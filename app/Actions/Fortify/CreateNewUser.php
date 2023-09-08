@@ -41,7 +41,8 @@ class CreateNewUser implements CreatesNewUsers
         $dataSub = [
             'email' => $input['email'],
             'status' => 1,
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'token' => Str::random(30)
         ];
         $this->subscribleRepository->create($dataSub);
 

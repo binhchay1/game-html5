@@ -40,6 +40,15 @@
             </div>
         </div>
         <div class="col-md-6">
+            <label class="form-label">Nick Name</label>
+            <input name="nick_name" value="{{ old('nick_name', $dataUser->nick_name) }}" type="text" class="form-control @error('nick_name') is-invalid @enderror">
+            @error('nick_name')
+            <span class="invalid-feedback" style="font-size: 100%;" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+        <div class="col-md-6">
             <label class="form-label">Email</label>
             <input name="email" value="{{ old('email', $dataUser->email) }}" type="email" class="form-control @error('email') is-invalid @enderror">
             @error('email')

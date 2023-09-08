@@ -32,7 +32,7 @@
     <div class="card-header">
         <h3>{{ __('Hồ sơ của tôi') }}</h3>
     </div>
-    <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('user.update', md5($dataUser->id)) }}" enctype="multipart/form-data">
         @csrf
         @if (session('success'))
         <div class="alert alert-success" style="color: green; font-size: 20px;" role="alert">
@@ -43,8 +43,19 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="name">{{ __('Tên') }}</label>
-                    <input type="text" value="{{ Auth::user()->name }}" name="name" class="form-control @error('name') is-invalid  @enderror" placeholder="name">
+                    <input type="text" value="{{ $dataUser->name }}" name="name" class="form-control @error('name') is-invalid  @enderror" placeholder="name">
                     @error('name')
+                    <span class="invalid-feedback" style="color: red" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="name">{{ __('Biệt Danh') }}</label>
+                    <input type="text" value="{{ $dataUser->nick_name }}" name="nick_name" class="form-control @error('nick_name') is-invalid  @enderror" placeholder="name">
+                    @error('nick_name')
                     <span class="invalid-feedback" style="color: red" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -58,7 +69,7 @@
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
-                                <img id="showImage" style="width: 110px" class="show-avatar" src="{{ Auth::user()->image ?? asset('/images/default-avatar.png') }}" alt="avatar">
+                                <img id="showImage" style="width: 110px" class="show-avatar" src="{{ $dataUser->image ?? asset('/images/default-avatar.png') }}" alt="avatar">
                             </div>
                             <div id="button" style="margin-top: 10px;">
                                 <i id="btn_chooseImg" class="fa fa-camera"></i>
@@ -67,11 +78,9 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="col-sm-6">
                 <label for="name">{{ __('Hòm thư') }}</label>
-                <input type="text" value="{{ Auth::user()->email }}" name="email" class="form-control @error('email') is-invalid  @enderror" placeholder="name" disabled>
+                <input type="text" value="{{ $dataUser->email }}" name="email" class="form-control @error('email') is-invalid  @enderror" placeholder="name" disabled>
                 @error('email')
                 <span class="invalid-feedback" style="color: red" role="alert">
                     <strong>{{ $message }}</strong>
@@ -80,7 +89,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="inputAddress" class="form-label">{{ __('Số điện thoại') }}</label>
-                <input name="phone" value="{{ old('phone', Auth::user()->phone) }}" type="text" class="form-control @error('phone') is-invalid @enderror">
+                <input name="phone" value="{{ old('phone', $dataUser->phone) }}" type="text" class="form-control @error('phone') is-invalid @enderror">
                 @error('phone')
 
                 <span class="invalid-feedback" style="font-size: 100%; color: red" role="alert">
@@ -92,7 +101,7 @@
 
             <div class="col-sm-6">
                 <label for="inputCity" class="form-label">{{ __('Địa chỉ') }}</label>
-                <input name="address" type="text" value="{{ old('address', Auth::user()->address) }}" class="form-control @error('address') is-invalid @enderror">
+                <input name="address" type="text" value="{{ old('address', $dataUser->address) }}" class="form-control @error('address') is-invalid @enderror">
                 @error('address')
                 <span class="invalid-feedback" style="font-size: 100%; color: red" role="alert">
                     <strong>{{ $message }}</strong>
@@ -101,7 +110,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="inputCity" class="form-label">{{ __('Tuổi') }}</label>
-                <input name="age" type="date" value="{{ old('age', Auth::user()->age) }}" class="form-control @error('age') is-invalid @enderror">
+                <input name="age" type="date" value="{{ old('age', $dataUser->age) }}" class="form-control @error('age') is-invalid @enderror">
                 @error('age')
                 <span class="invalid-feedback" style="font-size: 100%; color: red;" role="alert">
                     <strong>{{ $message }}</strong>
@@ -112,7 +121,7 @@
                 <label for="status">{{ __('Giới tính') }}</label>
                 <select class="form-select" aria-label="{{ __('Giới tính') }}" name="sex" id="">
                     @foreach ($gender as $gender =>$value)
-                    <option value="{{ $value }}" @if(Auth::user()->sex == $value) selected @endif>
+                    <option value="{{ $value }}" @if($dataUser->sex == $value) selected @endif>
                         @if($gender =='Nam')
                             {{ __('Nam') }}
                         @elseif($gender =='Nữ')

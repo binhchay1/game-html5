@@ -52,7 +52,9 @@ class GameController extends Controller
 
         foreach ($dataGame as $game) {
             $tags = json_decode($game['tag']);
-            $game['tag'] = implode(', ', $tags);
+            if (!empty($tags)) {
+                $game['tag'] = implode(', ', $tags);
+            }
         }
 
         return view('admin.game.list-game', ['dataGame' => $dataGame]);
@@ -147,14 +149,22 @@ class GameController extends Controller
     public function store(GameRequest $request)
     {
         $input = $request->all();
+        $getGame = $this->gameRepository->getGameByName($input['name']);
+        if ($getGame) {
+            $alert = 'Failed! Game exist.';
+
+            return redirect()->route('game.index')->with('alert', $alert);
+        }
+
         $data = [
             'name' => $input['name'],
             'category' => $input['category'],
             'tag' => $input['tag'],
             'count_play' => $input['count_play'],
-            'status' => $input['status'],
             'color' => $input['color'],
             'text_color' => $input['text_color'],
+            'author' => array_key_exists('author', $input) ? $input['author'] : 'unknown',
+            'status' => 1
         ];
 
         if (array_key_exists('thumbs', $input)) {
@@ -180,6 +190,7 @@ class GameController extends Controller
         }
 
         $result = $this->ultity->storeGame($data);
+
         if ($result['status']) {
             $data['link'] = $result['index'];
             $queryResult = $this->gameRepository->store($data);
@@ -194,9 +205,21 @@ class GameController extends Controller
 
         $subscrible = $this->subscribleRepository->getSubscribleWithStatus();
         $type = 'new-game';
+        $dataSendMail = [
+            'game_name' => $data['name'],
+            'link' => $data['link'],
+        ];
+
+        if (!empty($data['author'])) {
+            $dataSendMail['author'] = $data['author'];
+        }
+
+        if (!empty($data['thumbs'])) {
+            $dataSendMail['game_thumb'] = $data['thumbs'];
+        }
 
         foreach ($subscrible as $email) {
-            $this->sendMail->send($email, $type);
+            $this->sendMail->send($email['email'], $type);
         }
 
         return redirect()->route('game.index')->with('alert', $alert);
@@ -254,7 +277,31 @@ class GameController extends Controller
 
     public function delete(Request $request)
     {
-        $this->gameRepository->deleteById($request->get('id-game'));
+        $idGame = $request->get('id-game');
+        $game = $this->gameRepository->getById($idGame);
+
+        if (!empty($game['icon'])) {
+            $pathIcon = public_path() . $game['icon'];
+            if (file_exists($pathIcon)) {
+                unlink($pathIcon);
+            }
+        }
+
+        if (!empty($game['background'])) {
+            $pathBackground = public_path() . $game['background'];
+            if (file_exists($pathBackground)) {
+                unlink($pathBackground);
+            }
+        }
+
+        if (!empty($game['thumbs'])) {
+            $pathThumb = public_path() . $game['thumbs'];
+            if (file_exists($pathThumb)) {
+                unlink($pathThumb);
+            }
+        }
+
+        $this->gameRepository->deleteById($idGame);
 
         return redirect()->route('game.index')->with('alert', 'Delete successfully!');
     }
