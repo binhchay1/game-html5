@@ -6,12 +6,42 @@
 
 @section('js_sort_users')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/admin/dropzone.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/bootstrap-multiselect-dropdown/bootstrap-multiselect.css') }}">
 <style>
     #list-store-game {
-        height: 350px;
+        height: 100px;
         width: 100%;
         overflow: auto;
         list-style: none;
+    }
+
+    .multiselect-container {
+        height: 400px;
+        overflow: auto;
+        transform: inherit !important;
+        top: 37px !important;
+    }
+
+    .multiselect-container>li>a>label.checkbox,
+    .multiselect-container>li>a>label.radio {
+        padding: 0;
+        margin-left: 10px;
+    }
+
+    .input-group-btn {
+        display: none !important;
+    }
+
+    .multiselect-search {
+        position: static !important;
+    }
+
+    .multiselect-native-select {
+        display: block;
+    }
+
+    .input-group {
+        width: 85% !important;
     }
 </style>
 @endsection
@@ -24,7 +54,7 @@
     <form action="{{ route('game.store') }}" method="POST" class="row g-3" enctype="multipart/form-data" id="form-store-game">
         @csrf
         <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Name</label>
+            <label for="name" class="form-label">Name</label>
             <input name="name" value="{{ old('name') }}" type="text" class="form-control @error('name') is-invalid @enderror" id="name-store-game">
             @error('name')
             <span class="invalid-feedback" role="alert">
@@ -32,7 +62,7 @@
             </span>
             @enderror
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="category">Category Game</label>
             <select class="form-select form-control @error('category') is-invalid @enderror" aria-label="Default select example" name="category">
                 @foreach ($dataCategory as $dataCategory)
@@ -42,11 +72,15 @@
                 @endforeach
             </select>
         </div>
-        <div class="col-md-4">
-            <label for="tag" class="form-label">Tag</label>
-            <input type="text" name="tag" value="[]" class="form-control">
-        </div>
         <div class="col-md-2">
+            <label for="tag" class="form-label">Tag</label>
+            <select id="tag-selection" multiple="multiple" name="tag[]">
+                @foreach($listTag as $tag)
+                <option value="{{ $tag }}">{{ $tag }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-1">
             <label for="count_play" class="form-label">CountPlay</label>
             <input type="text" name="count_play" value="0" class="form-control">
         </div>
@@ -62,9 +96,16 @@
             <label class="form-label">Color</label>
             <input type="text" name="color" value="{{ old('color') }}" class="form-control">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             <label class="form-label">TextColor</label>
             <input type="text" name="text_color" value="{{ old('text_color') }}" class="form-control">
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+            <label class="form-label">Upload File</label>
+            <button type="button" class="btn btn-primary ml-4" data-toggle="modal" data-target="#upload-file-modal" id="button-upload-store-game">Upload</button>
+            <ul id="list-store-game" class="d-none">
+
+            </ul>
         </div>
         <div class="col-md-2">
             <div class="form-group">
@@ -123,13 +164,6 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-4 d-flex align-items-center">
-            <label class="form-label">Upload File</label>
-            <button type="button" class="btn btn-primary ml-4" data-toggle="modal" data-target="#upload-file-modal" id="button-upload-store-game">Upload</button>
-            <ul id="list-store-game" class="d-none mt-5">
-
-            </ul>
-        </div>
         <div class="col-12">
             <button type="submit" class="btn btn-success">Create</button>
         </div>
@@ -140,9 +174,10 @@
 @endsection
 
 @section('js')
-
+<script src="{{ asset('js/plugins/bootstrap-multiselect-dropdown/bootstrap-multiselect.js') }}"></script>
 <script src="{{ asset('js/admin/dropzone.js') }}"></script>
 <script src="{{ asset('js/admin/game.js') }}"></script>
+
 <script>
     Dropzone.autoDiscover = false;
     let myDropzone = new Dropzone(".dropzone", {

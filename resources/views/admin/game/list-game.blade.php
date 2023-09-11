@@ -56,7 +56,7 @@
     </tbody>
 </table>
 
-@include('includes.modal_confirm_delete')
+@include('includes.modal_confirm_delete_game')
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {

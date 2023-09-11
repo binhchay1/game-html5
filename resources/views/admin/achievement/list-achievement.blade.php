@@ -51,7 +51,7 @@
         @endforeach
     </tbody>
 </table>
-
+@include('includes.modal_confirm_delete_achievement')
 <script>
     $(document).ready(function() {
         $('#customers').DataTable({
