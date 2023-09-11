@@ -61,6 +61,7 @@ $(document).ready(function () {
 
             promise.then(function (data) {
                 let scriptTag = "<script>" + data + "<\/script>";
+                $('#pre-load').addClass('d-none');
                 $("iframe").contents().find("body").append(scriptTag);
             }, function (error) {
                 $('#pre-load').addClass('d-none');
