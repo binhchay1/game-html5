@@ -8,10 +8,10 @@ return [
     ],
 
     'country' => [
-        'Việt Nam' => __('nước Việt Nam'),
-        'ประเทศไทย'  => __('nước Thái'),
-        'România' => __('nước Rumani'),
-        'Hrvatska'  => __('nước Croatia'),
-        'England'  => __('nước Anh'),
+        'Việt Nam' => 'nước Việt Nam',
+        'ประเทศไทย'  => 'nước Thái',
+        'România' => 'nước Rumani',
+        'Hrvatska'  => 'nước Croatia',
+        'England'  => 'nước Anh',
     ]
 ];
