@@ -46,7 +46,7 @@
                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
-                                    <img id="showImage" width="150" height="150" src="{{ $dataUser->image ?? asset('images/default-avatar.png') }}" alt="avatar">
+                                    <img id="showImage" width="150" height="150" src="/{{ $dataUser->image ?? asset('images/default-avatar.png') }}" alt="avatar" style="width: 70px; height: 70px;">
                                 </div>
                             </div>
                         </div>
