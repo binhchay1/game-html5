@@ -15,6 +15,7 @@ use App\Repositories\VoteRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Services\SendMail;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -131,20 +132,41 @@ class GameController extends Controller
     public function showGame($id)
     {
         $dataGame = $this->gameRepository->showGame($id);
-        return view('admin.game.show-game', ['dataGame' => $dataGame]);
+        $status = config('game.status');
+        $dataCategory = $this->categoryRepository->listCategory();
+        $getGame = $this->gameRepository->get();
+        $sourceGame = Storage::disk('public-source-game')->allFiles($dataGame['name']);
+        $listTag = [];
+
+        foreach ($getGame as $record) {
+            $arrTags = json_decode($record->tag);
+            foreach ($arrTags as $tag) {
+                if (!in_array($tag, $listTag)) {
+                    $listTag[] = $tag;
+                }
+            }
+        }
+
+        return view('admin.game.show-game', compact('dataGame', 'dataCategory', 'status', 'listTag', 'sourceGame'));
     }
 
     public function create()
     {
         $status = config('game.status');
         $dataCategory = $this->categoryRepository->listCategory();
-        if ($dataCategory) {
-            $alert = 'Successfully to create!';
-        } else {
-            $alert = 'Failed to create!';
+        $getGame = $this->gameRepository->get();
+        $listTag = [];
+
+        foreach ($getGame as $record) {
+            $arrTags = json_decode($record->tag);
+            foreach ($arrTags as $tag) {
+                if (!in_array($tag, $listTag)) {
+                    $listTag[] = $tag;
+                }
+            }
         }
 
-        return view('admin.game.create-game', ['dataCategory' => $dataCategory, 'status' => $status])->with('alert', $alert);
+        return view('admin.game.create-game', compact('dataCategory', 'status', 'listTag'));
     }
 
     public function store(GameRequest $request)
@@ -160,7 +182,7 @@ class GameController extends Controller
         $data = [
             'name' => $input['name'],
             'category' => $input['category'],
-            'tag' => $input['tag'],
+            'tag' => json_encode($input['tag']),
             'count_play' => $input['count_play'],
             'color' => $input['color'],
             'text_color' => $input['text_color'],
@@ -231,17 +253,21 @@ class GameController extends Controller
         $status = config('game.status');
         $dataGame = $this->gameRepository->showGame($id);
         $dataCategory = $this->categoryRepository->listCategory();
-        if ($dataGame and $dataCategory) {
-            $alert = 'Successfully to edit!';
-        } else {
-            $alert = 'Failed to edit!';
+        $getGame = $this->gameRepository->get();
+        $listTag = [];
+        $gameName = '8-pool-balls';
+        $sourceGame = Storage::disk('public-source-game')->allFiles($gameName);
+
+        foreach ($getGame as $record) {
+            $arrTags = json_decode($record->tag);
+            foreach ($arrTags as $tag) {
+                if (!in_array($tag, $listTag)) {
+                    $listTag[] = $tag;
+                }
+            }
         }
 
-        return view('admin.game.edit-game', [
-            'dataGame' => $dataGame,
-            'dataCategory' => $dataCategory,
-            'status' => $status
-        ])->with('alert', $alert);
+        return view('admin.game.edit-game', compact('dataGame', 'dataCategory', 'status', 'listTag', 'sourceGame'));
     }
 
     public function update(GameRequest $request, $id)

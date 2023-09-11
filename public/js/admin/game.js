@@ -1,5 +1,10 @@
 
 $(document).ready(function () {
+    $('#tag-selection').multiselect({
+        enableFiltering: true,
+        filterBehavior: 'value'
+    });
+
     $('#btn_background').on('click', function () {
         $('#background').click();
     });
