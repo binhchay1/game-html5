@@ -40,6 +40,15 @@
             </div>
         </div>
         <div class="col-md-6">
+            <label class="form-label">Nick Name</label>
+            <input name="nick_name" type="text" value="{{ old('nick_name') }}" class="form-control @error('nick_name') is-invalid @enderror">
+            @error('nick_name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+        <div class="col-md-6">
             <label class="form-label">Email</label>
             <input name="email" type="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror">
             @error('email')
@@ -76,15 +85,15 @@
             </span>
             @enderror
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label class="form-label">Gender</label>
-            <select class="form-select" aria-label="Default select example" name="sex">
+            <select class="form-select form-control" aria-label="Default select example" name="sex">
                 @foreach($gender as $gender => $value)
                 <option id="status" value="{{ $value }}">{{ $gender }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="col-12">
+        <div class="col-12 mt-4">
             <button type="submit" class="btn btn-success">Create</button>
         </div>
     </form>
