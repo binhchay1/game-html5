@@ -105,7 +105,7 @@
                     @else
                     <div id="user_logged_in">
                         <div class="fake-button js-top-menu user-toggle" data-menu="account">
-                            <img src="/{{ Auth::user()->image ?? asset('/images/default-avatar.png') }}" class="avatar" alt="avatar">
+                            <img src="{{ Auth::user()->image ?? asset('/images/default-avatar.png') }}" class="avatar" alt="avatar">
                         </div>
                         <div class="links-container-container">
                             <div class="links-container sub-menu">
