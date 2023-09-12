@@ -33,7 +33,7 @@
 
 <body>
     <div class="iframe-area">
-        <iframe loading="lazy" data-src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="no" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
+        <iframe loading="lazy" data-src="{{ $getGame['link'] }}" id="game-iframe" frameBorder="0" scrolling="yes" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' oallowfullscreen="true" msallowfullscreen="true">
         </iframe>
 
         <div class="btn-play-area d-flex flex-column">
