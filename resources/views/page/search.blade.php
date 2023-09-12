@@ -56,7 +56,7 @@
                             <div class="gray-select__item active" id="tag-all-tags" onclick="pickSelect(this.id)">
                                 <div class="select-item-title">{{ __('Tất cả các nhãn') }}</div>
                             </div>
-                            @foreach($listTag as $tag)
+                            @foreach($listTag as $tag => $value)
                             <div class="gray-select__item" id="tag-{{ $tag }}" onclick="pickSelect(this.id)">
                                 <div class="select-item-title">{{ $tag }}</div>
                             </div>

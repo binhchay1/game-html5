@@ -21,8 +21,6 @@ use Config;
 use Session;
 use Cache;
 
-use function Symfony\Component\String\b;
-
 class HomeController extends Controller
 {
     private $categoryRepository;
@@ -231,6 +229,9 @@ class HomeController extends Controller
         foreach ($getTags as $record) {
             $arrTags = json_decode($record->tag);
             foreach ($arrTags as $tag) {
+                if (count($listTag) >= 10) {
+                    break 2;
+                }
                 if (!in_array($tag, $listTag)) {
                     $listTag[] = $tag;
                 }
@@ -238,21 +239,44 @@ class HomeController extends Controller
         }
 
         if (empty($listTag)) {
-            $getTags = Cache::get('listTag');
+            $listTag = Cache::get('listTag');
+            $stringTrans = implode(', ', array_keys($listTag));
+            $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+            $arrTrans = explode(', ', $translate);
+            $count = 0;
+            foreach ($listTag as $tag => $val) {
+                $listTag[$tag]['trans'] = $arrTrans[$count];
+                $count++;
+            }
+
+        } else {
+            $tempTag = $listTag;
+            $getTags = $this->gameRepository->getTags()->toArray();
+            $stringTrans = implode(', ', $listTag);
+            $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+            $arrTrans = explode(', ', $translate);
+            $listTag = [];
+            $count = 0;
+
+            foreach ($tempTag as $tag) {
+                $listTag[$tag]['trans'] = $arrTrans[$count];
+                $listTag[$tag]['tag'] = $tag;
+                $listTag[$tag]['color'] = $this->ultity->rndRGBColorCode();
+                $listTag[$tag]['count'] = 0;
+                $count++;
+            }
 
             foreach ($getTags as $record) {
-                $arrTags = json_decode($record->tag);
-                foreach ($arrTags as $tag) {
-                    if (!in_array($tag, $listTag)) {
-                        $listTag[] = $tag;
+                $arrTags = json_decode($record['tag']);
+                foreach ($arrTags as $tags) {
+                    if (!array_key_exists($tags, $listTag)) {
+                        continue;
+                    } else {
+                        $listTag[$tags]['count'] += 1;
                     }
                 }
             }
         }
-
-        $stringTrans = implode(', ', $listTag);
-        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
-        $listTag = explode(', ', $translate);
 
         $getGames = $listGame->shuffle();
         $paginate = $this->ultity->paginate($getGames, 30);
