@@ -259,7 +259,6 @@ class HomeController extends Controller
                 $listTag[$tag]['trans'] = $arrTrans[$count];
                 $count++;
             }
-
         } else {
             $tempTag = $listTag;
             $stringTrans = implode(', ', $listTag);
@@ -287,6 +286,10 @@ class HomeController extends Controller
                 }
             }
         }
+
+        $stringTrans = implode(', ', $arrSelectionTags);
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $arrSelectionTags = explode(', ', $translate);
 
         $getGames = $listGame->shuffle();
         $paginate = $this->ultity->paginate($getGames, 30);

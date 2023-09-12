@@ -37,7 +37,15 @@
                             @foreach($listCategory as $category)
                             <div class="gray-select__item" id="category-{{ $category['name'] }}" onclick="pickSelect(this.id)">
                                 <span class="icon {{ $category['name'] }}"></span>
-                                <div class="select-item-title">{{ ucfirst($category['name']) }}</div>
+                                @if(session('locale') == 'vi')
+                                <div class="select-item-title">
+                                    {{ ucfirst(__(\App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])])) }}
+                                </div>
+                                @else
+                                <div class="select-item-title">
+                                    {{ __(ucfirst($category['name'])) }}
+                                </div>
+                                @endif
                             </div>
                             @endforeach
                         </div>
