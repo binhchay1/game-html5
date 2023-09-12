@@ -218,6 +218,7 @@ class HomeController extends Controller
 
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->get();
         $listGame = $this->gameRepository->getListBySearch($filter);
+        $getTagForSelection = $this->gameRepository->getTags()->toArray();
         $listName = [];
         foreach ($listGame as $game) {
             $listName[] = $game['name'];
@@ -225,6 +226,7 @@ class HomeController extends Controller
 
         $getTags = $this->gameRepository->getTagsByListGame($listName);
         $listTag = [];
+        $arrSelectionTags = [];
 
         foreach ($getTags as $record) {
             $arrTags = json_decode($record->tag);
@@ -234,6 +236,15 @@ class HomeController extends Controller
                 }
                 if (!in_array($tag, $listTag)) {
                     $listTag[] = $tag;
+                }
+            }
+        }
+
+        foreach ($getTagForSelection as $record) {
+            $arrTags = json_decode($record['tag']);
+            foreach ($arrTags as $tag) {
+                if (!in_array($tag, $arrSelectionTags)) {
+                    $arrSelectionTags[] = $tag;
                 }
             }
         }
@@ -251,7 +262,6 @@ class HomeController extends Controller
 
         } else {
             $tempTag = $listTag;
-            $getTags = $this->gameRepository->getTags()->toArray();
             $stringTrans = implode(', ', $listTag);
             $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
             $arrTrans = explode(', ', $translate);
@@ -266,7 +276,7 @@ class HomeController extends Controller
                 $count++;
             }
 
-            foreach ($getTags as $record) {
+            foreach ($getTagForSelection as $record) {
                 $arrTags = json_decode($record['tag']);
                 foreach ($arrTags as $tags) {
                     if (!array_key_exists($tags, $listTag)) {
@@ -285,10 +295,10 @@ class HomeController extends Controller
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
 
-            return view('page.search', compact('listCategory', 'games', 'listTag', 'countGameInCollection'));
+            return view('page.search', compact('listCategory', 'games', 'listTag', 'countGameInCollection', 'arrSelectionTags'));
         }
 
-        return view('page.search', compact('listCategory', 'games', 'listTag'));
+        return view('page.search', compact('listCategory', 'games', 'listTag', 'arrSelectionTags'));
     }
 
     public function viewTags($tag)
