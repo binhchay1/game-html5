@@ -20,18 +20,18 @@
 
                 <div class="meta-description-text">
                     <h1 class="with-description header-5">
-                        {{ __('Game trực tuyến miễn phí hàng đầu được gắn thẻ') }} {{ $tag }}
+                        {{ __('Game trực tuyến miễn phí hàng đầu được gắn thẻ') }} {{ $translateOnlyTag }}
                     </h1>
                     <h2 class="text-regular">
-                        {{ __('Xem tất cả thẻ gắn') }} {{ __('Chơi trò chơi') }} {{ $tag }} {{ __('trên') }} {{ env('APP_URL', 'Gamekafe.com') }}.
+                        {{ __('Xem tất cả thẻ gắn') }} {{ __('Chơi trò chơi') }} {{ $translateOnlyTag }} {{ __('trên') }} {{ env('APP_URL', 'Gamekafe.com') }}.
                     </h2>
                 </div>
                 <div class="sub-title">
                     <div class="left">
-                        <a class="active" rel="nofollow" title="{{ __('Game Trực Tuyến Miễn Phí Hàng đầu được Gắn Thẻ') }} {{ $tag }} - {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('tags', ['tag' => $tag]) }}">
+                        <a class="active" rel="nofollow" title="{{ __('Game Trực Tuyến Miễn Phí Hàng đầu được Gắn Thẻ') }} {{ $translateOnlyTag }} - {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('tags', ['tag' => $tag]) }}">
                             <h3>
                                 {{ __('Tất cả') }}
-                                {{ __('Game trực tuyến miễn phí hàng đầu được gắn thẻ') }} {{ $tag }}
+                                {{ __('Game trực tuyến miễn phí hàng đầu được gắn thẻ') }} {{ $translateOnlyTag }}
                                 <span>({{ $totalGame }})</span>
                             </h3>
                         </a>
@@ -61,9 +61,15 @@
                         <div class="item__infos">
                             <h4 class="item__title ltr">{{ $game['name'] }}</h4>
                             <div class="item__technology">
+                                @if(session('locale') == 'vi')
                                 <p class="{{ $game['category'] }}">
-                                    {{ ucfirst($game['category']) }}
+                                    {{ ucfirst(__(\App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($game['category'])])) }}
                                 </p>
+                                @else
+                                <p class="{{ $game['category'] }}">
+                                    {{ __(ucfirst($game['category'])) }}
+                                </p>
+                                @endif
                             </div>
                             @if(!empty($game['author']))
                             <p class="item__title ltr">{{ $game['author'] }}</p>

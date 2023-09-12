@@ -317,6 +317,7 @@ class HomeController extends Controller
 
         $stringTrans = implode(', ', array_keys($listTag));
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $translateOnlyTag = GoogleTranslate::trans($tag, Session::get('locale'));
         $arrTrans = explode(', ', $translate);
         $count = 0;
         foreach ($listTag as $tag => $val) {
@@ -327,10 +328,10 @@ class HomeController extends Controller
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
 
-            return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag', 'countGameInCollection', 'totalGame'));
+            return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag', 'countGameInCollection', 'totalGame', 'translateOnlyTag'));
         }
 
-        return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag', 'totalGame'));
+        return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag', 'totalGame', 'translateOnlyTag'));
     }
 
     public function viewListTags(Request $request)
