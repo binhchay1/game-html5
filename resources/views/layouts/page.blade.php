@@ -30,6 +30,19 @@
     <link rel="stylesheet" href="{{ asset('css/page/user.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/plugins/fontawesome/all.min.css') }}" type='text/css'>
 
+    <style>
+        @media screen and (min-width: 800px) and (max-width: 1024px) {
+            #list-tag-normal {
+                margin-top: 60px !important;
+            }
+        }
+
+        @media screen and (min-width: 844px) and (max-width: 845px) {
+            #list-tag-normal {
+                margin-top: 110px !important;
+            }
+        }
+    </style>
     @yield('css')
 </head>
 
@@ -160,7 +173,8 @@
                         <div class="row">
                             <ul>
                                 @foreach($listCategory as $category)
-                                <li class="inactive {{ $category['name'] }} li-category">
+                                @if(session('locale') == 'vi')
+                                <li class="inactive {{ $category['name'] }} li-category" style="margin: 0 4px 20px !important;">
                                     <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
                                         @if(session('locale') == 'vi')
                                         <span class="name">{{ \App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
@@ -170,6 +184,18 @@
                                         <span class="number">{{ $category['games_count'] }} game</span>
                                     </a>
                                 </li>
+                                @else
+                                <li class="inactive {{ $category['name'] }} li-category" style="margin: 0 5px 20px !important;">
+                                    <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
+                                        @if(session('locale') == 'vi')
+                                        <span class="name">{{ \App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
+                                        @else
+                                        <span class="name">{{ __(ucfirst($category['name'])) }}</span>
+                                        @endif
+                                        <span class="number">{{ $category['games_count'] }} game</span>
+                                    </a>
+                                </li>
+                                @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -181,7 +207,7 @@
                         </div>
                         <div class="top-tags-mobile__wrapper">
                             <div class="row top-tags__height">
-                                <ul>
+                                <ul id="list-tag-mobile">
                                     @foreach($listTag as $tag => $value)
                                     <li style="margin-top: 5px;">
                                         <a class="tag" href="{{ route('tags', ['tag' => $tag]) }}">
