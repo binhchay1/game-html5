@@ -358,7 +358,7 @@ class HomeController extends Controller
                     $listTag[$tag]['count'] += 1;
                 } else {
                     $listTag[$tag] = [
-                        'count' => 1,
+                        'count' => 0,
                         'numberIcon' => array_key_exists($tag, $this->iconGame::LIST_ICON) ? $this->iconGame::LIST_ICON[$tag] : 1200,
                         'color' => $this->ultity->rndRGBColorCode(),
                     ];
@@ -419,7 +419,7 @@ class HomeController extends Controller
             foreach ($arrTags as $tag) {
                 if (!array_key_exists($tag, $listTag)) {
                     $listTag[$tag]['tag'] = $tag;
-                    $listTag[$tag]['count'] = 1;
+                    $listTag[$tag]['count'] = 0;
                     $listTag[$tag]['color'] = $this->ultity->rndRGBColorCode();
                 }
             }
@@ -483,7 +483,7 @@ class HomeController extends Controller
             foreach ($arrTags as $tag) {
                 if (!array_key_exists($tag, $listTag)) {
                     $listTag[$tag]['tag'] = $tag;
-                    $listTag[$tag]['count'] = 1;
+                    $listTag[$tag]['count'] = 0;
                     $listTag[$tag]['color'] = $this->ultity->rndRGBColorCode();
                 }
             }
