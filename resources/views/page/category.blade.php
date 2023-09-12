@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Thể loại') }}</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Thể loại') }} - </title>
 @endsection
 
 @section('css')
@@ -23,12 +23,15 @@
                 <img alt="icon-category" src="{{ asset('svg/category/' . $category['name'] . '.svg') }}">
             </div>
             <div class="text-col">
+                @if(session('locale') == 'vi')
+                <h1 class="title header-5">
+                    {{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ ucfirst(__(\App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])])) }}
+                </h1>
+                @else
                 <h1 class="title header-5">
                     {{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ __(ucfirst($category['name'])) }}
                 </h1>
-                <h2 class="description text-regular">
-                    {{ $category['title'] }}
-                </h2>
+                @endif
             </div>
         </div>
         <div class="right-col col-md-6">
@@ -64,7 +67,11 @@
                         <a class="active" title="{{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ $category }} - {{ env('APP_URL', 'Gamekafe.com') }}" href="/categories/strategy">
                             <h3>
                                 {{ __('Tất cả') }}
-                                {{ __(ucfirst($category['name'])) }}
+                                @if(session('locale') == 'vi')
+                                {{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ ucfirst(__(\App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])])) }}
+                                @else
+                                {{ __('Game trực tuyến miễn phí hàng đầu gắn thẻ') }} {{ __(ucfirst($category['name'])) }}
+                                @endif
                                 <span>({{ count($games) }})</span>
                             </h3>
                         </a>

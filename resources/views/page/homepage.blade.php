@@ -130,7 +130,15 @@
                     <div class="item__infos">
                         <h4 class="item__title ltr">{{ $game['name'] }}</h4>
                         <div class="item__technology">
-                            <p class="{{ $game['category'] }}">{{ ucfirst($game['category']) }}</p>
+                            @if(session('locale') == 'vi')
+                            <p class="{{ $game['category'] }}">
+                                {{ ucfirst(__(\App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($game['category'])])) }}
+                            </p>
+                            @else
+                            <p class="{{ $game['category'] }}">
+                                {{ __(ucfirst($game['category'])) }}
+                            </p>
+                            @endif
                         </div>
                         @if(!empty($game['author']))
                         <p class="item__title ltr">{{ $game['author'] }}</p>
