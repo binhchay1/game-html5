@@ -133,7 +133,6 @@
         const gameName = '<?php echo $getGame['name']; ?>';
         const themeColor = '<?php echo $getGame['color']; ?>';
         const urlMain = window.location.href;
-        const jquery = '<?php echo asset('js/plugins/jquery/jquery.min.js'); ?>'
     </script>
 
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
