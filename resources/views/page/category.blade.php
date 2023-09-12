@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Thể loại') }} - </title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Thể loại') }} | {{ __(ucfirst($category['name'])) }} </title>
 @endsection
 
 @section('css')

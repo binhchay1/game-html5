@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Thẻ') }}</title>
+<title>{{ env('APP_NAME', 'Gamekafe') }} - {{ __('Thẻ') }} | {{ $translateOnlyTag }}</title>
 @endsection
 
 @section('css')
