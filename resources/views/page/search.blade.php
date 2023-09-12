@@ -109,6 +109,42 @@
         </div>
         @endforeach
     </div>
+
+    <div class="navigator short">
+        <div class="head">
+            @if(empty($games->previousPageUrl()))
+            <a aria-label="arrow previous" class="arrow previous disable-link"></a>
+            @else
+            <a aria-label="arrow previous" class="arrow previous" href="{{ $games->previousPageUrl() }}"></a>
+            @endif
+            <ul>
+                @if($games->currentPage() != 1)
+                <li>
+                    <a href="{{ $games->previousPageUrl() }}">{{ $games->currentPage() - 1 }}</a>
+                </li>
+                @endif
+                <li class='current'>
+                    <span>{{ $games->currentPage() }}</span>
+                </li>
+                @if($games->currentPage() != $games->lastPage())
+                <li>
+                    <a href="{{ $games->nextPageUrl() }}">{{ $games->currentPage() + 1 }}</a>
+                </li>
+                @endif
+                @if($games->lastPage() > $games->currentPage() + 2)
+                <li class="separator">
+                    <span>...</span>
+                </li>
+                @endif
+                @if($games->lastPage() > $games->currentPage() + 1)
+                <li>
+                    <a href="?page={{ $games->lastPage() }}">{{ $games->lastPage() }}</a>
+                </li>
+                @endif
+            </ul>
+            <a aria-label="arrow next" class="arrow next {{ $games->currentPage() == $games->lastPage() ? 'disable-link' : '' }}" href="{{ $games->nextPageUrl() }}"></a>
+        </div>
+    </div>
 </div>
 @endsection
 

@@ -98,7 +98,7 @@
                     <ul>
                         @if($games->currentPage() != 1)
                         <li>
-                            <a href="?page={{ $games->previousPageUrl() }}">{{ $games->currentPage() - 1 }}</a>
+                            <a href="{{ $games->previousPageUrl() }}">{{ $games->currentPage() - 1 }}</a>
                         </li>
                         @endif
                         <li class='current'>
