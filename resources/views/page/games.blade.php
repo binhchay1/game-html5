@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{{ asset('css/page/game.css') }}">
     <link rel="stylesheet" href="{{ asset('css/page/ionicons.min.css') }}">
     <title>{{ $getGame['title-game'] }}</title>
+    <style>
+        #pre-load {
+            background-color: none;
+        }
+    </style>
     <?php
     if (!empty($getGame['background'])) {
         echo
