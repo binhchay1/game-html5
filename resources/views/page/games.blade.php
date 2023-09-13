@@ -12,7 +12,7 @@
     <title>{{ $getGame['title-game'] }}</title>
     <style>
         #pre-load {
-            background-color: none;
+            background: none;
         }
     </style>
     <?php
