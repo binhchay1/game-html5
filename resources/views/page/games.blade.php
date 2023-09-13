@@ -70,15 +70,15 @@
     <div class="top-conner text-center">
         @if(!$status)
         <p onclick="saveCollection()" id="button-add-collection">
-            ❤ Add to collection
+            ❤ {{ __('Thêm vào bộ sưu tập') }}
         </p>
         @else
         <p id="button-add-collection" style="cursor: auto;">
-            Game in your collection!
+            {{ __('Trò chơi đã có trong bộ sưu tập của bạn') }}
         </p>
         @endif
         <p id="button-report-bug" data-email="{{ Auth::user()->email }}" data-name="{{ Auth::user()->name }}" data-toggle="modal" data-target="#report-bug-modal">
-            🛠 Report bug in game
+            🛠 {{ __('Thông báo lỗi trong trò chơi') }}
         </p>
     </div>
     @endif
@@ -110,12 +110,12 @@
                 <div class="post-item mt-4 col-lg-2 col-sm-3">
                     <div class="post-header">
                         <span class="post-avatar">
-                            <a href="{{ route('user.show', ['id' => md5($comment->users->id])) }}">
+                            <a href="{{ route('user.show', ['id' => md5($comment->users->id)]) }}">
                                 <img width="25" height="25" src="{{ $comment->users->image ?? asset('/images/default-avatar.png') }}">
                             </a>
                         </span>
                         <span class="post-author">
-                            <a class="author-name" href="{{ route('user.show', ['id' => md5($comment->users->id])) }}">{{ $comment->users->name }}</a>
+                            <a class="author-name" href="{{ route('user.show', ['id' => md5($comment->users->id)]) }}">{{ $comment->users->name }}</a>
                         </span>
                         <span class="post-date">
                             <p title="{{ $comment->created_at }}"></p>

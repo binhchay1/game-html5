@@ -51,6 +51,10 @@ class ProfileController extends Controller
 
     public function show($userIdHash)
     {
+        if (empty($userIdHash)) {
+            abort(404);
+        }
+
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
         $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
         $query = $this->gameRepository->getListGameWithVote();
@@ -86,6 +90,10 @@ class ProfileController extends Controller
 
     public function edit($userIdHash)
     {
+        if (empty($userIdHash)) {
+            abort(404);
+        }
+
         $gender = config('user.sex');
         $country = config('user.country');
         $dataUser = $this->userRepository->showUser($userIdHash);
@@ -123,6 +131,10 @@ class ProfileController extends Controller
 
     public function update(UserRequest $request, $userIdHash)
     {
+        if (empty($userIdHash)) {
+            abort(404);
+        }
+
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
             $img = $this->ultity->saveImageUser($input);
@@ -133,7 +145,7 @@ class ProfileController extends Controller
         }
 
         $this->userRepository->update($input, $userIdHash);
-        return back()->with('success', 'Updated successfully.');
+        return back()->with('success', __('Thông tin đã được cập nhật thành công!'));
     }
 
     public function changePassword()
@@ -149,14 +161,14 @@ class ProfileController extends Controller
         ]);
 
         if (!Hash::check($request->old_password, auth()->user()->password)) {
-            return back()->with("error", "Old Password Doesn't match!");
+            return back()->with("error", __("Mật khẩu cũ không trùng khớp!"));
         }
 
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", "Password changed successfully!");
+        return back()->with("status", __("Mật khẩu thay đổi thành công!"));
     }
 
     public function favoriteGame()
