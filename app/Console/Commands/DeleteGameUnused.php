@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Repositories\GameRepository;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class DeleteGameUnused extends Command
 {
@@ -29,6 +30,50 @@ class DeleteGameUnused extends Command
         try {
             foreach ($games as $game) {
                 if ($game['status'] == 1) {
+                    if (empty($game['thumbs'])) {
+                        if (!empty($game['icon'])) {
+                            $pathIcon = public_path() . $game['icon'];
+                            if (file_exists($pathIcon)) {
+                                unlink($pathIcon);
+                            }
+                        }
+
+                        if (!empty($game['background'])) {
+                            $pathBackground = public_path() . $game['background'];
+                            if (file_exists($pathBackground)) {
+                                unlink($pathBackground);
+                            }
+                        }
+
+                        $pathGame = public_path()  . '/source-game//' . $game['name'];
+                        File::deleteDirectory($pathGame);
+                        $game->delete();
+
+                        dump("---------Deleted game : " . $game['name'] . "---------");
+                    } else {
+                        $pathThumb = public_path() . $game['thumbs'];
+                        if (!file_exists($pathThumb)) {
+                            if (!empty($game['icon'])) {
+                                $pathIcon = public_path() . $game['icon'];
+                                if (file_exists($pathIcon)) {
+                                    unlink($pathIcon);
+                                }
+                            }
+
+                            if (!empty($game['background'])) {
+                                $pathBackground = public_path() . $game['background'];
+                                if (file_exists($pathBackground)) {
+                                    unlink($pathBackground);
+                                }
+                            }
+
+                            $pathGame = public_path()  . '/source-game//' . $game['name'];
+                            File::deleteDirectory($pathGame);
+                            $game->delete();
+
+                            dump("---------Deleted game : " . $game['name'] . "---------");
+                        }
+                    }
                     continue;
                 }
 
@@ -60,7 +105,11 @@ class DeleteGameUnused extends Command
                     }
                 }
 
+                $pathGame = public_path()  . '/source-game//' . $game['name'];
+                File::deleteDirectory($pathGame);
                 $game->delete();
+
+                dump("---------Deleted game : " + $game['name'] + "---------");
             }
 
             dump("---------Deleted all game unused on sever---------");

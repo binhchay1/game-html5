@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ultity;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use App\Repositories\UserRepository;
@@ -11,10 +12,12 @@ use Exception;
 class SocialLoginController extends Controller
 {
     private $userRepository;
+    private $ultity;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, Ultity $ultity)
     {
         $this->userRepository = $userRepository;
+        $this->ultity = $ultity;
     }
 
     public function redirectToGoogle()
@@ -46,7 +49,8 @@ class SocialLoginController extends Controller
                         'google_id' => $user->id,
                         'password' => Hash::make('123456dummy'),
                         'email_verified_at' => date("Y-m-d h:i:s"),
-                        'role' => 'user'
+                        'role' => 'user',
+                        'nick_name' => $this->ultity->generateRandomString(20)
                     ];
 
                     $newUser = $this->userRepository->create($data);
@@ -89,7 +93,8 @@ class SocialLoginController extends Controller
                         'google_id' => $user->id,
                         'password' => Hash::make('123456dummy'),
                         'email_verified_at' => date("Y-m-d h:i:s"),
-                        'role' => 'user'
+                        'role' => 'user',
+                        'nick_name' => $this->ultity->generateRandomString(20)
                     ];
 
                     $newUser = $this->userRepository->create($data);

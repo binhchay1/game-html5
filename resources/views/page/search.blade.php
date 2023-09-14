@@ -7,7 +7,33 @@
 @section('css')
 <link rel="stylesheet" media="screen" href="{{ asset('css/page/search.css') }}" />
 @endsection
+<style type="text/css">
 
+    .pagination {
+        display: flex;
+        justify-content: center;
+    }
+
+    .my-active span{
+        background: #333;
+        border-radius: 12px;
+        color: #fff;
+        height: 40px;
+        line-height: 40px;
+        margin-top: -2px;
+    }
+    ul.pager>li {
+        display: inline-flex;
+        list-style-type: none;
+
+    }
+
+
+    ul {
+        list-style-type: none;
+    }
+
+</style>
 @section('content')
 <div class="box search-container">
     <form id="items-search-form" class="search-form" action="{{ route('search') }}" accept-charset="UTF-8" method="get">
@@ -37,7 +63,15 @@
                             @foreach($listCategory as $category)
                             <div class="gray-select__item" id="category-{{ $category['name'] }}" onclick="pickSelect(this.id)">
                                 <span class="icon {{ $category['name'] }}"></span>
-                                <div class="select-item-title">{{ ucfirst($category['name']) }}</div>
+                                @if(session('locale') == 'vi')
+                                <div class="select-item-title">
+                                    {{ ucfirst(__(\App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])])) }}
+                                </div>
+                                @else
+                                <div class="select-item-title">
+                                    {{ __(ucfirst($category['name'])) }}
+                                </div>
+                                @endif
                             </div>
                             @endforeach
                         </div>
@@ -56,7 +90,7 @@
                             <div class="gray-select__item active" id="tag-all-tags" onclick="pickSelect(this.id)">
                                 <div class="select-item-title">{{ __('Tất cả các nhãn') }}</div>
                             </div>
-                            @foreach($listTag as $tag)
+                            @foreach($arrSelectionTags as $tag)
                             <div class="gray-select__item" id="tag-{{ $tag }}" onclick="pickSelect(this.id)">
                                 <div class="select-item-title">{{ $tag }}</div>
                             </div>
@@ -83,9 +117,15 @@
                 <div class="item__infos">
                     <h4 class="item__title ltr">{{ $game['name'] }}</h4>
                     <div class="item__technology">
+                        @if(session('locale') == 'vi')
                         <p class="{{ $game['category'] }}">
-                            {{ ucfirst($game['category']) }}
+                            {{ ucfirst(__(\App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($game['category'])])) }}
                         </p>
+                        @else
+                        <p class="{{ $game['category'] }}">
+                            {{ __(ucfirst($game['category'])) }}
+                        </p>
+                        @endif
                     </div>
                     @if(!empty($game['author']))
                     <p class="item__title ltr">{{ $game['author'] }}</p>
@@ -109,6 +149,10 @@
         </div>
         @endforeach
     </div>
+</div>
+<div class="pagination" style="display: flex;
+  justify-content: center;">
+    {{ $games->appends(request()->except('page'))->links(('pagination.custom')) }}
 </div>
 @endsection
 

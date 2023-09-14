@@ -25,7 +25,8 @@
             <div class="row single-line">
                 <ul>
                     @foreach($listCategory as $category)
-                    <li class="inactive {{ $category['name'] }} li-category">
+                    @if(session('locale') == 'vi')
+                    <li class="inactive {{ $category['name'] }} li-category" style="margin: 0 4px 20px !important;">
                         <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
                             @if(session('locale') == 'vi')
                             <span class="name">{{ \App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
@@ -35,13 +36,25 @@
                             <span class="number">{{ $category['games_count'] }} game</span>
                         </a>
                     </li>
+                    @else
+                    <li class="inactive {{ $category['name'] }} li-category" style="margin: 0 5px 20px !important;">
+                        <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
+                            @if(session('locale') == 'vi')
+                            <span class="name">{{ \App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
+                            @else
+                            <span class="name">{{ __(ucfirst($category['name'])) }}</span>
+                            @endif
+                            <span class="number">{{ $category['games_count'] }} game</span>
+                        </a>
+                    </li>
+                    @endif
                     @endforeach
                 </ul>
             </div>
         </div>
         <div class="top-tags">
             <div class="row single-line">
-                <ul>
+                <ul id="list-tag-normal">
                     @foreach($listTag as $tag => $value)
                     <li style="margin-top: 5px;">
                         <a class="tag" href="{{ route('tags', ['tag' => $tag]) }}">
@@ -117,7 +130,15 @@
                     <div class="item__infos">
                         <h4 class="item__title ltr">{{ $game['name'] }}</h4>
                         <div class="item__technology">
-                            <p class="{{ $game['category'] }}">{{ ucfirst($game['category']) }}</p>
+                            @if(session('locale') == 'vi')
+                            <p class="{{ $game['category'] }}">
+                                {{ ucfirst(__(\App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($game['category'])])) }}
+                            </p>
+                            @else
+                            <p class="{{ $game['category'] }}">
+                                {{ __(ucfirst($game['category'])) }}
+                            </p>
+                            @endif
                         </div>
                         @if(!empty($game['author']))
                         <p class="item__title ltr">{{ $game['author'] }}</p>
@@ -150,7 +171,7 @@
                 <ul>
                     @if($games->currentPage() != 1)
                     <li>
-                        <a href="?page={{ $games->previousPageUrl() }}">{{ $games->currentPage() - 1 }}</a>
+                        <a href="{{ $games->previousPageUrl() }}">{{ $games->currentPage() - 1 }}</a>
                     </li>
                     @endif
                     <li class='current'>

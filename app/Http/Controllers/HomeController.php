@@ -21,8 +21,6 @@ use Config;
 use Session;
 use Cache;
 
-use function Symfony\Component\String\b;
-
 class HomeController extends Controller
 {
     private $categoryRepository;
@@ -220,6 +218,9 @@ class HomeController extends Controller
 
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->get();
         $listGame = $this->gameRepository->getListBySearch($filter);
+        $query = $listGame->shuffle();
+        $listGame = $this->ultity->paginate($query, 100);
+        $getTagForSelection = $this->gameRepository->getTags()->toArray();
         $listName = [];
         foreach ($listGame as $game) {
             $listName[] = $game['name'];
@@ -227,32 +228,70 @@ class HomeController extends Controller
 
         $getTags = $this->gameRepository->getTagsByListGame($listName);
         $listTag = [];
+        $arrSelectionTags = [];
 
         foreach ($getTags as $record) {
             $arrTags = json_decode($record->tag);
             foreach ($arrTags as $tag) {
+                if (count($listTag) >= 10) {
+                    break 2;
+                }
                 if (!in_array($tag, $listTag)) {
                     $listTag[] = $tag;
                 }
             }
         }
 
-        if (empty($listTag)) {
-            $getTags = Cache::get('listTag');
+        foreach ($getTagForSelection as $record) {
+            $arrTags = json_decode($record['tag']);
+            foreach ($arrTags as $tag) {
+                if (!in_array($tag, $arrSelectionTags)) {
+                    $arrSelectionTags[] = $tag;
+                }
+            }
+        }
 
-            foreach ($getTags as $record) {
-                $arrTags = json_decode($record->tag);
-                foreach ($arrTags as $tag) {
-                    if (!in_array($tag, $listTag)) {
-                        $listTag[] = $tag;
+        if (empty($listTag)) {
+            $listTag = Cache::get('listTag');
+            $stringTrans = implode(', ', array_keys($listTag));
+            $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+            $arrTrans = explode(', ', $translate);
+            $count = 0;
+            foreach ($listTag as $tag => $val) {
+                $listTag[$tag]['trans'] = $arrTrans[$count];
+                $count++;
+            }
+        } else {
+            $tempTag = $listTag;
+            $stringTrans = implode(', ', $listTag);
+            $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+            $arrTrans = explode(', ', $translate);
+            $listTag = [];
+            $count = 0;
+
+            foreach ($tempTag as $tag) {
+                $listTag[$tag]['trans'] = $arrTrans[$count];
+                $listTag[$tag]['tag'] = $tag;
+                $listTag[$tag]['color'] = $this->ultity->rndRGBColorCode();
+                $listTag[$tag]['count'] = 0;
+                $count++;
+            }
+
+            foreach ($getTagForSelection as $record) {
+                $arrTags = json_decode($record['tag']);
+                foreach ($arrTags as $tags) {
+                    if (!array_key_exists($tags, $listTag)) {
+                        continue;
+                    } else {
+                        $listTag[$tags]['count'] += 1;
                     }
                 }
             }
         }
 
-        $stringTrans = implode(', ', $listTag);
+        $stringTrans = implode(', ', $arrSelectionTags);
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
-        $listTag = explode(', ', $translate);
+        $arrSelectionTags = explode(', ', $translate);
 
         $getGames = $listGame->shuffle();
         $paginate = $this->ultity->paginate($getGames, 30);
@@ -261,10 +300,10 @@ class HomeController extends Controller
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
 
-            return view('page.search', compact('listCategory', 'games', 'listTag', 'countGameInCollection'));
+            return view('page.search', compact('listCategory', 'games', 'listTag', 'countGameInCollection', 'arrSelectionTags'));
         }
 
-        return view('page.search', compact('listCategory', 'games', 'listTag'));
+        return view('page.search', compact('listCategory', 'games', 'listTag', 'arrSelectionTags'));
     }
 
     public function viewTags($tag)
@@ -283,6 +322,7 @@ class HomeController extends Controller
 
         $stringTrans = implode(', ', array_keys($listTag));
         $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $translateOnlyTag = GoogleTranslate::trans($tag, Session::get('locale'));
         $arrTrans = explode(', ', $translate);
         $count = 0;
         foreach ($listTag as $tag => $val) {
@@ -293,10 +333,10 @@ class HomeController extends Controller
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
 
-            return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag', 'countGameInCollection', 'totalGame'));
+            return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag', 'countGameInCollection', 'totalGame', 'translateOnlyTag'));
         }
 
-        return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag', 'totalGame'));
+        return view('page.tags', compact('games', 'tag', 'listCategory', 'listTag', 'totalGame', 'translateOnlyTag'));
     }
 
     public function viewListTags(Request $request)
@@ -323,7 +363,7 @@ class HomeController extends Controller
                     $listTag[$tag]['count'] += 1;
                 } else {
                     $listTag[$tag] = [
-                        'count' => 1,
+                        'count' => 0,
                         'numberIcon' => array_key_exists($tag, $this->iconGame::LIST_ICON) ? $this->iconGame::LIST_ICON[$tag] : 1200,
                         'color' => $this->ultity->rndRGBColorCode(),
                     ];
@@ -384,7 +424,7 @@ class HomeController extends Controller
             foreach ($arrTags as $tag) {
                 if (!array_key_exists($tag, $listTag)) {
                     $listTag[$tag]['tag'] = $tag;
-                    $listTag[$tag]['count'] = 1;
+                    $listTag[$tag]['count'] = 0;
                     $listTag[$tag]['color'] = $this->ultity->rndRGBColorCode();
                 }
             }
@@ -448,7 +488,7 @@ class HomeController extends Controller
             foreach ($arrTags as $tag) {
                 if (!array_key_exists($tag, $listTag)) {
                     $listTag[$tag]['tag'] = $tag;
-                    $listTag[$tag]['count'] = 1;
+                    $listTag[$tag]['count'] = 0;
                     $listTag[$tag]['color'] = $this->ultity->rndRGBColorCode();
                 }
             }

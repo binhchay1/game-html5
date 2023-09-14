@@ -380,3 +380,73 @@ h1 {
     font-weight: bold;
     margin: 0;
 }
+
+@media only screen and (min-width: 800px) and (max-width: 911px) {
+    .central-body {
+        padding: 0 !important;
+        margin-top: 3%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 912px) and (max-width: 1000px) {
+    .central-body {
+        padding: 0 !important;
+        margin-top: 50%;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .btn-go-home {
+        font-size: 30px;
+        width: 300px;
+    }
+}
+
+@media only screen and (min-width: 717px) and (max-width: 799px) {
+    .central-body {
+        padding: 0 !important;
+        margin-top: 15%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 511px) {
+    .central-body {
+        padding: 0 !important;
+        margin-top: 65%;
+    }
+
+    h1 {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (min-width: 512px) and (max-width: 652px) {
+    .central-body {
+        padding: 0 !important;
+        margin-top: 40%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 653px) and (max-width: 717px) {
+    .central-body {
+        padding: 0 !important;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}

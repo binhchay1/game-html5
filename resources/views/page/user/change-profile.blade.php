@@ -124,11 +124,11 @@
                     @foreach ($gender as $gender =>$value)
                     <option value="{{ $value }}" @if($dataUser->sex == $value) selected @endif>
                         @if($gender =='Nam')
-                            {{ __('Nam') }}
+                        {{ __('Nam') }}
                         @elseif($gender =='Nữ')
-                            {{ __('Nữ') }}
+                        {{ __('Nữ') }}
                         @else
-                            {{ __('Giới tính khác') }}
+                        {{ __('Giới tính khác') }}
                         @endif
                     </option>
                     @endforeach
@@ -138,7 +138,7 @@
                 <label for="status">{{ __('Quốc gia') }}</label>
                 <select class="form-select" aria-label="Default select example" name="country">
                     @foreach($country as $country => $value)
-                        <option id="status" value="{{ $value }}">{{ $country }}</option>
+                    <option id="status" value="{{ $value }}">{{ $country }} ( {{ __($value) }} )</option>
                     @endforeach
                 </select>
 

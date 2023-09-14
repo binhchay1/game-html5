@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="header-6">{{ __('TẤT CẢ CÁC THỂ LOẠI GAME MIỄN PHÍ.') }}<br> </h1>
-            <h2 class="text-regular">{{ __('Bạn đang tìm kiếm một thể loại trò chơi nhất định? Kiểm tra danh sách mở rộng các loại trò chơi tại') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('Chúng tôi đã gắn nhãn các trò chơi bằng cách sử dụng các tag và danh mục trong hơn một thập kỷ qua. Trang này liệt kê hàng trăm tag khác nhau đại diện cho toàn bộ các bộ sưu tập trò chơi có thể chơi trên trình duyệt.') }}</h2>
+            <h2 class="text-regular">{{ __('Bạn đang tìm kiếm một thể loại trò chơi nhất định? Kiểm tra danh sách mở rộng các loại trò chơi tại') }} <a href="{{ env('APP_URL', 'gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a> {{ __('Chúng tôi đã gắn nhãn các trò chơi bằng cách sử dụng các tag và danh mục trong hơn một thập kỷ qua. Trang này liệt kê hàng trăm tag khác nhau đại diện cho toàn bộ các bộ sưu tập trò chơi có thể chơi trên trình duyệt.') }}</h2>
             <h3 class="header-7">{{ __('Tất cả') }} {{ $count }} {{ __('thẻ gắn để tìm game miễn phí về giấc mơ của bạn') }}</h3>
         </div>
     </div>
@@ -27,7 +27,15 @@
                 <div class="item__infos">
                     <h4 class="item__title ltr">{{ $game['name'] }}</h4>
                     <div class="item__technology">
-                        <p class="{{ $game['category'] }}">{{ ucfirst($game['category']) }}</p>
+                        @if(session('locale') == 'vi')
+                        <p class="{{ $game['category'] }}">
+                            {{ ucfirst(__(\App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($game['category'])])) }}
+                        </p>
+                        @else
+                        <p class="{{ $game['category'] }}">
+                            {{ __(ucfirst($game['category'])) }}
+                        </p>
+                        @endif
                     </div>
                     @if(!empty($game['author']))
                     <p class="item__title ltr">{{ $game['author'] }}</p>
@@ -60,7 +68,7 @@
             <ul>
                 @if($games->currentPage() != 1)
                 <li>
-                    <a href="?page={{ $games->previousPageUrl() }}">{{ $games->currentPage() - 1 }}</a>
+                    <a href="{{ $games->previousPageUrl() }}">{{ $games->currentPage() - 1 }}</a>
                 </li>
                 @endif
                 <li class='current'>
