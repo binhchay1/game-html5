@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 class AchievementController extends Controller
 {
     protected $achievementRepository;
+    protected $gameRepository;
 
-    public function __construct(AchievementRepository $achievementRepository)
+    public function __construct(AchievementRepository $achievementRepository, GameRepository $gameRepository)
     {
         $this->achievementRepository = $achievementRepository;
+        $this->gameRepository = $gameRepository;
     }
 
     public function index()
@@ -80,7 +82,7 @@ class AchievementController extends Controller
         $idAchievement = $request->get('id-achievement');
         $statusDelDB = $this->gameRepository->deleteById($idAchievement);
 
-        if ($statusDelFile == 1 and $statusDelDB) {
+        if ($statusDelDB) {
             $alert = 'Successfully to delete!';
         } else {
             $alert = 'Failed to delete!';
