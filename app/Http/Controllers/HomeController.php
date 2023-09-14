@@ -218,6 +218,8 @@ class HomeController extends Controller
 
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->get();
         $listGame = $this->gameRepository->getListBySearch($filter);
+        $query = $listGame->shuffle();
+        $listGame = $this->ultity->paginate($query, 100);
         $getTagForSelection = $this->gameRepository->getTags()->toArray();
         $listName = [];
         foreach ($listGame as $game) {
