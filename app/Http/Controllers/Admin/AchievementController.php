@@ -92,7 +92,7 @@ class AchievementController extends Controller
         $idAchievement = $request->get('id-achievement');
         $statusDelDB = $this->gameRepository->deleteById($idAchievement);
 
-        if ($statusDelFile == 1 and $statusDelDB) {
+        if ($statusDelDB) {
             $alert = 'Successfully to delete!';
         } else {
             $alert = 'Failed to delete!';
