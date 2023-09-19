@@ -65,7 +65,7 @@
     <div class="vote text-center">
         <a id="vote-like"><i class="fa fa-thumbs-up"></i></a>
         <a id="vote-unlike"><i class="fa fa-thumbs-down"></i></a>
-        <h1>Vote if you like it!</h1>
+        <h1>{{ __('Bình chọn nếu bạn thích nó!') }}</h1>
     </div>
     <div class="top-conner text-center">
         @if(!$status)
@@ -84,7 +84,7 @@
     @endif
 
     <div class="comment-area">
-        <h2>Comments</h2>
+        <h2>{{ __('Bình luận') }}</h2>
         @if($statusComment == 0)
         @if(Auth::check())
         <div class="form-comment">

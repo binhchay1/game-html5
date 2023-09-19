@@ -33,12 +33,14 @@
             <td>{{ $achievement->description }}</th>
             <td>{{ $achievement->slug }}</th>
             <td>{{ $achievement->point }}</th>
-            <td>{{ $achievement->icon }}</th>
+            <td class="d-flex justify-content-center">
+                <image width="50" height="50" src="{{ $achievement->icon }}"></image>
+            </td>
             <td class="text_flow text-center">
-                <a href="{{ route('achievements.show', $achievement['id']) }}" class="btn btn-info">
+                <a href="{{ route('achievement.show', $achievement['id']) }}" class="btn btn-info">
                     <i class="fas fa-info-circle"></i>
                 </a>
-                <a href="{{ route('achievements.edit', $achievement['id']) }}">
+                <a href="{{ route('achievement.edit', $achievement['id']) }}">
                     <button type="button" class="btn btn-success">
                         <i class="fas fa-edit"></i>
                     </button>
@@ -52,6 +54,8 @@
     </tbody>
 </table>
 @include('includes.modal_confirm_delete_achievement')
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
         $('#customers').DataTable({

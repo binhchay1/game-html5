@@ -40,7 +40,7 @@ class CategoryController extends Controller
         $input = $request->all();
         $result = $this->categoryRepository->store($input);
 
-        if($result) {
+        if ($result) {
             $alert = 'Successfully to store!';
         } else {
             $alert = 'Failed to edit!';
@@ -53,13 +53,7 @@ class CategoryController extends Controller
     {
         $dataCategory = $this->categoryRepository->showCategory($id);
 
-        if($dataCategory) {
-            $alert = 'Successfully to edit!';
-        } else {
-            $alert = 'Failed to edit!';
-        }
-
-        return view('admin.category.edit-category', ['dataCategory' => $dataCategory])->with('alert', $alert);
+        return view('admin.category.edit-category', compact('dataCategory'));
     }
 
     public function update(StoreCategoryRequest $request, $id)
@@ -67,7 +61,7 @@ class CategoryController extends Controller
         $input = $request->except(['_token']);
         $result = $this->categoryRepository->update($input, $id);
 
-        if($result) {
+        if ($result) {
             $alert = 'Successfully to update!';
         } else {
             $alert = 'Failed to update!';

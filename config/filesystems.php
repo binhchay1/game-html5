@@ -82,8 +82,8 @@ return [
 
         'public-source-game' => [
             'driver' => 'local',
-            'root' => public_path() . '/source-game/',
-            'url' => env('APP_URL') . '/source-game/',
+            'root' => public_path() . '/source-game',
+            'url' => env('APP_URL') . '/source-game',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -92,6 +92,14 @@ return [
             'driver' => 'local',
             'root' => public_path() . '/images/users/avatar',
             'url' => env('APP_URL') . '/images/users/avatar',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'public-icon-achievement' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/achievement/icon',
+            'url' => env('APP_URL') . '/images/achievement/icon',
             'visibility' => 'public',
             'throw' => false,
         ],

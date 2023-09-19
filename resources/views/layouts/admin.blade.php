@@ -150,8 +150,9 @@
         <aside class="control-sidebar control-sidebar-dark">
         </aside>
     </div>
-    <script src="{{asset('js/plugins/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+    <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>

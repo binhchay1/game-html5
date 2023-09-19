@@ -7,7 +7,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {

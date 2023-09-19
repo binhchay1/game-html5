@@ -37,6 +37,15 @@ final class Ultity
         }
     }
 
+    public function saveImageIconAchievement($input)
+    {
+        if ($input) {
+            $status = Storage::disk('public-icon-achievement')->put($input['icon']->getClientOriginalName(), $input['icon']->get());
+
+            return $status;
+        }
+    }
+
     public function downloadFile($url, $filename)
     {
         Storage::disk('local')->put($filename, file_get_contents($url));
