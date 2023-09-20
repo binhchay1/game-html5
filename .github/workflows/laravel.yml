@@ -27,8 +27,6 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Create Redis
       run: sudo apt-get install redis-server
-    - name: Run Redis
-      run: redis-server
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate key
