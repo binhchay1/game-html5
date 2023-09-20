@@ -15,7 +15,7 @@
         <div class="row" style="margin-bottom: 0;">
             <div class="col-md-12">
                 <div class="two-cols two-cols--items-center ">
-                    <a class="button button--xs button--grey" href="{{ route('listTags') }}">{{ __('Xem tất cả thẻ gắn') }}</a>
+                    <a class="button button--xs button--grey" href="{{ route('list.tags') }}">{{ __('Xem tất cả thẻ gắn') }}</a>
                 </div>
 
                 <div class="meta-description-text">
@@ -51,7 +51,7 @@
             <div class="items-container">
                 @foreach($games as $game)
                 <div id="item_5515" class="item thumb videobox grid-column">
-                    <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('playGames', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
+                    <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('play.games', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                         <div class="item__thumbarea">
                             <div class="item__microthumb"></div>
                             <div class="item__img-container">

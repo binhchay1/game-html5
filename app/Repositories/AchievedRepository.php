@@ -10,4 +10,9 @@ class AchievedRepository extends BaseRepository
     {
         return Achieved::class;
     }
+
+    public function getAchievedByUser($user_id)
+    {
+        return $this->model->with('achievements')->where('user_id', $user_id)->get();
+    }
 }

@@ -64,4 +64,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function points()
+    {
+        return $this->hasOne('App\Models\Point', 'user_id', 'id');
+    }
 }

@@ -38,7 +38,7 @@
             <td>{{ $dataUser->phone }}</td>
             <td>{{ $dataUser->address }}</td>
             <td>{{ $dataUser->age }}</td>
-            <td>{{ $dataUser->sex == 1 ? "Nữ" : "Nam" }}</td>
+            <td>{{ $dataUser->sex == 1 ? "Woman" : "Man" }}</td>
             <td class="text_flow text-center">
                 <a href="{{ route('user.showUser', $dataUser['id']) }}" class="btn btn-info">
                     <i class="fas fa-info-circle"></i>

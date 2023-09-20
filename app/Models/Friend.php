@@ -5,21 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Achieved extends Model
+class Friend extends Model
 {
     use HasFactory;
 
-    protected $table = 'achieved';
+    protected $table = 'friends';
 
     protected $fillable = [
         'user_id',
-        'achievement_id'
+        'pair_id'
     ];
 
     public $timestamps = true;
-
-    public function achievements()
-    {
-        return $this->hasOne('App\Models\Achievement', 'id', 'achievement_id');
-    }
 }

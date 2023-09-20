@@ -25,4 +25,9 @@ class Comment extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+
+    public function games()
+    {
+        return $this->hasOne('App\Models\Game', 'name', 'game_name');
+    }
 }

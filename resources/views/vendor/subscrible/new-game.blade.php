@@ -375,7 +375,7 @@
                                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td> <a href="{{ route('new-games') }}" target="_blank">{{ __('Tham gia ngay') }}</a> </td>
+                                                                        <td> <a href="{{ route('new.games') }}" target="_blank">{{ __('Tham gia ngay') }}</a> </td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>

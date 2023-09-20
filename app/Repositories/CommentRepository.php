@@ -35,4 +35,9 @@ class CommentRepository extends BaseRepository
     {
         return $this->model->where('user_id', $user_id)->where('game_name', $game_name)->first();
     }
+
+    public function getCommentByUser($user_id)
+    {
+        return $this->model->with('users')->with('games')->where('user_id', $user_id)->get();
+    }
 }

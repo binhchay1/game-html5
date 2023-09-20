@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Repositories\PointRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\SubscribleRepository;
 use Illuminate\Support\Facades\Hash;
@@ -15,8 +16,9 @@ class CreateNewUser implements CreatesNewUsers
 
     private $userRepository;
     private $subscribleRepository;
+    private $pointRepository;
 
-    public function __construct(UserRepository $userRepository, SubscribleRepository $subscribleRepository)
+    public function __construct(UserRepository $userRepository, SubscribleRepository $subscribleRepository, PointRepository $pointRepository)
     {
         $this->userRepository = $userRepository;
         $this->subscribleRepository = $subscribleRepository;
@@ -45,6 +47,12 @@ class CreateNewUser implements CreatesNewUsers
             'token' => Str::random(30)
         ];
         $this->subscribleRepository->create($dataSub);
+
+        $dataPoint = [
+            'user_id' => $user->id,
+            'points' => 0
+        ];
+        $this->pointRepository->create($dataPoint);
 
         return User::where('id', $user->id)->first();
     }

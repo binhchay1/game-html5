@@ -28,22 +28,14 @@
                     @if(session('locale') == 'vi')
                     <li class="inactive {{ $category['name'] }} li-category" style="margin: 0 4px 20px !important;">
                         <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
-                            @if(session('locale') == 'vi')
                             <span class="name">{{ \App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
-                            @else
-                            <span class="name">{{ __(ucfirst($category['name'])) }}</span>
-                            @endif
                             <span class="number">{{ $category['games_count'] }} game</span>
                         </a>
                     </li>
                     @else
                     <li class="inactive {{ $category['name'] }} li-category" style="margin: 0 5px 20px !important;">
                         <a class="{{ $category['name'] }}" title="{{ $category['title'] }}" href="{{ route('category', ['category' => $category['name']]) }}">
-                            @if(session('locale') == 'vi')
-                            <span class="name">{{ \App\Enums\TransVietnamese::CATEGORY_VIETNAMESE[ucfirst($category['name'])] }}</span>
-                            @else
                             <span class="name">{{ __(ucfirst($category['name'])) }}</span>
-                            @endif
                             <span class="number">{{ $category['games_count'] }} game</span>
                         </a>
                     </li>
@@ -66,7 +58,7 @@
                     </li>
                     @endforeach
                     <li class="more-tags" style="display: flex; align-items: center; margin-top: 5px;">
-                        <a class="tag all-tags top" href="{{ route('listTags') }}">{{ __('Tất cả các thẻ') }}
+                        <a class="tag all-tags top" href="{{ route('list.tags') }}">{{ __('Tất cả các thẻ') }}
                         </a>
                     </li>
                 </ul>
@@ -120,7 +112,7 @@
         <div class="items-container" id="items_container">
             @foreach($games as $game)
             <div class="item thumb videobox grid-column">
-                <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('playGames', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
+                <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_URL', 'Gamekafe.com') }}" href="{{ route('play.games', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                     <div class="item__thumbarea">
                         <div class="item__microthumb"></div>
                         <div class="item__img-container">

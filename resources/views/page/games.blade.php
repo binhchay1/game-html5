@@ -110,12 +110,12 @@
                 <div class="post-item mt-4 col-lg-2 col-sm-3">
                     <div class="post-header">
                         <span class="post-avatar">
-                            <a href="{{ route('user.show', ['id' => md5($comment->users->id)]) }}">
-                                <img width="25" height="25" src="{{ $comment->users->image ?? asset('/images/default-avatar.png') }}">
+                            <a href="{{ route('user.show', ['nick_name' => $comment->users->nick_name]) }}">
+                                <img width="25" height="25" src="{{ asset($comment->users->image) ?? asset('/images/default-avatar.png') }}">
                             </a>
                         </span>
                         <span class="post-author">
-                            <a class="author-name" href="{{ route('user.show', ['id' => md5($comment->users->id)]) }}">{{ $comment->users->name }}</a>
+                            <a class="author-name" href="{{ route('user.show', ['nick_name' => $comment->users->nick_name]) }}">{{ $comment->users->nick_name }}</a>
                         </span>
                         <span class="post-date">
                             <p title="{{ $comment->created_at }}"></p>

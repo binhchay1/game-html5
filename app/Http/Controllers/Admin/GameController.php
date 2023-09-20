@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Ultity;
+use App\Services\SendMail;
 use App\Http\Requests\GameRequest;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
@@ -13,7 +14,6 @@ use App\Repositories\SubscribleRepository;
 use App\Repositories\VoteByUserRepository;
 use App\Repositories\VoteRepository;
 use Illuminate\Support\Facades\Auth;
-use App\Services\SendMail;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 

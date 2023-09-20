@@ -47,7 +47,7 @@ class UserController extends Controller
         if (isset($input['image'])) {
             $img = $this->ultity->saveImageUser($input);
             if ($img) {
-                $path = 'images/user/avatar/' . $input['image']->getClientOriginalName();
+                $path = 'images/users/avatar/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }
@@ -77,7 +77,7 @@ class UserController extends Controller
         if (isset($input['image'])) {
             $img = $this->ultity->saveImageUser($input);
             if ($img) {
-                $path = 'images/user/avatar/' . $input['image']->getClientOriginalName();
+                $path = 'images/users/avatar/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }

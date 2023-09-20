@@ -67,7 +67,7 @@
                     </div>
                     <div class="profile-btn">
                         @if(Auth::check())
-                        <img class="profile-icon avatar" alt="Profile" src="{{ Auth::user()->image ?? asset('/images/default-avatar.png') }}" id="profile-icon-image" />
+                        <img class="profile-icon avatar" alt="Profile" src="{{ asset(Auth::user()->image) ?? asset('/images/default-avatar.png') }}" id="profile-icon-image" />
                         @else
                         <img class="profile-icon avatar" alt="Profile" src="{{ asset('svg/profile.svg') }}" id="profile-icon-image" />
                         @endif
@@ -85,7 +85,7 @@
             </form>
 
             <div class="y8-navbar-right">
-                <a style="text-decoration: none;" href="{{ route('new-games') }}">
+                <a style="text-decoration: none;" href="{{ route('new.games') }}">
                     <div class="fake-button js-top-menu two-lines btn-header-actions new-games">
                         {{ __('Game Mới') }}
                         <span class="sub-title">
@@ -94,7 +94,7 @@
                     </div>
                 </a>
 
-                <a style="text-decoration: none;" href="{{ route('best-games') }}">
+                <a style="text-decoration: none;" href="{{ route('best.games') }}">
                     <div class="fake-button js-top-menu two-lines btn-header-actions browse">
                         {{ __('Game Phổ Biến') }}
                         <span class="sub-title">{{ __('được quan tâm') }}
@@ -118,7 +118,7 @@
                     @else
                     <div id="user_logged_in">
                         <div class="fake-button js-top-menu user-toggle" data-menu="account">
-                            <img src="{{ Auth::user()->image ?? asset('/images/default-avatar.png') }}" class="avatar" alt="avatar">
+                            <img src="{{ asset(Auth::user()->image) ?? asset('/images/default-avatar.png') }}" class="avatar" alt="avatar">
                         </div>
                         <div class="links-container-container">
                             <div class="links-container sub-menu">
@@ -127,10 +127,10 @@
                                 </div>
                                 <ul>
                                     <li>
-                                        <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.show',md5(Auth::user()->id)) }}">{{ __('Hồ sơ') }}</a>
+                                        <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.show', Auth::user()->nick_name) }}">{{ __('Hồ sơ') }}</a>
                                     </li>
                                     <li>
-                                        <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.edit',md5(Auth::user()->id)) }}">{{ __('Thay đổi hồ sơ') }}</a>
+                                        <a class="account-menu-link" id="account-menu-link-profile" href="{{ route('user.edit') }}">{{ __('Thay đổi hồ sơ') }}</a>
                                     </li>
                                     <li>
                                         <a class="account-menu-link" id="account-menu-link-games" href="{{ route('user.favorite') }}">
@@ -162,8 +162,8 @@
 
                 <div class="mobile-header-block">
                     <div class="popular-newest-games-links">
-                        <a class="games-link new-game fake-button" title="{{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('new-games') }}">{{ __('Game Mới') }}</a>
-                        <a class="games-link pop-game fake-button" title="{{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('best-games') }}">{{ __('Game Phổ Biến') }}</a>
+                        <a class="games-link new-game fake-button" title="{{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('new.games') }}">{{ __('Game Mới') }}</a>
+                        <a class="games-link pop-game fake-button" title="{{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('best.games') }}">{{ __('Game Phổ Biến') }}</a>
                     </div>
 
                     <div class="top-categories-mobile">
@@ -219,7 +219,7 @@
                                     </li>
                                     @endforeach
                                     <li class="more-tags">
-                                        <a class="tag all-tags top" href="{{ route('listTags') }}">{{ __('Tất cả các thẻ') }}
+                                        <a class="tag all-tags top" href="{{ route('list.tags') }}">{{ __('Tất cả các thẻ') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -280,7 +280,7 @@
                             {{ __('Bạn có biết') }} <a href="{{ env('APP_URL', 'Gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a> {{ __('đang cung cấp các game và câu đố trực tuyến từ năm 2006?') }}<br>
                             {{ __('Đã hơn 15 năm thú vị của') }} {{ env('APP_NAME', 'Gamekafe') }}! {{ __('Cảm ơn bạn đã là một phần của cộng đồng') }} {{ env('APP_NAME', 'Gamekafe') }}!<br>
                             <a href="{{ env('APP_URL', 'Gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a> {{ __('là một đơn vị phát hành và phát triển game') }}. {{ __('Nền tảng của') }} {{ env('APP_NAME', 'Gamekafe') }} {{ __('là mạng xã hội với 30 triệu người chơi và đang không ngừng phát triển.') }}
-                            {{ __('Danh mục giải trí phát triển hàng ngày') }} <a href="{{ route('new-games') }}">{{ __('Trò chơi mới') }}</a>
+                            {{ __('Danh mục giải trí phát triển hàng ngày') }} <a href="{{ route('new.games') }}">{{ __('Trò chơi mới') }}</a>
                             {{ __('được phát hành từng ngày.') }} {{ __('Vì') }} <a href="{{ env('APP_URL', 'Gamekafe.com') }}">{{ env('APP_NAME', 'Gamekafe') }}</a> {{ __('có một lịch sử lâu dài, chúng tôi đã ghi lại các hiện tượng xã hội trên các trình duyệt game. Nội dung này là một phương tiện nghệ thuật quan trọng và có thể có thể lý giải cái gì người ta thích trong những giai đoạn khác nhau.') }}
                         </p>
                     </h2>
@@ -325,10 +325,10 @@
                     </div>
                     <ul>
                         <li>
-                            <a title="{{ env('APP_NAME', 'Gamekafe') }} -  {{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('new-games') }}">{{ __('Game mới') }}</a>
+                            <a title="{{ env('APP_NAME', 'Gamekafe') }} -  {{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('new.games') }}">{{ __('Game mới') }}</a>
                         </li>
                         <li>
-                            <a rel="nofollow" title="{{ env('APP_NAME', 'Gamekafe') }} -  {{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('best-games') }}">{{ __('Phổ biến nhất') }}</a>
+                            <a rel="nofollow" title="{{ env('APP_NAME', 'Gamekafe') }} -  {{ __('Các trò chơi Trực tuyến Miễn phí tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('best.games') }}">{{ __('Phổ biến nhất') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -346,7 +346,7 @@
             </div>
             <div class="content">
                 {{ __('Chúng tôi sử dụng cookie để đề xuất nội dung và phân tích lưu lượng truy cập và quảng cáo. Khi sử dụng trang web này, bạn đồng ý với') }} <a target="_blank" rel="nofollow" href="{{ route('privacy') }}">{{ __('Chính sách bảo mật') }}</a>
-                {{ __('và') }} <a target="_blank" rel="nofollow" href="{{ route('cookie-policy') }}">{{ __('Chính sách Cookie') }}</a>
+                {{ __('và') }} <a target="_blank" rel="nofollow" href="{{ route('cookie.policy') }}">{{ __('Chính sách Cookie') }}</a>
             </div>
             <div class="actions" onclick="storeAccepted('accepted')">
                 <span class="validate-policy">{{ __('Đã hiểu') }}</span>
