@@ -15,48 +15,87 @@ class UpdatePasswordTest extends TestCase
 
     public function test_password_can_be_updated(): void
     {
-        $this->actingAs($user = User::factory()->create());
+        $newPassword = '123456789As!@#';
 
-        Livewire::test(UpdatePasswordForm::class)
-            ->set('state', [
-                'current_password' => 'password',
-                'password' => 'new-password',
-                'password_confirmation' => 'new-password',
-            ])
-            ->call('updatePassword');
+        $this->actingAs($user = User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@gamekafe.com',
+            'password' => Hash::make('123456789As!'),
+            'email_verified_at' => date('Y-m-d H:i:s'),
+            'role' => 'user',
+            'image' => 'sdadsadsadsad',
+        ]));
 
-        $this->assertTrue(Hash::check('new-password', $user->fresh()->password));
+        $response = $this->call(
+            'PUT',
+            route('update-password'),
+            array(
+                '_token' => csrf_token(),
+                'current_password' => $user->password,
+                'new_password' => $newPassword,
+                'new_password_confirmation' => $newPassword,
+            )
+        );
+
+        $response->assertStatus(302);
+        $this->assertTrue(Hash::check($newPassword, $user->password));
     }
 
     public function test_current_password_must_be_correct(): void
     {
-        $this->actingAs($user = User::factory()->create());
+        $newPassword = '123456789As!@#';
+        $wrongPassword = '1213213@#asda';
 
-        Livewire::test(UpdatePasswordForm::class)
-            ->set('state', [
-                'current_password' => 'wrong-password',
-                'password' => 'new-password',
-                'password_confirmation' => 'new-password',
-            ])
-            ->call('updatePassword')
-            ->assertHasErrors(['current_password']);
+        $this->actingAs($user = User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@gamekafe.com',
+            'password' => Hash::make('123456789As!'),
+            'email_verified_at' => date('Y-m-d H:i:s'),
+            'role' => 'user',
+            'image' => 'sdadsadsadsad',
+        ]));
 
-        $this->assertTrue(Hash::check('password', $user->fresh()->password));
+        $response = $this->call(
+            'PUT',
+            route('update-password'),
+            array(
+                '_token' => csrf_token(),
+                'current_password' => $wrongPassword,
+                'new_password' => $newPassword,
+                'new_password_confirmation' => $newPassword,
+            )
+        )->assertHasErrors(['current_password']);
+
+        $response->assertStatus(302);
+        $this->assertTrue(Hash::check($newPassword, $user->password));
     }
 
     public function test_new_passwords_must_match(): void
     {
-        $this->actingAs($user = User::factory()->create());
+        $newPassword = '123456789As!@#';
+        $wrongPassword = '1213213@#asda';
 
-        Livewire::test(UpdatePasswordForm::class)
-            ->set('state', [
-                'current_password' => 'password',
-                'password' => 'new-password',
-                'password_confirmation' => 'wrong-password',
-            ])
-            ->call('updatePassword')
-            ->assertHasErrors(['password']);
+        $this->actingAs($user = User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@gamekafe.com',
+            'password' => Hash::make('123456789As!'),
+            'email_verified_at' => date('Y-m-d H:i:s'),
+            'role' => 'user',
+            'image' => 'sdadsadsadsad',
+        ]));
 
-        $this->assertTrue(Hash::check('password', $user->fresh()->password));
+        $response = $this->call(
+            'PUT',
+            route('update-password'),
+            array(
+                '_token' => csrf_token(),
+                'current_password' => $user->password,
+                'new_password' => $wrongPassword,
+                'new_password_confirmation' => $newPassword,
+            )
+        )->assertHasErrors(['new_password']);
+
+        $response->assertStatus(302);
+        $this->assertTrue(Hash::check($newPassword, $user->password));
     }
 }
