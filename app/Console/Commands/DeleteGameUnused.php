@@ -49,10 +49,16 @@ class DeleteGameUnused extends Command
                         File::deleteDirectory($pathGame);
                         $game->delete();
 
+                        if (empty($game['name']) or !isset($game['name'])) {
+                            $game['name'] = 'other game';
+                        }
+
                         dump("---------Deleted game : " . $game['name'] . "---------");
                     } else {
                         $pathThumb = public_path() . $game['thumbs'];
-                        if (!file_exists($pathThumb)) {
+                        $parse = parse_url($game['link']);
+
+                        if (!file_exists($pathThumb) or array_key_exists('host', $parse)) {
                             if (!empty($game['icon'])) {
                                 $pathIcon = public_path() . $game['icon'];
                                 if (file_exists($pathIcon)) {
@@ -70,6 +76,10 @@ class DeleteGameUnused extends Command
                             $pathGame = public_path()  . '/source-game//' . $game['name'];
                             File::deleteDirectory($pathGame);
                             $game->delete();
+
+                            if (empty($game['name']) or !isset($game['name'])) {
+                                $game['name'] = 'other game';
+                            }
 
                             dump("---------Deleted game : " . $game['name'] . "---------");
                         }
@@ -108,6 +118,10 @@ class DeleteGameUnused extends Command
                 $pathGame = public_path()  . '/source-game//' . $game['name'];
                 File::deleteDirectory($pathGame);
                 $game->delete();
+
+                if (empty($game['name']) or !isset($game['name'])) {
+                    $game['name'] = 'other game';
+                }
 
                 dump("---------Deleted game : " + $game['name'] + "---------");
             }

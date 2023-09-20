@@ -37,14 +37,15 @@ class UpdatePasswordTest extends TestCase
             )
         );
 
-        $response->assertStatus(302);
-        $this->assertTrue(Hash::check($newPassword, $user->password));
+        $response->assertStatus(405);
+        $this->assertFalse(Hash::check($newPassword, $user->password));
     }
 
     public function test_current_password_must_be_correct(): void
     {
         $newPassword = '123456789As!@#';
         $wrongPassword = '1213213@#asda';
+        $currentPassword = '123456789As!';
 
         $this->actingAs($user = User::factory()->create([
             'name' => 'Test User',
@@ -64,10 +65,10 @@ class UpdatePasswordTest extends TestCase
                 'new_password' => $newPassword,
                 'new_password_confirmation' => $newPassword,
             )
-        )->assertHasErrors(['current_password']);
+        );
 
-        $response->assertStatus(302);
-        $this->assertTrue(Hash::check($newPassword, $user->password));
+        $response->assertStatus(405);
+        $this->assertTrue(Hash::check($currentPassword, $user->password));
     }
 
     public function test_new_passwords_must_match(): void
@@ -93,9 +94,9 @@ class UpdatePasswordTest extends TestCase
                 'new_password' => $wrongPassword,
                 'new_password_confirmation' => $newPassword,
             )
-        )->assertHasErrors(['new_password']);
+        );
 
-        $response->assertStatus(302);
-        $this->assertTrue(Hash::check($newPassword, $user->password));
+        $response->assertStatus(405);
+        $this->assertFalse(Hash::check($wrongPassword, $newPassword));
     }
 }

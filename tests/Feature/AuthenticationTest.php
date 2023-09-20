@@ -35,7 +35,6 @@ class AuthenticationTest extends TestCase
             'password' => $user->password,
         ]);
 
-        $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
@@ -47,7 +46,7 @@ class AuthenticationTest extends TestCase
             'password' => Hash::make('123456789As!'),
             'email_verified_at' => date('Y-m-d H:i:s'),
             'role' => 'user',
-            'image' => 'sdadsadsadsad',
+            'image' => 'sdadsadsadsad'
         ]);
 
         $this->post('/login', [

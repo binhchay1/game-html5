@@ -14,7 +14,8 @@ class Subscrible extends Model
     protected $fillable = [
         'email',
         'status',
-        'user_id'
+        'user_id',
+        'token'
     ];
 
     public $timestamps = true;

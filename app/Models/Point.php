@@ -13,7 +13,7 @@ class Point extends Model
 
     protected $fillable = [
         'user_id',
-        'point'
+        'points'
     ];
 
     public $timestamps = true;

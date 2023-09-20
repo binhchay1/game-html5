@@ -9,6 +9,7 @@ use App\Repositories\SubscribleRepository;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Illuminate\Support\Str;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -22,6 +23,7 @@ class CreateNewUser implements CreatesNewUsers
     {
         $this->userRepository = $userRepository;
         $this->subscribleRepository = $subscribleRepository;
+        $this->pointRepository = $pointRepository;
     }
 
     public function create(array $input): User
@@ -46,6 +48,7 @@ class CreateNewUser implements CreatesNewUsers
             'user_id' => $user->id,
             'token' => Str::random(30)
         ];
+
         $this->subscribleRepository->create($dataSub);
 
         $dataPoint = [

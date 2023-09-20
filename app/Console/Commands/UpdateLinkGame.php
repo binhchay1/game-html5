@@ -29,7 +29,6 @@ class UpdateLinkGame extends Command
         foreach ($finder as $dir) {
             $absoluteFilePath = $dir->getRealPath();
             $gameDir = $prefixDir . '/' . $dir->getRelativePathname();
-
             $fileIndex = $absoluteFilePath . "/index.html";
             if (is_file($fileIndex)) {
                 $tmp = explode(DIRECTORY_SEPARATOR, $dir->getRelativePathname());
