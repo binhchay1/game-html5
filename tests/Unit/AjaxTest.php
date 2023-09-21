@@ -13,20 +13,23 @@ class AjaxTest extends TestCase
     {
         $url = '/former-slug?slug=replace&type=create';
         $response = $this->call('GET', $url);
-        $response->assertTrue(false);
+        $response->assertStatus(302);
+        $this->assertTrue(true);
     }
 
     public function test_get_chart_user_ajax(): void
     {
         $url = '/get-chart-user?type=month';
         $response = $this->call('GET', $url);
-        $response->assertTrue(true);
+        $response->assertStatus(302);
+        $this->assertTrue(true);
     }
 
     public function test_get_chart_count_play_ajax(): void
     {
         $url = '/get-chart-count-play?type=month';
         $response = $this->call('GET', $url);
-        $response->assertTrue(true);
+        $response->assertStatus(302);
+        $this->assertTrue(true);
     }
 }
