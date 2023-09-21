@@ -24,6 +24,7 @@ class UserRequest extends FormRequest
         $age = date("Y-m-d", time() + 86400);
         return [
             'name' => 'required|max:255',
+            'nick_name' => 'required|string|unique:users|max:255',
             'email' => 'string|email',
             'age' => 'before:'.$age,
             'phone' => 'bail|digits_between:10,11',
@@ -36,6 +37,10 @@ class UserRequest extends FormRequest
         return [
             'name.required' => __('validation.required'),
             'name.max' => __('validation.max'),
+            'nick_name.max' => __('validation.max'),
+            'nick_name.required' => __('validation.required'),
+            'nick_name.string' => __('validation.string'),
+            'nick_name.unique' => __('validation.unique'),
             'email.email' => __('validation.email'),
             'email.string' => __('validation.string'),
             'age.before' => __('validation.before'),
