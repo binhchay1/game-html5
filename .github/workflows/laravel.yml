@@ -31,24 +31,22 @@ jobs:
       run: sudo apt install mysql-server
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Run Mysql Services
-      run: sudo service mysql start
-    - name: Create Database Game HTML5
-      run: sudo mysql -u root && CREATE DATABASE game_html5;
     - name: Install Node
       run: npm install
     - name: Generate key
       run: php artisan key:generate
-    - name: Migration Database
-      run: php artisan migrate
-    - name: Generate Seeder
-      run: php artisan db:seeder
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Create Database
       run: |
         mkdir -p database
         touch database/database.sqlite
+    - name: Run Mysql Services
+      run: sudo service mysql start
+    - name: Migration Database
+      run: php artisan migrate
+    - name: Generate Seeder
+      run: php artisan db:seeder
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
