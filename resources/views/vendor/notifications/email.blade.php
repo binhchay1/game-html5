@@ -142,7 +142,7 @@
                                                         <table class=t14 role=presentation cellpadding=0 cellspacing=0 align=center>
                                                             <tr>
                                                                 <td class=t15 style="width:55px;">
-                                                                    <div style="font-size:0px;"><img class=t21 style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width=55 height=36.4375 src="{{ asset('images/color-logo-no-background.png') }}" /></div>
+                                                                    <div style="font-size:0px;"><img class=t21 style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width=55 height=36.4375 src="{{ asset('svg/color-logo-no-background.svg') }}" /></div>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -158,7 +158,7 @@
                                                         <table class=t24 role=presentation cellpadding=0 cellspacing=0 align=center>
                                                             <tr>
                                                                 <td class=t25 style="overflow:hidden;width:550px;border-radius:16px 16px 0 0;">
-                                                                    <div style="font-size:0px;"><img class=t31 style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width=550 height=340.65625 src="{{ asset('images/auth-image.png') }}" /></div>
+                                                                    <div style="font-size:0px;"><img class=t31 style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;" width=550 height=340.65625 src="{{ asset('svg/auth-image.svg') }}" /></div>
                                                                 </td>
                                                             </tr>
                                                         </table>

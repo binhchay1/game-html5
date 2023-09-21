@@ -38,7 +38,8 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'role' => 'user'
+            'role' => 'user',
+            'nick_name' => env('APP_NAME') . '_' . md5(now()) . Str::random(5)
         ];
         $user = $this->userRepository->create($dataUser);
 

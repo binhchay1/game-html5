@@ -42,6 +42,13 @@
                 margin-top: 110px !important;
             }
         }
+
+        @media screen and (max-width: 589px) {
+            #user_not_logged_in {
+                display: flex !important;
+                justify-content: space-evenly !important;
+            }
+        }
     </style>
     @yield('css')
 </head>
@@ -69,7 +76,7 @@
                         @if(Auth::check())
                         <img class="profile-icon avatar" alt="Profile" src="{{ asset(Auth::user()->image) ?? asset('/images/default-avatar.png') }}" id="profile-icon-image" />
                         @else
-                        <img class="profile-icon avatar" alt="Profile" src="{{ asset('svg/profile.svg') }}" id="profile-icon-image" />
+                        <img class="profile-icon avatar" alt="Profile" src="{{ asset('/images/default-avatar.png') }}" id="profile-icon-image" />
                         @endif
                         <img class="arrow-up-icon" alt="Profile" src="{{ asset('svg/arrow-up.svg') }}" id="arrow-up-image" />
                     </div>
@@ -105,7 +112,7 @@
 
                 <div class="waiting-idnet">
                     @if (!auth()->user())
-                    <div id="user_not_logged_in">
+                    <div id="user_not_logged_in" style="justify-content: space-evenly !important">
                         <a href="{{ route('register') }}">
                             <button type="button" class="fake-button fake-button-red idnet-fast-register-link">{{ __('Đăng ký') }}
                             </button>
