@@ -15,7 +15,7 @@ use App\Models\Vote;
 use App\Models\VoteByUser;
 use Tests\TestCase;
 
-class AjaxTest extends TestCase
+class ModelTest extends TestCase
 {
     /**
      * A basic test example.
