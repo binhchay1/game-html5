@@ -31,6 +31,8 @@ jobs:
       run: sudo apt install mysql-server
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Create Database Game HTML5
+      run: sudo mysql -u root && CREATE DATABASE game_html5;
     - name: Install Node
       run: npm install
     - name: Generate key
