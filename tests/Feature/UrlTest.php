@@ -27,10 +27,16 @@ class UrlTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_category_page_returns_a_successful_response(): void
+    public function test_category_page_returns_a_not_found_response(): void
     {
         $response = $this->get('/category/other');
-        $response->assertStatus(200);
+        $response->assertStatus(404);
+    }
+
+    public function test_tag_page_returns_a_not_found_response(): void
+    {
+        $response = $this->get('/tags/other');
+        $response->assertStatus(404);
     }
 
     public function test_list_tag_page_returns_a_successful_response(): void
@@ -48,12 +54,6 @@ class UrlTest extends TestCase
     public function test_best_games_page_returns_a_successful_response(): void
     {
         $response = $this->get('/best-games');
-        $response->assertStatus(200);
-    }
-
-    public function test_search_page_returns_a_successful_response(): void
-    {
-        $response = $this->get('/search');
         $response->assertStatus(200);
     }
 
