@@ -6,7 +6,6 @@ use Tests\TestCase;
 
 class AjaxTest extends TestCase
 {
-    use RefreshDatabase;
     /**
      * A basic test example.
      */
