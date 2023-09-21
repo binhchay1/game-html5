@@ -18,6 +18,6 @@ class UserTest extends TestCase
 
          $this->assertCount(3, $princesses);
          $this->assertContains('Linda', $princesses);
-         $this->assertEmpty($princesses);
+         $this->assertIsArray($princesses);
     }
 }
