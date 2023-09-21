@@ -27,6 +27,8 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Create Redis
       run: sudo apt-get install redis-server
+    - name: Create Mysql Server
+      run: sudo apt install mysql-server
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Install Node
