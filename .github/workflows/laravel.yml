@@ -28,7 +28,7 @@ jobs:
 
     - name: Verify MySQL connection
       run: |
-        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uuser -psecret -e "SHOW DATABASES"
+        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -u root -e "SHOW DATABASES"
 
     - name: Create Redis
       run: sudo apt-get install redis-server
