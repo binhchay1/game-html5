@@ -107,7 +107,7 @@
     <div class="items-container" id="search_items_container">
         @foreach($games as $game)
         <div id="item_104800" class="item thumb videobox grid-column">
-            <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('playGames', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
+            <a title="{{ __('Trò chơi') }} {{ $game['name'] }} - {{ __('Chơi trực tuyến tại') }} {{ env('APP_NAME', 'Gamekafe') }}" href="{{ route('play.games', ['game' => strtolower(str_replace(' ', '-', $game['name']))]) }}">
                 <div class="item__thumbarea">
                     <div class="item__microthumb"></div>
                     <div class="item__img-container">

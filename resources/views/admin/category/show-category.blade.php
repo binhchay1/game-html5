@@ -10,12 +10,12 @@
     </div>
     <div class=" container ">
         <div class="col-md-6">
-            <label for="" class="form-label">Name</label>
-            <input value="{{$dataCategory->name}}" type="text" class="form-control">
+            <label for="name" class="form-label">Name</label>
+            <input name="name" value="{{$dataCategory->name}}" type="text" class="form-control">
         </div>
         <div class="col-md-6 mt-4">
-            <label for="" class="form-label">Title</label>
-            <input value="{{$dataCategory->title}}" type="text" class="form-control">
+            <label for="title" class="form-label">Title</label>
+            <input name="title" value="{{$dataCategory->title}}" type="text" class="form-control">
         </div>
 
     </div>

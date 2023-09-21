@@ -2,24 +2,27 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Enums\Ultity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Repositories\AchievedRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameCollectionRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
 use App\Repositories\SearchRepository;
+use App\Repositories\CommentRepository;
+use App\Repositories\FriendRepository;
+use App\Repositories\PointRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Stichoza\GoogleTranslate\GoogleTranslate;
+use App\Enums\Ultity;
+use App\Models\User;
+
 use Session;
-use Vinkla\Hashids\Facades\Hashids;
 
 class ProfileController extends Controller
 {
@@ -30,6 +33,10 @@ class ProfileController extends Controller
     protected $ipUserRepository;
     protected $categoryRepository;
     protected $searchRepository;
+    protected $commentRepository;
+    protected $achievedRepository;
+    protected $friendRepository;
+    protected $pointRepository;
 
     public function __construct(
         UserRepository $userRepository,
@@ -38,7 +45,11 @@ class ProfileController extends Controller
         GameRepository $gameRepository,
         IpUserRepository $ipUserRepository,
         CategoryRepository $categoryRepository,
-        SearchRepository $searchRepository
+        SearchRepository $searchRepository,
+        CommentRepository $commentRepository,
+        AchievedRepository $achievedRepository,
+        FriendRepository $friendRepository,
+        PointRepository $pointRepository
     ) {
         $this->userRepository = $userRepository;
         $this->ultity = $ultity;
@@ -47,19 +58,43 @@ class ProfileController extends Controller
         $this->ipUserRepository = $ipUserRepository;
         $this->categoryRepository = $categoryRepository;
         $this->searchRepository = $searchRepository;
+        $this->commentRepository = $commentRepository;
+        $this->achievedRepository = $achievedRepository;
+        $this->friendRepository = $friendRepository;
+        $this->pointRepository = $pointRepository;
     }
 
-    public function show($userIdHash)
+    public function show($nick_name)
     {
+        if (!isset($nick_name) or empty($nick_name)) {
+            abort(404);
+        }
+
+        $idUser = Auth::user()->id;
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
-        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection($idUser);
         $query = $this->gameRepository->getListGameWithVote();
         $query = $query->shuffle();
         $games = $this->ultity->paginate($query, 30);
         $countGame = count($query);
-        $locale = env('ENABLE_LOCALE', 'en');
+        $locale = Session::get('locale');
         $search = $this->searchRepository->listOrderWithLimitByLocale($locale);
         $listTag = Cache::get('listTag') ? Cache::get('listTag') : [];
+        $comments = $this->commentRepository->getCommentByUser($idUser);
+        $achieved = $this->achievedRepository->getAchievedByUser($idUser);
+        $getFriend = $this->friendRepository->getFriendListByUser($idUser);
+        $points = $this->pointRepository->getPointsByUser($idUser);
+        $listIdFriend = [];
+
+        foreach ($getFriend as $friend) {
+            if ($friend['user_id'] == $idUser) {
+                $listIdFriend[] = $friend['pair_id'];
+            } else {
+                $listIdFriend[] = $friend['user_id'];
+            }
+        }
+
+        $friends = $this->userRepository->getListUserWithPointById($listIdFriend);
 
         foreach ($games as $game) {
             $game['name'] = ucwords(str_replace('-', ' ', $game['name']));
@@ -80,22 +115,23 @@ class ProfileController extends Controller
             $count++;
         }
 
-        $dataUser = $this->userRepository->showUser($userIdHash);
-        return view('page.user.profile', compact('dataUser',  'listCategory', 'countGameInCollection', 'listTag'));
+        $dataUser = $this->userRepository->showUserByNickName($nick_name);
+        return view('page.user.profile', compact('dataUser',  'listCategory', 'countGameInCollection', 'listTag', 'comments', 'achieved', 'friends', 'points'));
     }
 
-    public function edit($userIdHash)
+    public function edit()
     {
         $gender = config('user.sex');
         $country = config('user.country');
-        $dataUser = $this->userRepository->showUser($userIdHash);
+        $idUser = Auth::user()->id;
+        $dataUser = $this->userRepository->showUser($idUser);
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
-        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection($idUser);
         $query = $this->gameRepository->getListGameWithVote();
         $query = $query->shuffle();
         $games = $this->ultity->paginate($query, 30);
         $countGame = count($query);
-        $locale = env('ENABLE_LOCALE', 'en');
+        $locale = Session::get('locale');
         $search = $this->searchRepository->listOrderWithLimitByLocale($locale);
         $listTag = Cache::get('listTag') ? Cache::get('listTag') : [];
 
@@ -123,17 +159,21 @@ class ProfileController extends Controller
 
     public function update(UserRequest $request, $userIdHash)
     {
+        if (empty($userIdHash)) {
+            abort(404);
+        }
+
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
             $img = $this->ultity->saveImageUser($input);
             if ($img) {
-                $path = 'images/user/avatar/' . $input['image']->getClientOriginalName();
+                $path = 'images/users/avatar/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }
 
         $this->userRepository->update($input, $userIdHash);
-        return back()->with('success', 'Updated successfully.');
+        return back()->with('success', __('Thông tin đã được cập nhật thành công!'));
     }
 
     public function changePassword()
@@ -149,20 +189,21 @@ class ProfileController extends Controller
         ]);
 
         if (!Hash::check($request->old_password, auth()->user()->password)) {
-            return back()->with("error", "Old Password Doesn't match!");
+            return back()->with("error", __("Mật khẩu cũ không trùng khớp!"));
         }
 
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", "Password changed successfully!");
+        return back()->with("status", __("Mật khẩu thay đổi thành công!"));
     }
 
     public function favoriteGame()
     {
-        $listGameName = $this->gameCollectionRepository->getCollectionByUser(Auth::user()->id);
-        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+        $idUser = Auth::user()->id;
+        $listGameName = $this->gameCollectionRepository->getCollectionByUser($idUser);
+        $countGameInCollection = $this->gameCollectionRepository->countGameInCollection($idUser);
         $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->get();
         $listGame = [];
         $listTag = Cache::get('listTag') ? Cache::get('listTag') : [];

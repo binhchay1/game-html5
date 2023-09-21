@@ -1,8 +1,13 @@
 $(document).on('click', '#btn_chooseImg', function () {
     $('#image').click();
+    $('#icon').click();
 });
 
 $('#image').change(function() {
+    readURL(this);
+});
+
+$('#icon').change(function() {
     readURL(this);
 });
 

@@ -327,6 +327,7 @@
     "Adventure": "การผจญภัย",
     "Platformer": "แพลตฟอร์ม",
     "Sports": "กีฬา",
+    "Strategy": "กลยุทธ์",
     "Cám ơn bạn vì đã tham gia cùng với chúng tôi trong chuyến hành trình này. Chỉ còn 1 bước cuối cùng để hoàn tất công việc đăng ký, vui lòng hãy ấn vào nút bên dưới:": "ขอบคุณที่ร่วมเดินทางกับเรา เหลืออีกเพียง 1 ขั้นตอนสุดท้ายในการลงทะเบียน โปรดคลิกปุ่มด้านล่าง:",
     "Chúc mừng bạn đã đăng ký thành công": "ขอแสดงความยินดีที่คุณลงทะเบียนสำเร็จ",
     "Đã đăng ký Bản quyền": "ลิขสิทธิ์ที่ลงทะเบียน",
@@ -398,5 +399,19 @@
     "nước Thái": "ประเทศไทย",
     "nước Rumani": "โรมาเนีย",
     "nước Croatia": "โครเอเชีย",
-    "nước Anh": "อังกฤษ"
+    "nước Anh": "อังกฤษ",
+    "Thông tin đã được cập nhật thành công!": "ข้อมูลได้รับการอัปเดตเรียบร้อยแล้ว!",
+    "Mật khẩu thay đổi thành công!": "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว!",
+    "Mật khẩu cũ không trùng khớp!": "รหัสผ่านเก่าไม่ตรงกัน!",
+    "Thêm vào bộ sưu tập": "เพิ่มการเก็บ",
+    "Thông báo lỗi trong trò chơi": "รายงานข้อผิดพลาดในเกม",
+    "Trò chơi đã có trong bộ sưu tập của bạn" : "เกมในคอลเลกชันของคุณ",
+    "Bình chọn nếu bạn thích nó!": "โหวตถ้าคุณชอบมัน!",
+    "Chưa có bạn bè": "ยังไม่มีเพื่อน",
+    "Chưa có bạn bè nào được thêm": "ไม่มีเพื่อนเพิ่ม",
+    "Chưa có bình luận": "ไม่มีความคิดเห็น",
+    "Chưa có bình luận nào được thêm": "ไม่มีความคิดเห็นเพิ่ม",
+    "Chưa có thành tích": "ไม่มีความสำเร็จ",
+    "Chưa có thành tích được thêm": "ไม่มีการเพิ่มความสำเร็จ",
+    "Trên": "บน"
 }

@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <div class='content'>
-                    <form action="{{ route('dropzone-upload') }}" class='dropzone' id="dropzone-form"></form>
+                    <form action="{{ route('dropzone.upload') }}" class='dropzone' id="dropzone-form"></form>
                 </div>
             </div>
             <div class="modal-footer">

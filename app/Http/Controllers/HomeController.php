@@ -83,7 +83,7 @@ class HomeController extends Controller
 
     public function viewResetPasswordSuccess()
     {
-        return view('auth.reset-password-done');
+        return view('auth.reset-password-success');
     }
 
     public function viewTest()

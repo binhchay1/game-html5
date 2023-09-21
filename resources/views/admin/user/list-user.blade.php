@@ -38,7 +38,7 @@
             <td>{{ $dataUser->phone }}</td>
             <td>{{ $dataUser->address }}</td>
             <td>{{ $dataUser->age }}</td>
-            <td>{{ $dataUser->sex == 1 ? "Nữ" : "Nam" }}</td>
+            <td>{{ $dataUser->sex == 1 ? "Woman" : "Man" }}</td>
             <td class="text_flow text-center">
                 <a href="{{ route('user.showUser', $dataUser['id']) }}" class="btn btn-info">
                     <i class="fas fa-info-circle"></i>
@@ -54,6 +54,7 @@
     </tbody>
 </table>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
         $('#customers').DataTable({

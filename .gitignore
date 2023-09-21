@@ -16,7 +16,6 @@ npm-debug.log
 yarn-error.log
 /.fleet
 /.idea
-/.vscode
 /public/process/list.txt
 /public/process/process.txt
 /public/images/games/*
@@ -24,3 +23,4 @@ yarn-error.log
 /public/process/*
 /public/source-game/*
 /public/source-game
+/public/images/users/*

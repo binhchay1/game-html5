@@ -24,16 +24,11 @@ class UpdateUserRequest extends FormRequest
         $age = date("Y-m-d", time() + 86400);
         return [
             'name' => 'required|max:255',
-            'nick_name' => 'required|string|unique:users,nick_name|max:255',
-            'nick_name.max' => __('validation.max'),
-            'nick_name.required' => __('validation.required'),
-            'nick_name.string' => __('validation.string'),
-            'nick_name.unique' => __('validation.unique'),
+            'nick_name' => 'required|string|unique:users|max:255',
             'email' => 'required|string|email',
-            'age' => 'before:'.$age,
+            'age' => 'before:' . $age,
             'phone' => 'bail|digits_between:10,11',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
-
         ];
     }
 
@@ -42,6 +37,10 @@ class UpdateUserRequest extends FormRequest
         return [
             'name.required' => __('validation.required'),
             'name.max' => __('validation.max'),
+            'nick_name.max' => __('validation.max'),
+            'nick_name.required' => __('validation.required'),
+            'nick_name.string' => __('validation.string'),
+            'nick_name.unique' => __('validation.unique'),
             'email.required' => __('validation.required'),
             'email.email' => __('validation.email'),
             'email.string' => __('validation.string'),

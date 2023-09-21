@@ -1,0 +1,188 @@
+.disable-link {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.top-tags ul li {
+    list-style-type: none;
+}
+
+.top-tags ul {
+    display: flex;
+    flex-direction: row;
+}
+
+.categories-tags-block {
+    margin-top: 10px;
+    display: block !important;
+}
+
+.top-categories-point {
+    height: 240px;
+}
+
+.details {
+    display: flex;
+}
+
+.row.single-line {
+    height: auto !important;
+}
+
+.game-link {
+    padding: 0 5px 0 5px !important;
+    color: #ea0000 !important;
+}
+
+.comment.element {
+    background: #f2f2f2;
+    padding: 10px;
+}
+
+.details {
+    height: 25px;
+}
+
+h4 {
+    margin: 0;
+}
+
+.categories-tags-block.box {
+    padding: 10px;
+}
+
+.empty-list.empty-list--profile.empty-list-async {
+    margin: 10px auto 10px;
+}
+
+#list-comment li {
+    cursor: auto;
+}
+
+#list-comment li a {
+    height: auto !important;
+}
+
+#information-name-area p {
+    color: #a49f9f;
+}
+
+.p-r-0 {
+    padding-right: 0 !important;
+}
+
+#information-area .categories-tags-block.box {
+    margin-right: 0 !important;
+}
+
+#point-area .categories-tags-block.box {
+    margin-left: 0 !important;
+}
+
+.points {
+    max-height: 590px !important;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.achievement {
+    max-height: 230px !important;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.friends {
+    max-height: 130px !important;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.comments {
+    max-height: 230px !important;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.row-title-line {
+    display: flex;
+}
+
+.row-title-line h2 {
+    font-weight: bold !important;
+    margin-right: 0 !important;
+}
+
+.row-title-line p {
+    font-size: 12px;
+    color: #0084f0;
+}
+
+.number-with-dot {
+    color: #999;
+}
+
+.number-with-dot::before {
+    color: #bbb;
+    content: '\2022';
+    font-size: 11px;
+    padding: 0 7px;
+    position: relative;
+    top: -1px;
+}
+
+#list-achievement li {
+    margin: 0 5px 40px !important;
+    cursor: auto;
+}
+
+#list-friend li {
+    margin: 0 5px 20px !important;
+}
+
+.friend-name.name {
+    text-align: center;
+}
+
+#list-friend {
+    margin-left: 5px !important;
+}
+
+@media screen and (min-width: 654px) and (max-width: 1024px) {
+    #information-area .categories-tags-block.box {
+        margin-right: 35px !important;
+    }
+
+    #information-name-area {
+        margin-right: 20px !important;
+    }
+
+    .row.single-line {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #point-area .categories-tags-block.box {
+        margin-left: 20px !important;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1365px){
+    #point-area {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+}
+
+@media screen and (max-width: 653px){
+    #information-area .categories-tags-block.box {
+        margin-right: 15px !important;
+    }
+
+    #list-comment li {
+        margin: 0 5px 40px !important;
+    }
+
+    .row.single-line {
+        display: flex;
+    }
+}

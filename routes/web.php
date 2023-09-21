@@ -25,17 +25,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['verified'])->group(function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-    Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie-policy');
+    Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie.policy');
     Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
     Route::get('/tags/{tag}', [HomeController::class, 'viewTags'])->name('tags');
     Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');
-    Route::get('/tags', [HomeController::class, 'viewListTags'])->name('listTags');
-    Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new-games');
-    Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best-games');
+    Route::get('/tags', [HomeController::class, 'viewListTags'])->name('list.tags');
+    Route::get('/new-games', [HomeController::class, 'viewNewGames'])->name('new.games');
+    Route::get('/best-games', [HomeController::class, 'viewBestGame'])->name('best.games');
     Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
-    Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('playGames');
-    Route::get('/count-play', [HomeController::class, 'countPlay'])->name('countPlay');
-    Route::get('/store-player', [HomeController::class, 'storePlayer'])->name('storePlayer');
+    Route::get('/games/{game}', [HomeController::class, 'viewGame'])->name('play.games');
+    Route::get('/count-play', [HomeController::class, 'countPlay'])->name('count.play');
+    Route::get('/store-player', [HomeController::class, 'storePlayer'])->name('store.player');
     Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
     Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
@@ -53,15 +53,15 @@ Route::get('/unsubscribe', [HomeController::class, 'unsubscribe'])->name('unsubs
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
-    Route::get('/user-info/{id}', [ProfileController::class, 'show'])->name('user.show');
-    Route::get('/user-profile/{id}', [ProfileController::class, 'edit'])->name('user.edit');
+    Route::get('/user-info/{nick_name}', [ProfileController::class, 'show'])->name('user.show');
+    Route::get('/user-profile', [ProfileController::class, 'edit'])->name('user.edit');
     Route::post('/user-profile/{id}', [ProfileController::class, 'update'])->name('user.update');
     Route::get('/game-played', [ProfileController::class, 'gamePlayed'])->name('game.played');
     Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/user-favorite', [ProfileController::class, 'favoriteGame'])->name('user.favorite');
-    Route::get('/vote-by-user', [GameController::class, 'voteByUser'])->name('vote-by-user');
-    Route::get('/save-collection', [GameController::class, 'saveCollection'])->name('save-collection');
+    Route::get('/vote-by-user', [GameController::class, 'voteByUser'])->name('vote.by.user');
+    Route::get('/save-collection', [GameController::class, 'saveCollection'])->name('save.collection');
 
     Route::middleware(['admin'])->group(
         function () {
@@ -106,7 +106,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
             Route::get('/get-chart-user', [AdminController::class, 'getChartUserRegister']);
 
-            Route::post('/dropzone-upload', [GameController::class, 'uploadFileDropzone'])->name('dropzone-upload');
+            Route::get('/former-slug', [AchievementController::class, 'formerSlug']);
+
+            Route::post('/dropzone-upload', [GameController::class, 'uploadFileDropzone'])->name('dropzone.upload');
         }
     );
 });

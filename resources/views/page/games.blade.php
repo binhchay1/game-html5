@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{{ asset('css/page/game.css') }}">
     <link rel="stylesheet" href="{{ asset('css/page/ionicons.min.css') }}">
     <title>{{ $getGame['title-game'] }}</title>
+    <style>
+        #pre-load {
+            background: none;
+        }
+    </style>
     <?php
     if (!empty($getGame['background'])) {
         echo
@@ -60,26 +65,26 @@
     <div class="vote text-center">
         <a id="vote-like"><i class="fa fa-thumbs-up"></i></a>
         <a id="vote-unlike"><i class="fa fa-thumbs-down"></i></a>
-        <h1>Vote if you like it!</h1>
+        <h1>{{ __('Bình chọn nếu bạn thích nó!') }}</h1>
     </div>
     <div class="top-conner text-center">
         @if(!$status)
         <p onclick="saveCollection()" id="button-add-collection">
-            ❤ Add to collection
+            ❤ {{ __('Thêm vào bộ sưu tập') }}
         </p>
         @else
         <p id="button-add-collection" style="cursor: auto;">
-            Game in your collection!
+            {{ __('Trò chơi đã có trong bộ sưu tập của bạn') }}
         </p>
         @endif
         <p id="button-report-bug" data-email="{{ Auth::user()->email }}" data-name="{{ Auth::user()->name }}" data-toggle="modal" data-target="#report-bug-modal">
-            🛠 Report bug in game
+            🛠 {{ __('Thông báo lỗi trong trò chơi') }}
         </p>
     </div>
     @endif
 
     <div class="comment-area">
-        <h2>Comments</h2>
+        <h2>{{ __('Bình luận') }}</h2>
         @if($statusComment == 0)
         @if(Auth::check())
         <div class="form-comment">
@@ -105,12 +110,12 @@
                 <div class="post-item mt-4 col-lg-2 col-sm-3">
                     <div class="post-header">
                         <span class="post-avatar">
-                            <a href="{{ route('user.show', ['id' => $comment->users->id]) }}">
-                                <img width="25" height="25" src="{{ $comment->users->image ?? asset('/images/default-avatar.png') }}">
+                            <a href="{{ route('user.show', ['nick_name' => $comment->users->nick_name]) }}">
+                                <img width="25" height="25" src="{{ asset($comment->users->image) ?? asset('/images/default-avatar.png') }}">
                             </a>
                         </span>
                         <span class="post-author">
-                            <a class="author-name" href="{{ route('user.show', ['id' => $comment->users->id]) }}">{{ $comment->users->name }}</a>
+                            <a class="author-name" href="{{ route('user.show', ['nick_name' => $comment->users->nick_name]) }}">{{ $comment->users->nick_name }}</a>
                         </span>
                         <span class="post-date">
                             <p title="{{ $comment->created_at }}"></p>
