@@ -40,7 +40,6 @@ jobs:
         npm install
         php artisan key:generate
         chmod -R 777 storage bootstrap/cache
-        php artisan migrate:fresh --seed
 
     - name: Execute tests (Unit and Feature tests)
       env:
