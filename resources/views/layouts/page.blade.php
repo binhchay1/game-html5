@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, minimal-ui" />
     <meta name="theme-color" content="#FFF">
-    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<meta name="ahrefs-site-verification" content="c3f3b1edd5779ab75dd10da34cf666d8b6ee9903afc1bbc5f3487996bffd99c7">
 
     @yield('title')
