@@ -37,43 +37,26 @@ class CrawlsAndStoreInformationOfGameY8 extends Command
     public function getLinkGameY8()
     {
         $break = false;
-        $attrA = '.thumb_link';
-        $page = env('PAGE_GET_GAME', 1);
-        $count = 0;
-        $breakCount = env('BREAK_COUNT', -1); //change this for break by count game ( default -1 = non break )
-        $breakPage = env('BREAK_PAGE', -1); //change this for break by count page ( default -1 = non break )
-        $listResultSrcFrame = [];
-        $listResultGameDone = [];
-
+        $attrA = '.item-thumbnail';
+        $page = 1;
         while (!$break) {
-            if (isset($breakCount)) {
-                if ($count == $breakCount and $breakCount > 0) {
-                    $break = true;
-                    continue;
-                }
+            $url = $this->linkGame::APKAFE;
+            if ($page > 1) {
+                $url = $url . "page/" . $page . '/';
             }
 
-            if (isset($breakPage)) {
-                if ($page == $breakPage and $breakPage > 0) {
-                    $break = true;
-                    continue;
-                }
-            }
-
-            dump('------------------ Start Page ' . $page . ' ------------------');
-            $url = $this->linkGame::GAME_Y8;
-            $url = $url . "?page=" . $page;
             $html = $this->crawls->getDom($url, null);
-            $decode = json_decode($html->innertext);
-            // $content = $html->content;
-
-            dd($decode);
-
-
-            dump('------------------ Total Game : ' . $count . ' ------------------');
-            dump('------------------ End Page ' . $page . ' ------------------');
+            $arrA = $html->find($attrA);
+            foreach ($arrA as $a) {
+                dump($a->childNodes(0)->attr['href']);
+            }
 
             $page++;
+
+            if ($page == 28) {
+                $break = true;
+            }
         }
     }
 }
+
