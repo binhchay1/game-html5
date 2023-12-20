@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta content="#000000" name="theme-color">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link type="image/png" href="{{ $getGame['icon'] }}" rel="icon">
     <link rel="stylesheet" href="{{ asset('css/plugins/fontawesome/all.min.css') }}">
