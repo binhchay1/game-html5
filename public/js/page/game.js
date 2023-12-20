@@ -66,6 +66,7 @@ function reportBug() {
             window.Promise
                 ? new Promise(function (e, t) {
                       var n = new XMLHttpRequest();
+                      n.setRequestHeader("Content-type", "application/json");
                       n.open("GET", "/js/sdk/sw.js"),
                           (n.onload = function () {
                               200 == n.status ? e(n.response) : ($("#pre-load").addClass("d-none"), $("#error-load").removeClass("d-none"));
