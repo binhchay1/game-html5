@@ -27,7 +27,7 @@ class CategoryController extends Controller
     {
         $dataCategory = $this->categoryRepository->showCategory($id);
 
-        return view('admin.category.show-category', ['dataCategory' => $dataCategory]);
+        return view('admin.category.show-category', compact('dataCategory'));
     }
 
     public function create()
@@ -47,13 +47,6 @@ class CategoryController extends Controller
         }
 
         return redirect('list-category')->with('alert', $alert);
-    }
-
-    public function edit($id)
-    {
-        $dataCategory = $this->categoryRepository->showCategory($id);
-
-        return view('admin.category.edit-category', compact('dataCategory'));
     }
 
     public function update(StoreCategoryRequest $request, $id)

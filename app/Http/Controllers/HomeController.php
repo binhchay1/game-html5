@@ -13,6 +13,7 @@ use App\Repositories\SearchRepository;
 use App\Repositories\GameCollectionRepository;
 use App\Repositories\SubscribleRepository;
 use App\Repositories\ReportBugRepository;
+use App\Repositories\TagRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Cookie;
@@ -34,6 +35,7 @@ class HomeController extends Controller
     private $reportBugRepository;
     private $commentRepository;
     private $subscribleRepository;
+    private $tagRepository;
 
     public function __construct(
         GameRepository $gameRepository,
@@ -46,7 +48,8 @@ class HomeController extends Controller
         StatefulGuard $guard,
         ReportBugRepository $reportBugRepository,
         CommentRepository $commentRepository,
-        SubscribleRepository $subscribleRepository
+        SubscribleRepository $subscribleRepository,
+        TagRepository $tagRepository,
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
@@ -59,6 +62,7 @@ class HomeController extends Controller
         $this->reportBugRepository = $reportBugRepository;
         $this->commentRepository = $commentRepository;
         $this->subscribleRepository = $subscribleRepository;
+        $this->tagRepository = $tagRepository;
     }
 
     public function viewCookiePolicy()

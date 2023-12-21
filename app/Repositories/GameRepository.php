@@ -64,7 +64,7 @@ class GameRepository extends BaseRepository
 
     public function getListBySearch($filter)
     {
-        $query = $this->model->with('votes')->where('status', 1);
+        $query = $this->model->with('votes')->where('status', 1)->where('link', 'LIKE', '%source-game%');
 
         if (isset($filter['q'])) {
             $query = $query->where('status', 1)->where('name', 'like', '%' . $filter['q'] . '%');
@@ -78,7 +78,7 @@ class GameRepository extends BaseRepository
             $query = $query->where('status', 1)->where('tag', 'like', '%' . $filter['tag'] . '%');
         }
 
-        return $query->where('link', 'LIKE', '%source-game%')->get();
+        return $query->get();
     }
 
     public function getTags()

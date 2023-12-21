@@ -6,6 +6,7 @@ use App\Enums\ListCacheKey;
 use App\Enums\Ultity;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GameRepository;
+use App\Repositories\TagRepository;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,13 +18,15 @@ class CacheDefined
     private $categoryRepository;
     private $gameRepository;
     private $ultity;
+    private $tagRepository;
 
-    public function __construct(ListCacheKey $listCacheKey, CategoryRepository $categoryRepository, GameRepository $gameRepository, Ultity $ultity)
+    public function __construct(ListCacheKey $listCacheKey, CategoryRepository $categoryRepository, GameRepository $gameRepository, Ultity $ultity, TagRepository $tagRepository)
     {
         $this->listCacheKey = $listCacheKey;
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
         $this->ultity = $ultity;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -40,17 +43,14 @@ class CacheDefined
                 }
 
                 if ($key == 'listTag') {
-                    $listGame = $this->gameRepository->getRandomTagWithLimit();
+                    $listTagStatus = $this->tagRepository->getTagByStatus();
                     $getTags = $this->gameRepository->getTags()->toArray();
                     $value = [];
-                    foreach ($listGame as $game) {
-                        $arrTags = json_decode($game->tag);
-                        foreach ($arrTags as $tag) {
-                            if (!array_key_exists($tag, $value)) {
-                                $value[$tag]['tag'] = $tag;
-                                $value[$tag]['count'] = 0;
-                                $value[$tag]['color'] = $this->ultity->rndRGBColorCode();
-                            }
+                    foreach ($listTagStatus as $tagStatus) {
+                        if (!array_key_exists($tagStatus['name'], $value)) {
+                            $value[$tagStatus['name']]['tag'] = $tagStatus['name'];
+                            $value[$tagStatus['name']]['count'] = 0;
+                            $value[$tagStatus['name']]['color'] = $this->ultity->rndRGBColorCode();
                         }
                     }
 

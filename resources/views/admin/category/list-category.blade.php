@@ -32,11 +32,6 @@
                 <a href="{{ route('category.showCategory', $dataCategory['id']) }}" class="btn btn-info">
                     <i class="fas fa-info-circle"></i>
                 </a>
-                <a href="{{ route('category.edit', $dataCategory['id']) }}">
-                    <button type="button" class="btn btn-success">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </a>
             </td>
         </tr>
         @endforeach

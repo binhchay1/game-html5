@@ -84,7 +84,8 @@
                 </div>
             </div>
 
-            <form id="items-search-form" class="navbar-form" action="{{ route('search') }}" accept-charset="UTF-8" method="get">
+            <form id="items-search-form" class="navbar-form" action="{{ route('search') }}" accept-charset="UTF-8" method="post">
+                @csrf
                 <input type="text" name="q" id="q" placeholder="{{ __('Tìm kiếm trò chơi') }}" class="form-control query fake-button" required="required" />
                 <button type="submit" aria-label="Search">
                     <i class="y-icon y-icon--search"></i>

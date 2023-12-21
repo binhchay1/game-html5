@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Search extends Model
+class Tag extends Model
 {
     use HasFactory;
 
-    protected $table = 'search';
+    protected $table = 'tags';
 
     protected $fillable = [
-        'keyword',
-        'count',
-        'locale',
-        'status'
+        'name',
+        'icon',
+        'status',
     ];
 
     public $timestamps = true;

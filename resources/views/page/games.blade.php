@@ -48,12 +48,12 @@
             @else
             <span class="text-white">{{ ucwords(str_replace("-", " ", $getGame['name'])) }}</span>
             @endif
-            <button class="btn" id="btn-play">Play</button>
+            <button class="btn" id="btn-play">{{ __('Chơi') }}</button>
         </div>
 
         <div id="pre-load" class="d-none">
             <image src="{{ asset('images/color-logo-no-background.png') }}" width="150"></image>
-            <p style="color:white !important">Loading...</p>
+            <p style="color:white !important">{{ __('Đang tải...') }}</p>
         </div>
         <div id="error-load" class="d-none" style="color:white !important">{{ __('Chân thành xin lỗi game hiện tại đang lỗi! Vui lòng thông báo cho ban quản trị và quay lại vào thời gian khác!') }}</div>
     </div>
@@ -139,8 +139,6 @@
         const gameName = '<?php echo $getGame['name']; ?>';
         const themeColor = '<?php echo $getGame['color']; ?>';
         const urlMain = window.location.href;
-
-        console.log(urlMain);
     </script>
 
     <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script>

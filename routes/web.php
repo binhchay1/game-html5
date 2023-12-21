@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['verified'])->group(function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/cookie-policy', [HomeController::class, 'viewCookiePolicy'])->name('cookie.policy');
-    Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
+    Route::post('/search', [HomeController::class, 'viewSearch'])->name('search');
     Route::get('/tags/{tag}', [HomeController::class, 'viewTags'])->name('tags');
     Route::get('/category/{category}', [HomeController::class, 'viewCategory'])->name('category');
     Route::get('/tags', [HomeController::class, 'viewListTags'])->name('list.tags');
@@ -85,7 +85,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::get('/category-info/{id}', [CategoryController::class, 'showCategory'])->name('category.showCategory');
             Route::get('/create-category', [CategoryController::class, 'create'])->name('category.create');
             Route::post('/store-category', [CategoryController::class, 'store'])->name('category.store');
-            Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
             Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('category.update');
 
             Route::get('/list-report', [ReportBugController::class, 'index'])->name('report.index');
@@ -102,6 +101,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::get('/edit-achievement/{id}', [AchievementController::class, 'edit'])->name('achievement.edit');
             Route::post('/update-achievement/{id}', [AchievementController::class, 'update'])->name('achievement.update');
             Route::post('/delete-achievement', [AchievementController::class, 'delete'])->name('achievement.delete');
+
+            Route::get('/list-search', [AdminController::class, 'listSearch'])->name('search.index');
+            Route::post('/create-search', [AdminController::class, 'createSearch'])->name('search.create');
+            Route::get('/edit-search/{id}', [AdminController::class, 'editSearch'])->name('search.edit');
+
+            Route::get('/list-tags', [AdminController::class, 'listTag'])->name('tag.index');
+            Route::get('/edit-tag/{id}', [AdminController::class, 'editTag'])->name('tag.edit');
 
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
             Route::get('/get-chart-user', [AdminController::class, 'getChartUserRegister']);

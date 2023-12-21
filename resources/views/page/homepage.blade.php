@@ -78,7 +78,13 @@
                     <ul>
                         @foreach($search as $keyword)
                         <li style="display: inline-block;">
-                            <a href="{{ route('search') }}?q={{ $keyword['keyword'] }}" rel="nofollow">{{ $keyword['keyword'] }}</a>
+                            <form action="{{ route('search') }}" accept-charset="UTF-8" method="post">
+                                @csrf
+                                <input type="hidden" name="q" id="q" value="{{ $keyword['keyword'] }}" required="required" />
+                                <button class="btn" type="submit" aria-label="Search" style="border-radius: 10px; padding: 1px 5px;">
+                                    {{ $keyword['keyword'] }}
+                                </button>
+                            </form>
                         </li>
                         @endforeach
                     </ul>

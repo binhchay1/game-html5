@@ -123,6 +123,22 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('search.index') }}" class="nav-link" id="list-search">
+                                <i class="nav-icon fas fa-solid fa-search"></i>
+                                <p>
+                                    Search
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('tag.index') }}" class="nav-link" id="list-tags">
+                                <i class="nav-icon fas fa-solid fa-tags"></i>
+                                <p>
+                                    Tags
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -132,7 +148,7 @@
             <section class="content">
                 <div class="container-fluid">
                     @if(Session::has('alert'))
-                    <div class="alert {{ strpos(Session::get('alert'), 'Failed') == false ?  'alert-danger' : 'alert-success' }} alert-fixed" role="alert" id="alert-admin" style="width: fit-content !important;">
+                    <div class="alert {{ strpos(strtolower(Session::get('alert')), 'failed') == false ?  'alert-success' : 'alert-danger' }} alert-fixed" role="alert" id="alert-admin" style="width: fit-content !important;">
                         {{ Session::get('alert') }}
                     </div>
                     @endif
