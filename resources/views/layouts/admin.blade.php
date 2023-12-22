@@ -139,6 +139,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('post.index') }}" class="nav-link" id="list-post">
+                                <i class="nav-icon fas fa-solid fa-clone"></i>
+                                <p>
+                                    Post
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

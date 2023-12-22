@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\ReportBugController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -108,6 +109,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
 
             Route::get('/list-tags', [AdminController::class, 'listTag'])->name('tag.index');
             Route::get('/edit-tag/{id}', [AdminController::class, 'editTag'])->name('tag.edit');
+
+            Route::get('/list-post', [PostController::class, 'listPost'])->name('post.index');
+            Route::get('/create-post', [PostController::class, 'createPost'])->name('post.create');
+            Route::post('/store-post', [PostController::class, 'storePost'])->name('post.store');
+            Route::get('/former-slug-post', [PostController::class, 'formerSlugPost']);
+            // Route::get('/edit-post/{id}', [PostController::class, 'editTag'])->name('tag.edit');
 
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
             Route::get('/get-chart-user', [AdminController::class, 'getChartUserRegister']);

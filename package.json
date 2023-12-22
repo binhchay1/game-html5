@@ -21,6 +21,7 @@
         "vite": "^4.4.3"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-alignment": "^40.2.0",
         "chart.js": "^4.3.0",
         "moment": "^2.29.4",
         "sweetalert2": "^11.6.13"
