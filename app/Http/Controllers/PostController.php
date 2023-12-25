@@ -86,7 +86,7 @@ class PostController extends Controller
     }
 
     public function deletePost(Request $request) {
-        $id = $request->get('id-post');
+        $id = $request->get('id');
         $this->postRepository->deleteById($id);
 
         return redirect()->route('post.index')->with('success', 'Deleted post!');

@@ -46,9 +46,12 @@
                         <i class="fas fa-edit"></i>
                     </button>
                 </a>
-                <button type="button" class="btn btn-danger btn_delete" data-toggle="modal" data-id="{{ $post['id'] }}" data-target="#delete-post-modal">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
+                <a href="{{ route('post.delete') }}?id={{ $post->id }}">
+                    <button type="button" class="btn btn-danger btn_delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </a>
+
             </td>
         </tr>
         @endforeach
@@ -68,6 +71,12 @@
             var idGame = $(e.relatedTarget).data('id');
             $(e.currentTarget).find('input[name="id-game"]').val(idGame);
         });
+    })
+
+    $('#delete-post-modal').on('show.bs.modal', function(event) {
+        var reference_tag = $(event.relatedTarget);
+        var id = reference_tag.data('id')
+        $('#id-post').val(id);
     })
 </script>
 @endsection

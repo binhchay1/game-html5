@@ -10,7 +10,7 @@
             </div>
             <form action="{{ route('post.delete') }}" method="get">
                 @csrf
-                <input type="hidden" name="id-post" value="{{ $post->id }}">
+                <input type="hidden" name="id-post" value="" id="id-post">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-danger">Delete</button>
