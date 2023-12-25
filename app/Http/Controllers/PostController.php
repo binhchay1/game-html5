@@ -85,6 +85,13 @@ class PostController extends Controller
         return redirect()->route('post.index')->with('success', $alert);
     }
 
+    public function deletePost(Request $request) {
+        $id = $request->get('id-post');
+        $this->postRepository->deleteById($id);
+
+        return redirect()->route('post.index')->with('success', 'Deleted post!');
+    }
+
     public function formerSlugPost(Request $request)
     {
         $slug = $request->get('slug');

@@ -46,7 +46,7 @@
                         <i class="fas fa-edit"></i>
                     </button>
                 </a>
-                <button type="button" class="btn btn-danger btn_delete" data-toggle="modal" data-id="{{ $post['id'] }}" data-target="#delete-games-modal">
+                <button type="button" class="btn btn-danger btn_delete" data-toggle="modal" data-id="{{ $post['id'] }}" data-target="#delete-post-modal">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </td>
@@ -55,7 +55,7 @@
     </tbody>
 </table>
 
-@include('includes.modal_confirm_delete_game')
+@include('includes.modal_confirm_delete_post')
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {

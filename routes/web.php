@@ -117,6 +117,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::post('/store-post', [PostController::class, 'storePost'])->name('post.store');
             Route::get('/former-slug-post', [PostController::class, 'formerSlugPost']);
             Route::get('/edit-post/{id}', [PostController::class, 'editPost'])->name('post.edit');
+            Route::get('/delete-post', [PostController::class, 'deletePost'])->name('post.delete');
             Route::post('/update-post/{id}', [PostController::class, 'updatePost'])->name('post.update');
 
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
