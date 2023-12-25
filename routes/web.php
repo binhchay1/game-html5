@@ -45,12 +45,14 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/verify-email', [HomeController::class, 'viewVerify'])->name('verify.email');
     Route::get('/report-bug', [HomeController::class, 'reportBug'])->name('report.bug');
     Route::get('/store-comments', [HomeController::class, 'storeComments'])->name('store.comments');
+    Route::post('/store-comments-posts', [HomeController::class, 'storeCommentPosts'])->name('store.comment.post');
 });
 
 Route::get('/reset-password', [HomeController::class, 'viewResetPassword'])->name('reset.password');
 Route::get('/reset-password-success', [HomeController::class, 'viewResetPasswordSuccess'])->name('reset.password.success');
 Route::get('/register-retry', [HomeController::class, 'registerRetry'])->name('register.retry');
 Route::get('/unsubscribe', [HomeController::class, 'unsubscribe'])->name('unsubscribe');
+Route::get('/post/{slug}', [HomeController::class, 'post'])->name('post');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
@@ -114,7 +116,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
             Route::get('/create-post', [PostController::class, 'createPost'])->name('post.create');
             Route::post('/store-post', [PostController::class, 'storePost'])->name('post.store');
             Route::get('/former-slug-post', [PostController::class, 'formerSlugPost']);
-            // Route::get('/edit-post/{id}', [PostController::class, 'editTag'])->name('tag.edit');
+            Route::get('/edit-post/{id}', [PostController::class, 'editPost'])->name('post.edit');
+            Route::post('/update-post/{id}', [PostController::class, 'updatePost'])->name('post.update');
 
             Route::get('/get-chart-count-play', [AdminController::class, 'getChartCountPlay']);
             Route::get('/get-chart-user', [AdminController::class, 'getChartUserRegister']);

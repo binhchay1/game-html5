@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ultity;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
+use Auth;
 
 class PostController extends Controller
 {
     protected $postRepository;
+    protected $ultity;
 
-    public function __construct(PostRepository $postRepository)
+    public function __construct(PostRepository $postRepository, Ultity $ultity)
     {
         $this->postRepository = $postRepository;
+        $this->ultity = $ultity;
     }
 
     public function listPost()
@@ -26,9 +30,59 @@ class PostController extends Controller
         return view('admin.post.create-post');
     }
 
-    public function storePost()
+    public function storePost(Request $request)
     {
-        return view();
+        $input = $request->except(['_token']);
+        $input['author_id'] = Auth::user()->id;
+
+        if (isset($input['thumb'])) {
+            $img = $this->ultity->saveImagePost($input);
+            if ($img) {
+                $path = 'images/posts/' . $input['thumb']->getClientOriginalName();
+                $input['thumb'] = $path;
+            }
+        }
+
+        $result = $this->postRepository->create($input);
+
+        if ($result) {
+            $alert = 'Successfully to store!';
+        } else {
+            $alert = 'Failed to edit!';
+        }
+
+        return redirect()->route('post.index')->with('success', $alert);
+    }
+
+    public function editPost($id)
+    {
+        $post = $this->postRepository->getById($id);
+
+        return view('admin.post.edit-post', compact('post'));
+    }
+
+    public function updatePost($id, Request $request)
+    {
+        $input = $request->except(['_token']);
+        $input['author_id'] = Auth::user()->id;
+
+        if (isset($input['thumb'])) {
+            $img = $this->ultity->saveImagePost($input);
+            if ($img) {
+                $path = 'images/posts/' . $input['thumb']->getClientOriginalName();
+                $input['thumb'] = $path;
+            }
+        }
+
+        $result = $this->postRepository->updateById($id, $input);
+
+        if ($result) {
+            $alert = 'Successfully to store!';
+        } else {
+            $alert = 'Failed to edit!';
+        }
+
+        return redirect()->route('post.index')->with('success', $alert);
     }
 
     public function formerSlugPost(Request $request)
@@ -43,7 +97,7 @@ class PostController extends Controller
         }
 
         if ($type == 'create') {
-            $query = $this->postRepository->getBySlug($slug);
+            $query = $this->postRepository->getPostBySlug($slug);
 
             if (empty($query)) {
                 $status = true;
@@ -57,7 +111,7 @@ class PostController extends Controller
             if ($getSlugById->slug == $slug) {
                 $status = true;
             } else {
-                $query = $this->postRepository->getBySlug($slug);
+                $query = $this->postRepository->getPostBySlug($slug);
                 if (empty($query)) {
                     $status = true;
                 } else {

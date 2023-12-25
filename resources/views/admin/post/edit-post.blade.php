@@ -13,11 +13,11 @@
     <h3>Create Post</h3>
 </div>
 <div class=" container">
-    <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data" id="post-form">
+    <form action="{{ route('post.update', $post->id) }}" method="POST" enctype="multipart/form-data" id="post-form">
         @csrf
         <div class="col-md-6">
             <label for="title" class="form-label">Title</label>
-            <input name="title" value="{{ old('title') }}" type="text" class="form-control @error('name') is-invalid @enderror" onkeyup="autoSlug(this.value)">
+            <input name="title" value="{{ $post->title ? $post->title : old('title') }}" type="text" class="form-control @error('name') is-invalid @enderror" onkeyup="autoSlug(this.value)">
             @error('title')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-6 mt-4">
             <label for="slug" class="form-label">Slug</label>
-            <input name="slug" type="text" value="{{ old('slug') }}" class="form-control @error('slug') is-invalid @enderror" id="slug" readonly="readonly">
+            <input name="slug" type="text" value="{{ $post->slug ? $post->slug : old('slug') }}" class="form-control @error('slug') is-invalid @enderror" id="slug" readonly="readonly">
             @error('slug')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
         </div>
         <div class="col-md-6 mt-4">
             <label for="category" class="form-label">Category</label>
-            <input name="category" type="text" value="{{ old('category') }}" class="form-control @error('category') is-invalid @enderror">
+            <input name="category" type="text" value="{{ $post->category ? $post->category : old('category') }}" class="form-control @error('category') is-invalid @enderror">
             @error('category')
             <span class="invalid-feedback" style="font-size: 100%;" role="alert">
                 <strong>{{ $message }}</strong>
@@ -62,7 +62,7 @@
             <input value="" type="file" class=" form-control @error('thumb') is-invalid @enderror border-0 bg-light pl-0" name="thumb" id="thumb" hidden>
             <div class=" choose-avatar">
                 <div id="btnimage">
-                    <img id="showImage" style="width: 150px" class="show-avatar" src="{{ url('/images/default-avatar.png') }}" alt="avatar">
+                    <img id="showImage" style="width: 150px" class="show-avatar" src="{{ url($post->thumb) }}" alt="avatar">
                 </div>
                 <div id="button">
                     <i id="btn_chooseImg" class="fa fa-camera mt-2"></i>
@@ -76,7 +76,7 @@
         </div>
         <input type="hidden" name="content" id="content" value="" />
         <div class="col-12 mt-4">
-            <button type="button" class="btn btn-success disabled" id="submit-button">Create</button>
+            <button type="button" class="btn btn-success" id="submit-button">Update</button>
         </div>
     </form>
 </div>
@@ -87,11 +87,14 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
 <script>
     var editor;
+    var content = '<?php echo $post->content ?>';
 
     ClassicEditor
         .create(document.querySelector('#editor'))
         .then(editor => {
             window.editor = editor;
+
+            editor.setData(content);
         })
         .catch(error => {
             console.error(error);

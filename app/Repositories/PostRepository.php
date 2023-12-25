@@ -11,8 +11,17 @@ class PostRepository extends BaseRepository
         return Post::class;
     }
 
-    public function getBySlug($slug)
+    public function getPostBySlug($slug)
     {
         return $this->model->where('slug', $slug)->first();
+    }
+
+    public function getRelatedPost($id, $category)
+    {
+        return $this->model->where('id', '!=', $id)->where('category', $category)->take(5)->get();
+    }
+
+    public function getCategoryPost() {
+        return $this->model->select('category')->distinct()->get();
     }
 }

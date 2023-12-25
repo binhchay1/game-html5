@@ -33,7 +33,7 @@
         <tr class="design-text">
             <td>{{ $post->id }}</td>
             <td>{{ $post->title }}</td>
-            <td>{!! $post->content !!}</td>
+            <td style="display: inline-block; height: 115px; overflow: hidden;">{!! $post->content !!}</td>
             <td>{{ $post->users->name }}</td>
             <td><img class="image" src="{{ $post->thumb }}" alt="avatar" width="100" height="50"></td>
             <td>{{ $post->slug }}</td>

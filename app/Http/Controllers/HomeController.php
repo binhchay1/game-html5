@@ -6,6 +6,7 @@ use App\Enums\IconGame;
 use App\Enums\Ultity;
 use Illuminate\Http\Request;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CommentPostRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\GameRepository;
 use App\Repositories\IpUserRepository;
@@ -14,6 +15,7 @@ use App\Repositories\GameCollectionRepository;
 use App\Repositories\SubscribleRepository;
 use App\Repositories\ReportBugRepository;
 use App\Repositories\TagRepository;
+use App\Repositories\PostRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Cookie;
@@ -36,6 +38,8 @@ class HomeController extends Controller
     private $commentRepository;
     private $subscribleRepository;
     private $tagRepository;
+    private $postRepository;
+    private $commentPostRepository;
 
     public function __construct(
         GameRepository $gameRepository,
@@ -50,6 +54,8 @@ class HomeController extends Controller
         CommentRepository $commentRepository,
         SubscribleRepository $subscribleRepository,
         TagRepository $tagRepository,
+        PostRepository $postRepository,
+        CommentPostRepository $commentPostRepository
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->gameRepository = $gameRepository;
@@ -63,6 +69,8 @@ class HomeController extends Controller
         $this->commentRepository = $commentRepository;
         $this->subscribleRepository = $subscribleRepository;
         $this->tagRepository = $tagRepository;
+        $this->postRepository = $postRepository;
+        $this->commentPostRepository = $commentPostRepository;
     }
 
     public function viewCookiePolicy()
@@ -715,5 +723,107 @@ class HomeController extends Controller
         $this->subscribleRepository->updateById($subscrible, $data);
 
         return view('page.unsubscribe');
+    }
+
+    public function post($slug)
+    {
+        if (empty($slug)) {
+            abort(404);
+        }
+        $post = $this->postRepository->getPostBySlug($slug);
+
+        if (empty($post)) {
+            abort(404);
+        }
+
+        $getGame = $this->gameRepository->getBestGame();
+        $listCategory = Cache::get('listCategory') ? Cache::get('listCategory') : $this->categoryRepository->listCategoryWithCount();
+
+        if (empty($getGame)) {
+            abort(404);
+        }
+
+        $listGame = $this->ultity->paginate($getGame, 30);
+        $games = $this->ultity->renameAndCalculateVote($listGame);
+        $listGameName = [];
+        foreach ($games as $game) {
+            $listGameName[] = $game['name'];
+        }
+
+        $getTagsByGame = $this->gameRepository->getTagsByListGame($listGameName);
+        $getTags = $this->gameRepository->getTags()->toArray();
+        $listTag = [];
+        foreach ($getTagsByGame as $game) {
+            if (count($listTag) >= 10) {
+                break;
+            }
+            $arrTags = json_decode($game->tag);
+            foreach ($arrTags as $tag) {
+                if (!array_key_exists($tag, $listTag)) {
+                    $listTag[$tag]['tag'] = $tag;
+                    $listTag[$tag]['count'] = 0;
+                    $listTag[$tag]['color'] = $this->ultity->rndRGBColorCode();
+                }
+            }
+        }
+
+        foreach ($getTags as $record) {
+            $arrTags = json_decode($record['tag']);
+            foreach ($arrTags as $tags) {
+                if (!array_key_exists($tags, $listTag)) {
+                    continue;
+                } else {
+                    $listTag[$tags]['count'] += 1;
+                }
+            }
+        }
+
+        $stringTrans = implode(', ', array_keys($listTag));
+        $translate = GoogleTranslate::trans($stringTrans, Session::get('locale'));
+        $arrTrans = explode(', ', $translate);
+        $count = 0;
+        foreach ($listTag as $tag => $val) {
+            $listTag[$tag]['trans'] = $arrTrans[$count];
+            $count++;
+        }
+
+        $count = count($listTag);
+        $relatedPost = $this->postRepository->getRelatedPost($post->id, $post->category);
+        $categoryPost = $this->postRepository->getCategoryPost();
+        $slug = $post->slug;
+        $listComments = $this->commentPostRepository->getCommentByPost($slug);
+
+        if (Auth::check()) {
+            $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);
+            $commentPost = $this->commentPostRepository->getCommentByUserAndPost(Auth::user()->id, $post->slug);
+            if (empty($commentPost)) {
+                $isComment = false;
+            } else {
+                $isComment = true;
+            }
+
+            return view('page.post', compact('post', 'count', 'listTag', 'listCategory', 'countGameInCollection', 'relatedPost', 'categoryPost', 'isComment', 'slug', 'listComments'));
+        }
+
+        return view('page.post', compact('post', 'count', 'listTag', 'listCategory', 'relatedPost', 'categoryPost', 'listComments'));
+    }
+
+    public function storeCommentPosts(Request $request)
+    {
+        $message = $request->get('message');
+        $uid = $request->get('uid');
+        $pslug = $request->get('pslug');
+
+        $checkPost = $this->commentPostRepository->getCommentByUserAndPost($uid, $pslug);
+        if (empty($checkPost)) {
+            $data = [
+                'user_id' => $uid,
+                'post_slug' => $pslug,
+                'message' => $message
+            ];
+            $this->commentPostRepository->create($data);
+        }
+
+        return redirect()->route('post', $pslug);
     }
 }

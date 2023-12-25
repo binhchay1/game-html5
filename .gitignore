@@ -23,4 +23,5 @@ yarn-error.log
 /public/process/*
 /public/source-game/*
 /public/source-game
-/public/images/users/*
+/public/images/users
+/public/images/posts

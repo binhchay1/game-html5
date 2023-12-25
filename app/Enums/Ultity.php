@@ -37,6 +37,15 @@ final class Ultity
         }
     }
 
+    public function saveImagePost($input)
+    {
+        if ($input) {
+            $status = Storage::disk('public-post')->put($input['thumb']->getClientOriginalName(), $input['thumb']->get());
+
+            return $status;
+        }
+    }
+
     public function saveImageIconAchievement($input)
     {
         if ($input) {

@@ -104,6 +104,13 @@ return [
             'throw' => false,
         ],
 
+        'public-post' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/posts/',
+            'url' => env('APP_URL') . '/images/posts/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
     ],
 
     /*
