@@ -38,7 +38,7 @@ class PostController extends Controller
         if (isset($input['thumb'])) {
             $img = $this->ultity->saveImagePost($input);
             if ($img) {
-                $path = 'images/posts/' . $input['thumb']->getClientOriginalName();
+                $path = 'images/posts/' . $input['thumb']->getClientOriginalName() . '_' . strtotime(date('Y-m-d H:i:s'));
                 $input['thumb'] = $path;
             }
         }
@@ -85,7 +85,8 @@ class PostController extends Controller
         return redirect()->route('post.index')->with('success', $alert);
     }
 
-    public function deletePost(Request $request) {
+    public function deletePost(Request $request)
+    {
         $id = $request->get('id');
         $this->postRepository->deleteById($id);
 

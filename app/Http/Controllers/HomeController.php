@@ -730,6 +730,7 @@ class HomeController extends Controller
         if (empty($slug)) {
             abort(404);
         }
+
         $post = $this->postRepository->getPostBySlug($slug);
 
         if (empty($post)) {

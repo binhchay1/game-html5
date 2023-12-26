@@ -13,7 +13,7 @@ class PostRepository extends BaseRepository
 
     public function getPostBySlug($slug)
     {
-        return $this->model->where('slug', $slug)->first();
+        return $this->model->where('slug', 'LIKE', '%' . $slug . '%')->first();
     }
 
     public function getRelatedPost($id, $category)

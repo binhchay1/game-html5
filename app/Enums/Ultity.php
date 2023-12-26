@@ -40,7 +40,8 @@ final class Ultity
     public function saveImagePost($input)
     {
         if ($input) {
-            $status = Storage::disk('public-post')->put($input['thumb']->getClientOriginalName(), $input['thumb']->get());
+            $nameStore = $input['thumb']->getClientOriginalName() . '_' . strtotime(date('Y-m-d H:i:s'));
+            $status = Storage::disk('public-post')->put($nameStore, $input['thumb']->get());
 
             return $status;
         }
