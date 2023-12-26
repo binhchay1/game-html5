@@ -85,7 +85,9 @@ function checkSessions() {
     let id = 'accepted';
     if (readCookie(id) != true && readCookie(id) != 'true') {
         let element = document.getElementById('policy-validation');
-        element.style.display = 'block';
+        if (element != null) {
+            element.style.display = 'block';
+        }
     }
 }
 

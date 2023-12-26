@@ -214,6 +214,10 @@
     .list ul li:hover:before {
         transform: scaleX(1);
     }
+
+    #content-post-body img {
+        max-width: 1031px !important;
+    }
 </style>
 @endsection
 
@@ -222,7 +226,7 @@
     <div>
         <div class="box items-grid no-background">
             <div class="h1" style="display: flex;">
-                <img src="{{ asset($post->thumb) }}" />
+                <img src="{{ asset($post->thumb) }}" style="max-width: 400px" />
                 <p class="h1" style="font-size: 45px; margin-left: 15px;">{{ $post->title }}</p>
             </div>
             <hr>
@@ -231,7 +235,7 @@
             </div>
         </div>
         <hr>
-        <div>
+        <div id="content-post-body">
             <h1 style="color: black;">Related Post</h1>
             <div style="display: flex;">
                 @foreach($relatedPost as $post)
