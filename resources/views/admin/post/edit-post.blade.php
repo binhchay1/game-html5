@@ -87,7 +87,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
 <script>
     var editor;
-    var content = '<?php echo $post->content ?>';
+    var content = <?php echo json_encode($post->content) ?>;
 
     ClassicEditor
         .create(document.querySelector('#editor'))
