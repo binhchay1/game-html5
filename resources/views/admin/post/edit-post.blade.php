@@ -84,13 +84,22 @@
 
 @section('js')
 <script src="{{ asset('js/admin/user.js') }}"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 <script>
     var editor;
     var content = <?php echo json_encode($post->content) ?>;
 
     ClassicEditor
-        .create(document.querySelector('#editor'))
+        .create(document.querySelector('#editor'), {
+            htmlSupport: {
+                allow: [{
+                    name: /.*/,
+                    attributes: true,
+                    classes: true,
+                    styles: true
+                }]
+            }
+        })
         .then(editor => {
             window.editor = editor;
 

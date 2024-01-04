@@ -92,5 +92,7 @@
         </ul>
     </div>
 </div>
-
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 @endsection

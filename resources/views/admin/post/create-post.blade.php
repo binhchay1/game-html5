@@ -89,7 +89,16 @@
     var editor;
 
     ClassicEditor
-        .create(document.querySelector('#editor'))
+        .create(document.querySelector('#editor'), {
+            htmlSupport: {
+                allow: [{
+                    name: /.*/,
+                    attributes: true,
+                    classes: true,
+                    styles: true
+                }]
+            }
+        })
         .then(editor => {
             window.editor = editor;
         })

@@ -793,6 +793,7 @@ class HomeController extends Controller
         $categoryPost = $this->postRepository->getCategoryPost();
         $slug = $post->slug;
         $listComments = $this->commentPostRepository->getCommentByPost($slug);
+        // $post->content = str_replace('[places-ads]', );
 
         if (Auth::check()) {
             $countGameInCollection = $this->gameCollectionRepository->countGameInCollection(Auth::user()->id);

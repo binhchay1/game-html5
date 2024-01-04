@@ -34,6 +34,7 @@ class PostController extends Controller
     {
         $input = $request->except(['_token']);
         $input['author_id'] = Auth::user()->id;
+        $input['content'] = html_entity_decode($input['content']);
 
         if (isset($input['thumb'])) {
             $img = $this->ultity->saveImagePost($input);
@@ -65,6 +66,7 @@ class PostController extends Controller
     {
         $input = $request->except(['_token']);
         $input['author_id'] = Auth::user()->id;
+        $input['content'] = html_entity_decode($input['content']);
 
         if (isset($input['thumb'])) {
             $img = $this->ultity->saveImagePost($input);
