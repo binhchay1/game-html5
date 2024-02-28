@@ -24,7 +24,7 @@ class CrawlsAndStoreInformationOfGameIO extends Command
         Crawls $crawls,
         Ultity $ultity,
         GameRepository $gameRepository,
-        CategoryRepository $categoryRepository,
+        CategoryRepository $categoryRepository
     ) {
         $this->linkGame = $linkGame;
         $this->crawls = $crawls;
